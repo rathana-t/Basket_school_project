@@ -16,7 +16,7 @@
                 </li>
                 <li class="nav-item search">
                     <form action="">
-                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Search....">
+                        <input style=" background-color: #EAF3FD ; " type="text" class="form-control" id="formGroupExampleInput" placeholder="Search....">
                     </form>
                 </li>
             </ul>
