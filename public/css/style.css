@@ -1,0 +1,31 @@
+* {
+    font-family: "Poppins", sans-serif;
+}
+.Hello a {
+    color: aqua;
+}
+.navbar-light {
+    background-color: #323b49;
+}
+.navbar a {
+    color: #eaf3fd !important;
+}
+.dropdown-menu a {
+    color: #323b49 !important;
+}
+.signup-a a {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 45px;
+    color: #eaf3fd;
+}
+.cart-a a {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 27px;
+}
+.search input{
+    width: 400px;
+}
