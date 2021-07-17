@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light p-0">
+<nav class="navbar navbar-expand-lg navbar-light p-0 sticky-top">
     <div class="container">
         <a class="navbar-brand logo" href="{{url('/')}}">
             <img src="/images/logo/PLP.svg" alt="">
