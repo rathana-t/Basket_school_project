@@ -29,9 +29,3 @@ Route::get('/reg', [HomeController::class, 'reg']);
 
 Route::post('/signin', [UserController::class, 'signin'])->name("signin");
 Route::post('/register', [UserController::class, 'register'])->name("register");
-
-Route::get('/seller/dashboard', [SellerController::class, 'dashboard']);
-Route::get('/seller/add-product', [SellerController::class, 'add_product']);
-Route::get('/seller/new-order', [SellerController::class, 'new_order']);
-Route::get('/seller/old-order', [SellerController::class, 'old_order']);
-Route::get('/seller/profile', [SellerController::class, 'profile']);
