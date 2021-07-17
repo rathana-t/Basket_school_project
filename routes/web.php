@@ -26,7 +26,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/login', [HomeController::class, 'login']);
 Route::get('/reg', [HomeController::class, 'reg']);
+Route::get('/detailPage', [HomeController::class, 'detail']);
+
 
 Route::post('/signin', [UserController::class, 'signin'])->name("signin");
 Route::post('/register', [UserController::class, 'register'])->name("register");
+
 

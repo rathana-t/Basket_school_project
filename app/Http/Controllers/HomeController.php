@@ -18,4 +18,8 @@ class HomeController extends Controller
     {
         return view('home/reg');
     }
+    public function detail()
+    {
+        return view('home/detailPage');
+    }
 }

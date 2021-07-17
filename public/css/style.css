@@ -233,5 +233,40 @@ footer ul li {
 }
 
 /* Vitou */
-
+.set-margin{
+    margin-top: 30px;
+}
+.view{
+    height: 850px;
+}
+.description{
+    overflow-y: auto; 
+    height: 150px;
+}
+.set button{
+    border: 1px solid orange;
+    text-align: center;
+    height: 50px;
+    width: 120px;
+}
+.set p{
+    line-height: 1px;
+    font-size: 12px;
+}
+.sizetext{
+    font-size: 14px;
+}
+.cart{
+    height: 40px;
+}
+.box{
+    margin: 5px;
+    width:20px;
+    height: 20px;
+    border-radius: 3px;
+}
+.favourite a{
+    font-size: 13px;
+    text-decoration:none;
+}
 /* end  */
