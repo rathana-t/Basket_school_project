@@ -1,5 +1,11 @@
 <?php
 
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SellerController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +26,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/login', [HomeController::class, 'login']);
 Route::get('/reg', [HomeController::class, 'reg']);
+
+Route::post('/signin', [UserController::class, 'signin'])->name("signin");
+Route::post('/register', [UserController::class, 'register'])->name("register");
+
