@@ -21,5 +21,28 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 class SellerController extends Controller
 {
-    //
+    public function dashboard()
+    {
+        return view('seller/dashboard');
+    }
+
+    public function add_product()
+    {
+        return view('seller/add_product');
+    }
+
+    public function new_order()
+    {
+        return view('seller/new_order');
+    }
+
+    public function old_order()
+    {
+        return view('seller/old_order');
+    }
+
+    public function profile()
+    {
+        return view('seller/profile');
+    }
 }
