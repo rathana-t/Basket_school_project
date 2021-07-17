@@ -22,9 +22,12 @@ body {
 .signup-a a {
     font-style: normal;
     font-weight: normal;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 45px;
     color: #eaf3fd;
+}
+.dropdown a {
+    font-size: 16px;
 }
 .cart-a img {
     width: 35px;
