@@ -70,7 +70,7 @@
             </h1>
             <div class="row">
                 @for ($i = 0; $i < 50; $i++)
-                    <div class="col-md-2">
+                    <div class="col-sm-4 col-md-2">
                         <div class="text-center">
                             <img src="/images/image5.svg" alt="" class="img-fluid">
                             <a href="">MacBook Pro 2021</a>
