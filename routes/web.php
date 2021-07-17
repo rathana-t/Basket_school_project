@@ -27,17 +27,16 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/login', [HomeController::class, 'login']);
 Route::get('/reg', [HomeController::class, 'reg']);
 Route::get('/detailPage', [HomeController::class, 'detail']);
+Route::get('/blog', [HomeController::class, 'blog']);
 
 
 Route::post('/signin', [UserController::class, 'signin'])->name("signin");
 Route::post('/register', [UserController::class, 'register'])->name("register");
 
-// <<<<<<< HEAD
-
-// =======
-Route::get('/seller/dashboard', [SellerController::class, 'dashboard']);
-Route::get('/seller/add-product', [SellerController::class, 'add_product']);
-Route::get('/seller/new-order', [SellerController::class, 'new_order']);
-Route::get('/seller/old-order', [SellerController::class, 'old_order']);
-Route::get('/seller/profile', [SellerController::class, 'profile']);
-// >>>>>>> 0e4a194e783192cbe651be1897f09376e426ab12
+Route::prefix('seller')->group(function () {
+    Route::get('/dashboard', [SellerController::class, 'dashboard']);
+    Route::get('/add-product', [SellerController::class, 'add_product']);
+    Route::get('/new-order', [SellerController::class, 'new_order']);
+    Route::get('/old-order', [SellerController::class, 'old_order']);
+    Route::get('/profile', [SellerController::class, 'profile']);
+});
