@@ -1,6 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-light p-0">
     <div class="container">
-        <a class="navbar-brand logo" href="#"><img src="/images/logo/PLP.svg" alt="" ></a>
+        <a class="navbar-brand logo" href="{{url('/')}}">
+            <img src="/images/logo/PLP.svg" alt="">
+        </a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
@@ -16,7 +18,8 @@
                 </li>
                 <li class="nav-item search">
                     <form action="">
-                        <input style=" background-color: #EAF3FD ; " type="text" class="form-control" id="formGroupExampleInput" placeholder="Search....">
+                        <input style=" background-color: #EAF3FD ; " type="text" class="form-control"
+                            id="formGroupExampleInput" placeholder="Search....">
                     </form>
                 </li>
             </ul>
@@ -26,10 +29,10 @@
                     <a class="nav-link" href="#"><img src="/images/logo/opencart.svg" alt=""></a>
                 </li>
                 <li class="nav-item signup-a ml-3">
-                    <a class="nav-link" href="#">Login</a>
+                    <a class="nav-link" href="{{url('/login')}}">Login</a>
                 </li>
                 <li class="nav-item signup-a ml-3">
-                    <a class="nav-link" href="#">SignUp</a>
+                    <a class="nav-link" href="{{url('/reg')}}">SignUp</a>
                 </li>
             </ul>
         </div>

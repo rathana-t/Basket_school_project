@@ -2,7 +2,7 @@
     font-family: "Poppins", sans-serif;
 }
 body {
-    min-height: 100vh;
+    min-height: 120vh;
 }
 .logo img {
     width: 90px;
@@ -207,4 +207,27 @@ footer ul li {
 .contact,
 .about {
     list-style: none;
+}
+.login h1{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 22px;
+    line-height: 45px;
+    color: #19252e;
+}
+.login label{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: #19252e;
+}
+.login input{
+    background: #fcfcfc;
+    border-color: rgb(201, 191, 191);
+}
+.login button{
+    color: #EAF3FD;
+}
+.login .btn-primary{
+    background-color: #006FBF;
 }
