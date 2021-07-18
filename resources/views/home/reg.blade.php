@@ -25,12 +25,12 @@
                             <div class="m-4">
                                 <div class="form-group">
                                     <label for="text">Real name</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" name="username">
+                                    <input type="text" class="form-control" id="exampleInputEmail1" name="username" value="{{ old('username') }}">
                                     {!! $errors->first("username", "<span class='text-danger'>:message</span>") !!}
                                 </div>
                                 <div class="form-group">
                                     <label for="phone">Phone number</label>
-                                    <input type="number" class="form-control" id="exampleInputEmail1" name="phone">
+                                    <input type="number" class="form-control" id="exampleInputEmail1" name="phone" value="{{ old('phone') }}">
                                     {!!$errors->first("phone", "<span class='text-danger'>:message</span>")!!}
                                 </div>
                                 <div class="form-group">
