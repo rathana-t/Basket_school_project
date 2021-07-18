@@ -27,10 +27,13 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/login', [HomeController::class, 'login']);
 Route::get('/reg', [HomeController::class, 'reg']);
 Route::get('/detailPage', [HomeController::class, 'detail']);
+Route::get('/blog', [HomeController::class, 'blog']);
 
 
 Route::post('/signin', [UserController::class, 'signin'])->name("signin");
 Route::post('/register', [UserController::class, 'register'])->name("register");
+Route::get('/profile/{id}', [UserController::class, 'profile'])->name('display-profile')->middleware('checker');
+Route::get('/logout', [UserController::class, 'logout'])->middleware('checker');
 
 Route::get('/seller/dashboard', [SellerController::class, 'dashboard']);
 Route::get('/seller/add-product', [SellerController::class, 'add_product']);

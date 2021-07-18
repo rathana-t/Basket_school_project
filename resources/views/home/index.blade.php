@@ -36,7 +36,7 @@
                     @for ($i = 0; $i < 10; $i++)
                         <div class="col-md">
                             <div class="text-center m-0">
-                               <a href="{{ url('/detailPage') }}"> 
+                               <a target="_blank" href="{{ url('/detailPage') }}"> 
                                 <img src="/images/image5.svg" alt="" class="image-fluid">
                                 <a href="">MacBook Pro 2021</a>
                                 <a href="">2099$</a>
@@ -83,7 +83,7 @@
                 @for ($i = 0; $i < 50; $i++)
                     <div class="col-sm-4 col-md-2">
                         <div class="text-center">
-                            <a href="{{ url('/detailPage') }}">
+                            <a target="_blank" href="{{ url('/detailPage') }}">
                             <img src="/images/image5.svg" alt="" class="img-fluid">
                             <a href="">MacBook Pro 2021</a>
                             <a href="">2099$</a>
