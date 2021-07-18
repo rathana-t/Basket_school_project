@@ -13,6 +13,7 @@ use App\Models\cards;
 use App\Models\brands;
 use App\Models\users_has_cards;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
@@ -51,8 +52,10 @@ class UserController extends Controller
         ]);
         $data['password'] = Hash::make($data['password']);
         unset($data['con_password']);
-        users::create($data);
-        return redirect('/reg')->with('success', 'Successfully Registered!');
+        $create = users::create($data);
+        session()->put('user', $create->id);
+        return redirect('/')->with('success', 'Successfully Registered!');
+        // return redirect('/signin')->with('success', 'Successfully Registered!');
     }
 
     public function profile($id)

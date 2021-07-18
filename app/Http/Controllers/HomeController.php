@@ -43,7 +43,12 @@ class HomeController extends Controller
 
     public function detail()
     {
-        return view('home/detailPage');
+        if (session()->has('user')) {
+            $data_user = Users::findOrFail(session('user'));
+            return view('home/detailPage',compact('data_user'));
+        }else{
+            return view('home/detailPage');
+        }
     }
     
     public function blog(){
