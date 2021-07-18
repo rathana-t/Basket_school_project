@@ -30,16 +30,23 @@ class HomeController extends Controller
             return view('home/index');
         }
     }
+
     public function login()
     {
         return view('home/login');
     }
+
     public function reg()
     {
         return view('home/reg');
     }
+
     public function detail()
     {
         return view('home/detailPage');
+    }
+    
+    public function blog(){
+        return view('blog/blog');
     }
 }
