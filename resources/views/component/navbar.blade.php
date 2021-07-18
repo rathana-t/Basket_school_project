@@ -28,12 +28,20 @@
                 <li class="nav-item cart-a mt-1">
                     <a class="nav-link" href="#"><img src="/images/logo/opencart.svg" alt=""></a>
                 </li>
+                
+            @if(Session::has('user'))
+                <li class="nav-item">
+                  <a class="nav-link"  href="{{  route('display-profile',$data_user->id) }}"><img style="width: 40px" src="{{ URL::asset('profile.png') }}" alt=""></a>
+                </li>
+            @else
                 <li class="nav-item signup-a ml-3">
                     <a class="nav-link" href="{{url('/login')}}">Login</a>
                 </li>
                 <li class="nav-item signup-a ml-3">
-                    <a class="nav-link" href="{{url('/reg')}}">SignUp</a>
+                    <a class="nav-link" href="{{url('/reg')}}">Register</a>
                 </li>
+            @endif
+
             </ul>
         </div>
     </div>

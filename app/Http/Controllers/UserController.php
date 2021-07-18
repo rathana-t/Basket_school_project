@@ -16,8 +16,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
-use Symfony\Component\HttpFoundation\Session\Session;
+// use Symfony\Component\HttpFoundation\Session\Session;
 
 class UserController extends Controller
 {
@@ -35,9 +36,9 @@ class UserController extends Controller
                 session()->put('user', $user->id);
                 return redirect('/')->with('success', "Successfully Login!");
             }
-            return redirect()->back()->with("fail", "Incorrect email or password!")->withInput();
+            return redirect()->back()->with("fail", "Incorrect Phone Number or password!")->withInput();
         }
-        return redirect()->back()->with("fail", "Incorrect email or password!")->withInput();
+        return redirect()->back()->with("fail", "Incorrect Phone Number or password!")->withInput();
     }
 
     function register()
@@ -52,5 +53,18 @@ class UserController extends Controller
         unset($data['con_password']);
         users::create($data);
         return redirect('/reg')->with('success', 'Successfully Registered!');
+    }
+
+    public function profile($id)
+    {
+        $data_user = Users::find($id);
+        return view('home/u_profile',compact('data_user'));
+    }
+    
+    public function logout()
+    {
+    Session::forget('user');
+    Session::forget('joined');
+    return redirect('/');
     }
 }
