@@ -127,7 +127,6 @@ body {
     color: #19252e;
 }
 .all-pro img {
-    width: 160px;
     height: 200px;
     object-fit: cover;
     border-radius: 5px;

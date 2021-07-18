@@ -13,13 +13,13 @@
     </div>
 
     @if (session('success'))
-    <div class="alert alert-success alert-dismissible fade show fixed-top m-3" role="alert">
-        {{ session('success') }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-@endif
+        <div class="alert alert-success alert-dismissible fade show fixed-top m-3" role="alert">
+            {{ session('success') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
 
     <div class="container">
         <div class="recently-add">
@@ -36,11 +36,11 @@
                     @for ($i = 0; $i < 10; $i++)
                         <div class="col-md">
                             <div class="text-center m-0">
-                               <a target="_blank" href="{{ url('/detailPage') }}"> 
-                                <img src="/images/image5.svg" alt="" class="image-fluid">
-                                <a href="">MacBook Pro 2021</a>
-                                <a href="">2099$</a>
-                               </a>
+                                <a target="_blank" href="{{ url('/detailPage') }}">
+                                    <img src="/images/image5.svg" alt="" class="image-fluid">
+                                    <a href="">MacBook Pro 2021</a>
+                                    <a href="">2099$</a>
+                                </a>
                             </div>
                         </div>
                     @endfor
@@ -81,12 +81,14 @@
             </h1>
             <div class="row">
                 @for ($i = 0; $i < 50; $i++)
-                    <div class="col-sm-4 col-md-2">
+                    <div class="col-md-3 col-sm-6 col-xs-12 mb-4">
                         <div class="text-center">
                             <a target="_blank" href="{{ url('/detailPage') }}">
-                            <img src="/images/image5.svg" alt="" class="img-fluid">
-                            <a href="">MacBook Pro 2021</a>
-                            <a href="">2099$</a>
+                                <img src="/images/image5.svg" alt="" class="img-fluid">
+
+                                <a href="">MacBook Pro 2021</a>
+                                <br>
+                                <a href="">2099$</a>
                             </a>
                         </div>
                     </div>
