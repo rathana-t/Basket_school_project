@@ -269,4 +269,10 @@ footer ul li {
     font-size: 13px;
     text-decoration:none;
 }
+.related-product img{
+    width: 400px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+}
 /* end  */

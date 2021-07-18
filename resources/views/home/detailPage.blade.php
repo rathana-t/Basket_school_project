@@ -89,6 +89,28 @@
                 </div>
             </div>
         </div>
-    </div>
+        <div class="mt-2 related-product">
+            <p class="font-weight-light">All related Product</p>
+            <div class="row">
+                @for ($i = 0; $i <= 20; $i++)
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-pro-13-og-202011?wid=1200&hei=630&fmt=jpeg&qlt=95&.v=1604347427000"
+                            class="img-fluid">
+                        <div>
+                            <p class="text-left w-100">
+                                Aluminium Alloy Waterproof Round Desktop Gaming Mouse Mat Pad
+                                Computer Accessory
+                            </p>
+                            <p class="custom-margin">#SRD123456</p>
+                            <ul class="list-unstyled custom-margin" style="display:flex">
+                                <li class="box" style="border:1px solid #000;background: #000;"></li>
+                                <li class="box" style="border:1px solid silver;background: silver;"></li>
+                            </ul>
+                            <p class="text-danger custom-margin">$1500.00</p>
+                        </div>
+                    </div>
+                @endfor
+            </div>
+        </div>
     </div>
 @stop
