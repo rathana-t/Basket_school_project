@@ -1,4 +1,4 @@
-@extends('application')
+@extends('blog/layout')
 
 @section('content')
     <div class="container">
@@ -13,13 +13,13 @@
                 {{ session('fail') }}
                 </div>
             @endif
-                    <form action="{{ route('signin') }}" method="POST">
+                    <form action="{{ url('sellerLogIn') }}" method="POST">
                         @csrf
                         <div class="card shadow-sm">
                             <div class="m-4">
                                 <div class="form-group">
-                                    <label for="phone">Phone number</label>
-                                    <input type="number" class="form-control" id="exampleInputPhone" name="phone">
+                                    <label for="phone">Email or Phone number</label>
+                                    <input type="text" class="form-control" id="exampleInputPhone" name="email_phone">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Password</label>

@@ -16,6 +16,8 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->integer('cart_id');
+            $table->boolean('pending')->default(0);
+            $table->boolean('delivery')->default(0);
             $table->integer('count')->default(1);
             $table->timestamps();
         });

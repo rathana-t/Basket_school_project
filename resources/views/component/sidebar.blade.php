@@ -78,7 +78,7 @@
             </div>
             <ul class="text-center">
                 <li>
-                    <a clas href="{{ url('/seller/dashboard') }}">
+                    <a clas href="{{ url('/seller/dashboard',$data_seller->id) }}">
                         <i class="fas fa-chart-line {{ Request::is('seller/dashboard') ? 'ac' : '' }}"></i>
                         <div class=" {{ Request::is('seller/dashboard') ? 'ac' : '' }}">
                             Dashboard
@@ -86,7 +86,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('/seller/add-product') }}">
+                    <a href="{{ url('/seller/add-product',$data_seller->id) }}">
                         <i class="fas fa-plus {{ Request::is('seller/add-product') ? 'ac' : '' }}"></i>
                         <div class=" {{ Request::is('seller/add-product') ? 'ac' : '' }}">
                             Add product
@@ -94,7 +94,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('/seller/new-order') }}">
+                    <a href="{{ url('/seller/new-order',$data_seller->id) }}">
                         <i class="fas fa-cart-plus  {{ Request::is('seller/new-order') ? 'ac' : '' }}"></i>
                         <div class=" {{ Request::is('seller/new-order') ? 'ac' : '' }}">
                             New orders
@@ -102,7 +102,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('/seller/old-order') }}">
+                    <a href="{{ url('/seller/old-order',$data_seller->id) }}">
                         <i class="fas fa-undo  {{ Request::is('seller/old-order') ? 'ac' : '' }}"></i>
                         <div class=" {{ Request::is('seller/old-order') ? 'ac' : '' }}">
                             Old orders
@@ -110,10 +110,18 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('/seller/profile') }}">
+                    <a href="{{ url('/seller/profile',$data_seller->id) }}">
                         <i class="fas fa-align-justify {{ Request::is('seller/profile') ? 'ac' : '' }}"></i>
                         <div class=" {{ Request::is('seller/profile') ? 'ac' : '' }}">
                             Profile
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('/') }}">
+                    <img style="height: 40px;width:40px" src="{{ URL::asset('images/plp.png') }}" alt="homepage">
+                        <div class=" {{ Request::is('/') ? 'ac' : '' }}">
+                            Go To Website PLP
                         </div>
                     </a>
                 </li>

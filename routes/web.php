@@ -9,17 +9,6 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 // Route::get('/', function () {
 //     return view('welcome');
 // });
@@ -35,8 +24,18 @@ Route::post('/register', [UserController::class, 'register'])->name("register");
 Route::get('/profile/{id}', [UserController::class, 'profile'])->name('display-profile')->middleware('checker');
 Route::get('/logout', [UserController::class, 'logout'])->middleware('checker');
 
-Route::get('/seller/dashboard', [SellerController::class, 'dashboard']);
-Route::get('/seller/add-product', [SellerController::class, 'add_product']);
-Route::get('/seller/new-order', [SellerController::class, 'new_order']);
-Route::get('/seller/old-order', [SellerController::class, 'old_order']);
-Route::get('/seller/profile', [SellerController::class, 'profile']);
+//=============Seller=================== 
+Route::get('/sellerLogInPage', [SellerController::class, 'login_page']);
+Route::get('/sellerRegisterPage', [SellerController::class, 'register_page']);
+Route::post('/sellerLogIn', [SellerController::class, 'login']);
+Route::post('/sellerRegister', [SellerController::class, 'register']);
+Route::get('/logout_seller', [SellerController::class, 'logout'])->middleware('checker_seller');
+
+Route::get('/forseller', [SellerController::class, 'forseller']);
+
+
+Route::get('/seller/dashboard/{id}', [SellerController::class, 'dashboard'])->middleware('checker_seller');
+Route::get('/seller/add-product/{id}', [SellerController::class, 'add_product'])->middleware('checker_seller');
+Route::get('/seller/new-order/{id}', [SellerController::class, 'new_order'])->middleware('checker_seller');
+Route::get('/seller/old-order/{id}', [SellerController::class, 'old_order'])->middleware('checker_seller');
+Route::get('/seller/profile/{id}', [SellerController::class, 'profile']);

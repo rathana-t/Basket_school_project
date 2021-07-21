@@ -31,6 +31,9 @@
                 <ul class="about">
                     <h1>About Us</h1>
                     <li>
+                        <a href="{{ url('/') }}">Home Page</a>
+                    </li>
+                    <li>
                         <a href="">About us</a>
                     </li>
                 </ul>

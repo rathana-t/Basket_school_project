@@ -52,6 +52,11 @@ class HomeController extends Controller
     }
     
     public function blog(){
-        return view('blog/blog');
+        if (session()->has('seller')) {
+            $data_seller = sellers::findOrFail(session('seller'));
+            return view('blog/blog',compact('data_seller'));
+        }else{
+            return view('blog/blog');
+        }
     }
 }
