@@ -124,6 +124,77 @@ class SellerController extends Controller
         return view('seller/profile',compact('data_seller'));
     }
 
+
+    public function postProduct(Request $req)
+    {
+        $req->validate([
+            'imageFile' => 'required',
+            'imageFile.*' => 'mimes:jpeg,jpg,png,gif,csv,txt,pdf|max:2048'
+          ]);
+      
+          if ($req->hasfile('imageFile')) {
+              foreach ($req->file('imageFile') as $file) {
+                  $name =time() . '.' . $file->getClientOriginalExtension();
+                  $file->move(public_path().'/imgProduct/', $name);
+                  $imgData[] = $name;
+              }
+      
+              $pro = new products();
+
+              $pro->name = $req->name;
+              $pro->price = $req->price;
+              $pro->description = $req->description;
+              $pro->stock = $req->stock;
+              $pro->brand_id = $req->brand_id;
+              $pro->category_id = $req->category_id;
+              $pro->img_product = json_encode($imgData);
+              $pro->seller_id = $req->session()->get('seller');
+          }       
+              $pro->save();
+      
+
+
+        // $input=$request->all();
+        // $images = $request->file('img_product');
+        // if ($request->hasFile('img_product')) :
+        //         foreach ($images as $item):
+        //             $imageName =  time() . '-' . $item->getClientOriginalExtension();
+        //             $item->move('imgProduct', $imageName);
+        //             $images[] = $imageName;
+        //         endforeach;
+        // else:
+        //         $images = '';
+        // endif;
+
+        // $pro = new products;
+
+        // $pro->name = $request->name;
+        // $pro->price = $request->price;
+        // $pro->description = $request->description;
+        // $pro->stock = $request->stock;
+        // $pro->brand_id = $request->brand_id;
+        // $pro->category_id = $request->category_id;
+        // $pro->img_product = $images;
+        // $pro->seller_id = $request->session()->get('seller');
+
+        // $pro->save();
+
+        // products::insert( [
+        //     'name' =>$input['name'],
+        //     'price' =>$input['price'],
+        //     'description' =>$input['description'],
+        //     'stock' =>$input['stock'],
+        //     'brand_id' =>$input['brand_id'],
+        //     'category_id' =>$input['category_id'],
+        //     'img_product'=>  implode("|",$images),
+        //     'seller_id' => $request->session()->get('seller'),
+        // ]);
+
+        return redirect('/');
+        
+    }
+
+
     public function logout()
     {
     Session::forget('seller');

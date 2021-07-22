@@ -23,11 +23,12 @@ class HomeController extends Controller
 {
     public function index()
     {
+        $data_pro = DB::table('products')->get();
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
-            return view('home/index',compact('data_user'));
+            return view('home/index',compact('data_user','data_pro'));
         }else{
-            return view('home/index');
+            return view('home/index',compact('data_pro'));
         }
     }
 
@@ -41,13 +42,18 @@ class HomeController extends Controller
         return view('home/reg');
     }
 
-    public function detail()
+    public function detail($id)
     {
+        $detail_pro = products::join(
+            'brands','products.brand_id', '=',  'brands.id' )->join(
+            'categories','products.category_id' , '=', 'categories.id')->where(
+            'products.id',$id)->select('products.*', 'categories.name as cat_name','brands.name as brand_name')->get();
+
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
-            return view('home/detailPage',compact('data_user'));
+            return view('home/detailPage',compact('data_user','detail_pro'));
         }else{
-            return view('home/detailPage');
+            return view('home/detailPage',compact('detail_pro'));
         }
     }
     

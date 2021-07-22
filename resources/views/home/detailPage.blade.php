@@ -3,38 +3,35 @@
 @section('content')
     <div class="container set-margin">
         {{-- Unfinsih --}}
+        @foreach ( $detail_pro as $detail )
+            
         <div class="row">
             <div class="col-md-2 d-flex">
-                <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-pro-13-og-202011?wid=1200&hei=630&fmt=jpeg&qlt=95&.v=1604347427000"
-                    alt="" class="img-fluid" style="height: 100px;">
-                <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-pro-13-og-202011?wid=1200&hei=630&fmt=jpeg&qlt=95&.v=1604347427000"
-                    alt="" class="img-fluid" style="height: 100px;">
-                <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-pro-13-og-202011?wid=1200&hei=630&fmt=jpeg&qlt=95&.v=1604347427000"
-                    alt="" class="img-fluid" style="height: 100px;">
-                <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-pro-13-og-202011?wid=1200&hei=630&fmt=jpeg&qlt=95&.v=1604347427000"
-                    alt="" class="img-fluid" style="height: 100px;">
-                <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-pro-13-og-202011?wid=1200&hei=630&fmt=jpeg&qlt=95&.v=1604347427000"
-                    alt="" class="img-fluid" style="height: 100px;">
-                <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-pro-13-og-202011?wid=1200&hei=630&fmt=jpeg&qlt=95&.v=1604347427000"
-                    alt="" class="img-fluid" style="height: 100px;">
+                <?php foreach (json_decode($detail->img_product)as $picture) { ?>
+                    <img src="{{ asset('imgProduct') }}/{{ $picture }}" alt="" class="img-fluid" style="height: 150px;margin:5px;">
+                   <?php } ?>
             </div>
         </div>
 
         <div class="view">
             <div class="row mt-5">
                 <div class="col-md-6">
-                    <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-pro-13-og-202011?wid=1200&hei=630&fmt=jpeg&qlt=95&.v=1604347427000"
-                        alt="" class="img-fluid">
+                    <?php foreach (json_decode($detail->img_product)as $picture) { ?>
+                        <img src="{{ asset('imgProduct') }}/{{ $picture }}" alt="" class="img-fluid" style="height: 150px;margin:5px;">
+                       <?php break; } ?>
                 </div>
                 <div class="col-md-6">
                     <h5>
-                        Apple MacBook Pro 13-inch 2020
+                        {{ $detail->name }}
                     </h5>
                     <p class="font-weight-light m-1 sizetext">
                         #HIR578789
                     </p>
                     <p class="text-primary m-1">
-                        laptop
+                        {{ $detail->cat_name }}
+                    </p>
+                    <p class="text-primary m-1">
+                        {{ $detail->brand_name }}
                     </p>
                     <p class="font-weight-light m-1 sizetext">
                         Selected by
@@ -43,7 +40,7 @@
                         PLP
                     </p>
                     <p class="text-danger m-1 ">
-                        1500$
+                        {{ $detail->price }}
                     </p>
                     <button type="button" class="btn btn-primary">Description</button>
                     <div class="card description">
@@ -113,4 +110,6 @@
             </div>
         </div>
     </div>
+    @endforeach
+
 @stop

@@ -24,17 +24,20 @@
             </div>
             <div class="row">
                 <div class="horizontal">
-                    @for ($i = 0; $i < 10; $i++)
+                    @foreach ( $data_pro as $pro )
+                        
                         <div class="col-md">
                             <div class="text-center m-0">
-                                <a target="_blank" href="{{ url('/detailPage') }}">
-                                    <img src="/images/image5.svg" alt="" class="image-fluid">
-                                    <a href="">MacBook Pro 2021</a>
-                                    <a href="">2099$</a>
+                                <a target="_blank" href="{{ route('detail',$pro->id) }}">
+                                    <?php foreach (json_decode($pro->img_product)as $picture) { ?>
+                                     <img src="imgProduct/{{ $picture }}" alt="" class="img-fluid">
+                                    <?php break; } ?><br>
+                                    <a href="">{{ $pro->name }}</a><br>
+                                    <a href="">{{ $pro->price }} &nbsp;$</a>
                                 </a>
                             </div>
                         </div>
-                    @endfor
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -71,19 +74,19 @@
                 All Products:
             </h1>
             <div class="row">
-                @for ($i = 0; $i < 50; $i++)
+                @foreach ( $data_pro as $pro )
                     <div class="col-md-3 col-sm-6 col-xs-12 mb-4">
                         <div class="text-center">
-                            <a target="_blank" href="{{ url('/detailPage') }}">
-                                <img src="/images/image5.svg" alt="" class="img-fluid">
-
-                                <a href="">MacBook Pro 2021</a>
-                                <br>
-                                <a href="">2099$</a>
+                            <a target="_blank" href="{{ route('detail',$pro->id) }}">
+                                <?php foreach (json_decode($pro->img_product)as $picture) { ?>
+                                    <img src="imgProduct/{{ $picture }}" alt="" class="img-fluid">
+                                   <?php break; } ?><br>
+                                <a href="">{{ $pro->name }}</a><br>
+                                <a href="">{{ $pro->price }} &nbsp;$</a>
                             </a>
                         </div>
                     </div>
-                @endfor
+                @endforeach
             </div>
             <div class="text-center see-all-product">
                 <a href="">See all product</a>

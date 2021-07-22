@@ -7,6 +7,8 @@
             <h3>{{ $data_user->phone }}</h3>
             <button class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'">Log Out</button>
         </div>
+        <br>
+        <br>
             <a href="{{ url('/sellerLogInPage') }}">Register a Seller</a>
         <div id="id01" class="modal">
             <div class="container">
