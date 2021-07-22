@@ -127,14 +127,14 @@ class SellerController extends Controller
 
     public function postProduct(Request $req)
     {
-        $req->validate([
-            'imageFile' => 'required',
-            'imageFile.*' => 'mimes:jpeg,jpg,png,gif,csv,txt,pdf|max:2048'
-          ]);
+        // $req->validate([
+        //     'imageFile' => 'required',
+        //     'imageFile.*' => 'mimes:jpeg,jpg,png,gif,csv,txt,pdf|max:2048'
+        //   ]);
       
           if ($req->hasfile('imageFile')) {
               foreach ($req->file('imageFile') as $file) {
-                  $name =time() . '.' . $file->getClientOriginalExtension();
+                  $name = uniqid() . $file->getClientOriginalName();
                   $file->move(public_path().'/imgProduct/', $name);
                   $imgData[] = $name;
               }

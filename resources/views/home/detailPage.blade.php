@@ -17,7 +17,7 @@
             <div class="row mt-5">
                 <div class="col-md-6">
                     <?php foreach (json_decode($detail->img_product)as $picture) { ?>
-                        <img src="{{ asset('imgProduct') }}/{{ $picture }}" alt="" class="img-fluid" style="height: 150px;margin:5px;">
+                        <img src="{{ asset('imgProduct') }}/{{ $picture }}" alt="" class="img-fluid" style="height: 400px;width:400px">
                        <?php break; } ?>
                 </div>
                 <div class="col-md-6">
