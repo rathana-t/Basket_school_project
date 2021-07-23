@@ -2,12 +2,38 @@
 
 @section('content')
     <div class="container">
+        <div class="brand">
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4 text-center">
+                    <h1>
+                        Select Product by Brand
+                    </h1>
+                </div>
+                <div class="col-md-4 text-right">
+                    <h1>
+                        <a href=""> See all</a>
+                    </h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="horizontal1">
+                        @for ($i = 0; $i < 20; $i++)
+                            <img src="/images/brand.svg" alt="" class="image-fluid mr-2">
+                        @endfor
+                    </div>
+                </div>
+            </div>
+            <div class="border-bottom mt-2"></div>
+        </div>
+
         <div class="category pt-3">
             <div>
                 Category
             </div>
             <div class="row">
-                <div class="col-md-4 col-sm-6 col-xs-12 mt-3">
+                <div class="col-md-3 col-sm-6 col-xs-12 mt-3">
                     <div class="card shadow-sm">
                         <div class="m-3">
                             <p>Computer Mouse</p>
@@ -19,7 +45,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6 col-xs-12 mt-3">
+                <div class="col-md-3 col-sm-6 col-xs-12 mt-3">
                     <div class="card shadow-sm">
                         <div class="m-3">
                             <p>Computer KeyBoard</p>
@@ -31,7 +57,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6 col-xs-12 mt-3">
+                <div class="col-md-3 col-sm-6 col-xs-12 mt-3">
                     <div class="card shadow-sm">
                         <div class="m-3">
                             <p>Monitor</p>
@@ -43,7 +69,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6 col-xs-12 mt-3">
+                <div class="col-md-3 col-sm-6 col-xs-12 mt-3">
                     <div class="card shadow-sm">
                         <div class="m-3">
                             <p>Chair and Table</p>
@@ -55,7 +81,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6 col-xs-12 mt-3">
+                <div class="col-md-3 col-sm-6 col-xs-12 mt-3">
                     <div class="card shadow-sm">
                         <div class="m-3">
                             <p>Chair and Table</p>
@@ -67,7 +93,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6 col-xs-12 mt-3">
+                <div class="col-md-3 col-sm-6 col-xs-12 mt-3">
                     <div class="card shadow-sm">
                         <div class="m-3">
                             <p>Chair and Table</p>
@@ -81,12 +107,8 @@
                 </div>
             </div>
         </div>
-        <div class="brand">
 
-        </div>
-    </div>
 
-    <div class="container">
         <div class="recently-add">
             <div class="d-flex justify-content-between">
                 <h1>
@@ -114,35 +136,7 @@
                 </div>
             </div>
         </div>
-
-        <div class="brand">
-            <div class="row">
-                <div class="col-md-4"></div>
-                <div class="col-md-4 text-center">
-                    <h1>
-                        Select Product by Brand
-                    </h1>
-                </div>
-                <div class="col-md-4 text-right">
-                    <h1>
-                        <a href=""> See all</a>
-                    </h1>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-2"></div>
-                <div class="col-md-8">
-                    <div class="horizontal1">
-                        @for ($i = 0; $i < 10; $i++)
-                            <img src="/images/brand.svg" alt="" class="image-fluid">
-                        @endfor
-                    </div>
-                </div>
-                <div class="col-md-2"></div>
-            </div>
-        </div>
-
-        <div class="all-pro">
+        {{-- <div class="all-pro">
             <h1>
                 All Products:
             </h1>
@@ -164,6 +158,6 @@
             <div class="text-center see-all-product">
                 <a href="">See all product</a>
             </div>
-        </div>
+        </div> --}}
     </div>
 @stop

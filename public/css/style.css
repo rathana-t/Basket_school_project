@@ -155,8 +155,16 @@ body {
     overflow-x: auto;
 }
 .horizontal1::-webkit-scrollbar {
-    width: 0;
+    height: 5px;
 }
+.horizontal1::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+.horizontal1::-webkit-scrollbar-thumb {
+    background: #c7c7c7;
+    border-radius: 10px;
+}
+
 .sticky-footer {
     top: 100%;
     position: sticky;
@@ -256,3 +264,14 @@ footer ul li {
     border-radius: 5px;
 }
 /* end  */
+
+@media only screen and (max-width: 1223px) {
+    .form-inline .search {
+        width: 300px;
+    }
+}
+@media only screen and (max-width: 992px) {
+    .etc {
+        display: none;
+    }
+}
