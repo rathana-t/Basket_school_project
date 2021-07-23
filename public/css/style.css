@@ -1,40 +1,44 @@
 * {
     font-family: "Poppins", sans-serif;
 }
+
 body {
     min-height: 100vh;
 }
+
 .logo img {
     width: 90px;
 }
-.Hello a {
-    color: aqua;
-}
+
 .navbar-light {
     background-color: #323b49;
 }
+
 .navbar a {
     color: #eaf3fd !important;
 }
-.dropdown-menu a {
-    color: #323b49 !important;
-}
+
 .signup-a a {
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
-    line-height: 45px;
     color: #eaf3fd;
 }
+
 .dropdown a {
     font-size: 16px;
 }
-.cart-a img {
-    width: 35px;
-    height: 35px;
+
+.form-inline input {
+    width: 500px !important;
 }
-.search input {
-    width: 400px;
+.cart i {
+    font-size: 22px;
+    color: #eaf3fd;
+}
+.heart i {
+    font-size: 22px;
+    color: #eaf3fd;
 }
 .hero-text {
     text-align: center;
@@ -207,68 +211,68 @@ footer ul li {
 .about {
     list-style: none;
 }
-.login h1{
+.login h1 {
     font-style: normal;
     font-weight: normal;
     font-size: 22px;
     line-height: 45px;
     color: #19252e;
 }
-.login label{
+.login label {
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
     color: #19252e;
 }
-.login input{
+.login input {
     background: #fcfcfc;
     border-color: rgb(201, 191, 191);
 }
-.login button{
-    color: #EAF3FD;
+.login button {
+    color: #eaf3fd;
 }
-.login .btn-primary{
-    background-color: #006FBF;
+.login .btn-primary {
+    background-color: #006fbf;
 }
 
 /* Vitou */
-.set-margin{
+.set-margin {
     margin-top: 30px;
 }
-.view{
+.view {
     height: 850px;
 }
-.description{
-    overflow-y: auto; 
+.description {
+    overflow-y: auto;
     height: 150px;
 }
-.set button{
+.set button {
     border: 1px solid orange;
     text-align: center;
     height: 50px;
     width: 120px;
 }
-.set p{
+.set p {
     line-height: 1px;
     font-size: 12px;
 }
-.sizetext{
+.sizetext {
     font-size: 14px;
 }
-.cart{
+.cart {
     height: 40px;
 }
-.box{
+.box {
     margin: 5px;
-    width:20px;
+    width: 20px;
     height: 20px;
     border-radius: 3px;
 }
-.favourite a{
+.favourite a {
     font-size: 13px;
-    text-decoration:none;
+    text-decoration: none;
 }
-.related-product img{
+.related-product img {
     width: 400px;
     height: 200px;
     object-fit: cover;
