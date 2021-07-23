@@ -17,6 +17,8 @@ Route::get('/login', [HomeController::class, 'login']);
 Route::get('/reg', [HomeController::class, 'reg']);
 Route::get('/detailPage/{id}', [HomeController::class, 'detail'])->name('detail');
 Route::get('/blog', [HomeController::class, 'blog']);
+Route::get('/cart', [HomeController::class, 'cart']);
+
 
 
 Route::post('/signin', [UserController::class, 'signin'])->name("signin");

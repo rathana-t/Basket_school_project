@@ -263,6 +263,48 @@ footer ul li {
     object-fit: cover;
     border-radius: 5px;
 }
+/* orderPage */
+.row .set-img{
+    height: 180px;
+}
+.des-margin{
+    margin-left: 160px;
+}
+.order-margin{
+    margin-top: 20px;
+}
+.show-order{
+display: flex;
+}
+.cart-text{
+    font-size: 14px;
+    font-style: normal;
+}
+.row .delete a{
+    text-decoration: none;
+}
+
+.table tr td{
+    border: 1px solid black;
+    height: 40px;
+}
+.pay:hover
+{
+    background-color: rgb(243, 243, 243);
+    transition:0.4s;
+    color: rgb(0, 0, 0);
+}
+.new-table{
+    margin-top: -6px;
+    margin-bottom: 6px;
+}
+.new-text{
+    margin-top: -5px;
+}
+.new-text p{
+    margin-bottom: 6px;
+} 
+
 /* end  */
 
 @media only screen and (max-width: 1223px) {

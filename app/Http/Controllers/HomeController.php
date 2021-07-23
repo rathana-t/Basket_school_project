@@ -41,6 +41,10 @@ class HomeController extends Controller
     {
         return view('home/reg');
     }
+    public function cart()
+    {
+        return view('home/cart');
+    }
 
     public function detail($id)
     {

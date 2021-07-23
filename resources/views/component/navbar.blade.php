@@ -12,7 +12,7 @@
 
         <ul class="navbar-nav ml-auto etc">
             <li class="nav-item cart d-flex">
-                <a href="" class=" align-self-center">
+                <a href="{{ url('/cart') }}" class=" align-self-center">
                     <i class="fas fa-cart-plus"></i>
                 </a>
             </li>
