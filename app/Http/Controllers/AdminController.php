@@ -21,5 +21,33 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 class AdminController extends Controller
 {
-    //
+    public function dashboard()
+    {
+        return view('admin/dashboard');
+    }
+
+    public function user()
+    {
+        return view('admin/user');
+    }
+
+    public function seller()
+    {
+        return view('admin/seller');
+    }
+
+    public function brand()
+    {
+        return view('admin/brand');
+    }
+
+    public function category()
+    {
+        return view('admin/category');
+    }
+
+    public function product()
+    {
+        return view('admin/product');
+    }
 }
