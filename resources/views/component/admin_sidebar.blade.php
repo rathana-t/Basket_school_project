@@ -112,8 +112,8 @@
                 </li>
                 <li>
                     <a href="{{ url('/admin/brand') }}">
-                        <i class="fas fa-tags {{ Request::is('admin/brand') ? 'ac' : '' }}"></i>
-                        <div class=" {{ Request::is('admin/brand') ? 'ac' : '' }}">
+                        <i class="fas fa-tags {{ Request::is('admin/brand') || Request::is('admin/add-brand') ? 'ac' : '' }}"></i>
+                        <div class=" {{ Request::is('admin/brand') || Request::is('admin/add-brand') ? 'ac' : '' }}">
                             Brand
                         </div>
                     </a>

@@ -6,6 +6,7 @@
             <h1>
                 This is brand page
             </h1>
+            <a href="{{ url('/admin/add-brand') }}"> Add New Brand </a>
         </div>
     </div>
 @stop

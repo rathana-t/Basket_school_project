@@ -41,6 +41,30 @@ class AdminController extends Controller
         return view('admin/brand');
     }
 
+    public function addBrand()
+    {
+        return view('admin/addBrand');
+    }
+
+    public function storeBrand(Request $req)
+    {
+        $brand = new brands();
+        $brand->name = $req->name;
+        if ($req->hasFile('brand_img')) {
+            $file = $req->file('brand_img');
+            $ext = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $ext;
+            $file->move('images/brandImages', $filename);
+            $brand->brand_img = $filename;
+        } else {
+            return $req;
+            $brand->brand_img = '';
+            echo "Error";
+        }
+        $brand->save();
+        return redirect('/admin/dashboard')->with('brand_add', '100%');
+    }
+
     public function category()
     {
         return view('admin/category');
