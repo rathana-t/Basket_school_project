@@ -13,6 +13,6 @@ class brands extends Model
 
     protected $table = "brands";
 
-    protected $fillable=['name','count','created_at','updated_at'];
+    protected $fillable=['name','brand_img','count','created_at','updated_at'];
 
 }
