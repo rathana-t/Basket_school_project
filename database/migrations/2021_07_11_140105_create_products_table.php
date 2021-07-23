@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->string('price',20);
             $table->string('stock',15);
             $table->string('img_product',1024);
-            $table->integer('top_buy')->nullable(0);
+            $table->integer('top_buy')->nullable();
             $table->integer('brand_id');
             $table->integer('category_id');
             $table->integer('seller_id');
