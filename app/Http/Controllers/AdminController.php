@@ -69,6 +69,28 @@ class AdminController extends Controller
     {
         return view('admin/category');
     }
+    public function addCategory()
+    {
+        return view('admin/addcategory');
+    }
+    public function storeCategory(Request $req)
+    {
+        $category = new categories();
+        $category->name = $req->name;
+        if ($req->hasFile('category_img')) {
+            $file = $req->file('category_img');
+            $ext = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $ext;
+            $file->move('images/categoryImages', $filename);
+            $category->category_img = $filename;
+        } else {
+            return $req;
+            $category->category_img = '';
+            echo "Error";
+        }
+        $category->save();
+        return redirect('/admin/dashboard')->with('category_add', '100%');
+    }
 
     public function product()
     {
