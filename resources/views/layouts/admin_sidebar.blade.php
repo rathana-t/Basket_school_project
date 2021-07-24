@@ -92,7 +92,7 @@
                 <li>
                     <a href="{{ url('/admin/user') }}">
                         <img src="/images/sidebar-logo/4.svg" alt="">
-                        <div class=" {{ Request::is('admin/user') ? 'ac' : '' }}">
+                        <div class=" {{ Request::is('admin/user*')  ? 'ac' : '' }}">
                             User
                         </div>
                     </a>
