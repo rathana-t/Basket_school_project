@@ -99,7 +99,7 @@
                                 <div class="text-center">
                                     <a target="_blank" href="{{ route('detail', $pro->id) }}">
                                         <?php foreach (json_decode($pro->img_product)as $picture) { ?>
-                                        <img src="imgProduct/{{ $picture }}" alt="" class="img-fluid mb-1">
+                                        <img src="/images/imgProduct/{{ $picture }}" alt="" class="img-fluid mb-1">
                                         <?php break; } ?><br>
                                         <a>{{ $pro->name }}</a>
                                         <div>

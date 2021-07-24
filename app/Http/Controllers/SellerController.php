@@ -26,10 +26,10 @@ class SellerController extends Controller
 
     public function login_page()
     {
-        if(session()->has('seller')){
+        if (session()->has('seller')) {
             $data_seller = sellers::findOrFail(session('seller'));
-            return view('seller/profile',compact('data_seller'));
-        }else{
+            return view('seller/profile', compact('data_seller'));
+        } else {
             return view('seller/login');
         }
     }
@@ -37,14 +37,13 @@ class SellerController extends Controller
     {
         $email_phone = request()->input('email_phone');
 
-        if(is_numeric($email_phone)){
-        $data = request()->validate([
-            'email_phone' => 'required',
-            'password' => 'required',
-        ]);
-        $seller = DB::table('sellers')->where("phone", "=", $data["email_phone"])->first();
-
-        }elseif (filter_var($email_phone, FILTER_VALIDATE_EMAIL)){
+        if (is_numeric($email_phone)) {
+            $data = request()->validate([
+                'email_phone' => 'required',
+                'password' => 'required',
+            ]);
+            $seller = DB::table('sellers')->where("phone", "=", $data["email_phone"])->first();
+        } elseif (filter_var($email_phone, FILTER_VALIDATE_EMAIL)) {
             $data = request()->validate([
                 'email_phone' => 'required',
                 'password' => 'required',
@@ -75,16 +74,16 @@ class SellerController extends Controller
         $data['password'] = Hash::make($data['password']);
         unset($data['con_password']);
         $create = sellers::create($data);
-        session()->put('seller',$create->id);
-        
+        session()->put('seller', $create->id);
+
         return redirect('/forseller');
     }
     public function forseller()
     {
-        if(session()->has('seller')){
+        if (session()->has('seller')) {
             $data_seller = sellers::findOrFail(session('seller'));
-            return view('blog/blog',compact('data_seller'));
-        }else{
+            return view('blog/blog', compact('data_seller'));
+        } else {
             return view('blog/blog');
         }
     }
@@ -95,33 +94,33 @@ class SellerController extends Controller
     public function dashboard($id)
     {
         $data_seller = sellers::find($id);
-        return view('seller/dashboard',compact('data_seller'));
+        return view('seller/dashboard', compact('data_seller'));
     }
 
     public function add_product($id)
     {
         $data_seller = sellers::find($id);
 
-        return view('seller/add_product',compact('data_seller'));
+        return view('seller/add_product', compact('data_seller'));
     }
 
     public function new_order($id)
     {
         $data_seller = sellers::find($id);
 
-        return view('seller/new_order',compact('data_seller'));
+        return view('seller/new_order', compact('data_seller'));
     }
 
     public function old_order($id)
     {
         $data_seller = sellers::find($id);
-        return view('seller/old_order',compact('data_seller'));
+        return view('seller/old_order', compact('data_seller'));
     }
 
     public function profile($id)
     {
         $data_seller = sellers::find($id);
-        return view('seller/profile',compact('data_seller'));
+        return view('seller/profile', compact('data_seller'));
     }
 
 
@@ -131,27 +130,27 @@ class SellerController extends Controller
         //     'imageFile' => 'required',
         //     'imageFile.*' => 'mimes:jpeg,jpg,png,gif,csv,txt,pdf|max:2048'
         //   ]);
-      
-          if ($req->hasfile('imageFile')) {
-              foreach ($req->file('imageFile') as $file) {
-                  $name = uniqid() . $file->getClientOriginalName();
-                  $file->move(public_path().'/imgProduct/', $name);
-                  $imgData[] = $name;
-              }
-      
-              $pro = new products();
 
-              $pro->name = $req->name;
-              $pro->price = $req->price;
-              $pro->description = $req->description;
-              $pro->stock = $req->stock;
-              $pro->brand_id = $req->brand_id;
-              $pro->category_id = $req->category_id;
-              $pro->img_product = json_encode($imgData);
-              $pro->seller_id = $req->session()->get('seller');
-          }       
-              $pro->save();
-      
+        if ($req->hasfile('imageFile')) {
+            foreach ($req->file('imageFile') as $file) {
+                $name = uniqid() . $file->getClientOriginalName();
+                $file->move(public_path() . '/images/imgProduct/', $name);
+                $imgData[] = $name;
+            }
+
+            $pro = new products();
+
+            $pro->name = $req->name;
+            $pro->price = $req->price;
+            $pro->description = $req->description;
+            $pro->stock = $req->stock;
+            $pro->brand_id = $req->brand_id;
+            $pro->category_id = $req->category_id;
+            $pro->img_product = json_encode($imgData);
+            $pro->seller_id = $req->session()->get('seller');
+        }
+        $pro->save();
+
 
 
         // $input=$request->all();
@@ -191,14 +190,13 @@ class SellerController extends Controller
         // ]);
 
         return redirect('/');
-        
     }
 
 
     public function logout()
     {
-    Session::forget('seller');
-    Session::forget('joined');
-    return redirect('/blog');
+        Session::forget('seller');
+        Session::forget('joined');
+        return redirect('/blog');
     }
 }
