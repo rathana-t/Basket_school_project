@@ -67,7 +67,10 @@
         margin-left: 300px;
         margin-right: 50px;
     }
-
+    .wrapper .sidebar ul li a img {
+        width: 30px;
+        height: 24px;
+    }
 </style>
 
 <body>
@@ -79,7 +82,7 @@
             <ul class="text-center">
                 <li>
                     <a clas href="{{ url('/admin/dashboard') }}">
-                        <i class="fas fa-chart-line {{ Request::is('admin/dashboard') ? 'ac' : '' }}"></i>
+                        <img src="/images/sidebar-logo/1.svg" alt="">
                         <div class=" {{ Request::is('admin/dashboard') ? 'ac' : '' }}">
                             Dashboard
                         </div>
@@ -88,7 +91,7 @@
 
                 <li>
                     <a href="{{ url('/admin/user') }}">
-                        <i class="fas fa-users {{ Request::is('admin/user') ? 'ac' : '' }}"></i>
+                        <img src="/images/sidebar-logo/4.svg" alt="">
                         <div class=" {{ Request::is('admin/user') ? 'ac' : '' }}">
                             User
                         </div>
@@ -96,7 +99,7 @@
                 </li>
                 <li>
                     <a href="{{ url('/admin/seller') }}">
-                        <i class="fas fa-store-alt {{ Request::is('admin/seller') ? 'ac' : '' }}"></i>
+                        <img src="/images/sidebar-logo/2.svg" alt="">
                         <div class=" {{ Request::is('admin/seller') ? 'ac' : '' }}">
                             Seller
                         </div>
@@ -104,7 +107,7 @@
                 </li>
                 <li>
                     <a href="{{ url('/admin/product') }}">
-                        <i class="fab fa-dropbox {{ Request::is('admin/product') ? 'ac' : '' }}"></i>
+                        <img src="/images/sidebar-logo/3.svg" alt="">
                         <div class=" {{ Request::is('admin/product') ? 'ac' : '' }}">
                             Product
                         </div>
@@ -112,7 +115,7 @@
                 </li>
                 <li>
                     <a href="{{ url('/admin/brand') }}">
-                        <i class="fas fa-tags {{ Request::is('admin/brand') || Request::is('admin/add-brand') ? 'ac' : '' }}"></i>
+                        <img src="/images/sidebar-logo/5.svg" alt="">
                         <div class=" {{ Request::is('admin/brand') || Request::is('admin/add-brand') ? 'ac' : '' }}">
                             Brand
                         </div>
@@ -120,7 +123,7 @@
                 </li>
                 <li>
                     <a href="{{ url('/admin/category') }}">
-                        <i class="fas fa-th-list {{ Request::is('admin/category') ? 'ac' : '' }}"></i>
+                        <img src="/images/sidebar-logo/6.svg" alt="">
                         <div class=" {{ Request::is('admin/category') ? 'ac' : '' }}">
                             Category
                         </div>
@@ -128,7 +131,6 @@
                 </li>
                 <li>
                     <a href="{{ url('/') }}">
-                        <img style="height: 40px;width:40px" src="{{ URL::asset('images/plp.png') }}" alt="homepage">
                         <div class=" {{ Request::is('/') ? 'ac' : '' }}">
                             Go To Website PLP
                         </div>

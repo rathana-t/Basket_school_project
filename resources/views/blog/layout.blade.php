@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>PLP-Blog</title>
-    <link rel = "icon" href ="{{ URL::asset('images/plp.png') }}" type = "image/x-icon">
+    <link rel="icon" href="{{ URL::asset('images/plp.png') }}" type="image/x-icon">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,7 +24,7 @@
     }
 
     .background-img {
-        background-image: url("/images/office.png");
+        background-image: url("/images/blog/office.png");
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
@@ -189,17 +189,19 @@
         background-color: #006FBF !important;
         border-color: #006FBF !important;
     }
-/* Chrome, Safari, Edge, Opera */
-            #exampleInputPhone::-webkit-outer-spin-button,
-            #exampleInputPhone::-webkit-inner-spin-button {
-              -webkit-appearance: none;
-              margin: 0;
-            }
-            
-            /* Firefox */
-            #exampleInputPhone[type=number] {
-              -moz-appearance: textfield;
-            }
+
+    /* Chrome, Safari, Edge, Opera */
+    #exampleInputPhone::-webkit-outer-spin-button,
+    #exampleInputPhone::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    #exampleInputPhone[type=number] {
+        -moz-appearance: textfield;
+    }
+
 </style>
 
 <body>
@@ -214,30 +216,24 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                     @if (Session::has('seller'))
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('seller/profile', $data_seller->id) }}"><img
-                                style="width: 40px" src="{{ URL::asset('profile.png') }}" alt=""></a>
-                    </li>
-                @else
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('sellerLogInPage') }}">Login</a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="{{ url('sellerRegisterPage') }}">Register</a>
-                    </li>
-                @endif
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('seller/profile', $data_seller->id) }}"><img
+                                    style="width: 40px" src="{{ URL::asset('profile.png') }}" alt=""></a>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('sellerLogInPage') }}">Login</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="{{ url('sellerRegisterPage') }}">Register</a>
+                        </li>
+                    @endif
                 </ul>
             </div>
         </div>
     </nav>
-{{-- ============================================== --}}
 
-
-                @yield("content")
-
-
-{{-- ============================================== --}}
-
+    @yield("content")
 
     <footer class="sticky-footer d-flex align-items-center mt-5 shadow-sm">
         <div class="container">
@@ -246,7 +242,7 @@
                     <ul class="money">
                         <h1>Make Money With Us</h1>
                         <li>
-                            <a href="{{url('/blog')}}">Sell product on our page</a>
+                            <a href="{{ url('/blog') }}">Sell product on our page</a>
                         </li>
                     </ul>
                 </div>

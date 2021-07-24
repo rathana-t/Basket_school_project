@@ -1,4 +1,4 @@
-@extends('component\admin_sidebar')
+@extends('layouts\admin_sidebar')
 
 @section('sidebar-content')
     <div class="container">

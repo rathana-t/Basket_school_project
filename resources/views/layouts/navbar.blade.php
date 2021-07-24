@@ -11,14 +11,14 @@
         </ul>
 
         <ul class="navbar-nav ml-auto etc">
-            <li class="nav-item cart d-flex">
-                <a href="{{ url('/cart') }}" class=" align-self-center">
-                    <i class="fas fa-cart-plus"></i>
+            <li class="nav-item d-flex align-items-center">
+                <a href="" class="pl-2">
+                    <img src="/images/logo/heart.svg" alt="">
                 </a>
             </li>
-            <li class="nav-item heart d-flex ml-3 mr-2">
-                <a href="" class="align-self-center">
-                    <i class="far fa-heart "></i>
+            <li class="nav-item d-flex align-items-center pl-2 pr-1">
+                <a href="{{ url('/cart') }}">
+                    <img src="/images/logo/cart.svg" alt="">
                 </a>
             </li>
             @if (Session::has('user'))

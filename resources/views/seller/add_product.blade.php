@@ -1,4 +1,4 @@
-@extends('component\sidebar')
+@extends('layouts\sidebar')
 
 @section('sidebar-content')
     <div class="container">
@@ -41,8 +41,16 @@
                                 </select>
                             </div>
                             <div class="col">
-
-                                <label for="exampleFormControlSelect1">Category</label>
+                                <label for="exampleFormControlSelect1">Main Category</label>
+                                <select class="form-control" id="exampleFormControlSelect1" name="category_id">
+                                    <option value="{{ old('category_id') }}">{{ old('category_id') }}</option>
+                                    <option value="1">KeyBoard</option>
+                                    <option value="2">Mouse</option>
+                                    <option value="3">Another action</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label for="exampleFormControlSelect1">Secondary Category</label>
                                 <select class="form-control" id="exampleFormControlSelect1" name="category_id">
                                     <option value="{{ old('category_id') }}">{{ old('category_id') }}</option>
                                     <option value="1">KeyBoard</option>

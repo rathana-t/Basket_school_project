@@ -32,15 +32,12 @@ body {
 .form-inline input {
     width: 500px !important;
 }
-.cart i {
-    font-size: 22px;
-    color: #eaf3fd;
-}
+
 .heart i {
     font-size: 22px;
     color: #eaf3fd;
 }
-.category .card  {
+.category .card {
     height: 280px;
 }
 .category .card img {
@@ -247,9 +244,7 @@ footer ul li {
 .sizetext {
     font-size: 14px;
 }
-.cart {
-    height: 40px;
-}
+
 .box {
     margin: 5px;
     width: 20px;
@@ -278,10 +273,6 @@ footer ul li {
 }
 .show-order {
     display: flex;
-}
-.cart-text {
-    font-size: 14px;
-    font-style: normal;
 }
 .row .delete a {
     text-decoration: none;
