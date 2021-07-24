@@ -40,34 +40,37 @@ body {
     font-size: 22px;
     color: #eaf3fd;
 }
-.category .card {
-    height: 350px;
+.category .card  {
+    height: 280px;
 }
 .category .card img {
-    object-fit: cover;
-    height: 220px;
+    height: 180px;
+    object-fit: contain;
 }
-.recently-add h1 {
+.category h1 {
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
-    line-height: 45px;
     color: #19252e;
 }
-.recently-add img {
-    width: 160px;
-    height: 200px;
+.cate-item h1 {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    color: #19252e;
+}
+.cate-item img {
+    height: 210px;
     object-fit: cover;
     border-radius: 5px;
 }
-.recently-add a {
+.cate-item a {
     font-style: normal;
     font-weight: 300;
     font-size: 14px;
-    line-height: 21px;
     color: #19252e;
 }
-.recently-add a:hover {
+.cate-item a:hover {
     text-decoration: none;
 }
 .see-all a {
@@ -264,46 +267,45 @@ footer ul li {
     border-radius: 5px;
 }
 /* orderPage */
-.row .set-img{
+.row .set-img {
     height: 180px;
 }
-.des-margin{
+.des-margin {
     margin-left: 160px;
 }
-.order-margin{
+.order-margin {
     margin-top: 20px;
 }
-.show-order{
-display: flex;
+.show-order {
+    display: flex;
 }
-.cart-text{
+.cart-text {
     font-size: 14px;
     font-style: normal;
 }
-.row .delete a{
+.row .delete a {
     text-decoration: none;
 }
 
-.table tr td{
+.table tr td {
     border: 1px solid black;
     height: 40px;
 }
-.pay:hover
-{
+.pay:hover {
     background-color: rgb(243, 243, 243);
-    transition:0.4s;
+    transition: 0.4s;
     color: rgb(0, 0, 0);
 }
-.new-table{
+.new-table {
     margin-top: -6px;
     margin-bottom: 6px;
 }
-.new-text{
+.new-text {
     margin-top: -5px;
 }
-.new-text p{
+.new-text p {
     margin-bottom: 6px;
-} 
+}
 
 /* end  */
 
