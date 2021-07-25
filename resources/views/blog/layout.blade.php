@@ -217,7 +217,7 @@
                 <ul class="navbar-nav ml-auto">
                     @if (Session::has('seller'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('seller/profile', $data_seller->id) }}"><img
+                            <a class="nav-link" href="seller/{{$data_seller->id}}/profile"><img
                                     style="width: 40px" src="{{ URL::asset('profile.png') }}" alt=""></a>
                         </li>
                     @else

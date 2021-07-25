@@ -1,9 +1,6 @@
 @extends('blog/layout')
 
 @section('content')
-
-
-
     <div class="container">
         <div class="background-img">
             <div class="background-color">

@@ -73,9 +73,48 @@
         height: 24px;
     }
 
-    .seller-list-product a {
-        text-decoration: none;
-        color: #323b49;
+    .background-color {
+        background: #EDEBFA;
+        margin: auto;
+        border-radius: 10px;
+    }
+
+    .profile-column img {
+        height: 220px;
+        object-fit: cover;
+        border-radius: 5px;
+    }
+
+    .profile-column .card {
+        height: 320px;
+    }
+
+    .seller-info .card {
+        height: 320px;
+    }
+
+    .seller-info .card h1 {
+        font-size: 22px;
+        color: #0049B6;
+    }
+
+    .seller-info .card .shop-info h1 {
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 30px;
+        color: #000000;
+    }
+
+    .address .card h1 {
+        font-size: 22px;
+        color: #0049B6;
+    }
+
+    .address .card .address-info h1 {
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 30px;
+        color: #000000;
     }
 
 </style>
