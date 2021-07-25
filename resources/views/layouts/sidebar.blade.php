@@ -68,6 +68,16 @@
         margin-right: 50px;
     }
 
+    .wrapper .sidebar ul li a img {
+        width: 30px;
+        height: 24px;
+    }
+
+    .seller-list-product a {
+        text-decoration: none;
+        color: #323b49;
+    }
+
 </style>
 
 <body>
@@ -78,48 +88,47 @@
             </div>
             <ul class="text-center">
                 <li>
-                    <a clas href="{{ url('/seller/dashboard',$data_seller->id) }}">
-                        <i class="fas fa-chart-line {{ Request::is('seller/dashboard') ? 'ac' : '' }}"></i>
-                        <div class=" {{ Request::is('seller/dashboard') ? 'ac' : '' }}">
+                    <a clas href="/seller/{{ $data_seller->id }}/dashboard">
+                        <img src="/images/sidebar-logo/1.svg" alt="">
+                        <div class=" {{ Request::is('seller*/dashboard') ? 'ac' : '' }} mt-2">
                             Dashboard
                         </div>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('/seller/add-product',$data_seller->id) }}">
-                        <i class="fas fa-plus {{ Request::is('seller/add-product') ? 'ac' : '' }}"></i>
-                        <div class=" {{ Request::is('seller/add-product') ? 'ac' : '' }}">
-                            Add product
+                    <a clas href="/seller/{{ $data_seller->id }}/products">
+                        <img src="/images/sidebar-logo/3.svg" alt="">
+                        <div class=" {{ Request::is('seller*/products') ? 'ac' : '' }} mt-2">
+                            Product
                         </div>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('/seller/new-order',$data_seller->id) }}">
-                        <i class="fas fa-cart-plus  {{ Request::is('seller/new-order') ? 'ac' : '' }}"></i>
-                        <div class=" {{ Request::is('seller/new-order') ? 'ac' : '' }}">
+                    <a clas href="/seller/{{ $data_seller->id }}/new-order">
+                        <img src="/images/sidebar-seller-logo/cart.svg" alt="">
+                        <div class=" {{ Request::is('seller*/new-order') ? 'ac' : '' }} mt-2">
                             New orders
                         </div>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('/seller/old-order',$data_seller->id) }}">
-                        <i class="fas fa-undo  {{ Request::is('seller/old-order') ? 'ac' : '' }}"></i>
-                        <div class=" {{ Request::is('seller/old-order') ? 'ac' : '' }}">
+                    <a clas href="/seller/{{ $data_seller->id }}/old-order">
+                        <img src="/images/sidebar-seller-logo/history.svg" alt="">
+                        <div class=" {{ Request::is('seller*/old-order') ? 'ac' : '' }} mt-2">
                             Old orders
                         </div>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ url('/seller/profile',$data_seller->id) }}">
-                        <i class="fas fa-align-justify {{ Request::is('seller/profile') ? 'ac' : '' }}"></i>
-                        <div class=" {{ Request::is('seller/profile') ? 'ac' : '' }}">
+                    <a clas href="/seller/{{ $data_seller->id }}/profile">
+                        <img src="/images/sidebar-seller-logo/align.svg" alt="">
+                        <div class=" {{ Request::is('seller*/profile') ? 'ac' : '' }} mt-2">
                             Profile
                         </div>
                     </a>
                 </li>
                 <li>
                     <a href="{{ url('/') }}">
-                    <img style="height: 40px;width:40px" src="{{ URL::asset('images/plp.png') }}" alt="homepage">
                         <div class=" {{ Request::is('/') ? 'ac' : '' }}">
                             Go To Website PLP
                         </div>

@@ -35,11 +35,12 @@ Route::get('/logout_seller', [SellerController::class, 'logout'])->middleware('c
 
 Route::get('/forseller', [SellerController::class, 'forseller']);
 
-Route::get('/seller/dashboard/{id}', [SellerController::class, 'dashboard'])->middleware('checker_seller');
-Route::get('/seller/add-product/{id}', [SellerController::class, 'add_product'])->middleware('checker_seller');
-Route::get('/seller/new-order/{id}', [SellerController::class, 'new_order'])->middleware('checker_seller');
-Route::get('/seller/old-order/{id}', [SellerController::class, 'old_order'])->middleware('checker_seller');
-Route::get('/seller/profile/{id}', [SellerController::class, 'profile']);
+Route::get('/seller/{id}/dashboard', [SellerController::class, 'dashboard'])->middleware('checker_seller');
+Route::get('/seller/{id}/products', [SellerController::class, 'products'])->middleware('checker_seller');
+Route::get('/seller/{id}/add-product', [SellerController::class, 'add_product'])->middleware('checker_seller');
+Route::get('/seller/{id}/new-order', [SellerController::class, 'new_order'])->middleware('checker_seller');
+Route::get('/seller/{id}/old-order', [SellerController::class, 'old_order'])->middleware('checker_seller');
+Route::get('/seller/{id}/profile', [SellerController::class, 'profile']);
 
 Route::post('/postProduct', [SellerController::class, 'postProduct']);
 

@@ -97,11 +97,20 @@ class SellerController extends Controller
         return view('seller/dashboard', compact('data_seller'));
     }
 
+    public function products($id)
+    {
+        $sellerHasProduct = DB::table('products')
+            ->join('sellers', 'products.seller_id', '=', 'sellers.id')
+            ->where('sellers.id', $id)
+            ->select('products.*', 'sellers.store_name', 'sellers.phone', 'sellers.address')->get();
+        $data_seller = sellers::find($id);
+        return view('seller/product/listProduct', compact('data_seller', 'sellerHasProduct'));
+    }
     public function add_product($id)
     {
         $data_seller = sellers::find($id);
 
-        return view('seller/add_product', compact('data_seller'));
+        return view('seller/product/add_product', compact('data_seller'));
     }
 
     public function new_order($id)
