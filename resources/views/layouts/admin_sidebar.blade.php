@@ -78,6 +78,11 @@
         text-decoration: none;
     }
 
+    .user-list a {
+        color: #323b49;
+        text-decoration: none;
+    }
+
 </style>
 
 <body>
@@ -107,7 +112,7 @@
                 <li>
                     <a href="{{ url('/admin/seller') }}">
                         <img src="/images/sidebar-logo/2.svg" alt="">
-                        <div class=" {{ Request::is('admin/seller') ? 'ac' : '' }}">
+                        <div class=" {{ Request::is('admin/seller*') ? 'ac' : '' }}">
                             Seller
                         </div>
                     </a>

@@ -16,13 +16,29 @@
                 </thead>
                 <tbody>
                     @foreach ($users as $item)
-                        <tr>
-                            <th scope="row" class="text-left">{{ $item->id }}</th>
-                            <td class="text-left">{{ $item->username }}</td>
-                            <td class="text-left">{{ $item->phone }}</td>
-                            <td class="text-left">{{ $item->created_at }}</td>
+                        <tr class="user-list">
+                            <th scope="row" class="text-left">
+                                <a href="user/{{ $item->id }}">
+                                    {{ $item->id }}
+                                </a>
+                            </th>
                             <td class="text-left">
-                                <a href="user/{{$item->id}}">
+                                <a href="user/{{ $item->id }}">
+                                    {{ $item->username }}
+                                </a>
+                            </td>
+                            <td class="text-left">
+                                <a href="user/{{ $item->id }}">
+                                    {{ $item->phone }}
+                                </a>
+                            </td>
+                            <td class="text-left">
+                                <a href="user/{{ $item->id }}">
+                                    {{ $item->created_at }}
+                                </a>
+                            </td>
+                            <td class="text-left">
+                                <a href="user/{{ $item->id }}">
                                     <button type="button" class="btn btn-info">View</button>
                                 </a>
                                 <button type="button" class="btn btn-danger">Delete</button>
