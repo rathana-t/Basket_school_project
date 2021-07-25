@@ -31,18 +31,23 @@ class AdminController extends Controller
         $users = users::all();
         return view('admin/user/user', compact('users'));
     }
-    
+
     public function userDetail($id)
     {
         $user = users::find($id);
         return view('admin/user/userDetail', compact('user'));
     }
-    
+
     public function seller()
     {
-        return view('admin/seller');
+        $sellers = sellers::all();
+        return view('admin/seller/seller', compact('sellers'));
     }
-
+    public function sellerDetail($id)
+    {
+        $seller = sellers::find($id);
+        return view('admin/seller/sellerDetail', compact('seller'));
+    }
     public function brand()
     {
         return view('admin/brand');

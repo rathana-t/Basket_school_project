@@ -67,10 +67,17 @@
         margin-left: 300px;
         margin-right: 50px;
     }
+
     .wrapper .sidebar ul li a img {
         width: 30px;
         height: 24px;
     }
+
+    .seller-list a {
+        color: #323b49;
+        text-decoration: none;
+    }
+
 </style>
 
 <body>
@@ -92,7 +99,7 @@
                 <li>
                     <a href="{{ url('/admin/user') }}">
                         <img src="/images/sidebar-logo/4.svg" alt="">
-                        <div class=" {{ Request::is('admin/user*')  ? 'ac' : '' }}">
+                        <div class=" {{ Request::is('admin/user*') ? 'ac' : '' }}">
                             User
                         </div>
                     </a>
