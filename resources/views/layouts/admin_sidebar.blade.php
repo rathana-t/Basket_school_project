@@ -93,7 +93,7 @@
             </div>
             <ul class="text-center">
                 <li>
-                    <a clas href="{{ url('/admin/dashboard') }}">
+                    <a clas href="{{ url('/admin') }}">
                         <img src="/images/sidebar-logo/1.svg" alt="">
                         <div class=" {{ Request::is('admin/dashboard') ? 'ac' : '' }}">
                             Dashboard

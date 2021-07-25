@@ -104,7 +104,8 @@ class SellerController extends Controller
             ->where('sellers.id', $id)
             ->select('products.*', 'sellers.store_name', 'sellers.phone', 'sellers.address')->get();
         $data_seller = sellers::find($id);
-        return view('seller/product/listProduct', compact('data_seller', 'sellerHasProduct'));
+        $i=0;
+        return view('seller/product/listProduct', compact('i','data_seller', 'sellerHasProduct'));
     }
     public function add_product($id)
     {

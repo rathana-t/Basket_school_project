@@ -20,8 +20,8 @@
                     @foreach ($sellerHasProduct as $item)
                         <tr class="seller-list-product">
                             <th scope="row" class="text-left">
-                                <a href="seller/{{ $item->id }}">
-                                    {{ $item->id }}
+                                {{-- <a href="seller/{{ $item->id }}"> --}}
+                                    {{ ++$i }}
                                 </a>
                             </th>
                             <td class="text-left">
