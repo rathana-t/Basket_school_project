@@ -5,7 +5,10 @@
 body {
     min-height: 100vh;
 }
-
+.carousel-inner img {
+    height: 400px;
+    object-fit: cover;
+}
 .logo img {
     width: 90px;
 }

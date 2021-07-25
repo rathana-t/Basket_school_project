@@ -17,7 +17,7 @@
         </div>
     </div>
 
-    <div class="container mt-4">
+    <div class="container mt-2">
         <div class="text-center">
             <h1 class="blue-style font-weight-bold">
                 {{ $data_seller->store_name }}
@@ -26,7 +26,7 @@
     </div>
 
     <body>
-        <div class="container background-color mt-4">
+        <div class="container background-color mt-2">
             <div class="row pl-3 pr-3 pt-3 pb-3">
                 <div class="col-md-5 profile-column">
                     <div class="card text-center">
@@ -52,11 +52,11 @@
                             </div>
                             <div class="shop-info mt-3">
                                 <h1>Shop Name</h1>
-                                <p class="text-left info-text ml-3"> {{ $data_seller->store_name }}</p>
+                                <p class="text-left info-text"> {{ $data_seller->store_name }}</p>
                                 <h1>Email</h1>
-                                <p class="text-left info-text ml-3"> {{ $data_seller->email }}</p>
+                                <p class="text-left info-text"> {{ $data_seller->email }}</p>
                                 <h1>Phone number</h1>
-                                <p class="text-left info-text ml-3">{{ $data_seller->phone }}</p>
+                                <p class="text-left info-text">{{ $data_seller->phone }}</p>
                             </div>
                         </div>
                     </div>
@@ -76,9 +76,9 @@
 
                                 <div class="address-info mt-3">
                                     <h1>Street Address</h1>
-                                    <p class="text-left info-text ml-3"> {{ $data_seller->address }}</p>
+                                    <p class="text-left info-text"> {{ $data_seller->address }}</p>
                                     <h1>Joined PLP at</h1>
-                                    <p class="text-left info-text ml-3"> {{ $data_seller->created_at }}</p>
+                                    <p class="text-left info-text"> {{ $data_seller->created_at }}</p>
                                 </div>
                             </div>
                         </div>
