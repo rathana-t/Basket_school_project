@@ -45,8 +45,16 @@ class AdminController extends Controller
     }
     public function sellerDetail($id)
     {
+        $sellerHasProductCount = DB::table('products')
+            ->join('sellers', 'products.seller_id', '=', 'sellers.id')
+            ->where('sellers.id', $id)
+            ->count();
+        $sellerHasProduct = DB::table('products')
+            ->join('sellers', 'products.seller_id', '=', 'sellers.id')
+            ->where('sellers.id', $id)
+            ->select('products.*', 'sellers.store_name', 'sellers.phone', 'sellers.address')->get();
         $seller = sellers::find($id);
-        return view('admin/seller/sellerDetail', compact('seller'));
+        return view('admin/seller/sellerDetail', compact('seller', 'sellerHasProduct', 'sellerHasProductCount'));
     }
     public function brand()
     {
