@@ -11,6 +11,7 @@ use App\Models\users;
 use App\Models\carts;
 use App\Models\cards;
 use App\Models\brands;
+use App\Models\se_categories as s_cat;
 use App\Models\users_has_cards;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -109,7 +110,40 @@ class AdminController extends Controller
             echo "Error";
         }
         $category->save();
-        return redirect('/admin/dashboard')->with('category_add', '100%');
+        return redirect('/admin')->with('brand_add', '100%');
+    }
+    public function secondaryCategory()
+    {
+        return view('admin/secondaryCategory');
+    }
+    public function addSecondaryCategory()
+    {
+        $data_category = categories::all();
+        return view('admin/addsecondarycategory',compact('data_category'));
+    }
+    public function storeSecondCategory(Request $req)
+    {
+    $var = new s_cat();
+    $var->category_id = $req->id;
+    $var->name = $req->name;
+    
+    if ($req->hasFile('secondarycategory_img')) {
+        $file = $req->file('secondarycategory_img');
+        $ext = $file->getClientOriginalExtension();
+        $filename = time() . '.' . $ext;
+        $file->move('images/secondCategory', $filename);
+        $var->secondarycategory_img = $filename;
+    } else {
+        return $req;
+        $var->secondarycategory_img = '';
+        echo "Error";
+    }
+    // ModelsSecondarycategories::create($var);
+
+    $var->save();
+
+    
+    return redirect('/admin')->with('brand_add', '100%');
     }
 
     public function product()

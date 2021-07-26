@@ -86,7 +86,7 @@
                                     <h1>Street Address</h1>
                                     <p class="text-left info-text"> {{ $data_seller->address }}</p>
                                     <h1>Joined PLP at</h1>
-                                    <p class="text-left info-text"> {{ $data_seller->created_at }}</p>
+                                    <p class="text-left info-text"> {{ $data_seller->created_at->format('d M Y') }}</p>
                                 </div>
                             </div>
                         </div>

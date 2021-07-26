@@ -90,7 +90,7 @@
         text-decoration: none;
     }
 
-    .table td{
+    .table td {
         vertical-align: middle;
     }
 
@@ -147,8 +147,19 @@
                 <li>
                     <a href="{{ url('/admin/category') }}">
                         <img src="/images/sidebar-logo/6.svg" alt="">
-                        <div class=" {{ Request::is('admin/category') ? 'ac' : '' }}">
+                        <div
+                            class=" {{ Request::is('admin/category') || Request::is('admin/add-category') ? 'ac' : '' }}">
                             Category
+                        </div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url('/admin/secondary-category') }}">
+                        <img src="/images/sidebar-logo/6.svg" alt="">
+                        <div
+                            class=" {{ Request::is('admin/secondary-category') || Request::is('admin/add-secondarycategory') ? 'ac' : '' }}">
+                            SecondaryCategory
                         </div>
                     </a>
                 </li>
