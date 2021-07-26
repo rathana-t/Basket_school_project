@@ -35,12 +35,12 @@ Route::get('/logout_seller', [SellerController::class, 'logout'])->middleware('c
 
 Route::get('/forseller', [SellerController::class, 'forseller']);
 
-Route::get('/seller/{id}/dashboard', [SellerController::class, 'dashboard'])->middleware('checker_seller');
+Route::get('/seller/dashboard', [SellerController::class, 'dashboard'])->middleware('checker_seller');
 Route::get('/seller/{id}/products', [SellerController::class, 'products'])->middleware('checker_seller');
-Route::get('/seller/{id}/add-product', [SellerController::class, 'add_product'])->middleware('checker_seller');
-Route::get('/seller/{id}/new-order', [SellerController::class, 'new_order'])->middleware('checker_seller');
-Route::get('/seller/{id}/old-order', [SellerController::class, 'old_order'])->middleware('checker_seller');
-Route::get('/seller/{id}/profile', [SellerController::class, 'profile']);
+Route::get('/seller/add-product', [SellerController::class, 'add_product'])->middleware('checker_seller');
+Route::get('/seller/new-order', [SellerController::class, 'new_order'])->middleware('checker_seller');
+Route::get('/seller/old-order', [SellerController::class, 'old_order'])->middleware('checker_seller');
+Route::get('/seller/profile', [SellerController::class, 'profile']);
 
 Route::post('/postProduct', [SellerController::class, 'postProduct']);
 
@@ -54,7 +54,12 @@ Route::prefix('admin')->group(function () {
     Route::post('/store-category', [AdminController::class, 'storeCategory'])->name('category_store');
     Route::get('/seller', [AdminController::class, 'seller']);
     Route::get('/seller/{id}', [AdminController::class, 'sellerDetail']);
+
     Route::get('/product', [AdminController::class, 'product']);
+    Route::get('/product/{id}', [AdminController::class, 'detail']);
+    Route::get('/edit/product/{id}', [AdminController::class, 'edit'])->name('edit_product');
+    Route::post('/update/product/{id}', [AdminController::class, 'update']);
+
     Route::get('/user', [AdminController::class, 'user']);
     Route::get('/user/{id}', [AdminController::class, 'userDetail']);
 });

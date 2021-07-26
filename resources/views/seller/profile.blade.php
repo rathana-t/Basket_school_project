@@ -1,6 +1,7 @@
 @extends('layouts\sidebar')
 
 @section('sidebar-content')
+
     <div id="id01" class="modal">
         <div class="container">
             <div class="alert alert-warning" role="alert">
@@ -21,7 +22,12 @@
         <div class="text-center">
             <h1 class="blue-style font-weight-bold">
                 {{ $data_seller->store_name }}
+                <button style="float: right" class="btn btn-danger"
+                    onclick="document.getElementById('id01').style.display='block'">Log
+                    Out</button>
+
             </h1>
+
         </div>
     </div>
 
@@ -57,7 +63,9 @@
                                 <p class="text-left info-text"> {{ $data_seller->email }}</p>
                                 <h1>Phone number</h1>
                                 <p class="text-left info-text">{{ $data_seller->phone }}</p>
+
                             </div>
+
                         </div>
                     </div>
                 </div>

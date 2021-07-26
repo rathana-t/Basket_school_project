@@ -7,7 +7,7 @@
                 This is add new product page
             </h1>
         </div>
-        <form action="{{ url('postProduct') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ url('seller/add-product') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="card shadow-sm">
                 <div class="m-4">
@@ -89,10 +89,10 @@
         }
 
         /* dl, ol, ul {
-                        margin: 0;
-                        padding: 0;
-                        list-style: none;
-                    } */
+                            margin: 0;
+                            padding: 0;
+                            list-style: none;
+                        } */
         .imgPreview img {
             padding: 8px;
             max-width: 100px;

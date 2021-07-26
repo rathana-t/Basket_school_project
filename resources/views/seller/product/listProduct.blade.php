@@ -5,6 +5,11 @@
         <h1>
             {{ $data_seller->store_name }}
         </h1>
+        <div class="text-left">
+            <a style="margin:10px " href="{{ url('/seller/add-product') }}">
+                <button type="button" class="btn btn-success">Create & Sell</button>
+            </a>
+        </div>
         <div class="text-center">
             <table class="table">
                 <thead>
@@ -21,7 +26,7 @@
                         <tr class="seller-list-product">
                             <th scope="row" class="text-left">
                                 {{-- <a href="seller/{{ $item->id }}"> --}}
-                                    {{ ++$i }}
+                                {{ ++$i }}
                                 </a>
                             </th>
                             <td class="text-left">

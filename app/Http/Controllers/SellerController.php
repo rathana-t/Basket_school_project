@@ -91,10 +91,14 @@ class SellerController extends Controller
     {
         return view('seller/register');
     }
-    public function dashboard($id)
+    public function dashboard()
     {
-        $data_seller = sellers::find($id);
-        return view('seller/dashboard', compact('data_seller'));
+        if (session()->has('seller')) {
+            $data_seller = sellers::findOrFail(session('seller'));
+            return view('seller/dashboard', compact('data_seller'));
+        } else {
+            return view('seller/dashboard');
+        }
     }
 
     public function products($id)
@@ -107,30 +111,44 @@ class SellerController extends Controller
         $i = 0;
         return view('seller/product/listProduct', compact('i', 'data_seller', 'sellerHasProduct'));
     }
-    public function add_product($id)
+    public function add_product()
     {
-        $data_seller = sellers::find($id);
-
-        return view('seller/product/add_product', compact('data_seller'));
+        if (session()->has('seller')) {
+            $data_seller = sellers::findOrFail(session('seller'));
+            return view('seller/product/add_product',compact('data_seller'));
+        }else{
+            return view('seller/product/add_product');
+        }
     }
 
-    public function new_order($id)
+    public function new_order()
     {
-        $data_seller = sellers::find($id);
-
-        return view('seller/new_order', compact('data_seller'));
+        if (session()->has('seller')) {
+            $data_seller = sellers::findOrFail(session('seller'));
+            return view('seller/new_order',compact('data_seller'));
+        }else{
+            return view('seller/new_order');
+        }
     }
 
-    public function old_order($id)
+    public function old_order()
     {
-        $data_seller = sellers::find($id);
-        return view('seller/old_order', compact('data_seller'));
+        if (session()->has('seller')) {
+            $data_seller = sellers::findOrFail(session('seller'));
+            return view('seller/old_order',compact('data_seller'));
+        }else{
+            return view('seller/old_order');
+        }
     }
 
-    public function profile($id)
+    public function profile()
     {
-        $data_seller = sellers::find($id);
-        return view('seller/profile', compact('data_seller'));
+        if (session()->has('seller')) {
+            $data_seller = sellers::findOrFail(session('seller'));
+            return view('seller/profile',compact('data_seller'));
+        }else{
+            return view('seller/profile');
+        }
     }
 
 
@@ -160,45 +178,6 @@ class SellerController extends Controller
             $pro->seller_id = $req->session()->get('seller');
         }
         $pro->save();
-
-
-
-        // $input=$request->all();
-        // $images = $request->file('img_product');
-        // if ($request->hasFile('img_product')) :
-        //         foreach ($images as $item):
-        //             $imageName =  time() . '-' . $item->getClientOriginalExtension();
-        //             $item->move('imgProduct', $imageName);
-        //             $images[] = $imageName;
-        //         endforeach;
-        // else:
-        //         $images = '';
-        // endif;
-
-        // $pro = new products;
-
-        // $pro->name = $request->name;
-        // $pro->price = $request->price;
-        // $pro->description = $request->description;
-        // $pro->stock = $request->stock;
-        // $pro->brand_id = $request->brand_id;
-        // $pro->category_id = $request->category_id;
-        // $pro->img_product = $images;
-        // $pro->seller_id = $request->session()->get('seller');
-
-        // $pro->save();
-
-        // products::insert( [
-        //     'name' =>$input['name'],
-        //     'price' =>$input['price'],
-        //     'description' =>$input['description'],
-        //     'stock' =>$input['stock'],
-        //     'brand_id' =>$input['brand_id'],
-        //     'category_id' =>$input['category_id'],
-        //     'img_product'=>  implode("|",$images),
-        //     'seller_id' => $request->session()->get('seller'),
-        // ]);
-
         return redirect('/');
     }
 

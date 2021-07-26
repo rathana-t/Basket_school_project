@@ -127,7 +127,7 @@
             </div>
             <ul class="text-center">
                 <li>
-                    <a clas href="/seller/{{ $data_seller->id }}/dashboard">
+                    <a clas href="/seller/dashboard">
                         <img src="/images/sidebar-logo/1.svg" alt="">
                         <div class=" {{ Request::is('seller*/dashboard') ? 'ac' : '' }} mt-2">
                             Dashboard
@@ -143,7 +143,7 @@
                     </a>
                 </li>
                 <li>
-                    <a clas href="/seller/{{ $data_seller->id }}/new-order">
+                    <a clas href="/seller/new-order">
                         <img src="/images/sidebar-seller-logo/cart.svg" alt="">
                         <div class=" {{ Request::is('seller*/new-order') ? 'ac' : '' }} mt-2">
                             New orders
@@ -151,7 +151,7 @@
                     </a>
                 </li>
                 <li>
-                    <a clas href="/seller/{{ $data_seller->id }}/old-order">
+                    <a clas href="/seller/old-order">
                         <img src="/images/sidebar-seller-logo/history.svg" alt="">
                         <div class=" {{ Request::is('seller*/old-order') ? 'ac' : '' }} mt-2">
                             Old orders
@@ -159,7 +159,7 @@
                     </a>
                 </li>
                 <li>
-                    <a clas href="/seller/{{ $data_seller->id }}/profile">
+                    <a clas href="/seller/profile">
                         <img src="/images/sidebar-seller-logo/align.svg" alt="">
                         <div class=" {{ Request::is('seller*/profile') ? 'ac' : '' }} mt-2">
                             Profile

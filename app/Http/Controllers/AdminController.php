@@ -82,7 +82,7 @@ class AdminController extends Controller
             echo "Error";
         }
         $brand->save();
-        return redirect('/admin/dashboard')->with('brand_add', '100%');
+        return redirect('/admin')->with('brand_add', '100%');
     }
 
     public function category()
@@ -114,6 +114,30 @@ class AdminController extends Controller
 
     public function product()
     {
-        return view('admin/product');
+        $pro =products::join(
+            'brands','products.brand_id', '=',  'brands.id' )->join(
+            'categories','products.category_id' , '=', 'categories.id')->
+            select('products.*', 'categories.name as cat_name','brands.name as brand_name')->get();
+
+        return view('admin/product/product',compact('pro'));
+    }
+    public function detail($id)
+    {
+        $detail_pro = products::join(
+            'brands','products.brand_id', '=',  'brands.id' )->join(
+            'categories','products.category_id' , '=', 'categories.id')->where(
+            'products.id',$id)->select('products.*', 'categories.name as cat_name','brands.name as brand_name')->get();
+        return view('admin/product/show',compact('detail_pro'));
+    }
+    public function edit($id)
+    {
+         $pros = products::join(
+            'brands','products.brand_id', '=',  'brands.id' )->join(
+            'categories','products.category_id' , '=', 'categories.id')->where(
+            'products.id',$id)->select('products.*', 'categories.name as cat_name','brands.name as brand_name')->get();
+
+        $brands = DB::table('brands')->get();
+        $cats = DB::table('categories')->get();
+        return view('admin/product/edit',compact('pros','brands','cats'));
     }
 }
