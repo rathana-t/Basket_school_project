@@ -7,7 +7,7 @@
                 This is add new product page
             </h1>
         </div>
-        <form action="{{ url('seller/add-product') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ url('/postProduct') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="card shadow-sm">
                 <div class="m-4">
@@ -49,7 +49,7 @@
                                     <option value="3">Another action</option>
                                 </select>
                             </div>
-                            <div class="col">
+                            {{-- <div class="col">
                                 <label for="exampleFormControlSelect1">Secondary Category</label>
                                 <select class="form-control" id="exampleFormControlSelect1" name="category_id">
                                     <option value="{{ old('category_id') }}">{{ old('category_id') }}</option>
@@ -57,7 +57,7 @@
                                     <option value="2">Mouse</option>
                                     <option value="3">Another action</option>
                                 </select>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                     <label for="img_product">Image Product</label>
@@ -89,10 +89,10 @@
         }
 
         /* dl, ol, ul {
-                            margin: 0;
-                            padding: 0;
-                            list-style: none;
-                        } */
+                                            margin: 0;
+                                            padding: 0;
+                                            list-style: none;
+                                        } */
         .imgPreview img {
             padding: 8px;
             max-width: 100px;
