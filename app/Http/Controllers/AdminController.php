@@ -114,12 +114,13 @@ class AdminController extends Controller
 
     public function product()
     {
+        $count = products::count();
         $pro = products::join('brands', 'products.brand_id', '=',  'brands.id')
             ->join('categories', 'products.category_id', '=', 'categories.id')
             ->select('products.*', 'categories.name as cat_name', 'brands.name as brand_name')
             ->get();
 
-        return view('admin/product/product', compact('pro'));
+        return view('admin/product/product', compact('pro','count'));
     }
     public function detail($id)
     {
@@ -144,8 +145,7 @@ class AdminController extends Controller
     }
     public function destroyProduct($id)
     {
-        $product = products::find($id);
-        $product->delete();
-        return redirect('admin/product/product',compact('product'));
+        products::where('id',$id)->delete();
+        return redirect('admin/product');
     }
 }
