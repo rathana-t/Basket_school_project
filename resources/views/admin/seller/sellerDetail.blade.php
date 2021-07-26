@@ -3,7 +3,7 @@
 @section('sidebar-content')
     <div class="container">
         <div class="text-center">
-            <h1 > {{ $seller->store_name }} </h1>
+            <h1 > {{ $seller->store_name }} has Product </h1>
             <p>
                 All Product {{$sellerHasProductCount}}
             </p>
@@ -13,7 +13,7 @@
                 <thead>
                     <tr>
                         <th scope="col" class="text-left">ID</th>
-                        <th scope="col" class="text-left">Name</th>
+                        <th scope="col" class="text-left">Product name</th>
                         <th scope="col" class="text-left">Price</th>
                         <th scope="col" class="text-left">Stock</th>
                         <th scope="col" class="text-left">Post at</th>

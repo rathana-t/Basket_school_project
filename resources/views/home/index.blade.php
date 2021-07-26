@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="https://store.hp.com/app/assets/images/uploads/prod/how-to-build-gpu-mining-rig-hero1532382543025.jpg"
+                    <img src="https://i2.wp.com/techfortuner.com/wp-content/uploads/2021/03/best-gaming-laptops-with-strong-gpu.jpg"
                         class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>Third slide label</h5>
