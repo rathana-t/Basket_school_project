@@ -8,6 +8,7 @@
                 All Product {{ $sellerHasProductCount }}
             </p>
         </div>
+        
         <table class="table table-hover">
             <thead>
                 <tr class="text-center">

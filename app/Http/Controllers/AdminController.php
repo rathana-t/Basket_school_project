@@ -114,30 +114,38 @@ class AdminController extends Controller
 
     public function product()
     {
-        $pro =products::join(
-            'brands','products.brand_id', '=',  'brands.id' )->join(
-            'categories','products.category_id' , '=', 'categories.id')->
-            select('products.*', 'categories.name as cat_name','brands.name as brand_name')->get();
+        $pro = products::join('brands', 'products.brand_id', '=',  'brands.id')
+            ->join('categories', 'products.category_id', '=', 'categories.id')
+            ->select('products.*', 'categories.name as cat_name', 'brands.name as brand_name')
+            ->get();
 
-        return view('admin/product/product',compact('pro'));
+        return view('admin/product/product', compact('pro'));
     }
     public function detail($id)
     {
-        $detail_pro = products::join(
-            'brands','products.brand_id', '=',  'brands.id' )->join(
-            'categories','products.category_id' , '=', 'categories.id')->where(
-            'products.id',$id)->select('products.*', 'categories.name as cat_name','brands.name as brand_name')->get();
-        return view('admin/product/show',compact('detail_pro'));
+        $detail_pro = products::join('brands', 'products.brand_id', '=',  'brands.id')
+            ->join('categories', 'products.category_id', '=', 'categories.id')
+            ->where('products.id', $id)
+            ->select('products.*', 'categories.name as cat_name', 'brands.name as brand_name')
+            ->get();
+        return view('admin/product/show', compact('detail_pro'));
     }
     public function edit($id)
     {
-         $pros = products::join(
-            'brands','products.brand_id', '=',  'brands.id' )->join(
-            'categories','products.category_id' , '=', 'categories.id')->where(
-            'products.id',$id)->select('products.*', 'categories.name as cat_name','brands.name as brand_name')->get();
+        $pros = products::join('brands', 'products.brand_id', '=',  'brands.id')
+            ->join('categories', 'products.category_id', '=', 'categories.id')
+            ->where('products.id', $id)
+            ->select('products.*', 'categories.name as cat_name', 'brands.name as brand_name')
+            ->get();
 
         $brands = DB::table('brands')->get();
         $cats = DB::table('categories')->get();
-        return view('admin/product/edit',compact('pros','brands','cats'));
+        return view('admin/product/edit', compact('pros', 'brands', 'cats'));
+    }
+    public function destroyProduct($id)
+    {
+        $product = products::find($id);
+        $product->delete();
+        return redirect('admin/product/product',compact('product'));
     }
 }
