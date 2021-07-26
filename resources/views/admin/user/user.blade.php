@@ -4,7 +4,7 @@
     <div class="container">
         <h1 class="text-center">User</h1>
         <div class="text-center">
-            <table class="table">
+            <table class="table table-hover">
                 <thead>
                     <tr>
                         <th scope="col" class="text-left">ID</th>

@@ -73,14 +73,25 @@
         height: 24px;
     }
 
+    .user-list a {
+        color: #323b49;
+        text-decoration: none;
+    }
+
+    .seller-list img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 50px;
+    }
+
     .seller-list a {
         color: #323b49;
         text-decoration: none;
     }
 
-    .user-list a {
-        color: #323b49;
-        text-decoration: none;
+    .table td{
+        vertical-align: middle;
     }
 
 </style>

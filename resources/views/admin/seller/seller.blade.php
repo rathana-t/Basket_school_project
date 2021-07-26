@@ -4,12 +4,13 @@
     <div class="container">
         <h1 class="text-center">Seller</h1>
         <div class="text-center">
-            <table class="table">
+            <table class="table table-hover">
                 <thead>
                     <tr>
                         <th scope="col" class="text-left">ID</th>
-                        <th scope="col" class="text-left">Username</th>
+                        <th scope="col" class="text-left">Store name</th>
                         <th scope="col" class="text-left">Phonenumber</th>
+                        <th scope="col" class="text-left">Address</th>
                         <th scope="col" class="text-left">Joined</th>
                         <th scope="col" class="text-left">Action</th>
                     </tr>
@@ -30,6 +31,11 @@
                             <td class="text-left">
                                 <a href="seller/{{ $item->id }}">
                                     {{ $item->phone }}
+                                </a>
+                            </td>
+                            <td class="text-left">
+                                <a href="seller/{{ $item->id }}">
+                                    {{ $item->address }}
                                 </a>
                             </td>
                             <td class="text-left">
