@@ -101,21 +101,33 @@ class SellerController extends Controller
         }
     }
 
-    public function products($id)
+    public function products()
     {
+                
+        if (session()->has('seller')) {
+            $data_seller = sellers::findOrFail(session('seller'));
+        }
+        $id=$data_seller->id;
+        
         $sellerHasProduct = DB::table('products')
             ->join('sellers', 'products.seller_id', '=', 'sellers.id')
             ->where('sellers.id', $id)
             ->select('products.*', 'sellers.store_name', 'sellers.phone', 'sellers.address')->get();
         $data_seller = sellers::find($id);
+       
+
+
         $i = 0;
         return view('seller/product/listProduct', compact('i', 'data_seller', 'sellerHasProduct'));
     }
     public function add_product()
     {
+
+        $cat = categories::all();
+        $brand = brands::all();
         if (session()->has('seller')) {
             $data_seller = sellers::findOrFail(session('seller'));
-            return view('seller/product/add_product', compact('data_seller'));
+            return view('seller/product/add_product', compact('data_seller','brand','cat'));
         } else {
             return view('seller/product/add_product');
         }
@@ -177,8 +189,9 @@ class SellerController extends Controller
             $pro->img_product = json_encode($imgData);
             $pro->seller_id = $req->session()->get('seller');
         }
+
         $pro->save();
-        return redirect('/seller/dashboard')->with('product_add', 'Your product has been add successfully!');
+        return redirect('/seller/products')->with('product_add', 'Your product has been add successfully!');
     }
 
 

@@ -36,7 +36,7 @@ Route::get('/logout_seller', [SellerController::class, 'logout'])->middleware('c
 Route::get('/forseller', [SellerController::class, 'forseller']);
 
 Route::get('/seller/dashboard', [SellerController::class, 'dashboard'])->middleware('checker_seller');
-Route::get('/seller/{id}/products', [SellerController::class, 'products'])->middleware('checker_seller');
+Route::get('/seller/products', [SellerController::class, 'products'])->middleware('checker_seller');
 Route::get('/seller/add-product', [SellerController::class, 'add_product'])->middleware('checker_seller');
 Route::post('/seller/postProduct', [SellerController::class, 'postProduct']);
 Route::get('/seller/new-order', [SellerController::class, 'new_order'])->middleware('checker_seller');

@@ -13,51 +13,43 @@
                 <div class="m-4">
                     <div class="form-group">
                         <label for="name">Product Name</label>
-                        <input type="text" class="form-control" id="exampleInputPhone" name="name">
+                        <input type="text" class="form-control" id="exampleInputPhone" name="name" required>
                     </div>
                     <div class="form-group">
                         <label for="price">Price</label>
-                        <input type="text" class="form-control" id="exampleInputPhone" name="price">
+                        <input type="text" class="form-control" id="exampleInputPhone" name="price" required>
                     </div>
                     <div class="form-group">
                         <label for="description">Description</label>
-                        <textarea rows="3" class="form-control" id="exampleInputPhone" name="description"
+                        <textarea rows="3" class="form-control" id="exampleInputPhone" name="description" required
                             {{ old('description') }}></textarea>
                     </div>
                     <div class="form-group">
                         <label for="stock">Stock</label>
-                        <input type="number" class="form-control" id="" name="stock">
+                        <input type="number" class="form-control" id="" name="stock" required>
                     </div>
                     <div class="form-group">
-
                         <div class="row">
                             <div class="col">
                                 <label for="exampleFormControlSelect1">Brand</label>
-                                <select class="form-control" id="exampleFormControlSelect1" name="brand_id">
-                                    <option value="{{ old('brand_id') }}">{{ old('brand_id') }}</option>
-                                    <option value="1">ASUS</option>
-                                    <option value="2">DELL</option>
-                                    <option value="3">Another action</option>
+                                <select class="form-control" id="exampleFormControlSelect1" name="brand_id" required>
+                                    <option value="{{ old('brand_id') }}">{{ old('category_id') }}</option>
+
+                                    @foreach ($brand as $item)
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endforeach
+
                                 </select>
                             </div>
                             <div class="col">
                                 <label for="exampleFormControlSelect1">Main Category</label>
-                                <select class="form-control" id="exampleFormControlSelect1" name="category_id">
+                                <select class="form-control" id="exampleFormControlSelect1" name="category_id" required>
                                     <option value="{{ old('category_id') }}">{{ old('category_id') }}</option>
-                                    <option value="1">KeyBoard</option>
-                                    <option value="2">Mouse</option>
-                                    <option value="3">Another action</option>
+                                    @foreach ($cat as $item)
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
-                            {{-- <div class="col">
-                                <label for="exampleFormControlSelect1">Secondary Category</label>
-                                <select class="form-control" id="exampleFormControlSelect1" name="category_id">
-                                    <option value="{{ old('category_id') }}">{{ old('category_id') }}</option>
-                                    <option value="1">KeyBoard</option>
-                                    <option value="2">Mouse</option>
-                                    <option value="3">Another action</option>
-                                </select>
-                            </div> --}}
                         </div>
                     </div>
                     <label for="img_product">Image Product</label>
@@ -72,12 +64,6 @@
                         <div class="imgPreview"> </div>
                     </div>
 
-                    {{-- <img id="previewImg" style="max-width: 130px" alt=""> --}}
-
-                    {{-- <div class="form-group">
-                        <label for="img_product">Image Product</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" name="img_product">
-                    </div> --}}
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </div>
@@ -88,11 +74,6 @@
             max-width: 900px;
         }
 
-        /* dl, ol, ul {
-                                                    margin: 0;
-                                                    padding: 0;
-                                                    list-style: none;
-                                                } */
         .imgPreview img {
             padding: 8px;
             max-width: 100px;
@@ -127,18 +108,4 @@
             });
         });
     </script>
-
-    {{-- <script>
-        function previewFile(input){
-          var file=$("input[type=file]").get(0).files[0];
-          if(file)
-          {
-            var reader = new FileReader();
-            reader.onload=function(){
-              $('#previewImg').attr("src",reader.result);
-            }
-            reader.readAsDataURL(file);
-          }
-        }
-      </script> --}}
 @stop
