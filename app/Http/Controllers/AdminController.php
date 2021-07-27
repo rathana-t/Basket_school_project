@@ -14,6 +14,7 @@ use App\Models\brands;
 use App\Models\se_categories as s_cat;
 use App\Models\users_has_cards;
 use App\Http\Controllers\Controller;
+use App\Models\se_categories;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
@@ -89,11 +90,12 @@ class AdminController extends Controller
 
     public function category()
     {
-        return view('admin/category');
+        $categories = categories::all();
+        return view('admin/category/category', compact('categories'));
     }
     public function addCategory()
     {
-        return view('admin/addcategory');
+        return view('admin/category/addcategory');
     }
     public function storeCategory(Request $req)
     {
@@ -111,16 +113,17 @@ class AdminController extends Controller
             echo "Error";
         }
         $category->save();
-        return redirect('/admin')->with('brand_add', '100%');
+        return redirect('/admin/category/category')->with('brand_add', '100%');
     }
     public function secondaryCategory()
     {
-        return view('admin/secondaryCategory');
+        $seCategory = se_categories::all();
+        return view('admin/2ndCategory/secondaryCategory', compact('seCategory'));
     }
     public function addSecondaryCategory()
     {
         $data_category = categories::all();
-        return view('admin/addsecondarycategory', compact('data_category'));
+        return view('admin/2ndCategory/addsecondarycategory', compact('data_category'));
     }
     public function storeSecondCategory(Request $req)
     {

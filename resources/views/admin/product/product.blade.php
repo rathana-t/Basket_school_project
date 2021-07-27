@@ -2,7 +2,6 @@
 
 @section('sidebar-content')
     @include('component\productDeleteModal')
-
     <div class="container">
         <div class="text-center">
             <h1>
@@ -93,9 +92,4 @@
             </tbody>
         </table>
     </div>
-
-
-    <script>
-        
-    </script>
 @stop

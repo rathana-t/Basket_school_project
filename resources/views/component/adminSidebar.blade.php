@@ -7,7 +7,7 @@
             <li>
                 <a clas href="{{ url('/admin') }}">
                     <img src="/images/sidebar-logo/1.svg" alt="">
-                    <div class=" {{ Request::is('admin/dashboard') ? 'ac' : '' }}">
+                    <div class=" {{ Request::is('admin/dashboard*') ? 'ac' : '' }}">
                         Dashboard
                     </div>
                 </a>
@@ -32,7 +32,7 @@
             <li>
                 <a href="{{ url('/admin/product') }}">
                     <img src="/images/sidebar-logo/3.svg" alt="">
-                    <div class=" {{ Request::is('admin/product') ? 'ac' : '' }}">
+                    <div class=" {{ Request::is('admin/product*') ? 'ac' : '' }}">
                         Product
                     </div>
                 </a>
@@ -40,7 +40,7 @@
             <li>
                 <a href="{{ url('/admin/brand') }}">
                     <img src="/images/sidebar-logo/5.svg" alt="">
-                    <div class=" {{ Request::is('admin/brand') || Request::is('admin/add-brand') ? 'ac' : '' }}">
+                    <div class=" {{ Request::is('admin/brand*') || Request::is('admin/add-brand') ? 'ac' : '' }}">
                         Brand
                     </div>
                 </a>
@@ -49,7 +49,7 @@
                 <a href="{{ url('/admin/category') }}">
                     <img src="/images/sidebar-logo/6.svg" alt="">
                     <div
-                        class=" {{ Request::is('admin/category') || Request::is('admin/add-category') ? 'ac' : '' }}">
+                        class=" {{ Request::is('admin/category*') || Request::is('admin/add-category') ? 'ac' : '' }}">
                         Category
                     </div>
                 </a>
@@ -59,7 +59,7 @@
                 <a href="{{ url('/admin/secondary-category') }}">
                     <img src="/images/sidebar-logo/6.svg" alt="">
                     <div
-                        class=" {{ Request::is('admin/secondary-category') || Request::is('admin/add-secondarycategory') ? 'ac' : '' }}">
+                        class=" {{ Request::is('admin/secondary-category*') || Request::is('admin/add-secondarycategory') ? 'ac' : '' }}">
                         SecondaryCategory
                     </div>
                 </a>
