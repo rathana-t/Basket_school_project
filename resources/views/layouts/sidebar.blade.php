@@ -117,6 +117,22 @@
         color: #000000;
     }
 
+    .category .card {
+        height: 220px;
+    }
+
+    .category .card img {
+        height: 150px;
+        object-fit: contain;
+    }
+
+    .category h1 {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        color: #19252e;
+    }
+
 </style>
 
 <body>
