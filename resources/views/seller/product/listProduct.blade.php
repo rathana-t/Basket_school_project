@@ -14,7 +14,7 @@
             <div class="row mt-3">
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="card shadow-sm">
-                        <div class="ml-2 mr-2">
+                        <div class="m-2">
                             <p>Laptop</p>
                             <div class="text-center">
                                 <img src="https://i2.wp.com/techfortuner.com/wp-content/uploads/2021/03/best-gaming-laptops-with-strong-gpu.jpg"
@@ -25,7 +25,7 @@
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="card shadow-sm">
-                        <div class="ml-2 mr-2">
+                        <div class="m-2">
                             <p>Pc Parts</p>
                             <div class="text-center">
                                 <img src="https://press-start.com.au/wp-content/uploads/2020/08/Amazon-PC-Parts-1.jpg"
@@ -36,7 +36,7 @@
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="card shadow-sm">
-                        <div class="ml-2 mr-2">
+                        <div class="m-2">
                             <p>Peripherals</p>
                             <div class="text-center">
                                 <img src="https://www.gadgetnutz.com/wp-content/uploads/2021/01/hyperx_ces2021.jpg" alt=""
@@ -47,7 +47,7 @@
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="card shadow-sm">
-                        <div class="ml-2 mr-2">
+                        <div class="m-2">
                             <p>Network</p>
                             <div class="text-center">
                                 <img src="https://cdn.mos.cms.futurecdn.net/yL7k3fYHWZE98det6kuQXY.jpg" alt=""

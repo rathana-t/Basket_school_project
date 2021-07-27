@@ -131,7 +131,7 @@
         $(document).ready(function() {
             $(document).on('click', '.deletebtn', function() {
                 var prod_id = $(this).val();
-                // alert(pro_id);
+                // alert(prod_id);
                 $('#DeleteModal').modal('show');
                 $('#delete_id').val(prod_id)
             })

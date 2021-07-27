@@ -123,7 +123,8 @@
 
     .category .card img {
         height: 150px;
-        object-fit: contain;
+        object-fit: cover;
+        border-radius: 5px;
     }
 
     .category h1 {
