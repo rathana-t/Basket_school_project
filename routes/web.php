@@ -64,6 +64,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/edit/product/{id}', [AdminController::class, 'edit'])->name('edit_product');
     Route::post('/update/product/{id}', [AdminController::class, 'update']);
     Route::delete('delete-product', [AdminController::class, 'delete']);
+    Route::delete('category-product', [AdminController::class, 'delete_cat']);
 
     Route::get('/user', [AdminController::class, 'user']);
     Route::get('/user/{id}', [AdminController::class, 'userDetail']);
