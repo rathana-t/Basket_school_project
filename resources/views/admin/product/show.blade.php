@@ -1,4 +1,4 @@
-@extends('layouts\admin_sidebar')
+@extends('admin\admin')
 
 @section('sidebar-content')
     <div class="text-center">

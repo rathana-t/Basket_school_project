@@ -59,12 +59,13 @@ class AdminController extends Controller
     }
     public function brand()
     {
-        return view('admin/brand');
+        $brands = brands::all();
+        return view('/admin/brand/brand', compact('brands'));
     }
 
     public function addBrand()
     {
-        return view('admin/addBrand');
+        return view('admin/brand/addBrand');
     }
 
     public function storeBrand(Request $req)
@@ -83,7 +84,7 @@ class AdminController extends Controller
             echo "Error";
         }
         $brand->save();
-        return redirect('/admin')->with('brand_add', '100%');
+        return redirect('/admin/brand')->with('brand_add', '100%');
     }
 
     public function category()
