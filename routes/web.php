@@ -38,11 +38,10 @@ Route::get('/forseller', [SellerController::class, 'forseller']);
 Route::get('/seller/dashboard', [SellerController::class, 'dashboard'])->middleware('checker_seller');
 Route::get('/seller/{id}/products', [SellerController::class, 'products'])->middleware('checker_seller');
 Route::get('/seller/add-product', [SellerController::class, 'add_product'])->middleware('checker_seller');
+Route::post('/seller/postProduct', [SellerController::class, 'postProduct']);
 Route::get('/seller/new-order', [SellerController::class, 'new_order'])->middleware('checker_seller');
 Route::get('/seller/old-order', [SellerController::class, 'old_order'])->middleware('checker_seller');
 Route::get('/seller/profile', [SellerController::class, 'profile']);
-
-Route::post('/postProduct', [SellerController::class, 'postProduct']);
 
 Route::prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'dashboard']);

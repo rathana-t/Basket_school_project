@@ -115,8 +115,8 @@ class SellerController extends Controller
     {
         if (session()->has('seller')) {
             $data_seller = sellers::findOrFail(session('seller'));
-            return view('seller/product/add_product',compact('data_seller'));
-        }else{
+            return view('seller/product/add_product', compact('data_seller'));
+        } else {
             return view('seller/product/add_product');
         }
     }
@@ -125,8 +125,8 @@ class SellerController extends Controller
     {
         if (session()->has('seller')) {
             $data_seller = sellers::findOrFail(session('seller'));
-            return view('seller/new_order',compact('data_seller'));
-        }else{
+            return view('seller/new_order', compact('data_seller'));
+        } else {
             return view('seller/new_order');
         }
     }
@@ -135,8 +135,8 @@ class SellerController extends Controller
     {
         if (session()->has('seller')) {
             $data_seller = sellers::findOrFail(session('seller'));
-            return view('seller/old_order',compact('data_seller'));
-        }else{
+            return view('seller/old_order', compact('data_seller'));
+        } else {
             return view('seller/old_order');
         }
     }
@@ -145,8 +145,8 @@ class SellerController extends Controller
     {
         if (session()->has('seller')) {
             $data_seller = sellers::findOrFail(session('seller'));
-            return view('seller/profile',compact('data_seller'));
-        }else{
+            return view('seller/profile', compact('data_seller'));
+        } else {
             return view('seller/profile');
         }
     }
@@ -178,7 +178,7 @@ class SellerController extends Controller
             $pro->seller_id = $req->session()->get('seller');
         }
         $pro->save();
-        return redirect('/');
+        return redirect('/seller/dashboard')->with('product_add', 'Your product has been add successfully!');
     }
 
 
