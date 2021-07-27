@@ -83,7 +83,7 @@
         width: 100px;
         height: 100px;
         object-fit: cover;
-        border-radius: 50px;
+        border-radius: 5px;
     }
 
     .seller-list a {

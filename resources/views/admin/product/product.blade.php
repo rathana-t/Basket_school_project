@@ -94,7 +94,6 @@
                             <a href="product/{{ $item->id }}">
                                 <button type="button" class="btn btn-info">View</button>
                             </a>
-                            {{-- <a href="" onclick="add('{{ $item->id }}');"> me </a> --}}
                             <button type="button" value="{{ $item->id }}" class="deletebtn btn btn-danger">
                                 Delete
                             </button>
@@ -113,16 +112,16 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('delete-product') }}" method="POST">
+                <form action="{{ url('admin/delete-product') }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <div class="modal-body text-center">
                         Are you sure?
                     </div>
-                    <input type="hidden" name="delete_pro_id" id="delete_id">
+                    <input type="hidden" name="delete_product_id" id="delete_id">
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Logout</button>
+                        <button type="submit" class="btn btn-primary">Delete</button>
                     </div>
                 </form>
             </div>
@@ -132,10 +131,10 @@
     <script>
         $(document).ready(function() {
             $(document).on('click', '.deletebtn', function() {
-                var pro_id = $(this).val();
+                var prod_id = $(this).val();
                 // alert(pro_id);
                 $('#DeleteModal').modal('show');
-                $('#delete_id').val(pro_id)
+                $('#delete_id').val(prod_id)
             })
         });
     </script>

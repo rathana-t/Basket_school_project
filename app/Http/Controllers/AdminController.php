@@ -180,7 +180,7 @@ class AdminController extends Controller
 
     public function delete(Request $req)
     {
-        $product_id = $req->input('delete_pro_id');
+        $product_id = $req->input('delete_product_id');
         $product = products::find($product_id);
         $product->delete();
         return redirect()->back()->with('delete-success', 'Product has been delete successfully');
