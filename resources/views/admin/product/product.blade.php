@@ -3,6 +3,18 @@
 @section('sidebar-content')
     <div class="container">
         <div class="text-center">
+            @if (Session::has('delete-success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ Session::get('delete-success') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
+        </div>
+    </div>
+    <div class="container">
+        <div class="text-center">
             <h1>
                 This is product page
             </h1>
@@ -82,10 +94,49 @@
                             <a href="product/{{ $item->id }}">
                                 <button type="button" class="btn btn-info">View</button>
                             </a>
+                            {{-- <a href="" onclick="add('{{ $item->id }}');"> me </a> --}}
+                            <button type="button" value="{{ $item->id }}" class="deletebtn btn btn-danger">
+                                Delete
+                            </button>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
+    <div class="modal fade" id="DeleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ url('delete-product') }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <div class="modal-body text-center">
+                        Are you sure?
+                    </div>
+                    <input type="hidden" name="delete_pro_id" id="delete_id">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Logout</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $(document).on('click', '.deletebtn', function() {
+                var pro_id = $(this).val();
+                // alert(pro_id);
+                $('#DeleteModal').modal('show');
+                $('#delete_id').val(pro_id)
+            })
+        });
+    </script>
 @stop

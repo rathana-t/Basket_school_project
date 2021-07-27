@@ -119,31 +119,31 @@ class AdminController extends Controller
     public function addSecondaryCategory()
     {
         $data_category = categories::all();
-        return view('admin/addsecondarycategory',compact('data_category'));
+        return view('admin/addsecondarycategory', compact('data_category'));
     }
     public function storeSecondCategory(Request $req)
     {
-    $var = new s_cat();
-    $var->category_id = $req->id;
-    $var->name = $req->name;
-    
-    if ($req->hasFile('secondarycategory_img')) {
-        $file = $req->file('secondarycategory_img');
-        $ext = $file->getClientOriginalExtension();
-        $filename = time() . '.' . $ext;
-        $file->move('images/secondCategory', $filename);
-        $var->secondarycategory_img = $filename;
-    } else {
-        return $req;
-        $var->secondarycategory_img = '';
-        echo "Error";
-    }
-    // ModelsSecondarycategories::create($var);
+        $var = new s_cat();
+        $var->category_id = $req->id;
+        $var->name = $req->name;
 
-    $var->save();
+        if ($req->hasFile('secondarycategory_img')) {
+            $file = $req->file('secondarycategory_img');
+            $ext = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $ext;
+            $file->move('images/secondCategory', $filename);
+            $var->secondarycategory_img = $filename;
+        } else {
+            return $req;
+            $var->secondarycategory_img = '';
+            echo "Error";
+        }
+        // ModelsSecondarycategories::create($var);
 
-    
-    return redirect('/admin')->with('brand_add', '100%');
+        $var->save();
+
+
+        return redirect('/admin')->with('brand_add', '100%');
     }
 
     public function product()
@@ -154,7 +154,7 @@ class AdminController extends Controller
             ->select('products.*', 'categories.name as cat_name', 'brands.name as brand_name')
             ->get();
 
-        return view('admin/product/product', compact('pro','count'));
+        return view('admin/product/product', compact('pro', 'count'));
     }
     public function detail($id)
     {
@@ -177,9 +177,12 @@ class AdminController extends Controller
         $cats = DB::table('categories')->get();
         return view('admin/product/edit', compact('pros', 'brands', 'cats'));
     }
-    public function destroyProduct($id)
+
+    public function delete(Request $req)
     {
-        products::where('id',$id)->delete();
-        return redirect('admin/product');
+        $product_id = $req->input('delete_pro_id');
+        $product = products::find($product_id);
+        $product->delete();
+        return redirect()->back()->with('delete-success', 'Product has been delete successfully');
     }
 }
