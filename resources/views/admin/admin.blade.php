@@ -15,65 +15,117 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <style>
-    * {
-        font-family: "Poppins", sans-serif;
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    .wrapper {
-        display: flex;
+    /* Side bar  */
+    #sidebar {
+        min-width: 250px;
+        max-width: 250px;
+        background: #4b7095;
+        color: #fff;
+        -webkit-transition: all 0.3s;
+        -o-transition: all 0.3s;
+        transition: all 0.3s;
         position: relative;
     }
 
-    .wrapper .sidebar {
-        position: fixed;
-        width: 250px;
-        height: 100%;
-        background-color: #4B7095;
-    }
-
-    .wrapper .sidebar ul li {
+    #sidebar ul li {
+        list-style: none;
         padding: 15px;
     }
 
-    .wrapper .sidebar img {
+    #sidebar.active {
+        margin-left: -250px;
+    }
+
+    #sidebar ul li a {
+        padding: 5px 0;
+        display: block;
+        color: white;
+        text-decoration: none;
+    }
+
+    #sidebar.active .custom-menu {
+        margin-right: -50px;
+    }
+
+    #sidebar ul li>ul {
+        margin-left: 35px;
+    }
+
+    #sidebar ul li>ul li {
+        font-size: 14px;
+    }
+
+    #sidebar .custom-menu {
+        display: inline-block;
+        position: absolute;
+        top: 20px;
+        right: 0;
+        margin-right: -20px;
+        -webkit-transition: 0.3s;
+        -o-transition: 0.3s;
+        transition: 0.3s;
+    }
+
+    #sidebar .custom-menu .btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+    }
+
+    #sidebar .custom-menu .btn.btn-primary {
+        background: #385470;
+        border-color: #385470;
+    }
+
+    #sidebar .custom-menu .btn.btn-primary:hover,
+    #sidebar .custom-menu .btn.btn-primary:focus {
+        background: #385470 !important;
+        border-color: #385470 !important;
+    }
+
+    a[data-toggle="collapse"] {
+        position: relative;
+    }
+
+    .dropdown-toggle::after {
+        display: block;
+        position: absolute;
+        top: 50%;
+        right: 0;
+        -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+    }
+
+    #content {
+        width: 100%;
+        padding: 0;
+        min-height: 100vh;
+        -webkit-transition: all 0.3s;
+        -o-transition: all 0.3s;
+        transition: all 0.3s;
+    }
+
+    #sidebar img {
         width: 184px;
         height: 138px;
         border-radius: 5px;
     }
 
-    .wrapper .sidebar ul li a {
-        text-decoration: none;
+    * {
+        font-family: "Poppins", sans-serif;
     }
 
-    .wrapper .sidebar ul li a i {
-        font-size: 20px;
-        color: #FFFFFF;
-    }
-
-    .wrapper .sidebar ul li a div {
-        font-weight: 300;
-        font-size: 16px;
-        line-height: 27px;
-        color: #FFFFFF;
-    }
-
-    .wrapper .sidebar ul li a .ac {
-        color: #FFA79B;
-    }
-
-    .main {
-        margin-left: 300px;
-        margin-right: 50px;
-    }
-
-    .wrapper .sidebar ul li a img {
+    #sidebar ul li a img {
         width: 30px;
         height: 24px;
     }
 
+    #sidebar ul li a .ac {
+        color: #FFA79B;
+    }
+
+    /* end side bar */
     .user-list a {
         color: #323b49;
         text-decoration: none;
@@ -110,14 +162,28 @@
 </style>
 
 <body>
-    @include('component\adminSidebar')
+    <div class="wrapper d-flex align-items-stretch">
+        @include('/component/adminSidebar')
 
-    <div class="main">
-        @include('component\msg')
-        @yield('sidebar-content')
+        <!-- Page Content  -->
+        <div id="content" class="p-4 p-md-5 pt-5">
+            @include('component\msg')
+            @yield('sidebar-content')
+        </div>
     </div>
 
     <script>
+        function previewFile(input) {
+            var file = $("input[type=file]").get(0).files[0];
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function() {
+                    $('#previewImg').attr("src", reader.result);
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
         function previewFile(input) {
             var file = $("input[type=file]").get(0).files[0];
             if (file) {
@@ -133,9 +199,36 @@
                 var prod_id = $(this).val();
                 // alert(prod_id);
                 $('#DeleteModal').modal('show');
-                $('#delete_id').val(prod_id)
+                $('#delete_id').val(prod_id);
             })
         });
+        $(document).ready(function() {
+            $(document).on('click', '.delete_cate_btn', function() {
+                var cate_id = $(this).val();
+                // alert(prod_id);
+                $('#Delete_cate_Modal').modal('show');
+                $('#delete_cate_id').val(cate_id);
+            })
+        });
+        (function($) {
+
+            "use strict";
+
+            var fullHeight = function() {
+
+                $('.js-fullheight').css('height', $(window).height());
+                $(window).resize(function() {
+                    $('.js-fullheight').css('height', $(window).height());
+                });
+
+            };
+            fullHeight();
+
+            $('#sidebarCollapse').on('click', function() {
+                $('#sidebar').toggleClass('active');
+            });
+
+        })(jQuery);
     </script>
 
     <script src="https://kit.fontawesome.com/35caa7975b.js" crossorigin="anonymous"></script>

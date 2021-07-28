@@ -8,9 +8,9 @@
                     {{ Session::get('brand_add') }}
                 </div>
             @endif
-            <h1>
-                This is dashboard page
-            </h1>
         </div>
     </div>
+    <h1 class="text-center">
+        This is dashboard page
+    </h1>
 @stop

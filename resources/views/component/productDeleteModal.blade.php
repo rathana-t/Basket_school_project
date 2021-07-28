@@ -7,13 +7,13 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ url('admin/category-product') }}" method="POST">
+            <form action="{{ url('admin/delete-product') }}" method="POST">
                 @csrf
                 @method('DELETE')
                 <div class="modal-body text-center">
                     Are you sure?
                 </div>
-                <input type="hidden" name="delete_category_id" id="delete_id">
+                <input type="hidden" name="delete_product_id" id="delete_id">
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Delete</button>
