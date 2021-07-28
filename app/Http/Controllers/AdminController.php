@@ -113,7 +113,7 @@ class AdminController extends Controller
             echo "Error";
         }
         $category->save();
-        return redirect('/admin/category/category')->with('brand_add', '100%');
+        return redirect('admin/category')->with('brand_add', '100%');
     }
     public function secondaryCategory()
     {

@@ -31,7 +31,7 @@
         </thead>
         <tbody>
             @foreach ($pro as $item)
-                <tr class="seller-list">
+                <tr class="seller-list text-center">
                     <td>
                         <a href="seller/{{ $item->stock }}">
                             <?php foreach (json_decode($item->img_product)as $picture) { ?>
