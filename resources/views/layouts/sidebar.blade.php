@@ -152,7 +152,7 @@
                     </a>
                 </li>
                 <li>
-                    <a clas href="/seller/{{ $data_seller->id }}/products">
+                    <a clas href="/seller/products">
                         <img src="/images/sidebar-logo/3.svg" alt="">
                         <div class=" {{ Request::is('seller*/products') ? 'ac' : '' }} mt-2">
                             Product
