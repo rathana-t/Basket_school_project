@@ -117,15 +117,6 @@ class AdminController extends Controller
         return redirect('admin/category')->with('brand_add', '100%');
     }
 
-    public function sendMsg(Request $req)
-    {
-        $msg = new messages();
-        $msg->msg = $req->msg;
-        $msg->seller_id = $req->input('seller_id');
-        $msg->sent = $req->input('sent');
-        $msg->save();
-        return redirect('admin/product');
-    }
     public function secondaryCategory()
     {
         $seCategory = se_categories::all();
@@ -209,4 +200,16 @@ class AdminController extends Controller
         $pro->delete();
         return redirect()->back()->with('delete-success', 'Product has been delete successfully');
     }
+
+    public function sendMsg(Request $req)
+    {
+        $msg = new messages();
+        $msg->msg = $req->msg;
+        $msg->seller_id = $req->input('seller_id');
+        $msg->sent = $req->input('sent');
+        $msg->save();
+        return redirect('admin/product');
+    }
+
+    
 }

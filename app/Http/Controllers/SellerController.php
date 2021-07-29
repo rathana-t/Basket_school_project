@@ -13,6 +13,7 @@ use App\Models\cards;
 use App\Models\brands;
 use App\Models\users_has_cards;
 use App\Http\Controllers\Controller;
+use App\Models\messages;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
@@ -206,11 +207,25 @@ class SellerController extends Controller
         }
         $id = $data_seller->id;
 
-        $sellerHasProduct = DB::table('messages')
+        $sellerHasMessage = DB::table('messages')
             ->join('sellers', 'messages.seller_id', '=', 'sellers.id')
             ->where('sellers.id', $id)
-            ->select('messages.*')->get();
+            ->select('messages.*')
+            ->orderByDesc('messages.created_at')
+            ->get();
+        return view('seller/messages', compact('sellerHasMessage'));
+    }
 
-        return view('seller/messages', compact('sellerHasProduct'));
+    public function detailMsg($id)
+    {
+        $message = messages::find($id);
+        if ($message->sent == 0) {
+            $message->sent = $message->sent;
+            return view('seller/detailMessage', compact('message'));
+        } else {
+            $message->sent = $message->sent - 1;
+            $message->update();
+            return view('seller/detailMessage', compact('message'));
+        }
     }
 }

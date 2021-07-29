@@ -66,19 +66,6 @@
             </div>
         </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
         <div class="text-left">
             <a style="margin:10px " href="{{ url('/seller/add-product') }}">
                 <button type="button" class="btn btn-success">Create & Sell</button>

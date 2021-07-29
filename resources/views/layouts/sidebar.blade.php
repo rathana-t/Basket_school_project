@@ -134,6 +134,14 @@
         color: #19252e;
     }
 
+    table {
+        table-layout: fixed !important;
+    }
+
+    table td {
+        overflow: hidden !important;
+    }
+
 </style>
 
 <body>

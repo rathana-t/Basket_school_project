@@ -43,6 +43,7 @@ Route::get('/seller/new-order', [SellerController::class, 'new_order'])->middlew
 Route::get('/seller/old-order', [SellerController::class, 'old_order'])->middleware('checker_seller');
 Route::get('/seller/profile', [SellerController::class, 'profile']);
 Route::get('/seller/messages', [SellerController::class, 'sellerMessages']);
+Route::get('/seller/messages/{id}', [SellerController::class, 'detailMsg']);
 
 Route::prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'dashboard']);
