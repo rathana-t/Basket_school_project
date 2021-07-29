@@ -13,5 +13,5 @@ class categories extends Model
 
     protected $table = "categories";
 
-    protected $fillable=['name','count','created_at','updated_at'];
+    protected $fillable=['name','count','category_img','created_at','updated_at'];
 }
