@@ -26,7 +26,7 @@ Route::post('/register', [UserController::class, 'register'])->name("register");
 Route::get('/profile/{id}', [UserController::class, 'profile'])->name('display-profile')->middleware('checker');
 Route::get('/logout', [UserController::class, 'logout'])->middleware('checker');
 
-//=============Seller=================== 
+//=============Seller===================
 Route::get('/sellerLogInPage', [SellerController::class, 'login_page']);
 Route::get('/sellerRegisterPage', [SellerController::class, 'register_page']);
 Route::post('/sellerLogIn', [SellerController::class, 'login']);
@@ -37,8 +37,9 @@ Route::get('/forseller', [SellerController::class, 'forseller']);
 
 Route::get('/seller/dashboard', [SellerController::class, 'dashboard'])->middleware('checker_seller');
 Route::get('/seller/products', [SellerController::class, 'products'])->middleware('checker_seller');
-Route::get('/seller/add-product', [SellerController::class, 'add_product'])->middleware('checker_seller');
-Route::post('/seller/postProduct', [SellerController::class, 'postProduct']);
+Route::get('/seller/choose-category', [SellerController::class, 'choose_main_cate'])->middleware('checker_seller');
+Route::get('/seller/add-product/{id}', [SellerController::class, 'add_product'])->middleware('checker_seller');
+Route::post('/seller/postProduct/{id}', [SellerController::class, 'postProduct'])->name('sellerpostProduct');
 Route::get('/seller/new-order', [SellerController::class, 'new_order'])->middleware('checker_seller');
 Route::get('/seller/old-order', [SellerController::class, 'old_order'])->middleware('checker_seller');
 Route::get('/seller/profile', [SellerController::class, 'profile']);

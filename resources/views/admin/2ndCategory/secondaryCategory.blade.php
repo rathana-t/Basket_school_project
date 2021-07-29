@@ -13,6 +13,7 @@
             <tr class="text-center">
                 <th scope="col" class="text-left">Image</th>
                 <th scope="col" class="text-left">ID</th>
+                {{-- <th scope="col" class="text-left">Main Cartegory</th> --}}
                 <th scope="col" class="text-left">Secondary category name</th>
                 <th scope="col" class="text-left">Created at</th>
                 <th scope="col" class="text-left">Action</th>
@@ -31,6 +32,12 @@
                             {{ $item->id }}
                         </a>
                     </td>
+                    <td>
+                        {{-- <td>
+                        <a>
+                            {{ $item->name }}
+                        </a>
+                    </td> --}}
                     <td>
                         <a>
                             {{ $item->name }}

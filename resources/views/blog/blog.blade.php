@@ -7,10 +7,11 @@
                 <div class="text-center pt-4 mt-4">
                     <h1>Make Money with us </h1>
                     @if (Session::has('seller'))
-                    
-                @else
-                    <a class="btn btn-primary btn-lg" href="{{ url('sellerRegisterPage') }}" role="button">Register</a>
-                @endif
+
+                    @else
+                        <a class="btn btn-primary btn-lg" href="{{ url('sellerRegisterPage') }}"
+                            role="button">Register</a>
+                    @endif
                 </div>
             </div>
         </div>

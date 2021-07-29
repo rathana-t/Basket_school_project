@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-   
+
     function signin()
     {
         $data = request()->validate([
@@ -63,7 +63,7 @@ class UserController extends Controller
         $data_user = Users::find($id);
         return view('home/u_profile',compact('data_user'));
     }
-    
+
     public function logout()
     {
     Session::forget('user');

@@ -8,7 +8,7 @@
             This is product page
         </h1>
         <div class="text-left">
-            <a style="margin:10px " href="{{ url('seller/add-product') }}">
+            <a style="margin:10px " href="{{ url('seller/choose-category') }}">
                 <button type="button" class="btn btn-success">Create & Sell</button>
             </a>
         </div>

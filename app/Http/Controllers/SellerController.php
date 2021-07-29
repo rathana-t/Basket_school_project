@@ -14,6 +14,7 @@ use App\Models\brands;
 use App\Models\users_has_cards;
 use App\Http\Controllers\Controller;
 use App\Models\messages;
+use App\Models\se_categories;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
@@ -109,7 +110,7 @@ class SellerController extends Controller
             $data_seller = sellers::findOrFail(session('seller'));
         }
         $id = $data_seller->id;
-
+        $main_cate = categories::get();
         $sellerHasProduct = DB::table('products')
             ->join('sellers', 'products.seller_id', '=', 'sellers.id')
             ->where('sellers.id', $id)
@@ -117,18 +118,16 @@ class SellerController extends Controller
         $data_seller = sellers::find($id);
 
         $i = 0;
-        return view('seller/product/listProduct', compact('i', 'data_seller', 'sellerHasProduct'));
+        return view('seller/product/listProduct', compact('i', 'data_seller', 'sellerHasProduct', 'main_cate'));
     }
-    public function add_product()
+    public function choose_main_cate()
     {
-
-        $cat = categories::all();
-        $brand = brands::all();
+        $main_cate = categories::get();
         if (session()->has('seller')) {
             $data_seller = sellers::findOrFail(session('seller'));
-            return view('seller/product/add_product', compact('data_seller', 'brand', 'cat'));
+            return view('seller/product/main_cate', compact('data_seller','main_cate'));
         } else {
-            return view('seller/product/add_product');
+            return view('seller/login');
         }
     }
 
@@ -161,9 +160,23 @@ class SellerController extends Controller
             return view('seller/profile');
         }
     }
+    public function add_product($id)
+    {
+        $cat = DB::table('se_categories')
+            ->join('categories', 'categories.id', '=', 'se_categories.category_id')
+            ->where('categories.id', $id)
+            ->select('se_categories.*','categories.id as main_cat_id')->get();
+        $brand = brands::all();
+        if (session()->has('seller')) {
+            $data_seller = sellers::findOrFail(session('seller'));
+            return view('seller/product/add_product', compact('data_seller', 'brand', 'cat'));
+        } else {
+            return view('seller/product/add_product');
+        }
+    }
 
 
-    public function postProduct(Request $req)
+    public function postProduct(Request $req,$id)
     {
         // $req->validate([
         //     'imageFile' => 'required',
@@ -184,7 +197,8 @@ class SellerController extends Controller
             $pro->description = $req->description;
             $pro->stock = $req->stock;
             $pro->brand_id = $req->brand_id;
-            $pro->category_id = $req->category_id;
+            $pro->s_cat_id = $req->category_id;
+            $pro->category_id = $id;
             $pro->img_product = json_encode($imgData);
             $pro->seller_id = $req->session()->get('seller');
         }
