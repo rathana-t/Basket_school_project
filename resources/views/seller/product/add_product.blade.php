@@ -21,7 +21,7 @@
                 </div>
                 <div class="form-group">
                     <label for="price">Price</label>
-                    <input type="text" class="form-control" id="exampleInputPhone" name="price" required>
+                    <input type="number" class="form-control" id="exampleInputPhone" name="price" required>
                 </div>
                 <div class="form-group">
                     <label for="description">Description</label>
@@ -30,7 +30,7 @@
                 </div>
                 <div class="form-group">
                     <label for="stock">Stock</label>
-                    <input type="number" class="form-control" id="" name="stock" required>
+                    <input type="number" class="form-control" id="" name="stock" required min="0">
                 </div>
                 <div class="form-group">
                     <div class="row">

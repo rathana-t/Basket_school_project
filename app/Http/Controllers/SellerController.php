@@ -125,7 +125,7 @@ class SellerController extends Controller
         $main_cate = categories::get();
         if (session()->has('seller')) {
             $data_seller = sellers::findOrFail(session('seller'));
-            return view('seller/product/main_cate', compact('data_seller','main_cate'));
+            return view('seller/product/main_cate', compact('data_seller', 'main_cate'));
         } else {
             return view('seller/login');
         }
@@ -165,7 +165,7 @@ class SellerController extends Controller
         $cat = DB::table('se_categories')
             ->join('categories', 'categories.id', '=', 'se_categories.category_id')
             ->where('categories.id', $id)
-            ->select('se_categories.*','categories.id as main_cat_id')->get();
+            ->select('se_categories.*', 'categories.id as main_cat_id')->get();
         $brand = brands::all();
         if (session()->has('seller')) {
             $data_seller = sellers::findOrFail(session('seller'));
@@ -176,7 +176,7 @@ class SellerController extends Controller
     }
 
 
-    public function postProduct(Request $req,$id)
+    public function postProduct(Request $req, $id)
     {
         // $req->validate([
         //     'imageFile' => 'required',

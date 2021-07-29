@@ -188,4 +188,8 @@
         max-width: 100px;
     }
 
+    .msg .card {
+        height: 200px;
+    }
+
 </style>

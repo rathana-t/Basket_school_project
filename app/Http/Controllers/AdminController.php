@@ -86,7 +86,7 @@ class AdminController extends Controller
             echo "Error";
         }
         $brand->save();
-        return redirect('/admin/brand')->with('brand_add', '100%');
+        return redirect('/admin/brand')->with('brand_add', 'Brand has been add sucessfully');
     }
 
     public function category()
@@ -114,7 +114,7 @@ class AdminController extends Controller
             echo "Error";
         }
         $category->save();
-        return redirect('admin/category')->with('brand_add', '100%');
+        return redirect('admin/category')->with('cate_add', 'Category has been add sucessfully');
     }
 
     public function secondaryCategory()
@@ -144,12 +144,9 @@ class AdminController extends Controller
             $var->secondarycategory_img = '';
             echo "Error";
         }
-        // ModelsSecondarycategories::create($var);
-
         $var->save();
 
-
-        return redirect('/admin')->with('brand_add', '100%');
+        return redirect('/admin/secondary-category')->with('2ndCate_add', 'SecondaryCategory has been add sucessfully');
     }
 
     public function product()
@@ -210,6 +207,4 @@ class AdminController extends Controller
         $msg->save();
         return redirect('admin/product');
     }
-
-    
 }
