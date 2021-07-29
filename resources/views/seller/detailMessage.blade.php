@@ -4,7 +4,9 @@
     <div class="text-center">
         heloo
         <div>
-            {{ $message->msg }}
+            <p>
+                {{ $message->msg }}
+            </p>
         </div>
     </div>
 @stop
