@@ -55,7 +55,7 @@
                                 <input type="hidden" value="1" name="sent">
                                 <div class="form-group">
                                     <label for="exampleFormControlTextarea1">Message</label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                    <textarea type="text" class="form-control" id="exampleFormControlTextarea1" rows="3"
                                         name="msg"></textarea>
                                 </div>
                             </div>
