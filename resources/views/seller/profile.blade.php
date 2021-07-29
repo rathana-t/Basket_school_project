@@ -24,11 +24,10 @@
             <h1 class="blue-style font-weight-bold">
                 {{ $data_seller->store_name }}
                 <button style="float: right" class="btn btn-danger"
-                    onclick="document.getElementById('id01').style.display='block'">Log
-                    Out</button>
-
+                    onclick="document.getElementById('id01').style.display='block'">
+                    LogOut
+                </button>
             </h1>
-
         </div>
     </div>
 
@@ -96,15 +95,7 @@
             </div>
         </div>
     </body>
-
-
-
     <script>
-        var modal = document.getElementById('id01');
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
+        
     </script>
 @stop
