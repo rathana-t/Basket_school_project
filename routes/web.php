@@ -52,6 +52,8 @@ Route::prefix('admin')->group(function () {
     Route::get('/add-category', [AdminController::class, 'addCategory']);
     Route::post('/store-category', [AdminController::class, 'storeCategory'])->name('category_store');
 
+    // Route::post('/sendMsg', [AdminController::class, 'sendMsg']);
+
     Route::get('/secondary-category', [AdminController::class, 'secondaryCategory']);
     Route::get('/add-secondarycategory', [AdminController::class, 'addSecondaryCategory']);
     Route::post('/store-Secondcategory', [AdminController::class, 'storeSecondCategory'])->name('secondcategory_store');
@@ -60,7 +62,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/seller/{id}', [AdminController::class, 'sellerDetail']);
 
     Route::get('/product', [AdminController::class, 'product']);
-    Route::get('/product/{id}', [AdminController::class, 'detail']);
+    Route::get('/product/{id}', [AdminController::class, 'productDetail']);
     Route::get('/edit/product/{id}', [AdminController::class, 'edit'])->name('edit_product');
     Route::post('/update/product/{id}', [AdminController::class, 'update']);
     Route::delete('delete-product', [AdminController::class, 'delete']);
