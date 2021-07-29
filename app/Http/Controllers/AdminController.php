@@ -14,6 +14,7 @@ use App\Models\brands;
 use App\Models\se_categories as s_cat;
 use App\Models\users_has_cards;
 use App\Http\Controllers\Controller;
+use App\Models\messages;
 use App\Models\se_categories;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -115,6 +116,16 @@ class AdminController extends Controller
         $category->save();
         return redirect('admin/category')->with('brand_add', '100%');
     }
+
+    public function sendMsg(Request $req)
+    {
+        $msg = new messages();
+        $msg->msg = $req->msg;
+        $msg->seller_id = $req->input('seller_id');
+        $msg->sent = $req->input('sent');
+        $msg->save();
+        return redirect('admin/product');
+    }
     public function secondaryCategory()
     {
         $seCategory = se_categories::all();
@@ -198,9 +209,4 @@ class AdminController extends Controller
         $pro->delete();
         return redirect()->back()->with('delete-success', 'Product has been delete successfully');
     }
-
-    // public function sendMsg(Request $req)
-    // {
-       
-    // }
 }

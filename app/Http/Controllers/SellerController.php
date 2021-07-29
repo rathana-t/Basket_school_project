@@ -103,19 +103,17 @@ class SellerController extends Controller
 
     public function products()
     {
-                
+
         if (session()->has('seller')) {
             $data_seller = sellers::findOrFail(session('seller'));
         }
-        $id=$data_seller->id;
-        
+        $id = $data_seller->id;
+
         $sellerHasProduct = DB::table('products')
             ->join('sellers', 'products.seller_id', '=', 'sellers.id')
             ->where('sellers.id', $id)
             ->select('products.*', 'sellers.store_name', 'sellers.phone', 'sellers.address')->get();
         $data_seller = sellers::find($id);
-       
-
 
         $i = 0;
         return view('seller/product/listProduct', compact('i', 'data_seller', 'sellerHasProduct'));
@@ -127,7 +125,7 @@ class SellerController extends Controller
         $brand = brands::all();
         if (session()->has('seller')) {
             $data_seller = sellers::findOrFail(session('seller'));
-            return view('seller/product/add_product', compact('data_seller','brand','cat'));
+            return view('seller/product/add_product', compact('data_seller', 'brand', 'cat'));
         } else {
             return view('seller/product/add_product');
         }
@@ -200,5 +198,19 @@ class SellerController extends Controller
         Session::forget('seller');
         Session::forget('joined');
         return redirect('/blog');
+    }
+    public function sellerMessages()
+    {
+        if (session()->has('seller')) {
+            $data_seller = sellers::findOrFail(session('seller'));
+        }
+        $id = $data_seller->id;
+
+        $sellerHasProduct = DB::table('messages')
+            ->join('sellers', 'messages.seller_id', '=', 'sellers.id')
+            ->where('sellers.id', $id)
+            ->select('messages.*')->get();
+
+        return view('seller/messages', compact('sellerHasProduct'));
     }
 }

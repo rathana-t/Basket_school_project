@@ -42,6 +42,7 @@ Route::post('/seller/postProduct', [SellerController::class, 'postProduct']);
 Route::get('/seller/new-order', [SellerController::class, 'new_order'])->middleware('checker_seller');
 Route::get('/seller/old-order', [SellerController::class, 'old_order'])->middleware('checker_seller');
 Route::get('/seller/profile', [SellerController::class, 'profile']);
+Route::get('/seller/messages', [SellerController::class, 'sellerMessages']);
 
 Route::prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'dashboard']);
@@ -52,7 +53,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/add-category', [AdminController::class, 'addCategory']);
     Route::post('/store-category', [AdminController::class, 'storeCategory'])->name('category_store');
 
-    // Route::post('/sendMsg', [AdminController::class, 'sendMsg']);
+    Route::post('/sendMsg', [AdminController::class, 'sendMsg'])->name('sendMsg');
 
     Route::get('/secondary-category', [AdminController::class, 'secondaryCategory']);
     Route::get('/add-secondarycategory', [AdminController::class, 'addSecondaryCategory']);

@@ -184,6 +184,14 @@
                     </a>
                 </li>
                 <li>
+                    <a clas href="/seller/messages">
+                        <img src="/images/sidebar-seller-logo/align.svg" alt="">
+                        <div class=" {{ Request::is('seller*/messages') ? 'ac' : '' }} mt-2">
+                            Message
+                        </div>
+                    </a>
+                </li>
+                <li>
                     <a href="{{ url('/') }}">
                         <div class=" {{ Request::is('/') ? 'ac' : '' }}">
                             Go To Website PLP
