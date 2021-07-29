@@ -1,4 +1,4 @@
-@extends('layouts\sidebar')
+@extends('seller\seller')
 
 @section('sidebar-content')
     <div class="container">

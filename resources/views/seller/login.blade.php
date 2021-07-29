@@ -1,4 +1,4 @@
-@extends('blog/layout')
+@extends('seller\seller')
 
 @section('content')
     <div class="container">
