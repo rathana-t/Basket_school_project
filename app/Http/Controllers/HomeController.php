@@ -82,4 +82,9 @@ class HomeController extends Controller
             return view('blog/blog');
         }
     }
+    public function search(Request $req)
+    {
+        $data = products::where('name','like','%'.$req->input('query').'%')->get();
+        return view('home/search');
+    }
 }

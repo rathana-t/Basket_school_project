@@ -4,8 +4,9 @@
             <img src="/images/logo/PLP.svg" alt="">
         </a>
         <ul class="navbar-nav ml-auto">
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2 search" type="search" placeholder="Search" aria-label="Search">
+            <form class="form-inline my-2 my-lg-0" action="/search" method="GET">
+                <input class="form-control mr-sm-2 search" type="search" placeholder="Search" aria-label="Search"
+                    name="query">
                 <button type="button" class="btn btn-primary">Search</button>
             </form>
         </ul>
