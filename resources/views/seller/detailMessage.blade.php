@@ -4,9 +4,9 @@
     <div class="container">
         <div class="text-center">
             heloo
-            <h1>
+            <div>
                 {{ $message->msg }}
-            </h1>
+            </div>
         </div>
     </div>
 @stop
