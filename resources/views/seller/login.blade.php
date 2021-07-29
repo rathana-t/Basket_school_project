@@ -1,4 +1,4 @@
-@extends('seller\seller')
+@extends('blog/layout')
 
 @section('content')
     <div class="container">
@@ -7,12 +7,12 @@
                 Login
             </h1>
             <div class="row justify-content-center">
-                <div class="col-md-6">            
-            @if (session('fail'))
-                <div class="text-danger" style="margin-left:25%">
-                {{ session('fail') }}
-                </div>
-            @endif
+                <div class="col-md-6">
+                    @if (session('fail'))
+                        <div class="text-danger" style="margin-left:25%">
+                            {{ session('fail') }}
+                        </div>
+                    @endif
                     <form action="{{ url('sellerLogIn') }}" method="POST">
                         @csrf
                         <div class="card shadow-sm">
