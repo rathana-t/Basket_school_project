@@ -234,4 +234,12 @@ class AdminController extends Controller
         $msg->save();
         return redirect('admin/product');
     }
+
+    public function productRequestUpdate($id)
+    {
+        $product = products::find($id);
+        $product->completed = 1;
+        $product->update();
+        return redirect('/admin/productRequest')->with('confirm_request', 'Product Confirm!');
+    }
 }
