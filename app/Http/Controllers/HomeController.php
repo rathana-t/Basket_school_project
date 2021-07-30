@@ -29,7 +29,7 @@ class HomeController extends Controller
         $data_pro = DB::table('products')->get();
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
-            return view('home/index', compact('data_user', 'data_pro','cate', 'brand'));
+            return view('home/index', compact('data_user', 'data_pro', 'cate', 'brand'));
         } else {
             return view('home/index', compact('data_pro', 'cate', 'brand'));
         }
@@ -84,7 +84,11 @@ class HomeController extends Controller
     }
     public function search(Request $req)
     {
-        $data = products::where('name','like','%'.$req->input('query').'%')->get();
+        $data = products::where('name', 'like', '%' . $req->input('query') . '%')->get();
         return view('home/search');
+    }
+    public function order()
+    {
+        return view('home/order');
     }
 }

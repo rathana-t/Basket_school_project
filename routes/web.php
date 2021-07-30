@@ -19,6 +19,7 @@ Route::get('/detailPage/{id}', [HomeController::class, 'detail'])->name('detail'
 Route::get('/blog', [HomeController::class, 'blog']);
 Route::get('/cart', [HomeController::class, 'cart']);
 Route::get('/search', [HomeController::class, 'search']);
+Route::get('/order', [HomeController::class, 'order']);
 
 
 

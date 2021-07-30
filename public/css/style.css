@@ -152,7 +152,7 @@ body {
 .see-all-product a:hover {
     text-decoration: none;
 }
-.horizontal1 img{
+.horizontal1 img {
     object-fit: contain;
     width: 120px;
     height: 50px;
@@ -308,6 +308,18 @@ footer ul li {
 
 /* end  */
 
+.order img {
+    border-radius: 5px;
+    height: 90px;
+    object-fit: contain;
+}
+.order p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.order .active {
+    color: #ff4c34;
+}
 @media only screen and (max-width: 1223px) {
     .form-inline .search {
         width: 300px;
