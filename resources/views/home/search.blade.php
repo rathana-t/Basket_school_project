@@ -4,7 +4,6 @@
     <!------ Include the above in your HEAD tag ---------->
 
 
-
     <div class="">
         <br>
         <p class="text-center">{{ 'query' }}<a href=""></a></p>

@@ -25,15 +25,15 @@ class HomeController extends Controller
     public function index()
     {
         $cate = DB::table('categories')->limit(4)->get();
+        $brand = DB::table('brands')->get();
         $data_pro = DB::table('products')->get();
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
-            return view('home/index', compact('data_user', 'data_pro'));
+            return view('home/index', compact('data_user', 'data_pro','cate', 'brand'));
         } else {
-            return view('home/index', compact('data_pro', 'cate',));
+            return view('home/index', compact('data_pro', 'cate', 'brand'));
         }
     }
-
     public function login()
     {
         return view('home/login');
