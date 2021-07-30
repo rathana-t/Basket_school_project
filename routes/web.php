@@ -67,7 +67,8 @@ Route::prefix('admin')->group(function () {
     Route::get('/seller/{id}', [AdminController::class, 'sellerDetail']);
 
     Route::get('/product', [AdminController::class, 'product']);
-    Route::get('/productPending', [AdminController::class, 'productPending']);
+    Route::get('/productRequest', [AdminController::class, 'productRequest']);
+    Route::get('/productRequest/{id}', [AdminController::class, 'productRequestDetail']);
     Route::get('/product/{id}', [AdminController::class, 'productDetail']);
     Route::get('/edit/product/{id}', [AdminController::class, 'edit'])->name('edit_product');
     Route::post('/update/product/{id}', [AdminController::class, 'update']);

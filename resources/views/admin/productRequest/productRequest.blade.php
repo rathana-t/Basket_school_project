@@ -5,7 +5,7 @@
 
     <div class="text-center">
         <h1>
-            This is product page
+            This is product request page
         </h1>
         <div class="text-left">
             <a style="margin:10px " href="{{ url('seller/choose-category') }}">
@@ -33,59 +33,56 @@
             @foreach ($pro as $item)
                 <tr class="seller-list text-center">
                     <td>
-                        <a href="seller/{{ $item->stock }}">
+                        <a href="productRequest/{{ $item->stock }}">
                             <?php foreach (json_decode($item->img_product)as $picture) { ?>
                             <img src="/images/imgProduct/{{ $picture }}" alt="">
                             <?php break; } ?>
                         </a>
                     </td>
                     <td>
-                        <a href="product/{{ $item->id }}">
+                        <a href="productRequest/{{ $item->id }}">
                             {{ $item->id }}
                         </a>
                     </td>
                     <td>
-                        <a href="product/{{ $item->id }}">
+                        <a href="productRequest/{{ $item->id }}">
                             {{ $item->top_buy }}
                         </a>
                     </td>
                     <td>
-                        <a href="product/{{ $item->id }}">
+                        <a href="productRequest/{{ $item->id }}">
                             {{ $item->name }}
                         </a>
                     </td>
                     <td>
-                        <a href="product/{{ $item->id }}">
+                        <a href="productRequest/{{ $item->id }}">
                             {{ $item->price }}
                         </a>
                     </td>
                     <td>
-                        <a href="product/{{ $item->id }}">
+                        <a href="productRequest/{{ $item->id }}">
                             {{ $item->stock }}
                         </a>
                     </td>
                     <td>
-                        <a href="product/{{ $item->id }}">
+                        <a href="productRequest/{{ $item->id }}">
                             {{ $item->brand_name }}
                         </a>
                     </td>
                     <td>
-                        <a href="product/{{ $item->id }}">
+                        <a href="productRequest/{{ $item->id }}">
                             {{ $item->cat_name }}
                         </a>
                     </td>
                     <td>
-                        <a href="product/{{ $item->id }}">
+                        <a href="productRequest/{{ $item->id }}">
                             {{ $item->created_at }}
                         </a>
                     </td>
                     <td>
-                        <a href="product/{{ $item->id }}">
+                        <a href="productRequest/{{ $item->id }}">
                             <button type="button" class="btn btn-info">View</button>
                         </a>
-                        <button type="button" value="{{ $item->id }}" class="deletebtn btn btn-danger">
-                            Delete
-                        </button>
                     </td>
                 </tr>
             @endforeach

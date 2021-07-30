@@ -160,7 +160,7 @@ class AdminController extends Controller
         return view('admin/product/product', compact('pro', 'count'));
     }
 
-    public function productPending()
+    public function productRequest()
     {
         $count = products::count();
         $pro = products::join('brands', 'products.brand_id', '=',  'brands.id')
@@ -168,7 +168,20 @@ class AdminController extends Controller
             ->select('products.*', 'categories.name as cat_name', 'brands.name as brand_name')
             ->where('products.completed', '=', '0')
             ->get();
-        return view('admin/product/product', compact('pro', 'count'));
+        return view('admin/productRequest/productRequest', compact('pro', 'count'));
+    }
+
+    public function productRequestDetail($id)
+    {
+        $detail_pro = products::join('brands', 'products.brand_id', '=',  'brands.id')
+            ->join('se_categories', 'products.s_cat_id', '=', 'se_categories.id')
+            ->join('categories', 'products.category_id', '=', 'categories.id')
+            ->join('sellers', 'products.seller_id', '=', 'sellers.id')
+            ->where('products.completed', '=', '0')
+            ->where('products.id', $id)
+            ->select('products.*', 'categories.name as cat_name', 'brands.name as brand_name', 'sellers.store_name')
+            ->get();
+        return view('admin/productRequest/productRequestDetail', compact('detail_pro'));
     }
 
     public function productDetail($id)
@@ -177,6 +190,7 @@ class AdminController extends Controller
             ->join('categories', 'products.category_id', '=', 'categories.id')
             ->join('sellers', 'products.seller_id', '=', 'sellers.id')
             ->where('products.id', $id)
+            ->where('products.completed', '=', '1')
             ->select('products.*', 'categories.name as cat_name', 'brands.name as brand_name', 'sellers.store_name')
             ->get();
         return view('admin/product/show', compact('detail_pro'));

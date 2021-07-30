@@ -52,8 +52,8 @@
                                 Product
                             </div>
                         </a>
-                        <a clas href="/admin/productPending">
-                            <div class="pl-3 mt-2 {{ Request::is('admin/productPending') ? 'ac' : '' }}">
+                        <a clas href="/admin/productRequest">
+                            <div class="pl-3 mt-2 {{ Request::is('admin/productRequest') ? 'ac' : '' }}">
                                 Request Products
                             </div>
                         </a>
