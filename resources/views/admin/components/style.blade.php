@@ -101,12 +101,16 @@
     }
 
     #sidebar ul li a img {
-        width: 30px;
-        height: 24px;
+        width: 25px;
+        height: 25px;
     }
 
     #sidebar ul li a .ac {
         color: #FFA79B;
+    }
+
+    .cs-dropdown {
+        font-size: 14px;
     }
 
     /* end side bar */

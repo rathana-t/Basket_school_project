@@ -100,7 +100,7 @@
     }
 
     #sidebar ul li a img {
-        width: 20px;
+        width: 25px;
         height: 25px;
     }
 
