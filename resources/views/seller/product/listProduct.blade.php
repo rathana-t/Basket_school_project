@@ -2,35 +2,8 @@
 
 @section('sidebar-content')
     @include('seller\components\msg')
-    <h1>
-        {{ $data_seller->store_name }}
-    </h1>
 
-    <div class="category mt-4">
-        <h1>
-            Category
-        </h1>
-        <div class="row mt-3">
-            @foreach ($main_cate as $item)
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <div class="card shadow-sm">
-                        <a href="{{ url('/seller/add-product', $item->id) }}">
-                            <div class="m-2">
-                                <p>{{ $item->name }}</p>
-                                <div class="text-center">
-                                    <img src="/images/categoryImages/{{ $item->category_img }}" alt="" class="img-fluid">
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-    </div>
-
-    <a href="{{ url('/seller/choose-category') }}">
-        <button type="button" class="btn btn-success mt-3 mb-3">Create & Sell</button>
-    </a>
+    <h1 class="text-center mb-5">List all products</h1>
     <div class="text-center">
         <table class="table">
             <thead>

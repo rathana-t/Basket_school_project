@@ -8,61 +8,83 @@
     <div class="text-center mt-4">
         <a href=""><img src="https://wallpaperaccess.com/full/3143683.jpg" alt="" class="img-fluid"></a>
     </div>
-    <ul class="mb-5 list-unstyled components text-center">
-        <li>
-            <a clas href="/seller/dashboard">
-                <img src="/images/sidebar-logo/1.svg" alt="">
-                <div class=" {{ Request::is('seller*/dashboard') ? 'ac' : '' }} mt-2">
-                    Dashboard
-                </div>
-            </a>
-        </li>
-        <li>
-            <a clas href="/seller/products">
-                <img src="/images/sidebar-logo/3.svg" alt="">
-                <div class=" {{ Request::is('seller*/products') ? 'ac' : '' }} mt-2">
-                    Product
-                </div>
-            </a>
-        </li>
-        <li>
-            <a clas href="/seller/new-order">
-                <img src="/images/sidebar-seller-logo/cart.svg" alt="">
-                <div class=" {{ Request::is('seller*/new-order') ? 'ac' : '' }} mt-2">
-                    New orders
-                </div>
-            </a>
-        </li>
-        <li>
-            <a clas href="/seller/old-order">
-                <img src="/images/sidebar-seller-logo/history.svg" alt="">
-                <div class=" {{ Request::is('seller*/old-order') ? 'ac' : '' }} mt-2">
-                    Old orders
-                </div>
-            </a>
-        </li>
-        <li>
-            <a clas href="/seller/profile">
-                <img src="/images/sidebar-seller-logo/align.svg" alt="">
-                <div class=" {{ Request::is('seller*/profile') ? 'ac' : '' }} mt-2">
-                    Profile
-                </div>
-            </a>
-        </li>
-        <li>
-            <a clas href="/seller/messages">
-                <img src="/images/sidebar-seller-logo/align.svg" alt="">
-                <div class=" {{ Request::is('seller*/messages') ? 'ac' : '' }} mt-2">
-                    Message
-                </div>
-            </a>
-        </li>
-        <li>
-            <a href="{{ url('/') }}">
-                <div class=" {{ Request::is('/') ? 'ac' : '' }}">
-                    Go To Website PLP
-                </div>
-            </a>
-        </li>
-    </ul>
+    <div class="p-4">
+        <ul class="mb-5 list-unstyled components">
+            <li>
+                <a clas href="/seller/dashboard">
+                    <div class=" {{ Request::is('seller*/dashboard') ? 'ac' : '' }} mt-2">
+                        <img src="/images/sidebar-logo/1.svg" alt="">
+                        <span class="pl-3">Dashboard</span>
+                    </div>
+                </a>
+            </li>
+            <li class="active">
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <div>
+                        <img src="/images/sidebar-logo/3.svg" alt="">
+                        <span class="pl-3">Products</span>
+                    </div>
+                </a>
+                <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <div class="cs-dropdown">
+                        <a clas href="/seller/products ">
+                            <div class="pl-3 {{ Request::is('seller*/products') ? 'ac' : '' }} mt-2">
+                                Product
+                            </div>
+                        </a>
+                        <a clas href="/seller/choose-category ">
+                            <div
+                                class="pl-3 {{ Request::is('seller/choose-category') || Request::is('seller/add-product*') ? 'ac' : '' }} mt-2">
+                                Add Product
+                            </div>
+                        </a>
+                        <a clas href="/seller/products ">
+                            <div class="pl-3 mt-2">
+                                Pending Products
+                            </div>
+                        </a>
+                    </div>
+                </ul>
+            </li>
+            <li>
+                <a clas href="/seller/new-order">
+                    <div class=" {{ Request::is('seller*/new-order') ? 'ac' : '' }} mt-2">
+                        <img src="/images/sidebar-seller-logo/history.svg" alt="">
+                        <span class="pl-3">New orders</span>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a clas href="/seller/old-order">
+                    <div class=" {{ Request::is('seller*/old-order') ? 'ac' : '' }} mt-2">
+                        <img src="/images/sidebar-logo/3.svg" alt="">
+                        <span class="pl-3">Old orders</span>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a clas href="/seller/profile">
+                    <div>
+                        <img src="/images/sidebar-seller-logo/align.svg" alt="">
+                        <span class="pl-3">Profile</span>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a clas href="/seller/messages">
+                    <div>
+                        <img src="/images/sidebar-seller-logo/align.svg" alt="">
+                        <span class="pl-3">Messages</span>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <div>
+                        Go To Website PLP
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
 </nav>
