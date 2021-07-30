@@ -1,17 +1,11 @@
 @extends('admin\admin')
 
 @section('sidebar-content')
-    @include('/admin/components/productDeleteModal')
-
+    @include('/admin/components/msg')
     <div class="text-center">
         <h1>
             This is product request page
         </h1>
-        <div class="text-left">
-            <a style="margin:10px " href="{{ url('seller/choose-category') }}">
-                <button type="button" class="btn btn-success">Create & Sell</button>
-            </a>
-        </div>
     </div>
 
     <table class="table table-hover">
@@ -19,7 +13,6 @@
             <tr class="text-center">
                 <th scope="col">Image</th>
                 <th scope="col">ID</th>
-                <th scope="col">Top</th>
                 <th scope="col">Name</th>
                 <th scope="col">Price</th>
                 <th scope="col">Stock</th>
@@ -42,11 +35,6 @@
                     <td>
                         <a href="productRequest/{{ $item->id }}">
                             {{ $item->id }}
-                        </a>
-                    </td>
-                    <td>
-                        <a href="productRequest/{{ $item->id }}">
-                            {{ $item->top_buy }}
                         </a>
                     </td>
                     <td>

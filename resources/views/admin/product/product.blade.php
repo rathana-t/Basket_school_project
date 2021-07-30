@@ -7,11 +7,6 @@
         <h1>
             This is product page
         </h1>
-        <div class="text-left">
-            <a style="margin:10px " href="{{ url('seller/choose-category') }}">
-                <button type="button" class="btn btn-success">Create & Sell</button>
-            </a>
-        </div>
     </div>
 
     <table class="table table-hover">
@@ -33,7 +28,7 @@
             @foreach ($pro as $item)
                 <tr class="seller-list text-center">
                     <td>
-                        <a href="seller/{{ $item->stock }}">
+                        <a href="product/{{ $item->id }}">
                             <?php foreach (json_decode($item->img_product)as $picture) { ?>
                             <img src="/images/imgProduct/{{ $picture }}" alt="">
                             <?php break; } ?>

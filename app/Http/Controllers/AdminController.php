@@ -171,19 +171,6 @@ class AdminController extends Controller
         return view('admin/productRequest/productRequest', compact('pro', 'count'));
     }
 
-    public function productRequestDetail($id)
-    {
-        $detail_pro = products::join('brands', 'products.brand_id', '=',  'brands.id')
-            ->join('se_categories', 'products.s_cat_id', '=', 'se_categories.id')
-            ->join('categories', 'products.category_id', '=', 'categories.id')
-            ->join('sellers', 'products.seller_id', '=', 'sellers.id')
-            ->where('products.completed', '=', '0')
-            ->where('products.id', $id)
-            ->select('products.*', 'categories.name as cat_name', 'brands.name as brand_name', 'sellers.store_name')
-            ->get();
-        return view('admin/productRequest/productRequestDetail', compact('detail_pro'));
-    }
-
     public function productDetail($id)
     {
         $detail_pro = products::join('brands', 'products.brand_id', '=',  'brands.id')
@@ -235,6 +222,19 @@ class AdminController extends Controller
         return redirect('admin/product');
     }
 
+    public function productRequestDetail($id)
+    {
+        $detail_pro = products::join('brands', 'products.brand_id', '=',  'brands.id')
+            ->join('se_categories', 'products.s_cat_id', '=', 'se_categories.id')
+            ->join('categories', 'products.category_id', '=', 'categories.id')
+            ->join('sellers', 'products.seller_id', '=', 'sellers.id')
+            ->where('products.completed', '=', '0')
+            ->where('products.id', $id)
+            ->select('products.*', 'categories.name as cat_name', 'brands.name as brand_name', 'sellers.store_name')
+            ->get();
+        return view('admin/productRequest/productRequestDetail', compact('detail_pro'));
+    }
+    
     public function productRequestUpdate($id)
     {
         $product = products::find($id);
