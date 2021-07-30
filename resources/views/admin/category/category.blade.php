@@ -1,7 +1,7 @@
 @extends('admin\admin')
 
 @section('sidebar-content')
-    @include('/admin/components/cateDeleteModal')
+    @include('/admin/components/modal')
     <div class="text-center">
         <h1>
             All
