@@ -114,11 +114,29 @@ class SellerController extends Controller
         $sellerHasProduct = DB::table('products')
             ->join('sellers', 'products.seller_id', '=', 'sellers.id')
             ->where('sellers.id', $id)
+            ->where('products.completed', '=', '1')
             ->select('products.*', 'sellers.store_name', 'sellers.phone', 'sellers.address')->get();
         $data_seller = sellers::find($id);
 
         $i = 0;
         return view('seller/product/listProduct', compact('i', 'data_seller', 'sellerHasProduct', 'main_cate'));
+    }
+    public function productPending()
+    {
+        if (session()->has('seller')) {
+            $data_seller = sellers::findOrFail(session('seller'));
+        }
+        $id = $data_seller->id;
+        $main_cate = categories::get();
+        $sellerHasProduct = DB::table('products')
+            ->join('sellers', 'products.seller_id', '=', 'sellers.id')
+            ->where('sellers.id', $id)
+            ->where('products.completed', '=', '0')
+            ->select('products.*', 'sellers.store_name', 'sellers.phone', 'sellers.address')->get();
+        $data_seller = sellers::find($id);
+
+        $i = 0;
+        return view('seller/product/listProductPending', compact('i', 'data_seller', 'sellerHasProduct', 'main_cate'));
     }
     public function choose_main_cate()
     {

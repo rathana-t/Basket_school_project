@@ -38,8 +38,8 @@
                                 Add Product
                             </div>
                         </a>
-                        <a clas href="/seller/products ">
-                            <div class="pl-3 mt-2">
+                        <a clas href="/seller/productPending ">
+                            <div class="pl-3 mt-2 {{ Request::is('seller*/productPending') ? 'ac' : '' }}">
                                 Pending Products
                             </div>
                         </a>
