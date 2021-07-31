@@ -193,9 +193,16 @@ class AdminController extends Controller
 
         $brands = DB::table('brands')->get();
         $cats = DB::table('categories')->get();
-        return view('admin/product/edit', compact('pros', 'brands', 'cats'));
+        return view('seller/product/edit', compact('pros', 'brands', 'cats'));
     }
 
+    public function delete_brand(Request $req)
+    {
+        $brand_id = $req->input('delete_brand_id');
+        $brand = brands::find($brand_id);
+        $brand->delete();
+        return redirect()->back()->with('delete-success', 'Product has been delete successfully');
+    }
     public function delete(Request $req)
     {
         $product_id = $req->input('delete_product_id');
@@ -244,5 +251,5 @@ class AdminController extends Controller
         return redirect('/admin/productRequest')->with('confirm_request', 'Product Confirm!');
     }
 
-    
+
 }

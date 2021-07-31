@@ -29,6 +29,14 @@
         })
     });
     $(document).ready(function() {
+        $(document).on('click', '.delete_brand_btn', function() {
+            var prod_id = $(this).val();
+            // alert(prod_id);
+            $('#DeleteBrand').modal('show');
+            $('#delete_brand_id').val(prod_id);
+        })
+    });
+    $(document).ready(function() {
         $(document).on('click', '.delete_cate_btn', function() {
             var cate_id = $(this).val();
             // alert(prod_id);

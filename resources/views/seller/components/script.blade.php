@@ -48,4 +48,21 @@
             modal.style.display = "none";
         }
     }
+
+    $(document).ready(function() {
+        $(document).on('click', '.deletebtn', function() {
+            var prod_id = $(this).val();
+            // alert(prod_id);
+            $('#DeleteModal').modal('show');
+            $('#delete_id').val(prod_id);
+        })
+    });
+    // $(document).ready(function() {
+    //     $(document).on('click', '.delete_cate_btn', function() {
+    //         var cate_id = $(this).val();
+    //         // alert(prod_id);
+    //         $('#Delete_cate_Modal').modal('show');
+    //         $('#delete_cate_id').val(cate_id);
+    //     })
+    // });
 </script>
