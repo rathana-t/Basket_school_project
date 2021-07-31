@@ -174,11 +174,12 @@ class AdminController extends Controller
     public function productDetail($id)
     {
         $detail_pro = products::join('brands', 'products.brand_id', '=',  'brands.id')
+            ->join('se_categories', 'products.s_cat_id', '=', 'se_categories.id')
             ->join('categories', 'products.category_id', '=', 'categories.id')
             ->join('sellers', 'products.seller_id', '=', 'sellers.id')
             ->where('products.id', $id)
             ->where('products.completed', '=', '1')
-            ->select('products.*', 'categories.name as cat_name', 'brands.name as brand_name', 'sellers.store_name')
+            ->select('products.*', 'categories.name as cat_name', 'brands.name as brand_name', 'sellers.store_name','se_categories.name as secondCate')
             ->get();
         return view('admin/product/show', compact('detail_pro'));
     }
@@ -234,7 +235,7 @@ class AdminController extends Controller
             ->get();
         return view('admin/productRequest/productRequestDetail', compact('detail_pro'));
     }
-    
+
     public function productRequestUpdate($id)
     {
         $product = products::find($id);
@@ -242,4 +243,6 @@ class AdminController extends Controller
         $product->update();
         return redirect('/admin/productRequest')->with('confirm_request', 'Product Confirm!');
     }
+
+    
 }

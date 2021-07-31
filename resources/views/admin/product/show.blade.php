@@ -23,6 +23,10 @@
 
             </p>
             <p>
+                {{ $item->secondCate }}
+
+            </p>
+            <p>
                 {{ $item->brand_name }}
 
             </p>

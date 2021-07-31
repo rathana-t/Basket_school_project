@@ -8,15 +8,14 @@
         <a href="{{ url('/admin/add-secondarycategory') }}"> Add New Category </a>
     </div>
 
-    <table class="table table-hover">
+    <table class="table table-hover text-center">
         <thead>
             <tr class="text-center">
-                <th scope="col" class="text-left">Image</th>
-                <th scope="col" class="text-left">ID</th>
-                {{-- <th scope="col" class="text-left">Main Cartegory</th> --}}
-                <th scope="col" class="text-left">Secondary category name</th>
-                <th scope="col" class="text-left">Created at</th>
-                <th scope="col" class="text-left">Action</th>
+                <th scope="col">Image</th>
+                <th scope="col">ID</th>
+                <th scope="col">Secondary category name</th>
+                <th scope="col">Created at</th>
+                <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -32,12 +31,6 @@
                             {{ $item->id }}
                         </a>
                     </td>
-                    <td>
-                        {{-- <td>
-                        <a>
-                            {{ $item->name }}
-                        </a>
-                    </td> --}}
                     <td>
                         <a>
                             {{ $item->name }}
