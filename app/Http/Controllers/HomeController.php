@@ -29,7 +29,7 @@ class HomeController extends Controller
         $second_cate = DB::table('se_categories')->limit(5)->inRandomOrder()->get();
         $cate = DB::table('categories')->limit(4)->get();
         $brand = DB::table('brands')->get();
-        $data_pro = DB::table('products')->inRandomOrder()->get();
+        $data_pro = DB::table('products')->where('completed',1)->inRandomOrder()->get();
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
             return view('home/index', compact('data_user', 'data_pro', 'cate', 'brand', 'second_cate', 'count'));
