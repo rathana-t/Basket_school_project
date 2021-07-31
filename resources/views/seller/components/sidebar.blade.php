@@ -81,7 +81,11 @@
             <li>
                 <a>
                     <div>
-                        Go To Website PLP
+                        <a href="{{ url('/') }}">
+                            <div class=" {{ Request::is('/') ? 'ac' : '' }}">
+                                Go To Website PLP
+                            </div>
+                        </a>
                     </div>
                 </a>
             </li>

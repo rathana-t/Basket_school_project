@@ -9,9 +9,9 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/test', function () {
+    return view('test');
+});
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/login', [HomeController::class, 'login']);
 Route::get('/reg', [HomeController::class, 'reg']);

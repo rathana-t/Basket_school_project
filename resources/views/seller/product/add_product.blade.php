@@ -21,7 +21,12 @@
                 </div>
                 <div class="form-group">
                     <label for="price">Price</label>
-                    <input type="number" class="form-control" id="exampleInputPhone" name="price" required>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">$</div>
+                        </div>
+                        <input type="number" class="form-control" id="exampleInputPhone" name="price" step="0.01" required>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="description">Description</label>
@@ -60,17 +65,19 @@
 
                 <div class="custom-file mb-3">
 
-                    <input type="file" class="custom-file-input" id="images" name="imageFile[]" onchange="previewFile(this)"
-                        value="{{ old('img_product') }}" required multiple="multiple">
+                    <input type="file" class="custom-file-input" id="images" name="imageFile[]" required
+                        multiple="multiple" />
                     <label class="custom-file-label" for="images">Choose picture...</label>
                 </div>
-                <div class="user-image mb-3 text-center">
+                {{-- <div class="user-image mb-3 text-center">
                     <div class="imgPreview"> </div>
-                </div>
+                </div> --}}
 
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </div>
         </form>
     </div>
+
+
 @stop

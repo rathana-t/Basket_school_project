@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-md-2 d-flex">
                     <?php foreach (json_decode($detail->img_product)as $picture) { ?>
-                    <img src="{{ asset('imgProduct') }}/{{ $picture }}" alt="" class="img-fluid"
+                    <img src="{{ asset('images/imgProduct') }}/{{ $picture }}" alt="" class="img-fluid"
                         style="height: 150px;margin:5px;">
                     <?php } ?>
                 </div>
@@ -18,7 +18,7 @@
                 <div class="row mt-5">
                     <div class="col-md-6">
                         <?php foreach (json_decode($detail->img_product)as $picture) { ?>
-                        <img src="{{ asset('imgProduct') }}/{{ $picture }}" alt="" class="img-fluid"
+                        <img src="{{ asset('images/imgProduct') }}/{{ $picture }}" alt="" class="img-fluid"
                             style="height: 400px;width:400px">
                         <?php break; } ?>
                     </div>
