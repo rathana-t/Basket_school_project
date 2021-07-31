@@ -196,4 +196,8 @@
         height: 200px;
     }
 
+    .table td {
+        vertical-align: middle;
+    }
+
 </style>
