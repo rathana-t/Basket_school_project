@@ -13,11 +13,11 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="d-flex justify-content-around">
-                                    <p class="active">Order pending</p>
+                                    <p class="active">Pending</p>
                                     ---->
-                                    <p class="text-muted">Order processing</p>
+                                    <p class="text-muted">Processing</p>
                                     ---->
-                                    <p class="text-muted">delivered</p>
+                                    <p class="text-muted">Delivered</p>
                                 </div>
                             </div>
                             <div class="card-body">
