@@ -59,16 +59,18 @@ body {
     font-size: 18px;
     color: #19252e;
 }
-.cate-item img {
-    height: 210px;
-    object-fit: cover;
-    border-radius: 5px;
-}
+
 .cate-item a {
     font-style: normal;
     font-weight: 300;
     font-size: 14px;
     color: #19252e;
+}
+.cate-item img {
+    height: 210px;
+    width: 250px;
+    object-fit: cover;
+    border-radius: 5px;
 }
 .cate-item a:hover {
     text-decoration: none;
@@ -156,6 +158,14 @@ body {
     border-radius: 10px;
 }
 
+.wrapper {
+    display: flex;
+    overflow-x: auto;
+}
+
+.wrapper::-webkit-scrollbar {
+    width: 0;
+}
 .sticky-footer {
     top: 100%;
     position: sticky;

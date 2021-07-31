@@ -21,7 +21,8 @@ Route::get('/cart', [HomeController::class, 'cart']);
 Route::get('/search', [HomeController::class, 'search']);
 Route::get('/order', [HomeController::class, 'order']);
 Route::get('/category', [HomeController::class, 'category']);
-
+Route::get('/all-category', [HomeController::class, 'allCategory']);
+Route::get('/smallcate/{id}', [HomeController::class, 'smallcate']);
 
 Route::post('/signin', [UserController::class, 'signin'])->name("signin");
 Route::post('/register', [UserController::class, 'register'])->name("register");

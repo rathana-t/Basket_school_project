@@ -25,15 +25,16 @@ class HomeController extends Controller
 {
     public function index()
     {
+        $count = 0;
         $second_cate = DB::table('se_categories')->limit(5)->inRandomOrder()->get();
         $cate = DB::table('categories')->limit(4)->get();
         $brand = DB::table('brands')->get();
-        $data_pro = DB::table('products')->get();
+        $data_pro = DB::table('products')->inRandomOrder()->get();
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
-            return view('home/index', compact('data_user', 'data_pro', 'cate', 'brand', 'second_cate'));
+            return view('home/index', compact('data_user', 'data_pro', 'cate', 'brand', 'second_cate', 'count'));
         } else {
-            return view('home/index', compact('data_pro', 'cate', 'brand', 'second_cate'));
+            return view('home/index', compact('data_pro', 'cate', 'brand', 'second_cate', 'count'));
         }
     }
 
@@ -53,21 +54,11 @@ class HomeController extends Controller
 
     public function detail($id)
     {
-        $detail_pro = products::join(
-            'brands',
-            'products.brand_id',
-            '=',
-            'brands.id'
-        )->join(
-            'categories',
-            'products.category_id',
-            '=',
-            'categories.id'
-        )->where(
-            'products.id',
-            $id
-        )->select('products.*', 'categories.name as cat_name', 'brands.name as brand_name')->get();
-
+        $detail_pro = products::join('brands', 'products.brand_id', '=', 'brands.id')
+            ->join('categories', 'products.category_id', '=', 'categories.id')
+            ->where('products.id', $id)
+            ->select('products.*', 'categories.name as cat_name', 'brands.name as brand_name')
+            ->get();
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
             return view('home/detailPage', compact('data_user', 'detail_pro'));
@@ -98,5 +89,20 @@ class HomeController extends Controller
     {
         $cate = categories::all();
         return view('home/category', compact('cate'));
+    }
+    public function smallcate($id)
+    {
+        $brand = brands::all();
+        $smallCateName = se_categories::find($id);
+        $smallCate = DB::table('products')
+            ->join('se_categories', 'products.s_cat_id', '=', 'se_categories.id')
+            ->where('se_categories.id', $id)
+            ->get();
+        return view('home/secondaryCate', compact('smallCate', 'smallCateName', 'brand'));
+    }
+    public function allCategory()
+    {
+        $cate = categories::all();
+        return view('/home/allCategory', compact('cate'));
     }
 }
