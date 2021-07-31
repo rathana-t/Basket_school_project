@@ -13,6 +13,7 @@ use App\Models\cards;
 use App\Models\brands;
 use App\Models\users_has_cards;
 use App\Http\Controllers\Controller;
+use App\Models\se_categories;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
@@ -24,16 +25,18 @@ class HomeController extends Controller
 {
     public function index()
     {
+        $second_cate = DB::table('se_categories')->limit(5)->inRandomOrder()->get();
         $cate = DB::table('categories')->limit(4)->get();
         $brand = DB::table('brands')->get();
         $data_pro = DB::table('products')->get();
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
-            return view('home/index', compact('data_user', 'data_pro', 'cate', 'brand'));
+            return view('home/index', compact('data_user', 'data_pro', 'cate', 'brand', 'second_cate'));
         } else {
-            return view('home/index', compact('data_pro', 'cate', 'brand'));
+            return view('home/index', compact('data_pro', 'cate', 'brand', 'second_cate'));
         }
     }
+
     public function login()
     {
         return view('home/login');

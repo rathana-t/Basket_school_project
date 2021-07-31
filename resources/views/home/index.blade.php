@@ -51,130 +51,38 @@
         </div>
 
         <div class="cate-item">
-            <div class="laptop mt-4">
-                <div class="d-flex justify-content-between">
-                    <h1>
-                        Laptop
-                    </h1>
-                    <h1 class="see-all">
-                        <a href="">See all</a>
-                    </h1>
-
-                </div>
-                <div class="border-bottom mt-2"></div>
-                <div class="row mt-3">
-                    <div class="horizontal">
+            @foreach ($second_cate as $item)
+                <div class="laptop mt-4">
+                    <div class="d-flex justify-content-between">
+                        <h1>
+                            {{ $item->name }}
+                        </h1>
+                        <h1 class="see-all">
+                            <a href="">See all</a>
+                        </h1>
+                    </div>
+                    <div class="border-bottom mt-2"></div>
+                    <div class="row mt-3">
                         @foreach ($data_pro as $pro)
-                            <div class="col-md-3 col-sm-6 col-xs-12">
-                                <div class="text-center">
-                                    <a target="_blank" href="{{ route('detail', $pro->id) }}">
-                                        <?php foreach (json_decode($pro->img_product)as $picture) { ?>
-                                        <img src="/images/imgProduct/{{ $picture }}" alt="" class="img-fluid mb-1">
-                                        <?php break; } ?><br>
-                                        <a>{{ $pro->name }}</a>
-                                        <div>
-                                            <a>{{ $pro->price }} &nbsp;$</a>
-                                        </div>
-                                    </a>
+                            @if ($pro->s_cat_id == $item->id)
+                                <div class="col-md-3 col-sm-6 col-xs-12">
+                                    <div class="text-center">
+                                        <a target="_blank" href="{{ route('detail', $pro->id) }}">
+                                            <?php foreach (json_decode($pro->img_product)as $picture) { ?>
+                                            <img src="/images/imgProduct/{{ $picture }}" alt="" class="img-fluid mb-1">
+                                            <?php break; } ?><br>
+                                            <a>{{ $pro->name }}</a>
+                                            <div>
+                                                <a>{{ $pro->price }} &nbsp;$</a>
+                                            </div>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
                         @endforeach
                     </div>
                 </div>
-            </div>
-
-            <div class="pc-part mt-4">
-                <div class="d-flex justify-content-between">
-                    <h1>
-                        PC Parts
-                    </h1>
-                    <h1 class="see-all">
-                        <a href="">See all</a>
-                    </h1>
-                </div>
-                <div class="border-bottom mt-2"></div>
-                <div class="row mt-3">
-                    <div class="horizontal">
-                        @foreach ($data_pro as $pro)
-                            <div class="col-md-3 col-sm-6 col-xs-12">
-                                <div class="text-center">
-                                    <a target="_blank" href="{{ route('detail', $pro->id) }}">
-                                        <?php foreach (json_decode($pro->img_product)as $picture) { ?>
-                                        <img src="/images/imgProduct/{{ $picture }}" alt="" class="img-fluid mb-1">
-                                        <?php break; } ?><br>
-                                        <a>{{ $pro->name }}</a>
-                                        <div>
-                                            <a>{{ $pro->price }} &nbsp;$</a>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-
-            <div class="peripherals mt-4">
-                <div class="d-flex justify-content-between">
-                    <h1>
-                        Peripherals
-                    </h1>
-                    <h1 class="see-all">
-                        <a href="">See all</a>
-                    </h1>
-                </div>
-                <div class="border-bottom mt-2"></div>
-                <div class="row mt-3">
-                    <div class="horizontal">
-                        @foreach ($data_pro as $pro)
-                            <div class="col-md-3 col-sm-6 col-xs-12">
-                                <div class="text-center">
-                                    <a target="_blank" href="{{ route('detail', $pro->id) }}">
-                                        <?php foreach (json_decode($pro->img_product)as $picture) { ?>
-                                        <img src="/images/imgProduct/{{ $picture }}" alt="" class="img-fluid mb-1">
-                                        <?php break; } ?><br>
-                                        <a>{{ $pro->name }}</a>
-                                        <div>
-                                            <a>{{ $pro->price }} &nbsp;$</a>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-
-            <div class="network mt-4">
-                <div class="d-flex justify-content-between">
-                    <h1>
-                        Network
-                    </h1>
-                    <h1 class="see-all">
-                        <a href="">See all</a>
-                    </h1>
-                </div>
-                <div class="border-bottom mt-2"></div>
-                <div class="row mt-3">
-                    <div class="horizontal">
-                        @foreach ($data_pro as $pro)
-                            <div class="col-md-3 col-sm-6 col-xs-12">
-                                <div class="text-center">
-                                    <a target="_blank" href="{{ route('detail', $pro->id) }}">
-                                        <?php foreach (json_decode($pro->img_product)as $picture) { ?>
-                                        <img src="/images/imgProduct/{{ $picture }}" alt="" class="img-fluid mb-1">
-                                        <?php break; } ?><br>
-                                        <a>{{ $pro->name }}</a>
-                                        <div>
-                                            <a>{{ $pro->price }} &nbsp;$</a>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 @stop
