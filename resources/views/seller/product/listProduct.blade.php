@@ -1,6 +1,8 @@
 @extends('seller\seller')
 
 @section('sidebar-content')
+    @include('/admin/components/modal')
+
     @include('seller\components\msg')
 
     <h1 class="text-center mb-5">List all products</h1>
@@ -13,6 +15,7 @@
                     <th scope="col" class="text-left">Price</th>
                     <th scope="col" class="text-left">Stock</th>
                     <th scope="col" class="text-left">Post at</th>
+                    <th scope="col" class="text-left">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -23,24 +26,34 @@
                             </a>
                         </th>
                         <td class="text-left">
-                            <a href="seller/{{ $item->name }}">
+                            <a href="{{ url('detailPage', $item->id) }}">
                                 {{ $item->name }}
                             </a>
                         </td>
                         <td class="text-left">
-                            <a href="seller/{{ $item->price }}">
+                            <a href="{{ url('detailPage', $item->id) }}">
                                 {{ $item->price }}
                             </a>
                         </td>
                         <td class="text-left">
-                            <a href="seller/{{ $item->stock }}">
+                            <a href="{{ url('detailPage', $item->id) }}">
                                 {{ $item->stock }}
                             </a>
                         </td>
                         <td class="text-left">
-                            <a href="seller/{{ $item->created_at }}">
+                            <a href="{{ url('detailPage', $item->id) }}">
                                 {{ $item->created_at }}
                             </a>
+                        </td>
+                        <td>
+                            <a href="{{ url('detailPage', $item->id) }}">
+                                <button style="margin: 2px" type="button" class="btn btn-info">View</button>
+                            </a>
+                            <a href="{{ route('edit_product', $item->id) }}">
+                                <button style="margin: 2px" type="button" class="btn btn-info">Edit</button>
+                            </a>
+                            <button style="margin: 2px" type="button" value="{{ $item->id }}"
+                                class="deletebtn btn btn-danger">Delete</button>
                         </td>
                     </tr>
                 @endforeach

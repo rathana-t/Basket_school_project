@@ -1,4 +1,4 @@
-@extends('admin\admin')
+@extends('seller\seller')
 
 @section('sidebar-content')
     <div class="container">
@@ -45,16 +45,6 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                {{-- <div class="col">
-                                <label for="exampleFormControlSelect1">Main Category</label>
-                                <select class="form-control" id="exampleFormControlSelect1" name="category_id">
-                                    <option value="{{ $pro->username }}">{{ $pro->username }}</option>
-
-                                    @foreach ($cats as $cat)
-                                        <option value="{{ $cat->id }}">{{ $cat->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div> --}}
                                 <div class="col">
                                     <label for="exampleFormControlSelect1">Secondary Category</label>
                                     <select class="form-control" id="exampleFormControlSelect1" name="category_id">
@@ -103,10 +93,10 @@
         }
 
         /* dl, ol, ul {
-                                                                                                            margin: 0;
-                                                                                                            padding: 0;
-                                                                                                            list-style: none;
-                                                                                                        } */
+                                                                                                                    margin: 0;
+                                                                                                                    padding: 0;
+                                                                                                                    list-style: none;
+                                                                                                                } */
         .imgPreview img {
             padding: 8px;
             max-width: 100px;
