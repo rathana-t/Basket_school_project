@@ -29,9 +29,14 @@
         </div>
 
         <div class="category mt-4">
-            <h1>
-                Category
-            </h1>
+            <div class="d-flex justify-content-between">
+                <h1>
+                    Category
+                </h1>
+                <h1 class="see-all">
+                    <a href="category">See all</a>
+                </h1>
+            </div>
             <div class="row mt-3">
                 @foreach ($cate as $item)
                     <div class="col-md-3 col-sm-6 col-xs-12">

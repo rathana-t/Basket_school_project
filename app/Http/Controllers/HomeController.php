@@ -94,4 +94,9 @@ class HomeController extends Controller
     {
         return view('home/order');
     }
+    public function category()
+    {
+        $cate = categories::all();
+        return view('home/category', compact('cate'));
+    }
 }
