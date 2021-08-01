@@ -30,6 +30,7 @@
                             #HIR578789
                         </p>
                         <p class="text-primary m-1">
+                            {{ $detail->se_cate }} in
                             {{ $detail->cat_name }}
                         </p>
                         <p class="text-primary m-1">
@@ -47,10 +48,7 @@
                         <button type="button" class="btn btn-primary">Description</button>
                         <div class="card description">
                             <p class="text-left m-2">
-                                Apple MacBook Pro 13-inch 2020 is a macOS laptop with a 13.30-inch display that has a
-                                resolution of 1600x2560 pixels. It is powered by a Core i5 processor and it comes with 8GB
-                                of RAM. The Apple MacBook Pro 13-inch 2020 packs 256GB of SSD storage. Graphics are powered
-                                by Intel Integrated Iris Plus Graphics 645.
+                                {{ $detail->description }}
                             </p>
                         </div>
                         <div class="mt-2">
@@ -79,9 +77,8 @@
                             </button>
                         </div>
                         <p class="font-weight-light mt-2 sizetext">Free Delivery in cambodia</p>
-                        <button type="button" class="btn btn-primary cart">
-                            <p class="">Add to Cart | <img src="/images/vector.png"></p>
-                        </button>
+                        <a href="{{ route('add_to_cart', $detail->id) }}" class="btn btn-primary">Add to Cart | <img
+                                src="/images/vector.png"></a>
                         <div class="favourite">
                             <a href="#" class="font-weight-light"><img src="/images/heart.png">Add to Favourite</a>
                         </div>
