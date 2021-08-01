@@ -109,4 +109,12 @@ class HomeController extends Controller
         $cate = categories::all();
         return view('/home/allCategory', compact('cate'));
     }
+    public function brand($id)
+    {
+        $product = products::join('brands', 'products.brand_id', '=', 'brands.id')
+            ->where('products.brand_id', $id)
+            ->select('products.*', 'brands.name as brand_name')
+            ->get();
+        return view('home/brandlistproduct', compact('product'));
+    }
 }

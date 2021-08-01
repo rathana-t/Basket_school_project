@@ -23,6 +23,7 @@ Route::get('/order', [HomeController::class, 'order']);
 Route::get('/category', [HomeController::class, 'category']);
 Route::get('/all-category', [HomeController::class, 'allCategory']);
 Route::get('/smallcate/{id}', [HomeController::class, 'smallcate']);
+Route::get('/brand/{id}', [HomeController::class, 'brand']);
 
 Route::get('/category', [CartController::class, 'category']);
 

@@ -16,7 +16,7 @@
         <div class="col-md-8 offset-md-2">
             <div class="horizontal1">
                 @foreach ($brand as $item)
-                    <img src="/images/brandImages/{{ $item->brand_img }}">
+                    <a href="/brand/{{ $item->id }}"><img src="/images/brandImages/{{ $item->brand_img }}"></a>
                 @endforeach
             </div>
             <div class="border-bottom mt-2"></div>
