@@ -97,6 +97,7 @@ class HomeController extends Controller
         $smallCate = DB::table('products')
             ->join('se_categories', 'products.s_cat_id', '=', 'se_categories.id')
             ->where('se_categories.id', $id)
+            ->select('products.*','se_categories.id as sec_id')
             ->get();
         return view('home/secondaryCate', compact('smallCate', 'smallCateName', 'brand'));
     }
