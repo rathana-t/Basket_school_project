@@ -77,8 +77,18 @@
                             </button>
                         </div>
                         <p class="font-weight-light mt-2 sizetext">Free Delivery in cambodia</p>
-                        <a href="{{ route('add_to_cart', $detail->id) }}" class="btn btn-primary">Add to Cart | <img
-                                src="/images/vector.png"></a>
+
+                        <form action="{{ route('add_to_cart') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <input type="hidden" value="{{ $data_user->id }}" name="user_id">
+                            <input type="hidden" value="{{ $detail->id }}" name="product_id">
+                            <input type="hidden" value="1" name="quantity">
+                            <input type="hidden" value="{{ $detail->price }}" name="total">
+                            <button type="submit" class="btn btn-primary">
+                                Add to cart
+                            </button>
+                        </form>
+
                         <div class="favourite">
                             <a href="#" class="font-weight-light"><img src="/images/heart.png">Add to Favourite</a>
                         </div>

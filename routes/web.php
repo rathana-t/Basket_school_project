@@ -34,7 +34,7 @@ Route::get('/logout', [UserController::class, 'logout'])->middleware('checker');
 
 //=============Seller===================
 
-Route::get('/add-to-cart/{id}', [CartController::class, 'add_to_cart'])->name('add_to_cart');
+Route::post('/add-to-cart', [CartController::class, 'add_to_cart'])->name('add_to_cart');
 
 Route::get('/sellerLogInPage', [SellerController::class, 'login_page']);
 Route::get('/sellerRegisterPage', [SellerController::class, 'register_page']);
