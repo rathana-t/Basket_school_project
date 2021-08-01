@@ -77,18 +77,26 @@
                             </button>
                         </div>
                         <p class="font-weight-light mt-2 sizetext">Free Delivery in cambodia</p>
-
-                        <form action="{{ route('add_to_cart') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            <input type="hidden" value="{{ $data_user->id }}" name="user_id">
-                            <input type="hidden" value="{{ $detail->id }}" name="product_id">
-                            {{-- <input type="hidden" value="1" name="quantity"> --}}
-                            <input type="hidden" value="{{ $detail->price }}" name="total">
-                            <input type="number" id="quantity" name="quantity" min="1">
-                            <button type="submit" class="btn btn-primary">
-                                Add to cart
-                            </button>
-                        </form>
+                        @if (Session::has('user'))
+                            <form action="{{ route('add_to_cart') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <input type="hidden" value="{{ $data_user->id }}" name="user_id">
+                                <input type="hidden" value="{{ $detail->id }}" name="product_id">
+                                {{-- <input type="hidden" value="1" name="quantity"> --}}
+                                <input type="hidden" value="{{ $detail->price }}" name="total">
+                                <input type="number" class="form-group col-md-2" id="quantity" required name="quantity"
+                                    min="1" max="100">
+                                <button type="submit" class="btn btn-primary">
+                                    Add to cart
+                                </button>
+                            </form>
+                        @else
+                            <a href="{{ url('login') }}">
+                                <button type="" class="btn btn-primary">
+                                    Please LogIn first! be fore Add to cart
+                                </button>
+                            </a>
+                        @endif
 
                         <div class="favourite">
                             <a href="#" class="font-weight-light"><img src="/images/heart.png">Add to Favourite</a>

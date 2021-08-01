@@ -10,7 +10,7 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/test', function () {
-    return view('home/cart');
+    return view('test');
 });
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/login', [HomeController::class, 'login']);
@@ -18,6 +18,7 @@ Route::get('/reg', [HomeController::class, 'reg']);
 Route::get('/product/{id}', [HomeController::class, 'detail'])->name('detail');
 Route::get('/blog', [HomeController::class, 'blog']);
 Route::get('/cart', [HomeController::class, 'cart']);
+Route::post('/search-filter', [HomeController::class, 'search_filter'])->name('search-filter');
 Route::get('/search', [HomeController::class, 'search']);
 Route::get('/order', [HomeController::class, 'order']);
 Route::get('/category', [HomeController::class, 'category']);

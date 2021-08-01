@@ -5,10 +5,12 @@
 body {
     min-height: 150vh;
 }
+
 .carousel-inner img {
     height: 400px;
     object-fit: cover;
 }
+
 .logo img {
     width: 90px;
 }
@@ -40,19 +42,23 @@ body {
     font-size: 22px;
     color: #eaf3fd;
 }
+
 .category .card {
     height: 280px;
 }
+
 .category .card img {
     height: 180px;
     object-fit: cover;
 }
+
 .category h1 {
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
     color: #19252e;
 }
+
 .cate-item h1 {
     font-style: normal;
     font-weight: normal;
@@ -66,15 +72,18 @@ body {
     font-size: 14px;
     color: #19252e;
 }
+
 .cate-item img {
     height: 210px;
     width: 250px;
     object-fit: cover;
     border-radius: 5px;
 }
+
 .cate-item a:hover {
     text-decoration: none;
 }
+
 .see-all a {
     font-style: normal;
     font-weight: 300;
@@ -82,12 +91,15 @@ body {
     line-height: 21px;
     color: #19252e;
 }
+
 .see-all a:hover {
     text-decoration: none;
 }
+
 .custom-margin {
     margin-top: -15px;
 }
+
 .all-pro h1 {
     font-style: normal;
     font-weight: normal;
@@ -95,11 +107,13 @@ body {
     line-height: 45px;
     color: #19252e;
 }
+
 .all-pro img {
     height: 200px;
     object-fit: cover;
     border-radius: 5px;
 }
+
 .all-pro a {
     font-style: normal;
     font-weight: 300;
@@ -107,9 +121,11 @@ body {
     line-height: 21px;
     color: #19252e;
 }
+
 .all-pro a:hover {
     text-decoration: none;
 }
+
 .brand h1 {
     font-style: normal;
     font-weight: normal;
@@ -117,6 +133,7 @@ body {
     line-height: 45px;
     color: #19252e;
 }
+
 .brand a {
     font-style: normal;
     font-weight: 300;
@@ -124,9 +141,11 @@ body {
     line-height: 21px;
     color: #19252e;
 }
+
 .brand a:hover {
     text-decoration: none;
 }
+
 .see-all-product a {
     font-style: normal;
     font-weight: normal;
@@ -134,25 +153,31 @@ body {
     line-height: 45px;
     color: #19252e;
 }
+
 .see-all-product a:hover {
     text-decoration: none;
 }
+
 .horizontal1 img {
     object-fit: contain;
     width: 120px;
     height: 50px;
 }
+
 .horizontal1 {
     max-height: 55px;
     display: flex;
     overflow-x: auto;
 }
+
 .horizontal1::-webkit-scrollbar {
     height: 5px;
 }
+
 .horizontal1::-webkit-scrollbar-track {
     border-radius: 10px;
 }
+
 .horizontal1::-webkit-scrollbar-thumb {
     background: #c7c7c7;
     border-radius: 10px;
@@ -166,12 +191,14 @@ body {
 .wrapper::-webkit-scrollbar {
     width: 0;
 }
+
 .sticky-footer {
     top: 100%;
     position: sticky;
     height: 264px;
     background: #323b49;
 }
+
 .sticky-footer h1 {
     font-style: normal;
     font-weight: normal;
@@ -179,9 +206,11 @@ body {
     line-height: 45px;
     color: #eaf3fd;
 }
+
 footer ul li {
     padding: 5px 0px;
 }
+
 .money li a,
 .contact li a,
 .about li a {
@@ -192,11 +221,13 @@ footer ul li {
     line-height: 45px;
     color: #eaf3fd;
 }
+
 .money,
 .contact,
 .about {
     list-style: none;
 }
+
 .login h1 {
     font-style: normal;
     font-weight: normal;
@@ -204,19 +235,23 @@ footer ul li {
     line-height: 45px;
     color: #19252e;
 }
+
 .login label {
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
     color: #19252e;
 }
+
 .login input {
     background: #fcfcfc;
     border-color: rgb(201, 191, 191);
 }
+
 .login button {
     color: #eaf3fd;
 }
+
 .login .btn-primary {
     background-color: #006fbf;
 }
@@ -225,23 +260,28 @@ footer ul li {
 .set-margin {
     margin-top: 30px;
 }
+
 .view {
     height: 850px;
 }
+
 .description {
     overflow-y: auto;
     height: 150px;
 }
+
 .set button {
     border: 1px solid orange;
     text-align: center;
     height: 50px;
     width: 120px;
 }
+
 .set p {
     line-height: 1px;
     font-size: 12px;
 }
+
 .sizetext {
     font-size: 14px;
 }
@@ -252,29 +292,36 @@ footer ul li {
     height: 20px;
     border-radius: 3px;
 }
+
 .favourite a {
     font-size: 13px;
     text-decoration: none;
 }
+
 .related-product img {
     width: 400px;
     height: 200px;
     object-fit: cover;
     border-radius: 5px;
 }
+
 /* orderPage */
 .row .set-img {
     height: 180px;
 }
+
 .des-margin {
     margin-left: 160px;
 }
+
 .order-margin {
     margin-top: 20px;
 }
+
 .show-order {
     display: flex;
 }
+
 .row .delete a {
     text-decoration: none;
 }
@@ -283,18 +330,22 @@ footer ul li {
     border: 1px solid black;
     height: 40px;
 }
+
 .pay:hover {
     background-color: rgb(243, 243, 243);
     transition: 0.4s;
     color: rgb(0, 0, 0);
 }
+
 .new-table {
     margin-top: -6px;
     margin-bottom: 6px;
 }
+
 .new-text {
     margin-top: -5px;
 }
+
 .new-text p {
     margin-bottom: 6px;
 }
@@ -306,27 +357,117 @@ footer ul li {
     height: 90px;
     object-fit: contain;
 }
+
 .order p {
     margin-top: 0;
     margin-bottom: 0;
 }
+
 .order .active {
     color: #ff4c34;
 }
+
 @media only screen and (max-width: 1223px) {
     .form-inline .search {
         width: 300px;
     }
 }
+
 @media only screen and (max-width: 992px) {
     .etc {
         display: none;
     }
 }
-.list-style ul{
+
+.list-style ul {
     list-style: none;
 }
-.list-style ul li a{
+
+.list-style ul li a {
     text-decoration: none;
     color: #505050;
+}
+
+
+
+
+/* merge double range */
+
+
+
+
+
+.item {
+    display: none;
+}
+
+.min-max-slider {
+    position: relative;
+    width: 200px;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.min-max-slider>label {
+    display: none;
+}
+
+span.value {
+    height: 1.7em;
+    font-weight: bold;
+    display: inline-block;
+}
+
+span.value.lower::before {
+    content: "$";
+    display: inline-block;
+}
+
+span.value.upper::before {
+    content: "- $";
+    display: inline-block;
+    margin-left: 0.4em;
+}
+
+.min-max-slider>.legend {
+    display: flex;
+    justify-content: space-between;
+}
+
+.min-max-slider>.legend>* {
+    font-size: small;
+    opacity: 0.25;
+}
+
+.min-max-slider>input {
+    cursor: pointer;
+    position: absolute;
+}
+
+/* webkit specific styling */
+.min-max-slider>input {
+    -webkit-appearance: none;
+    outline: none !important;
+    background: transparent;
+    background-image: linear-gradient(to bottom, transparent 0%, transparent 30%, silver 30%, silver 60%, transparent 60%, transparent 100%);
+}
+
+.min-max-slider>input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    /* Override default look */
+    appearance: none;
+    width: 14px;
+    /* Set a specific slider handle width */
+    height: 14px;
+    /* Slider handle height */
+    background: #eee;
+    /* Green background */
+    cursor: pointer;
+    /* Cursor on hover */
+    border: 1px solid gray;
+    border-radius: 100%;
+}
+
+.min-max-slider>input::-webkit-slider-runnable-track {
+    cursor: pointer;
 }
