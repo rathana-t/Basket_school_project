@@ -55,9 +55,10 @@ class HomeController extends Controller
     public function detail($id)
     {
         $detail_pro = products::join('brands', 'products.brand_id', '=', 'brands.id')
+        ->join('se_categories', 'products.s_cat_id', '=', 'se_categories.id')
             ->join('categories', 'products.category_id', '=', 'categories.id')
             ->where('products.id', $id)
-            ->select('products.*', 'categories.name as cat_name', 'brands.name as brand_name')
+            ->select('products.*', 'categories.name as cat_name', 'brands.name as brand_name', 'se_categories.name as se_cate')
             ->get();
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
@@ -99,6 +100,7 @@ class HomeController extends Controller
         $smallCate = DB::table('products')
             ->join('se_categories', 'products.s_cat_id', '=', 'se_categories.id')
             ->where('se_categories.id', $id)
+            ->select('products.*','se_categories.id as sec_id')
             ->get();
         return view('home/secondaryCate', compact('smallCate', 'smallCateName', 'brand'));
     }

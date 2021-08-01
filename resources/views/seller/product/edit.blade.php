@@ -9,7 +9,7 @@
         </div>
         @foreach ($pros as $pro)
 
-            <form action="{{ route('edit_product', $pro->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('update_pro', $pro->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="card shadow-sm">
                     <div class="m-4">
@@ -38,20 +38,16 @@
                                 <div class="col">
                                     <label for="exampleFormControlSelect1">Brand</label>
                                     <select class="form-control" id="exampleFormControlSelect1" name="brand_id">
-                                        <option value="{{ $pro->brand_id }}">{{ $pro->brand_name }}</option>
-
                                         @foreach ($brands as $brand)
-                                            <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                            <option value="{{ $brand->id }}" @if ($brand->id == $pro->brand_id) selected @endif>{{ $brand->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="col">
                                     <label for="exampleFormControlSelect1">Secondary Category</label>
                                     <select class="form-control" id="exampleFormControlSelect1" name="category_id">
-                                        <option value="{{ $pro->category_id }}">{{ $pro->cat_name }}</option>
-
                                         @foreach ($cats as $cat)
-                                            <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                                            <option value="{{ $cat->id }}" @if ($cat->id == $pro->category_id) selected @endif>{{ $cat->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -87,62 +83,4 @@
         @endforeach
 
     </div>
-    <style>
-        .container {
-            max-width: 900px;
-        }
-
-        /* dl, ol, ul {
-                                                                                                                    margin: 0;
-                                                                                                                    padding: 0;
-                                                                                                                    list-style: none;
-                                                                                                                } */
-        .imgPreview img {
-            padding: 8px;
-            max-width: 100px;
-        }
-
-    </style>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script>
-        $(function() {
-            // Multiple images preview with JavaScript
-            var multiImgPreview = function(input, imgPreviewPlaceholder) {
-
-                if (input.files) {
-                    var filesAmount = input.files.length;
-
-                    for (i = 0; i < filesAmount; i++) {
-                        var reader = new FileReader();
-
-                        reader.onload = function(event) {
-                            $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(
-                                imgPreviewPlaceholder);
-                        }
-
-                        reader.readAsDataURL(input.files[i]);
-                    }
-                }
-
-            };
-
-            $('#images').on('change', function() {
-                multiImgPreview(this, 'div.imgPreview');
-            });
-        });
-    </script>
-
-    {{-- <script>
-        function previewFile(input){
-          var file=$("input[type=file]").get(0).files[0];
-          if(file)
-          {
-            var reader = new FileReader();
-            reader.onload=function(){
-              $('#previewImg').attr("src",reader.result);
-            }
-            reader.readAsDataURL(file);
-          }
-        }
-      </script> --}}
 @stop
