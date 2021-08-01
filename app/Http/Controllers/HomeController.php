@@ -79,7 +79,9 @@ class HomeController extends Controller
     public function search(Request $req)
     {
         $data = products::where('name', 'like', '%' . $req->input('query') . '%')->get();
-        return view('home/search');
+        $callinput= $req->input('query');
+        return view('home/search',compact('data'));
+        // return $data;
     }
     public function order()
     {

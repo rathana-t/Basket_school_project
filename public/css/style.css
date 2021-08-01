@@ -323,3 +323,10 @@ footer ul li {
         display: none;
     }
 }
+.list-style ul{
+    list-style: none;
+}
+.list-style ul li a{
+    text-decoration: none;
+    color: #505050;
+}

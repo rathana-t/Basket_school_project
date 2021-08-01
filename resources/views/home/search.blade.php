@@ -4,14 +4,49 @@
     <!------ Include the above in your HEAD tag ---------->
 
 
-    <div class="">
-        <br>
-        <p class="text-center">{{ 'query' }}<a href=""></a></p>
-        <hr>
-
-
+    <div class="container">
+        <p>
+            <a class="btn btn-secondary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
+                aria-controls="collapseExample">
+                Filter
+            </a>
+        </p>
+        <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+                <div class="row">
+                    <div class="d-flex justify-content-between">
+                        <div class="col-md-4 list-style">
+                            <ul>
+                                <h5 class="border-bottom">ProductName</h5>
+                                <li><a href="#">Cras justo odio</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4 list-style">
+                            <ul>
+                                <h5 class="border-bottom">Price</h5>
+                                <li><a href="#">Cras justo odio</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4 list-style">
+                            <ul>
+                                <h5 class="border-bottom">Brand Name</h5>
+                                <li><a href="#">Cras justo odio</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4 list-style">
+                            <ul>
+                                <h5 class="border-bottom">Product</h5>
+                                <li><a href="#">Cras justo odio</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
         <div class="row ml-5">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="card" style="width: 400px">
                     <div class="card-group-item">
                         <header class="card-header">
@@ -94,26 +129,22 @@
                     </div>
                 </div> <!-- card.// -->
             </div>
-            <div class="mt-2 related-product">
-                <p class="font-weight-light">All related Product</p>
-                <div class="row">
-                    <div class="col-md-4 col-sm-6 col-xs-12">
-                        <img src="" class="img-fluid">
-                        <div>
-                            <p class="text-left w-100">
-                            </p>
-                            <p class="custom-margin">#SRD123456</p>
-                            <ul class="list-unstyled custom-margin" style="display:flex">
-                                <li class="box" style="border:1px solid #000;background: #000;"></li>
-                                <li class="box" style="border:1px solid silver;background: silver;"></li>
-                            </ul>
-                            <p class="text-danger custom-margin"></p>
+        </div>
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="card shadow-sm">
+                <div class="m-3">
+                    @foreach ($data as $item)
+                        <p>{{ $item->name }}</p>
+                        <div class="text-center">
+                            <img src="/images/imgProduct/{{ $item->img_product }}" alt="" class="mb-1">
                         </div>
-                    </div>
+                        <a href="">See all</a>
+                    @endforeach
                 </div>
             </div>
         </div>
-        <!--container end.//-->
+    </div>
+    <!--container end.//-->
 
 
-    @endsection
+@endsection
