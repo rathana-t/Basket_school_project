@@ -186,13 +186,13 @@ class AdminController extends Controller
     public function edit($id)
     {
         $pros = products::join('brands', 'products.brand_id', '=',  'brands.id')
-            ->join('categories', 'products.category_id', '=', 'categories.id')
+            ->join('se_categories', 'products.s_cat_id', '=', 'se_categories.id')
             ->where('products.id', $id)
-            ->select('products.*', 'categories.name as cat_name', 'brands.name as brand_name')
+            ->select('products.*', 'se_categories.name as cat_name', 'brands.name as brand_name')
             ->get();
 
         $brands = DB::table('brands')->get();
-        $cats = DB::table('categories')->get();
+        $cats = DB::table('se_categories')->get();
         return view('seller/product/edit', compact('pros', 'brands', 'cats'));
     }
 

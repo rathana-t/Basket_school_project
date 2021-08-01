@@ -196,10 +196,10 @@ class SellerController extends Controller
 
     public function postProduct(Request $req, $id)
     {
-        // $req->validate([
-        //     'imageFile' => 'required',
-        //     'imageFile.*' => 'mimes:jpeg,jpg,png,gif,csv,txt,pdf|max:2048'
-        //   ]);
+        $req->validate([
+            'imageFile' => 'required',
+            'imageFile.*' => 'mimes:jpeg,jpg,png,gif,csv,txt,pdf|max:2048'
+          ]);
 
         if ($req->hasfile('imageFile')) {
             foreach ($req->file('imageFile') as $file) {

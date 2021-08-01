@@ -9,9 +9,9 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/test', function () {
+    return view('home/cart');
+});
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/login', [HomeController::class, 'login']);
 Route::get('/reg', [HomeController::class, 'reg']);
@@ -23,6 +23,7 @@ Route::get('/order', [HomeController::class, 'order']);
 Route::get('/category', [HomeController::class, 'category']);
 Route::get('/all-category', [HomeController::class, 'allCategory']);
 Route::get('/smallcate/{id}', [HomeController::class, 'smallcate']);
+
 Route::get('/category', [CartController::class, 'category']);
 
 
@@ -32,6 +33,9 @@ Route::get('/profile/{id}', [UserController::class, 'profile'])->name('display-p
 Route::get('/logout', [UserController::class, 'logout'])->middleware('checker');
 
 //=============Seller===================
+
+Route::get('/add-to-cart/{id}', [CartController::class, 'add_to_cart'])->name('add_to_cart');
+
 Route::get('/sellerLogInPage', [SellerController::class, 'login_page']);
 Route::get('/sellerRegisterPage', [SellerController::class, 'register_page']);
 Route::post('/sellerLogIn', [SellerController::class, 'login']);
@@ -52,7 +56,7 @@ Route::get('/seller/profile', [SellerController::class, 'profile']);
 Route::get('/seller/messages', [SellerController::class, 'sellerMessages']);
 Route::get('/seller/messages/{id}', [SellerController::class, 'detailMsg']);
 Route::get('/edit/product/{id}', [AdminController::class, 'edit'])->name('edit_product');
-Route::post('/update/product/{id}', [AdminController::class, 'update']);
+Route::post('/update/product/{id}', [ProductController::class, 'update'])->name('update_pro');
 
 Route::prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'dashboard']);

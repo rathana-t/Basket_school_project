@@ -21,5 +21,20 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 class CartController extends Controller
 {
-    //
+    public function add_to_cart($id)
+    {
+        $cart = new carts();
+
+        $pro = products::where('id',$id)->select('products.price')->get();
+        $pro_price=$pro->price;
+        if (session()->has('user')){
+            $data_user = Users::findOrFail(session('user'));
+        }
+        $cart->quantity = $cart->quantit + 1;
+        $cart->total= $pro_price * $cart->quantity;
+        $cart->user_id=$data_user->id;
+        $cart->product_id=$id;
+
+        $cart->save();
+    }
 }

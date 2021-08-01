@@ -26,27 +26,27 @@
                             </a>
                         </th>
                         <td class="text-left">
-                            <a href="{{ url('detailPage', $item->id) }}">
+                            <a href="{{ route('detail', $item->id) }}">
                                 {{ $item->name }}
                             </a>
                         </td>
                         <td class="text-left">
-                            <a href="{{ url('detailPage', $item->id) }}">
+                            <a href="{{ route('detail', $item->id) }}">
                                 {{ $item->price }}
                             </a>
                         </td>
                         <td class="text-left">
-                            <a href="{{ url('detailPage', $item->id) }}">
+                            <a href="{{ route('detail', $item->id) }}">
                                 {{ $item->stock }}
                             </a>
                         </td>
                         <td class="text-left">
-                            <a href="{{ url('detailPage', $item->id) }}">
+                            <a href="{{ route('detail', $item->id) }}">
                                 {{ $item->created_at }}
                             </a>
                         </td>
                         <td>
-                            <a href="{{ url('detailPage', $item->id) }}">
+                            <a href="{{ route('detail', $item->id) }}">
                                 <button style="margin: 2px" type="button" class="btn btn-info">View</button>
                             </a>
                             <a href="{{ route('edit_product', $item->id) }}">

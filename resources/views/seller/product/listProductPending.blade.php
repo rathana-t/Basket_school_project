@@ -46,9 +46,6 @@
                             </a>
                         </td>
                         <td>
-                            <a href="{{ url('detailPage', $item->id) }}">
-                                <button style="margin: 2px" type="button" class="btn btn-info">View</button>
-                            </a>
                             <a href="{{ route('edit_product', $item->id) }}">
                                 <button style="margin: 2px" type="button" class="btn btn-info">Edit</button>
                             </a>
