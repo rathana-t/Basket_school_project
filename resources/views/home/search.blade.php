@@ -40,7 +40,7 @@
                 </div>
             </div>
         </div>
-
+        
         <div class="category mt-4">
             <div class="row">
                 @foreach ($data as $item)
