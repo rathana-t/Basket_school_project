@@ -29,7 +29,7 @@ class HomeController extends Controller
         $second_cate = DB::table('se_categories')->limit(5)->inRandomOrder()->get();
         $cate = DB::table('categories')->limit(4)->get();
         $brand = DB::table('brands')->get();
-        $data_pro = DB::table('products')->where('completed',1)->inRandomOrder()->get();
+        $data_pro = DB::table('products')->where('completed', 1)->inRandomOrder()->get();
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
             return view('home/index', compact('data_user', 'data_pro', 'cate', 'brand', 'second_cate', 'count'));
@@ -55,7 +55,7 @@ class HomeController extends Controller
     public function detail($id)
     {
         $detail_pro = products::join('brands', 'products.brand_id', '=', 'brands.id')
-        ->join('se_categories', 'products.s_cat_id', '=', 'se_categories.id')
+            ->join('se_categories', 'products.s_cat_id', '=', 'se_categories.id')
             ->join('categories', 'products.category_id', '=', 'categories.id')
             ->where('products.id', $id)
             ->select('products.*', 'categories.name as cat_name', 'brands.name as brand_name', 'se_categories.name as se_cate')
@@ -79,10 +79,10 @@ class HomeController extends Controller
     }
     public function search(Request $req)
     {
+        $brand = brands::all();
         $data = products::where('name', 'like', '%' . $req->input('query') . '%')->get();
-        $callinput= $req->input('query');
-        return view('home/search',compact('data'));
-        // return $data;
+        $callinput = $req->input('query');
+        return view('home/search', compact('data', 'brand'));
     }
     public function order()
     {
@@ -100,7 +100,7 @@ class HomeController extends Controller
         $smallCate = DB::table('products')
             ->join('se_categories', 'products.s_cat_id', '=', 'se_categories.id')
             ->where('se_categories.id', $id)
-            ->select('products.*','se_categories.id as sec_id')
+            ->select('products.*', 'se_categories.id as sec_id')
             ->get();
         return view('home/secondaryCate', compact('smallCate', 'smallCateName', 'brand'));
     }
