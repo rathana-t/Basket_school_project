@@ -86,4 +86,6 @@
             @endforeach
         </tbody>
     </table>
+    {{ $pro->links() }}
+
 @stop

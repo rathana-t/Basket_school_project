@@ -104,7 +104,6 @@ class HomeController extends Controller
     {
         $brand = brands::all();
 
-
         $sort = $req->sort;
         $min_price = $req->min;
         $max_price = $req->max;
