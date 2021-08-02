@@ -110,31 +110,63 @@ class HomeController extends Controller
 
         if($sort=='l_h'){
             if($brandId==""){
-                if($min_price&&$max_price==""){
-                    $data = products::where('name', 'like', '%' . $pro_name . '%')->orderby('price','asc')->get();
-                }elseif($min_price==""){
+                if($min_price==""){
+                    if($max_price==""){
+                        $data = products::where('name', 'like', '%' . $pro_name . '%')->orderby('price','asc')->get();
+                    }else{
                     $data = products::where('name', 'like', '%' . $pro_name . '%')->where('price', '<=' , $max_price )->orderby('price','asc')->get();
+                    }
                 }elseif($max_price==""){
                     $data = products::where('name', 'like', '%' . $pro_name . '%')->where('price','>=' , $min_price)->orderby('price','asc')->get();
+                }else{
+                    $data = products::where('name', 'like', '%' . $pro_name . '%')->where('price', '<=' , $max_price )->where('price','>=' , $min_price)->orderby('price','asc')->get();
                 }
-
-                $data = products::where('name', 'like', '%' . $pro_name . '%')->where('price', '<=' , $max_price )->where('price','>=' , $min_price)->orderby('price','asc')->get();
            }else{
-               $data = products::where('name', 'like', '%' . $pro_name . '%')->where('price', '<=' , $max_price )->where('price','>=' , $min_price)->where('brand_id', $brandId)->orderby('price','asc')->get();
+            if($min_price==""){
+                if($max_price==""){
+                    $data = products::where('name', 'like', '%' . $pro_name . '%')->where('brand_id', $brandId)->orderby('price','asc')->get();
+                }else{
+                $data = products::where('name', 'like', '%' . $pro_name . '%')->where('price', '<=' , $max_price )->where('brand_id', $brandId)->orderby('price','asc')->get();
+                }
+            }elseif($max_price==""){
+                $data = products::where('name', 'like', '%' . $pro_name . '%')->where('price','>=' , $min_price)->where('brand_id', $brandId)->orderby('price','asc')->get();
+            }else{
+                $data = products::where('name', 'like', '%' . $pro_name . '%')->where('price', '<=' , $max_price )->where('price','>=' , $min_price)->where('brand_id', $brandId)->orderby('price','asc')->get();
+            }
            }
         }else{
             if($brandId==""){
-                $data = products::where('name', 'like', '%' . $pro_name . '%')->where('price', '<=' , $max_price )->where('price','>=' , $min_price)->orderby('price','desc')->get();
+                if($min_price==""){
+                    if($max_price==""){
+                        $data = products::where('name', 'like', '%' . $pro_name . '%')->orderby('price','desc')->get();
+                    }else{
+                        $data = products::where('name', 'like', '%' . $pro_name . '%')->where('price', '<=' , $max_price )->orderby('price','desc')->get();
+                    }
+                }elseif($max_price==""){
+                    $data = products::where('name', 'like', '%' . $pro_name . '%')->where('price','>=' , $min_price)->orderby('price','desc')->get();
+                }else{
+                    $data = products::where('name', 'like', '%' . $pro_name . '%')->where('price', '<=' , $max_price )->where('price','>=' , $min_price)->orderby('price','desc')->get();
+                }
            }else{
-               $data = products::where('name', 'like', '%' . $pro_name . '%')->where('price', '<=' , $max_price )->where('price','>=' , $min_price)->where('brand_id', $brandId)->orderby('price','desc')->get();
+            if($min_price==""){
+                if($max_price==""){
+                    $data = products::where('name', 'like', '%' . $pro_name . '%')->where('brand_id', $brandId)->orderby('price','desc')->get();
+                }else{
+                    $data = products::where('name', 'like', '%' . $pro_name . '%')->where('price', '<=' , $max_price )->where('brand_id', $brandId)->orderby('price','desc')->get();
+                }
+            }elseif($max_price==""){
+                $data = products::where('name', 'like', '%' . $pro_name . '%')->where('price','>=' , $min_price)->where('brand_id', $brandId)->orderby('price','desc')->get();
+            }else{
+                $data = products::where('name', 'like', '%' . $pro_name . '%')->where('price', '<=' , $max_price )->where('price','>=' , $min_price)->where('brand_id', $brandId)->orderby('price','desc')->get();
+            }
            }
         }
 
         if (session()->has('user')) {
             $data_user = users::findOrFail(session('user'));
-        return view('home/search', compact('data','pro_name', 'brand','data_user','brand_id','brandId','max_price','min_price'));
+        return view('home/search', compact('data','pro_name','sort', 'brand','data_user','brand_id','brandId','max_price','min_price'));
         }
-        return view('home/search', compact('data','pro_name', 'brand','brandId','max_price','brand_id','min_price'));
+        return view('home/search', compact('data','pro_name','sort', 'brand','brandId','max_price','brand_id','min_price'));
     }
     public function order()
     {

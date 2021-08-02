@@ -13,52 +13,61 @@
                 <form action="{{ route('search-filter') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
-                        <div class="d-flex justify-content-between">
-                            <div class="col-md-3 list-style">
+                        <div class="text-center">
 
-                                <h5 class="border-bottom">ProductName</h5>
-                                <input type="text" class="form-control" id="exampleInputPhone" value="{{ $pro_name }}"
-                                    name="pro_name">
-                            </div>
-                            <div class="col-md-3 list-style">
-                                <h5 class="border-bottom">Price</h5>
+                            <div class="d-flex justify-content-between">
+                                <div class="col-md-3 list-style">
 
-                                <div class="row">
-                                    <label for="min">Min price</label>
-                                    <input id="min" class="min" value="{{ $min_price }}" name="min" type="number"
-                                        step="5" min="0" />
-                                    <label for="max">Max price</label>
-                                    <input id="max" class="max" name="max" value="{{ $max_price }}" type="number"
-                                        step="-5" min="0" />
-                                    {{-- <li><a href="#"></a></li> --}}
+                                    <h5 class="border-bottom">ProductName</h5>
+                                    <input type="text" class="form-control" id="exampleInputPhone"
+                                        value="{{ $pro_name }}" name="pro_name">
+                                </div>
+                                <div class="col-md-4 list-style">
+                                    <h5 class="border-bottom">Price</h5>
+                                    <div class="row">
+                                        <div class="col">
+                                            {{-- <label for="min">Min price</label> --}}
+                                            <input id="min" class="form-control" placeholder="minimum"
+                                                value="{{ $min_price }}" name="min" type="number" min="0" />
+                                        </div>
+                                        <div style="padding-top:5px;">
+                                            -
+                                        </div>
+                                        <div class="col">
+                                            {{-- <label for="max">Max price</label> --}}
+                                            <input id="max" class="form-control" placeholder="maximum" name="max"
+                                                value="{{ $max_price }}" type="number" min="0" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 list-style">
+                                    <h5 class="border-bottom">Brand Name</h5>
+                                    <select class="form-control" id="exampleFormControlSelect1" name="brand_id">
+                                        <option value="{{ $brand_id }}">All Brands</option>
+                                        @foreach ($brand as $item)
+                                            <option value="{{ $item->id }}" @if ($item->id == $brandId) selected @endif>
+                                                {{ $item->name }}</option>
+                                        @endforeach
+
+                                    </select>
+                                </div>
+                                <div class="col-md-2 list-style">
+                                    <h5 class="border-bottom">sort by price</h5>
+                                    <select class="form-control" id="exampleFormControlSelect1" name="sort">
+                                        <option value="h_l" @if ($sort == 'h_l') selected @endif>high to low</option>
+                                        <option value="l_h" @if ($sort == 'l_h') selected @endif>low to high</option>
+
+                                    </select>
                                 </div>
                             </div>
-                            <div class="col-md-3 list-style">
-                                <h5 class="border-bottom">Brand Name</h5>
-                                <select class="form-control" id="exampleFormControlSelect1" name="brand_id">
-                                    <option value="{{ $brand_id }}">All Brands</option>
-                                    @foreach ($brand as $item)
-                                        <option value="{{ $item->id }}" @if ($item->id == $brandId) selected @endif>
-                                            {{ $item->name }}</option>
-                                    @endforeach
-
-                                </select>
-                            </div>
-                            <div class="col-md-3 list-style">
-                                <h5 class="border-bottom">sort product by price</h5>
-                                <select class="form-control" id="exampleFormControlSelect1" name="sort">
-                                    <option value="h_l">high to low</option>
-                                    <option value="l_h">low to high</option>
-
-                                </select>
-                            </div>
-
                         </div>
                     </div>
                     <div class="text-center">
-                        <button type="submit" class="btn btn-primary mb-5">
-                            search
-                        </button>
+                        <div class="m-4">
+                            <button type="submit" class="btn btn-primary mb-5">
+                                search
+                            </button>
+                        </div>
                     </div>
 
                 </form>
