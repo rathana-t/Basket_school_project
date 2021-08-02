@@ -77,34 +77,59 @@ class HomeController extends Controller
             return view('blog/blog');
         }
     }
+
+
     public function search(Request $req)
     {
         $brand = brands::all();
         $brand_id="";
         $brandId="";
+        $min_price="";
+        $max_price="";
         $pro_name=$req->input('query');
         $data = products::where('name', 'like', '%' . $req->input('query') . '%')->get();
         $callinput = $req->input('query');
         if (session()->has('user')) {
             $data_user = users::findOrFail(session('user'));
-        return view('home/search', compact('data', 'pro_name','brand','data_user','brand_id','brandId'));
+        return view('home/search', compact('data','max_price','min_price', 'pro_name','brand','data_user','brand_id','brandId'));
         }
-        return view('home/search', compact('data','pro_name', 'brand','brand_id','brandId'));
+        return view('home/search', compact('data','max_price','min_price','pro_name', 'brand','brand_id','brandId'));
     }
+
     public function search_filter(Request $req)
     {
         $brand = brands::all();
 
+
+        $sort = $req->sort;
         $min_price = $req->min;
         $max_price = $req->max;
         $pro_name = $req->pro_name;
         $brand_id="";
         $brandId = $req->brand_id;
-        if($brandId==""){
-             $data = products::where('name', 'like', '%' . $pro_name . '%')->where('price', '<=' , $max_price )->where('price','>=' , $min_price)->get();
+
+        if($sort=='l_h'){
+            if($brandId==""){
+                if($min_price&&$max_price==""){
+                    $data = products::where('name', 'like', '%' . $pro_name . '%')->orderby('price','asc')->get();
+                }elseif($min_price==""){
+                    $data = products::where('name', 'like', '%' . $pro_name . '%')->where('price', '<=' , $max_price )->orderby('price','asc')->get();
+                }elseif($max_price==""){
+                    $data = products::where('name', 'like', '%' . $pro_name . '%')->where('price','>=' , $min_price)->orderby('price','asc')->get();
+                }
+
+                $data = products::where('name', 'like', '%' . $pro_name . '%')->where('price', '<=' , $max_price )->where('price','>=' , $min_price)->orderby('price','asc')->get();
+           }else{
+               $data = products::where('name', 'like', '%' . $pro_name . '%')->where('price', '<=' , $max_price )->where('price','>=' , $min_price)->where('brand_id', $brandId)->orderby('price','asc')->get();
+           }
         }else{
-            $data = products::where('name', 'like', '%' . $pro_name . '%')->where('price', '<=' , $max_price )->where('price','>=' , $min_price)->where('brand_id', $brandId)->get();
+            if($brandId==""){
+                $data = products::where('name', 'like', '%' . $pro_name . '%')->where('price', '<=' , $max_price )->where('price','>=' , $min_price)->orderby('price','desc')->get();
+           }else{
+               $data = products::where('name', 'like', '%' . $pro_name . '%')->where('price', '<=' , $max_price )->where('price','>=' , $min_price)->where('brand_id', $brandId)->orderby('price','desc')->get();
+           }
         }
+
         if (session()->has('user')) {
             $data_user = users::findOrFail(session('user'));
         return view('home/search', compact('data','pro_name', 'brand','data_user','brand_id','brandId','max_price','min_price'));

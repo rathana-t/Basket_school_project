@@ -42,7 +42,7 @@
                         <p class="border-bottom m-1 font-weight-bold">
                             PLP
                         </p>
-                        <p class="text-danger m-1 ">
+                        <p class="text-danger m-1 ">$
                             {{ $detail->price }}
                         </p>
                         <button type="button" class="btn btn-primary">Description</button>
