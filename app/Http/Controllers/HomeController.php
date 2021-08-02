@@ -82,6 +82,7 @@ class HomeController extends Controller
     public function search(Request $req)
     {
         $brand = brands::all();
+        $sort="";
         $brand_id="";
         $brandId="";
         $min_price="";
@@ -91,9 +92,9 @@ class HomeController extends Controller
         $callinput = $req->input('query');
         if (session()->has('user')) {
             $data_user = users::findOrFail(session('user'));
-        return view('home/search', compact('data','max_price','min_price', 'pro_name','brand','data_user','brand_id','brandId'));
+        return view('home/search', compact('data','sort','max_price','min_price', 'pro_name','brand','data_user','brand_id','brandId'));
         }
-        return view('home/search', compact('data','max_price','min_price','pro_name', 'brand','brand_id','brandId'));
+        return view('home/search', compact('data','sort','max_price','min_price','pro_name', 'brand','brand_id','brandId'));
     }
 
     public function search_filter(Request $req)
@@ -199,6 +200,10 @@ class HomeController extends Controller
             ->where('products.brand_id', $id)
             ->select('products.*', 'brands.name as brand_name')
             ->get();
+            if (session()->has('user')) {
+                $data_user = users::findOrFail(session('user'));
+            return view('home/brandlistproduct', compact('data_user','product'));
+            }
         return view('home/brandlistproduct', compact('product'));
     }
 }

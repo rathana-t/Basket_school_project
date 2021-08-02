@@ -8,7 +8,7 @@
         </button>
 
 
-        <div class="" id="collapseExample">
+        <div class="collapse" id="collapseExample">
             <div class="card card-body">
                 <form action="{{ route('search-filter') }}" method="POST" enctype="multipart/form-data">
                     @csrf
