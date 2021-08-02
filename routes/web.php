@@ -27,6 +27,7 @@ Route::get('/smallcate/{id}', [HomeController::class, 'smallcate']);
 Route::get('/brand/{id}', [HomeController::class, 'brand']);
 
 Route::get('/category', [CartController::class, 'category']);
+Route::get('/store', [HomeController::class, 'store']);
 
 
 Route::post('/signin', [UserController::class, 'signin'])->name("signin");

@@ -208,4 +208,9 @@ class HomeController extends Controller
         }
         return view('home/brandlistproduct', compact('product'));
     }
+    public function store()
+    {
+        
+        return view('home/store');
+    }
 }
