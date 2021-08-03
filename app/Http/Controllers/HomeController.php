@@ -215,7 +215,7 @@ class HomeController extends Controller
     }
     public function categoryItem($id)
     {
-        $second_cate = DB::table('se_categories')->limit(5)->inRandomOrder()->get();
+        $second_cate = DB::table('se_categories')->where('se_categories.category_id', $id)->get();
         $cate_name = categories::find($id);
         $products = DB::table('products')
             ->join('categories', 'products.category_id', '=', 'categories.id')
