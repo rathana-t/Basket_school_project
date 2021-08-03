@@ -210,7 +210,18 @@ class HomeController extends Controller
     }
     public function store()
     {
-        
+
         return view('home/store');
+    }
+    public function categoryItem($id)
+    {
+        $second_cate = DB::table('se_categories')->limit(5)->inRandomOrder()->get();
+        $cate_name = categories::find($id);
+        $products = DB::table('products')
+            ->join('categories', 'products.category_id', '=', 'categories.id')
+            ->where('categories.id', $id)
+            ->select('products.*', 'categories.name as cateName')
+            ->get();
+        return view('/home/categoryItem', compact('products', 'cate_name', 'second_cate'));
     }
 }
