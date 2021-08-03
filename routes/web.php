@@ -22,11 +22,11 @@ Route::post('/search-filter', [HomeController::class, 'search_filter'])->name('s
 Route::get('/search', [HomeController::class, 'search']);
 Route::get('/order', [HomeController::class, 'order']);
 Route::get('/category', [HomeController::class, 'category']);
+Route::get('/category/{id}', [HomeController::class, 'categoryItem']);
 Route::get('/all-category', [HomeController::class, 'allCategory']);
 Route::get('/smallcate/{id}', [HomeController::class, 'smallcate']);
 Route::get('/brand/{id}', [HomeController::class, 'brand']);
 
-Route::get('/category', [CartController::class, 'category']);
 Route::get('/store', [HomeController::class, 'store']);
 
 

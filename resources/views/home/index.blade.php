@@ -19,11 +19,13 @@
                         <div class="card shadow-sm">
                             <div class="m-3">
                                 <p>{{ $item->name }}</p>
-                                <div class="text-center">
-                                    <img src="/images/categoryImages/{{ $item->category_img }}" alt=""
-                                        class="img-fluid mb-2">
-                                </div>
-                                <a href="">See all</a>
+                                <a href="category/{{ $item->id }}">
+                                    <div class="text-center">
+                                        <img src="/images/categoryImages/{{ $item->category_img }}" alt=""
+                                            class="img-fluid mb-2">
+                                    </div>
+                                </a>
+                                <a href="category/{{ $item->id }}">See all</a>
                             </div>
                         </div>
                     </div>

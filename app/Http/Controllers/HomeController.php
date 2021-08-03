@@ -230,4 +230,15 @@ class HomeController extends Controller
 
         return view('home/store');
     }
+    public function categoryItem($id)
+    {
+        $second_cate = DB::table('se_categories')->where('se_categories.category_id', $id)->get();
+        $cate_name = categories::find($id);
+        $products = DB::table('products')
+            ->join('categories', 'products.category_id', '=', 'categories.id')
+            ->where('categories.id', $id)
+            ->select('products.*', 'categories.name as cateName')
+            ->get();
+        return view('/home/categoryItem', compact('products', 'cate_name', 'second_cate'));
+    }
 }
