@@ -152,11 +152,12 @@ class AdminController extends Controller
     public function product()
     {
         $count = products::count();
-        $pro = products::join('brands', 'products.brand_id', '=',  'brands.id')
+        $pro = products::orderBy('created_at', 'desc')
+            ->join('brands', 'products.brand_id', '=',  'brands.id')
             ->join('categories', 'products.category_id', '=', 'categories.id')
             ->select('products.*', 'categories.name as cat_name', 'brands.name as brand_name')
             ->where('products.completed', '=', '1')
-            ->get();
+            ->paginate(5);
         return view('admin/product/product', compact('pro', 'count'));
     }
 
@@ -179,7 +180,7 @@ class AdminController extends Controller
             ->join('sellers', 'products.seller_id', '=', 'sellers.id')
             ->where('products.id', $id)
             ->where('products.completed', '=', '1')
-            ->select('products.*', 'categories.name as cat_name', 'brands.name as brand_name', 'sellers.store_name','se_categories.name as secondCate')
+            ->select('products.*', 'categories.name as cat_name', 'brands.name as brand_name', 'sellers.store_name', 'se_categories.name as secondCate')
             ->get();
         return view('admin/product/show', compact('detail_pro'));
     }
@@ -250,6 +251,4 @@ class AdminController extends Controller
         $product->update();
         return redirect('/admin/productRequest')->with('confirm_request', 'Product Confirm!');
     }
-
-
 }

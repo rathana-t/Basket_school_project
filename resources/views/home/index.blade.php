@@ -46,14 +46,14 @@
                     <div class="wrapper mt-2">
                         @foreach ($data_pro as $pro)
                             @if ($pro->s_cat_id == $item->id)
-                                <div class="text-center ml-4">
+                                <div class="col-md-3 col-sm-6 col-xs-12">
                                     <a href="{{ route('detail', $pro->id) }}">
                                         <?php foreach (json_decode($pro->img_product)as $picture) { ?>
                                         <img src="/images/imgProduct/{{ $picture }}" alt="" class="mb-1">
-                                        <?php break; } ?><br>
-                                        <a>{{ $pro->name }}</a>
-                                        <div>
-                                            <a>{{ $pro->price }} &nbsp;$</a>
+                                        <?php break; } ?>
+                                        <div class="text-center">
+                                            <div> <a>{{ $pro->name }}</a> </div>
+                                            <div class="text-muted"> <a>{{ $pro->price }} &nbsp;$</a> </div>
                                         </div>
                                     </a>
                                 </div>
