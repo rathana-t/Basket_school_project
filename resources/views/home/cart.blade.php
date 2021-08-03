@@ -6,30 +6,37 @@
         <div class="row">
             <div class="col-md-8 ">
                 <div class="d-flex ml-5">
+                    <div class="font-weight-light m-1">Product</div>
                     <div class="p-2 des-margin">Description</div>
                     <div class="ml-auto p-2">Qty</div>
+                    <div class="ml-auto p-2">Total price</div>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-8">
                 <div class="border-top"></div>
-                @for ($i = 1; $i <= 3; $i++)
+                @foreach ($data_pro as $item)
+
                     <div class="order-margin show-order">
-                        <img class="img-fluid set-img" src="/images/mouse.png">
                         <div class="container">
                             <p class="text-primary m-1 sizetext">
-                                IMICE E-1300 Wireless Mouse Rechargeable Bluetooth Dual Mode Mute Luminous Wireless Mouse
-                                for PC
-                                Computer Laptop
+                                {{ $item->name }}
                             </p>
                             <p class="font-weight-lighter m-1 sizetext">#WOM304870</p>
                             <div class="d-flex">
-                                <div class="font-weight-light m-1">Color: Black <img src="/images/dot.png"> Size:As
-                                    Photo</div>
-                                <div class="ml-auto p-2">1</div>
+                                <div class="font-weight-light m-1">
+                                    <?php foreach (json_decode($item->img_product)as $picture) { ?>
+                                    <img style="width: 100px;" src="/images/imgProduct/{{ $picture }}" alt=""
+                                        class="mb-1">
+                                    <?php break; } ?>
+                                </div>
+                                <div class="p-2 des-margin">{{ $item->description }}</div>
+
+                                <div class="ml-auto p-">{{ $item->quantity }}</div>
+                                <div class="ml-auto p-2">$ {{ $item->total }}</div>
                             </div>
-                            <p class="font-weight-light m-1">$5.00</p>
+                            <p class="font-weight-light m-1">$ {{ $item->price }}</p>
                             <div class="delete m-1">
                                 <a href="#" class="text-primary">Delete</a>
                                 <a href="#" class="text-primary"><img src="/images/line.png"> Save for later</a>
@@ -37,13 +44,19 @@
                         </div>
                     </div>
                     <div class="border-bottom mt-3"></div>
-                @endfor
+                @endforeach
+
                 <div class="d-flex flex-row-reverse mt-1">
-                    <div class="p-2 ">Subtotal(3items):$15.00</div>
+                    @if ($counter > 1)
+                        <div class="p-2 ">Subtotal({{ $counter }} items) : $ {{ $total_price_all_quantity }}</div>
+                    @else
+                        <div class="p-2 ">Subtotal({{ $counter }} item) : $ {{ $total_price_all_quantity }}</div>
+                    @endif
+
                 </div>
-                <p class="font-weight-light cart-text">The price and availability of items at PLP.com are subject to
+                {{-- <p class="font-weight-light cart-text">The price and availability of items at PLP.com are subject to
                     change. The Cart is a temporary place to store a list of your items and reflects each item's most recent
-                    price.</p>
+                    price.</p> --}}
             </div>
 
             <div class="col-md-4 custom">

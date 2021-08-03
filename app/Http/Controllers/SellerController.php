@@ -203,7 +203,7 @@ class SellerController extends Controller
 
         if ($req->hasfile('imageFile')) {
             foreach ($req->file('imageFile') as $file) {
-                $name = uniqid() . $file->getClientOriginalName();
+                $name = uniqid() . $file->getClientOriginalExtension();
                 $file->move(public_path() . '/images/imgProduct/', $name);
                 $imgData[] = $name;
             }

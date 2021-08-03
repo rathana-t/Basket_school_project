@@ -2,24 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\categories;
+use App\Models\cards;
+use App\Models\carts;
+use App\Models\users;
+use App\Models\brands;
 use App\Models\orders;
+use App\Models\sellers;
+use App\Models\messages;
 use App\Models\products;
 use App\Models\receipts;
-use App\Models\sellers;
-use App\Models\users;
-use App\Models\carts;
-use App\Models\cards;
-use App\Models\brands;
-use App\Models\se_categories as s_cat;
-use App\Models\users_has_cards;
-use App\Http\Controllers\Controller;
-use App\Models\messages;
-use App\Models\se_categories;
+use App\Models\categories;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+use App\Models\se_categories;
+use App\Models\users_has_cards;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Models\se_categories as s_cat;
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 class AdminController extends Controller
@@ -208,6 +209,11 @@ class AdminController extends Controller
     {
         $product_id = $req->input('delete_product_id');
         $product = products::find($product_id);
+
+        $imgaes = json_decode($product->img_product);
+        foreach($imgaes as $file){
+            unlink(public_path("images/imgProduct/").$file);
+        }
         $product->delete();
         return redirect()->back()->with('delete-success', 'Product has been delete successfully');
     }

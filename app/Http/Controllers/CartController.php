@@ -23,30 +23,24 @@ class CartController extends Controller
 {
     public function add_to_cart(Request $request)
     {
-        // if (session()->has('user')){
-        //     $data_user = Users::findOrFail(session('user'));
-        // }
-        // $cart = carts::find($data_user->id);
-        // $pro = products::select('price')->where('id', $id)->get();
-        // $price = $pro;
-        // $cart->quantity++;
-        // $total=$cart->quantity;quantity
-        // $cart->total = $total * 9;
-        // $cart->user_id=$data_user->id;
-        // $cart->product_id=$id;
-        // $user = carts::where('user_id',$data_user->id)->get();
-        // if($user){
-            // $cart = carts::find($request->user_id);
-        // }elseif($user){
-        // }
-        $cart = new carts();
+        $allcart = carts::all();
+    foreach($allcart as $cart){
+        if ($cart->user_id ==  $request->user_id && $request->product_id == $cart->product_id) {
+                $cart->quantity = $cart->quantity +  $request->quantity;
+                $cart->total=$cart->quantity * $request->total;
 
-        $cart->quantity = $request->quantity;
-        $cart->total = $request->total *  $request->quantity;
-        $cart->user_id = $request->user_id;
-        $cart->product_id = $request->product_id;
+                $cart->update();
+                return redirect()->back();
+        }
+    }
+    $newcart = new carts();
 
-        $cart->save();
-        return redirect()->back();
+    $newcart->quantity = $request->quantity;
+    $newcart->total = $request->total *  $request->quantity;
+    $newcart->user_id = $request->user_id;
+    $newcart->product_id = $request->product_id;
+
+    $newcart->save();
+    return redirect()->back();
     }
 }

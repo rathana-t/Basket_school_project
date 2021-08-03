@@ -52,7 +52,24 @@ class HomeController extends Controller
     }
     public function cart()
     {
-        return view('home/cart');
+        if (session()->has('user')) {
+        $data_user = Users::findOrFail(session('user'));
+        $uid=$data_user->id;
+
+        $data_pro = carts::join('products','products.id','=', 'carts.product_id')
+        ->where(  'carts.user_id', '=' ,$data_user->id )
+        ->select('products.*','carts.total','carts.quantity')->get();
+        $counter=0;
+        $total_price_all_quantity=0;
+        foreach($data_pro as $item){
+        $total_price_all_quantity = $total_price_all_quantity + $item->total;
+            $counter++;
+        }
+            return view('home/cart', compact('data_user','data_pro','counter','total_price_all_quantity'));
+        } else {
+            return view('home/login');
+        }
+
     }
 
     public function detail($id)
@@ -210,7 +227,7 @@ class HomeController extends Controller
     }
     public function store()
     {
-        
+
         return view('home/store');
     }
 }
