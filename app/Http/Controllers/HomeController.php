@@ -26,7 +26,7 @@ class HomeController extends Controller
     public function index()
     {
         $count = 0;
-        $second_cate = DB::table('se_categories')->limit(5)->inRandomOrder()->get();
+        $second_cate = DB::table('se_categories')->get();
         $cate = DB::table('categories')->limit(4)->get();
         $brand = DB::table('brands')->get();
         $data_pro = DB::table('products')

@@ -2,16 +2,12 @@
 
 @section('content')
     <div class="container">
-        @include('home/components/selectbyBrand')
-
         <div class="category mt-4">
-            <div class="d-flex justify-content-between">
-                <h1>
+            <div class="d-flex justify-content-between mb-3">
+                <h5>
                     Category
-                </h1>
-                <h1 class="see-all">
-                    <a href="all-category">See all</a>
-                </h1>
+                </h5>
+                <a href="" class="btn btn-outline-primary">See all</a>
             </div>
             <div class="row mt-3">
                 @foreach ($cate as $item)
@@ -32,38 +28,128 @@
                 @endforeach
             </div>
         </div>
+    </div>
 
-        <div class="cate-item">
-            @foreach ($second_cate as $item)
-                <div class="laptop mt-4">
-                    <div class="d-flex justify-content-between">
-                        <h1>
-                            {{ $item->name }}
-                        </h1>
-                        <h1 class="see-all">
-                            <a href="smallcate/{{ $item->id }}">See all</a>
-                        </h1>
+    <div class="container">
+        <div class="brand mt-4">
+            <div class="mb-1 d-flex justify-content-between">
+                <h5>
+                    Brand
+                </h5>
+                <a href="" class="btn btn-outline-primary">See all</a>
+            </div>
+            <div class="row">
+                @foreach ($brand as $item)
+                    <div class="col-6 col-md-2">
+                        <div class="card">
+                            <div class="p-3 text-center">
+                                <img src="/images/brandImages/{{ $item->brand_img }}" alt="" class="img-fluid">
+                                <div class="border-bottom pb-1"></div>
+                                10 Prodoucts
+                            </div>
+                        </div>
                     </div>
-                    <div class="border-bottom mt-2"></div>
-                    <div class="wrapper mt-2">
-                        @foreach ($data_pro as $pro)
-                            @if ($pro->s_cat_id == $item->id)
-                                <div class="col-md-3 col-sm-6 col-xs-12">
-                                    <a href="{{ route('detail', $pro->id) }}">
-                                        <?php foreach (json_decode($pro->img_product)as $picture) { ?>
-                                        <img src="/images/imgProduct/{{ $picture }}" alt="" class="mb-1">
-                                        <?php break; } ?>
-                                        <div class="text-center">
-                                            <div> <a>{{ $pro->name }}</a> </div>
-                                            <div class="text-muted"> <a>{{ $pro->price }} &nbsp;$</a> </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            @endif
-                        @endforeach
-                    </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
         </div>
     </div>
+
+    <div class="container">
+        <div class="popular mt-4">
+            <div class="mb-3 d-flex justify-content-between">
+                <h5>
+                    Popular products
+                </h5>
+                <a href="" class="btn btn-outline-primary">See all</a>
+            </div>
+            <div class="row">
+                @for ($i = 0; $i < 4; $i++)
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="card">
+                            <img src="http://progearcambodia.com/wp-content/uploads/2019/10/mx-master-3.png" alt=""
+                                class="img-fluid">
+                            <div class="pl-3 pr-3 pb-3">
+                                <div class="product_name">
+                                    <a href="">
+                                        Product name
+                                    </a>
+                                </div>
+                                <div class="store_name">
+                                    <a href="" class="text-muted">Store</a>
+                                </div>
+                                <div class="price">
+                                    <a href="">$200</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endfor
+            </div>
+        </div>
+
+        <div class="popular mt-4">
+            <div class="mb-3 d-flex justify-content-between">
+                <h5>
+                    Recenlty Add
+                </h5>
+                <a href="" class="btn btn-outline-primary">See all</a>
+            </div>
+            <div class="row">
+                @for ($i = 0; $i < 4; $i++)
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="card">
+                            <img src="http://progearcambodia.com/wp-content/uploads/2019/10/mx-master-3.png" alt=""
+                                class="img-fluid">
+                            <div class="pl-3 pr-3 pb-3">
+                                <div class="product_name">
+                                    <a href="">
+                                        Product name
+                                    </a>
+                                </div>
+                                <div class="store_name">
+                                    <a href="" class="text-muted">Store</a>
+                                </div>
+                                <div class="price">
+                                    <a href="">$200</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endfor
+            </div>
+        </div>
+
+        <div class="popular mt-4">
+            <div class="mb-3 d-flex justify-content-between">
+                <h5>
+                    Products
+                </h5>
+                <a href="" class="btn btn-outline-primary">See all</a>
+            </div>
+            <div class="row">
+                @for ($i = 0; $i < 20; $i++)
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="card mb-3">
+                            <img src="http://progearcambodia.com/wp-content/uploads/2019/10/mx-master-3.png" alt=""
+                                class="img-fluid">
+                            <div class="pl-3 pr-3 pb-3">
+                                <div class="product_name">
+                                    <a href="">
+                                        Product name
+                                    </a>
+                                </div>
+                                <div class="store_name">
+                                    <a href="" class="text-muted">Store</a>
+                                </div>
+                                <div class="price">
+                                    <a href="">$200</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endfor
+            </div>
+        </div>
+    </div>
+
 @stop

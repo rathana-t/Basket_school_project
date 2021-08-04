@@ -1,48 +1,42 @@
 * {
     font-family: "Poppins", sans-serif;
 }
-
-body {
-    min-height: 150vh;
+.cs-pt {
+    padding-top: 3px;
 }
-
-.carousel-inner img {
-    height: 400px;
-    object-fit: cover;
-}
-
-.logo img {
-    width: 90px;
-}
-
-.navbar-light {
-    background-color: #323b49;
-}
-
-.navbar a {
-    color: #eaf3fd !important;
-}
-
-.signup-a a {
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    color: #eaf3fd;
-}
-
-.dropdown a {
-    font-size: 16px;
-}
-
-.form-inline input {
+.navbar input {
     width: 500px !important;
 }
-
-.heart i {
-    font-size: 22px;
-    color: #eaf3fd;
+.popular .product_name a {
+    text-decoration: none;
+    color: #323b49;
+    font-size: 16px;
+}
+.popular .store_name a {
+    text-decoration: none;
+    font-size: 14px;
+}
+.popular .price a {
+    text-decoration: none;
+    color: #323b49;
+    font-size: 16px;
+}
+.popular img {
+    height: 180px;
+    object-fit: contain;
 }
 
+.brand img {
+    height: 70px;
+    object-fit: contain;
+    border-radius: 5px;
+}
+
+.category img {
+    height: 180px;
+    object-fit: cover;
+    border-radius: 5px;
+}
 .category .card {
     height: 280px;
 }
@@ -123,26 +117,6 @@ body {
 }
 
 .all-pro a:hover {
-    text-decoration: none;
-}
-
-.brand h1 {
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 45px;
-    color: #19252e;
-}
-
-.brand a {
-    font-style: normal;
-    font-weight: 300;
-    font-size: 12px;
-    line-height: 21px;
-    color: #19252e;
-}
-
-.brand a:hover {
     text-decoration: none;
 }
 
