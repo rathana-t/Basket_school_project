@@ -1,6 +1,9 @@
 * {
     font-family: "Poppins", sans-serif;
 }
+body{
+    min-height: 120vh;
+}
 .cs-pt {
     padding-top: 3px;
 }

@@ -43,33 +43,34 @@ class HomeController extends Controller
 
     public function login()
     {
-        return view('home/login');
+        $second_cate = DB::table('se_categories')->get();
+        return view('home/login', compact('second_cate'));
     }
 
     public function reg()
     {
-        return view('home/reg');
+        $second_cate = DB::table('se_categories')->get();
+        return view('home/reg', compact('second_cate'));
     }
     public function cart()
     {
         if (session()->has('user')) {
-        $data_user = Users::findOrFail(session('user'));
-        $uid=$data_user->id;
+            $data_user = Users::findOrFail(session('user'));
+            $uid = $data_user->id;
 
-        $data_pro = carts::join('products','products.id','=', 'carts.product_id')
-        ->where(  'carts.user_id', '=' ,$data_user->id )
-        ->select('products.*','carts.total','carts.quantity')->get();
-        $counter=0;
-        $total_price_all_quantity=0;
-        foreach($data_pro as $item){
-        $total_price_all_quantity = $total_price_all_quantity + $item->total;
-            $counter++;
-        }
-            return view('home/cart', compact('data_user','data_pro','counter','total_price_all_quantity'));
+            $data_pro = carts::join('products', 'products.id', '=', 'carts.product_id')
+                ->where('carts.user_id', '=', $data_user->id)
+                ->select('products.*', 'carts.total', 'carts.quantity')->get();
+            $counter = 0;
+            $total_price_all_quantity = 0;
+            foreach ($data_pro as $item) {
+                $total_price_all_quantity = $total_price_all_quantity + $item->total;
+                $counter++;
+            }
+            return view('home/cart', compact('data_user', 'data_pro', 'counter', 'total_price_all_quantity'));
         } else {
             return view('home/login');
         }
-
     }
 
     public function detail($id)
