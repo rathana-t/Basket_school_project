@@ -1,6 +1,9 @@
 @extends('application')
 
 @section('content')
+    <a href="" style="font-size: 30px">
+        <i class="bi bi-person-circle"></i>
+    </a>
     <div class="container">
         <div class="category mt-4">
             <div class="d-flex justify-content-between mb-3">
