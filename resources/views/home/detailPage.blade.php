@@ -65,8 +65,8 @@
                                             <input type="hidden" value="{{ $data_user->id }}" name="user_id">
                                             <input type="hidden" value="{{ $detail->id }}" name="product_id">
                                             <input type="hidden" value="{{ $detail->price }}" name="total">
-                                            <input type="number" class="form-group col-md-2" id="quantity" required
-                                                name="quantity" min="1" max="100">
+                                            <input type="number" class="form-group" id="quantity" required
+                                                name="quantity" min="1" max="100" style="width: 50px">
                                             <button type="submit" class="btn btn-primary">
                                                 Add to cart
                                             </button>
