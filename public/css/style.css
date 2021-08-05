@@ -1,12 +1,8 @@
 * {
     font-family: "Poppins", sans-serif;
 }
-body {
-    min-height: 130vh;
-}
-.navbar-menu a {
-    font-size: 16px;
-    color: #323b49;
+body{
+    min-height: 120vh;
 }
 .cs-pt {
     padding-top: 3px;
@@ -14,10 +10,31 @@ body {
 .navbar input {
     width: 500px !important;
 }
-.index-page h5 {
-    font-size: 18px;
+.popular .product_name a {
+    text-decoration: none;
     color: #323b49;
+    font-size: 16px;
 }
+.popular .store_name a {
+    text-decoration: none;
+    font-size: 14px;
+}
+.popular .price a {
+    text-decoration: none;
+    color: #323b49;
+    font-size: 16px;
+}
+.popular img {
+    height: 180px;
+    object-fit: contain;
+}
+
+.brand img {
+    height: 70px;
+    object-fit: contain;
+    border-radius: 5px;
+}
+
 .category img {
     height: 180px;
     object-fit: cover;
@@ -31,53 +48,12 @@ body {
     height: 180px;
     object-fit: cover;
 }
-.category a {
-    font-size: 14px;
-}
-.category .category-item p {
-    font-size: 14px;
-}
-.category .category-item a {
+
+.category h1 {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
     color: #19252e;
-    font-size: 14px;
-}
-.category a:hover {
-    text-decoration: none;
-    font-size: 14px;
-}
-.brand a {
-    font-size: 14px;
-}
-.brand p {
-    font-size: 14px;
-    margin-top: 5px;
-    margin-bottom: 0;
-}
-.brand img {
-    height: 70px;
-    object-fit: contain;
-    border-radius: 5px;
-}
-.popular a {
-    font-size: 14px;
-}
-.popular .popular-item .product_name a {
-    text-decoration: none;
-    color: #323b49;
-    font-size: 14px;
-}
-.popular .popular-item .store_name a {
-    text-decoration: none;
-    font-size: 12px;
-}
-.popular .popular-item .price a {
-    text-decoration: none;
-    color: #323b49;
-    font-size: 14px;
-}
-.popular .popular-item img {
-    height: 180px;
-    object-fit: contain;
 }
 
 .cate-item h1 {
@@ -478,29 +454,10 @@ span.value.upper::before {
     object-fit: contain;
     border-radius: 5px;
 }
+.wish-list .img-modify {
+    width: 140px;
+}
 
-.deatail_page h5 {
-    line-height: 36px;
-    color: #323b49;
-    font-size: 20px;
-}
-.deatail_page .order {
-    font-size: 12px;
-    color: #00b517;
-}
-.deatail_page .price {
-    line-height: 30px;
-    font-size: 18px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    font-weight: 500;
-}
-.deatail_page .des {
-    line-height: 30px;
-    overflow-y: auto;
-    max-height: 150px;
-    font-size: 16px;
-}
-.deatail_page strong {
-    font-weight: 500;
+.wish-list td {
+    vertical-align: middle;
 }

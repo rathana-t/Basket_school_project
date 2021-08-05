@@ -62,7 +62,7 @@ class UserController extends Controller
     {
         $data_user = Users::find($id);
         $second_cate = DB::table('se_categories')->get();
-        return view('home/u_profile',compact('data_user','second_cate'));
+        return view('home/user-profile/u_profile',compact('data_user','second_cate'));
     }
 
     public function logout()
