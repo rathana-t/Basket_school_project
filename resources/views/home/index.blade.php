@@ -11,7 +11,7 @@
                     <h5>
                         Category
                     </h5>
-                    <a href="" class="btn btn-outline-primary">See all</a>
+                    <a href="/category" class="btn btn-outline-primary">See all</a>
                 </div>
                 <div class="category-item">
                     <div class="row mt-3">

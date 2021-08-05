@@ -6,7 +6,7 @@
             <h1>
                 {{ $cate_name->name }}
             </h1>
-            @foreach ($second_cate as $item)
+            @foreach ($second_cateItem as $item)
                 <h5 class="border-bottom">
                     {{ $item->name }}
                 </h5>

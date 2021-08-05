@@ -64,6 +64,7 @@ class HomeController extends Controller
     }
     public function cart()
     {
+        $second_cate = DB::table('se_categories')->get();
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
             $uid = $data_user->id;
@@ -77,9 +78,9 @@ class HomeController extends Controller
                 $total_price_all_quantity = $total_price_all_quantity + $item->total;
                 $counter++;
             }
-            return view('home/cart', compact('data_user', 'data_pro', 'counter', 'total_price_all_quantity'));
+            return view('home/cart', compact('data_user', 'data_pro', 'counter', 'total_price_all_quantity', 'second_cate'));
         } else {
-            return view('home/login');
+            return view('home/login', 'second_cate');
         }
     }
 
@@ -206,8 +207,13 @@ class HomeController extends Controller
     }
     public function category()
     {
+        $second_cate = DB::table('se_categories')->get();
         $cate = categories::all();
-        return view('home/category', compact('cate'));
+        if (session()->has('user')) {
+            $data_user = users::findOrFail(session('user'));
+            return view('home/category', compact('cate', 'data_user', 'second_cate'));
+        }
+        return view('home/category', compact('cate', 'second_cate'));
     }
     public function smallcate($id)
     {
@@ -220,22 +226,19 @@ class HomeController extends Controller
             ->get();
         return view('home/secondaryCate', compact('smallCate', 'smallCateName', 'brand'));
     }
-    public function allCategory()
-    {
-        $cate = categories::all();
-        return view('/home/allCategory', compact('cate'));
-    }
+
     public function brand($id)
     {
+        $second_cate = DB::table('se_categories')->get();
         $product = products::join('brands', 'products.brand_id', '=', 'brands.id')
             ->where('products.brand_id', $id)
             ->select('products.*', 'brands.name as brand_name')
             ->get();
         if (session()->has('user')) {
             $data_user = users::findOrFail(session('user'));
-            return view('home/brandlistproduct', compact('data_user', 'product'));
+            return view('home/brandlistproduct', compact('data_user', 'product', 'second_cate'));
         }
-        return view('home/brandlistproduct', compact('product'));
+        return view('home/brandlistproduct', compact('product', 'second_cate'));
     }
     public function store()
     {
@@ -244,13 +247,18 @@ class HomeController extends Controller
     }
     public function categoryItem($id)
     {
-        $second_cate = DB::table('se_categories')->where('se_categories.category_id', $id)->get();
+        $second_cate = DB::table('se_categories')->get();
+        $second_cateItem = DB::table('se_categories')->where('se_categories.category_id', $id)->get();
         $cate_name = categories::find($id);
         $products = DB::table('products')
             ->join('categories', 'products.category_id', '=', 'categories.id')
             ->where('categories.id', $id)
             ->select('products.*', 'categories.name as cateName')
             ->get();
-        return view('/home/categoryItem', compact('products', 'cate_name', 'second_cate'));
+        if (session()->has('user')) {
+            $data_user = users::findOrFail(session('user'));
+            return view('/home/categoryItem', compact('data_user', 'products', 'cate_name', 'second_cate', 'second_cateItem'));
+        }
+        return view('/home/categoryItem', compact('products', 'cate_name', 'second_cate', 'second_cateItem'));
     }
 }

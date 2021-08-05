@@ -34,7 +34,7 @@
                             </svg>
                         </a>
                     </li>
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="/cart">
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="25" fill="currentColor"
                             class="bi bi-bag-check" viewBox="0 0 16 16">
                             <path fill-rule="evenodd"
