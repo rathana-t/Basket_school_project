@@ -45,8 +45,13 @@
                     </a>
                     @if (Session::has('user'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('display-profile', $data_user->id) }}"><img
-                                    style="width: 40px" src="{{ URL::asset('profile.png') }}" alt=""></a>
+                            <a class="nav-link" href="{{ route('display-profile', $data_user->id) }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="28" fill="currentColor"
+                                    class="bi bi-person" viewBox="0 0 16 16">
+                                    <path
+                                        d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+                                </svg>
+                            </a>
                         </li>
                     @else
                         <li class="nav-item">
@@ -60,22 +65,24 @@
             </div>
         </div>
     </nav>
-    <div class="bg-light">
-        <div class="container pl-0 pr-0 pt-2 pb-2">
-            <nav class="nav">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    Departments
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    @foreach ($second_cate as $item)
-                        <a class="dropdown-item" href="#">{{ $item->name }}</a>
-                    @endforeach
-                </div>
-                <a class="nav-link active" href="#">Brands</a>
-                <a class="nav-link" href="#">Main Category</a>
-                <a class="nav-link" href="#">Sub Category</a>
-            </nav>
+    <div class="navbar-menu">
+        <div class="bg-light">
+            <div class="container pl-0 pr-0 pt-2 pb-2">
+                <nav class="nav">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Departments
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        @foreach ($second_cate as $item)
+                            <a class="dropdown-item" href="#">{{ $item->name }}</a>
+                        @endforeach
+                    </div>
+                    <a class="nav-link active" href="#">Brands</a>
+                    <a class="nav-link" href="#">Main Category</a>
+                    <a class="nav-link" href="#">Sub Category</a>
+                </nav>
+            </div>
         </div>
     </div>
 </div>

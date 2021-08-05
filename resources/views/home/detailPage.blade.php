@@ -1,133 +1,93 @@
 @extends('application')
 
 @section('content')
-    <div class="container set-margin">
-        {{-- Unfinsih --}}
+
+    <div class="container">
         @foreach ($detail_pro as $detail)
-
-            <div class="row">
-                <div class="col-md-2 d-flex">
-                    <?php foreach (json_decode($detail->img_product)as $picture) { ?>
-                    <img src="{{ asset('images/imgProduct') }}/{{ $picture }}" alt="" class="img-fluid"
-                        style="height: 150px;margin:5px;">
-                    <?php } ?>
-                </div>
-            </div>
-
-            <div class="view">
-                <div class="row mt-5">
-                    <div class="col-md-6">
-                        <?php foreach (json_decode($detail->img_product)as $picture) { ?>
-                        <img src="{{ asset('images/imgProduct') }}/{{ $picture }}" alt="" class="img-fluid"
-                            style="height: 400px;width:400px">
-                        <?php break; } ?>
-                    </div>
-                    <div class="col-md-6">
-                        <h5>
-                            {{ $detail->name }}
-                        </h5>
-                        <p class="font-weight-light m-1 sizetext">
-                            #HIR578789
-                        </p>
-                        <p class="text-primary m-1">
-                            {{ $detail->se_cate }} in
-                            {{ $detail->cat_name }}
-                        </p>
-                        <p class="text-primary m-1">
-                            {{ $detail->brand_name }}
-                        </p>
-                        <p class="font-weight-light m-1 sizetext">
-                            Selected by
-                        </p>
-                        <p class="border-bottom m-1 font-weight-bold">
-                            PLP
-                        </p>
-                        <p class="text-danger m-1 ">$
-                            {{ $detail->price }}
-                        </p>
-                        <button type="button" class="btn btn-primary">Description</button>
-                        <div class="card description">
-                            <p class="text-left m-2">
-                                {{ $detail->description }}
-                            </p>
-                        </div>
-                        <div class="mt-2">
-                            Dimensions:<strong class="w-50">15.60 x 304.10 x 212.40 cm</strong>
-                        </div>
-                        <p class="text-primary">Color[?]</p>
-                        <div class="set">
-                            <button type="button" class="btn">
-                                <p class="mt-2">Black</p>
-                                <p class="text-success">Have in stock</p>
-                            </button>
-                            <button type="button" class="btn">
-                                <p class="mt-2">Black</p>
-                                <p class="text-success">Have in stock</p>
-                            </button>
-                            <button type="button" class="btn">
-                                <p class="mt-2">Black</p>
-                                <p class="text-success">Have in stock</p>
-                            </button>
-                        </div>
-                        <p class="text-primary mt-3">Size[?]</p>
-                        <div class="set">
-                            <button type="button" class="btn">
-                                <p class="mt-2">As photo</p>
-                                <p class="text-success">Have in stock</p>
-                            </button>
-                        </div>
-                        <p class="font-weight-light mt-2 sizetext">Free Delivery in cambodia</p>
-                        @if (Session::has('user'))
-                            <form action="{{ route('add_to_cart') }}" method="POST" enctype="multipart/form-data">
-                                @csrf
-                                <input type="hidden" value="{{ $data_user->id }}" name="user_id">
-                                <input type="hidden" value="{{ $detail->id }}" name="product_id">
-                                {{-- <input type="hidden" value="1" name="quantity"> --}}
-                                <input type="hidden" value="{{ $detail->price }}" name="total">
-                                <input type="number" class="form-group col-md-2" id="quantity" required name="quantity"
-                                    min="1" max="100">
-                                <button type="submit" class="btn btn-primary">
-                                    Add to cart
-                                </button>
-                            </form>
-                        @else
-                            <a href="{{ url('login') }}">
-                                <button type="" class="btn btn-primary">
-                                    Please LogIn first! be fore Add to cart
-                                </button>
-                            </a>
-                        @endif
-
-                        <div class="favourite">
-                            <a href="#" class="font-weight-light"><img src="/images/heart.png">Add to Favourite</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="mt-2 related-product">
-                <p class="font-weight-light">All related Product</p>
-                <div class="row">
-                    @for ($i = 0; $i <= 20; $i++)
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                            <img src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-pro-13-og-202011?wid=1200&hei=630&fmt=jpeg&qlt=95&.v=1604347427000"
-                                class="img-fluid">
-                            <div>
-                                <p class="text-left w-100">
-                                    Aluminium Alloy Waterproof Round Desktop Gaming Mouse Mat Pad
-                                    Computer Accessory
-                                </p>
-                                <p class="custom-margin">#SRD123456</p>
-                                <ul class="list-unstyled custom-margin" style="display:flex">
-                                    <li class="box" style="border:1px solid #000;background: #000;"></li>
-                                    <li class="box" style="border:1px solid silver;background: silver;"></li>
-                                </ul>
-                                <p class="text-danger custom-margin">$1500.00</p>
+            <div class="deatail_page mt-5">
+                <div class="card">
+                    <div class="row">
+                        <div class="col-md-6 border-right">
+                            <?php foreach (json_decode($detail->img_product)as $picture) { ?>
+                            <img src="{{ asset('images/imgProduct') }}/{{ $picture }}" alt="" class="img-fluid p-4">
+                            <?php break; } ?>
+                            <div class="row">
+                                <div class="pl-4 pr-4">
+                                    <div class="col-md-3">
+                                        <?php foreach (json_decode($detail->img_product)as $picture) { ?>
+                                        <img src="{{ asset('images/imgProduct') }}/{{ $picture }}" alt=""
+                                            class="img-fluid pb-4">
+                                        <?php } ?>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    @endfor
+                        <div class="col-md-6">
+                            <div class="p-4">
+                                <h2>
+                                    {{ $detail->name }}
+                                </h2>
+                                <div class="order mt-2 mb-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="20" fill="currentColor"
+                                        class="bi bi-bag-check" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M10.854 8.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
+                                        <path
+                                            d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
+                                    </svg>
+                                    <span>165 orders</span>
+                                </div>
+                                <div class="price mb-3">
+                                    <h4>
+                                        ${{ $detail->price }}
+                                    </h4>
+                                </div>
+                                <p class="des">
+                                    {{-- {{ $detail->description }} --}}
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem eos minima, quod vel
+                                    obcaecati libero corporis consectetur sed! Culpa dolores omnis tenetur eius, facilis
+                                    sint magnam est sed animi dicta.
+                                </p>
+                                <p class="store_name mb-3">
+                                    <span><strong>Store</strong></span>
+                                    <span class="pl-4">Phnom Penh</span>
+                                </p>
+                                <p class="store_name">
+                                    <span><strong>Brand</strong></span>
+                                    <span class="pl-4"> {{ $detail->brand_name }} </span>
+                                </p>
+                                <hr>
+                                <div style="margin-top: 10px">
+                                    @if (Session::has('user'))
+                                        <form action="{{ route('add_to_cart') }}" method="POST"
+                                            enctype="multipart/form-data">
+                                            @csrf
+                                            <input type="hidden" value="{{ $data_user->id }}" name="user_id">
+                                            <input type="hidden" value="{{ $detail->id }}" name="product_id">
+                                            <input type="hidden" value="{{ $detail->price }}" name="total">
+                                            <input type="number" class="form-group col-md-2" id="quantity" required
+                                                name="quantity" min="1" max="100">
+                                            <button type="submit" class="btn btn-primary">
+                                                Add to cart
+                                            </button>
+                                        </form>
+                                    @else
+                                        <a href="{{ url('login') }}" class="btn btn-primary ">
+                                            Add to cart
+                                        </a>
+                                        <a href="" class="btn btn-outline-primary mr-5">
+                                            buy now
+                                        </a>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-5 related-product">
+                    <p class="font-weight-light">All related Product</p>
                 </div>
             </div>
+        @endforeach
     </div>
-    @endforeach
-
 @stop
