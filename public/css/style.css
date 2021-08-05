@@ -283,47 +283,47 @@ footer ul li {
 }
 
 /* orderPage */
-.row .set-img {
+.order .row .set-img {
     height: 180px;
 }
 
-.des-margin {
+.order .des-margin {
     margin-left: 160px;
 }
 
-.order-margin {
+.order .order-margin {
     margin-top: 20px;
 }
 
-.show-order {
+.order .show-order {
     display: flex;
 }
 
-.row .delete a {
+.order .row .delete a {
     text-decoration: none;
 }
 
-.table tr td {
+.order .table tr td {
     border: 1px solid black;
     height: 40px;
 }
 
-.pay:hover {
+.order .pay:hover {
     background-color: rgb(243, 243, 243);
     transition: 0.4s;
     color: rgb(0, 0, 0);
 }
 
-.new-table {
+.order .new-table {
     margin-top: -6px;
     margin-bottom: 6px;
 }
 
-.new-text {
+.order .new-text {
     margin-top: -5px;
 }
 
-.new-text p {
+.order .new-text p {
     margin-bottom: 6px;
 }
 

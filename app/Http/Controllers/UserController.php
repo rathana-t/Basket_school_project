@@ -61,7 +61,8 @@ class UserController extends Controller
     public function profile($id)
     {
         $data_user = Users::find($id);
-        return view('home/u_profile',compact('data_user'));
+        $second_cate = DB::table('se_categories')->get();
+        return view('home/u_profile',compact('data_user','second_cate'));
     }
 
     public function logout()
