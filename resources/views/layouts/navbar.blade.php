@@ -65,22 +65,24 @@
             </div>
         </div>
     </nav>
-    <div class="bg-light">
-        <div class="container pl-0 pr-0 pt-2 pb-2">
-            <nav class="nav">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    Departments
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    @foreach ($second_cate as $item)
-                        <a class="dropdown-item" href="#">{{ $item->name }}</a>
-                    @endforeach
-                </div>
-                <a class="nav-link active" href="#">Brands</a>
-                <a class="nav-link" href="#">Main Category</a>
-                <a class="nav-link" href="#">Sub Category</a>
-            </nav>
+    <div class="navbar-menu">
+        <div class="bg-light">
+            <div class="container pl-0 pr-0 pt-2 pb-2">
+                <nav class="nav">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Departments
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        @foreach ($second_cate as $item)
+                            <a class="dropdown-item" href="#">{{ $item->name }}</a>
+                        @endforeach
+                    </div>
+                    <a class="nav-link active" href="#">Brands</a>
+                    <a class="nav-link" href="#">Main Category</a>
+                    <a class="nav-link" href="#">Sub Category</a>
+                </nav>
+            </div>
         </div>
     </div>
 </div>

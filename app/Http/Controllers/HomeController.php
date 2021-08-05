@@ -29,15 +29,25 @@ class HomeController extends Controller
         $second_cate = DB::table('se_categories')->get();
         $cate = DB::table('categories')->limit(4)->get();
         $brand = DB::table('brands')->get();
+        $recently_product = DB::table('products')
+            ->join('sellers', 'products.seller_id', '=', 'sellers.id')
+            ->select('products.*', 'sellers.store_name')
+            ->where('completed', 1)
+            ->orderByDesc('created_at')
+            ->limit(4)
+            ->get();
         $data_pro = DB::table('products')
             ->join('sellers', 'products.seller_id', '=', 'sellers.id')
             ->select('products.*', 'sellers.store_name')
-            ->where('completed', 1)->inRandomOrder()->get();
+            ->where('completed', 1)
+            ->inRandomOrder()
+            ->limit(16)
+            ->get();
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
-            return view('home/index', compact('data_user', 'data_pro', 'cate', 'brand', 'second_cate', 'count'));
+            return view('home/index', compact('data_user', 'data_pro', 'cate', 'brand', 'second_cate', 'count', 'recently_product'));
         } else {
-            return view('home/index', compact('data_pro', 'cate', 'brand', 'second_cate', 'count'));
+            return view('home/index', compact('data_pro', 'cate', 'brand', 'second_cate', 'count', 'recently_product'));
         }
     }
 
@@ -75,6 +85,7 @@ class HomeController extends Controller
 
     public function detail($id)
     {
+        $second_cate = DB::table('se_categories')->get();
         $detail_pro = products::join('brands', 'products.brand_id', '=', 'brands.id')
             ->join('se_categories', 'products.s_cat_id', '=', 'se_categories.id')
             ->join('categories', 'products.category_id', '=', 'categories.id')
@@ -83,9 +94,9 @@ class HomeController extends Controller
             ->get();
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
-            return view('home/detailPage', compact('data_user', 'detail_pro'));
+            return view('home/detailPage', compact('data_user', 'detail_pro', 'second_cate'));
         } else {
-            return view('home/detailPage', compact('detail_pro'));
+            return view('home/detailPage', compact('detail_pro', 'second_cate'));
         }
     }
 
