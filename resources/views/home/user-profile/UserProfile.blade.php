@@ -4,10 +4,14 @@
 
     @include('/home/components/navbar_user')
     <div class="container">
-        <form action="">
+        <form action="{{ route('update-profile', $data_user->id) }}" method="POST">
+            @csrf
             <div class="form-group mb-4 mt-4">
-                <p>Name</p>
-                <input type="text" placeholder="{{ $data_user->username }}">
+                <div class="form-group">
+                    <strong>Name</strong>
+                    <input type="text" name="username" value="{{ $data_user->username }}" class="form-control">
+                    {!! $errors->first('username', "<span class='text-danger'>username field is required.</span>") !!}
+                </div>
             </div>
             <div class="form-group">
                 <p>Gender</p>

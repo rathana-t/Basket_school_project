@@ -33,18 +33,18 @@ Route::get('/store', [HomeController::class, 'store']);
 Route::post('/signin', [UserController::class, 'signin'])->name("signin");
 Route::post('/register', [UserController::class, 'register'])->name("register");
 Route::get('/profile/{id}', [UserController::class, 'profile'])->name('display-profile')->middleware('checker');
+// Route::get('/edit/{id}', [UserController::class, 'edit_profile'])->name('edit-profile');
+Route::post('/update/{id}', [UserController::class, 'update_profile'])->name('update-profile');
 Route::get('/logout', [UserController::class, 'logout'])->middleware('checker');
 
 //=============Seller===================
 
 Route::post('/add-to-cart', [CartController::class, 'add_to_cart'])->name('add_to_cart');
-
 Route::get('/sellerLogInPage', [SellerController::class, 'login_page']);
 Route::get('/sellerRegisterPage', [SellerController::class, 'register_page']);
 Route::post('/sellerLogIn', [SellerController::class, 'login']);
 Route::post('/sellerRegister', [SellerController::class, 'register']);
 Route::get('/logout_seller', [SellerController::class, 'logout'])->middleware('checker_seller');
-
 Route::get('/forseller', [SellerController::class, 'forseller']);
 
 Route::get('/seller/dashboard', [SellerController::class, 'dashboard'])->middleware('checker_seller');

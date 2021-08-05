@@ -64,6 +64,16 @@ class UserController extends Controller
         $second_cate = DB::table('se_categories')->get();
         return view('home/user-profile/userProfile',compact('data_user','second_cate'));
     }
+    public function update_profile(Request $request, $id){
+        $update = Users::find($id);
+        $this->validate($request,[
+                'username' => 'required',
+            ]);
+            $update->username = $request->username;
+            $update->update();
+            return view('home/user-profile/index')->with('success','updated successfully');
+    }
+    
     public function logout()
     {
     Session::forget('user');
