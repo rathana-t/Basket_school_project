@@ -454,10 +454,48 @@ span.value.upper::before {
     object-fit: contain;
     border-radius: 5px;
 }
+
+.fixed .con-color{
+    background-color: rgb(219, 219, 219);
+}
+
+.build a {
+    color: #000000 !important;
+}
+
+.build .nav-link{
+    margin-left: 20px;
+}
 .wish-list .img-modify {
     width: 140px;
 }
 
 .wish-list td {
     vertical-align: middle;
+}
+.modify .card {
+    border: none;
+}
+
+.modify .small-txt {
+    font-size: 11px;
+    font-weight: normal;
+}
+
+.modify .big-txt {
+    font-family: 'Poppins';
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.modify .orange-txt {
+    font-family: 'poppins';
+    color: orange;
+    font-size: 17px;
+    font-weight: bold 100px;
+}
+
+.modify img {
+    object-fit: cover;
+    border-radius: 5px;
 }
