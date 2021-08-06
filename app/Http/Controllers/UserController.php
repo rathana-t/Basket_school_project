@@ -89,7 +89,6 @@ class UserController extends Controller
         $second_cate = DB::table('se_categories')->get();
         return view('home/user-profile/wishList',compact('data_user','second_cate'));
     }
-
     public function logout()
     {
     Session::forget('user');

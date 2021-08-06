@@ -72,7 +72,7 @@ class HomeController extends Controller
 
             $data_pro = carts::join('products', 'products.id', '=', 'carts.product_id')
                 ->where('carts.user_id', '=', $data_user->id)
-                ->select('products.*', 'carts.total', 'carts.quantity')->get();
+                ->select('products.*', 'carts.id as cart_id','carts.total', 'carts.quantity')->get();
             $counter = 0;
             $total_price_all_quantity = 0;
             foreach ($data_pro as $item) {

@@ -43,4 +43,18 @@ class CartController extends Controller
     $newcart->save();
     return redirect()->back();
     }
+    public function remove_cart(Request $req){
+        $cart_id = $req->input('remove_cart_id');
+        $cart = carts::find($cart_id);
+        $cart->delete();
+        return redirect()->back();
+    }
+    public function edit_cart_quantity(Request $req)
+    {
+        $cart_id = $req->input('edit_cart_id');
+        $cart = carts::find($cart_id);
+        $cart->quantity= $req->input('edit_cart_value');
+        $cart->update();
+        return redirect()->back();
+    }
 }

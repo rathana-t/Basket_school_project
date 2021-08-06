@@ -26,7 +26,6 @@ Route::get('/category/{id}', [HomeController::class, 'categoryItem']);
 Route::get('/all-category', [HomeController::class, 'allCategory']);
 Route::get('/smallcate/{id}', [HomeController::class, 'smallcate']);
 Route::get('/brand/{id}', [HomeController::class, 'brand']);
-
 Route::get('/store', [HomeController::class, 'store']);
 
 
@@ -38,6 +37,8 @@ Route::post('/update/{id}', [UserController::class, 'update_profile'])->name('up
 Route::get('/history-order/{id}', [UserController::class, 'history_order'])->name('order-history');
 Route::get('/wishlist/{id}', [UserController::class, 'wish_list'])->name('list-wish');
 Route::get('/logout', [UserController::class, 'logout'])->middleware('checker');
+Route::delete('remove-cart', [CartController::class, 'remove_cart']);
+Route::post('edit-quantity-cart', [CartController::class, 'edit_cart_quantity']);
 
 //=============Seller===================
 

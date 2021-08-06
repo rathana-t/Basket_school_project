@@ -1,135 +1,125 @@
-<p>Price Range</p>
-<section class="range-slider">
-    <span class="rangeValues"></span>
-    <input value="500" min="500" max="50000" step="500" type="range">
-    <input value="50000" min="500" max="50000" step="500" type="range">
-</section>
+<!DOCTYPE html>
+<html>
 
-<style>
-    @mixin range-slider($width, $height, $input-top, $input-bg-color, $input-thumb-color, $float:none, $input-height:20px, $input-border-radius:14px) {
-        position: relative;
-        width: $width;
-        height: $height;
-        float: $float;
-        text-align: center;
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-        input[type="range"] {
-            pointer-events: none;
-            position: absolute;
-            -webkit-appearance: none;
-            -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Button used to open the contact form - fixed at the bottom of the page */
+        .open-button {
+            background-color: #555;
+            color: white;
+            padding: 16px 20px;
             border: none;
-            border-radius: $input-border-radius;
-            background: $input-bg-color;
-            box-shadow: inset 0 1px 0 0 darken($input-bg-color, 15%), inset 0 -1px 0 0 darken($input-bg-color, 10%);
-            -webkit-box-shadow: inset 0 1px 0 0 darken($input-bg-color, 15%), inset 0 -1px 0 0 darken($input-bg-color, 10%);
-            overflow: hidden;
-            left: 0;
-            top: $input-top;
-            width: $width;
+            cursor: pointer;
+            opacity: 0.8;
+            position: fixed;
+            bottom: 23px;
+            right: 28px;
+            width: 280px;
+        }
+
+        /* The popup form - hidden by default */
+        .form-popup {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            right: 15px;
+            border: 3px solid #f1f1f1;
+            z-index: 9;
+        }
+
+        /* Add styles to the form container */
+        .form-container {
+            max-width: 300px;
+            padding: 10px;
+            background-color: white;
+        }
+
+        /* Full-width input fields */
+        .form-container input[type=text],
+        .form-container input[type=password] {
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0 22px 0;
+            border: none;
+            background: #f1f1f1;
+        }
+
+        /* When the inputs get focus, do something */
+        .form-container input[type=text]:focus,
+        .form-container input[type=password]:focus {
+            background-color: #ddd;
             outline: none;
-            height: $input-height;
-            margin: 0;
-            padding: 0;
         }
 
-        input[type="range"]::-webkit-slider-thumb {
-            pointer-events: all;
-            position: relative;
-            z-index: 1;
-            outline: 0;
-            -webkit-appearance: none;
-            width: $input-height;
-            height: $input-height;
+        /* Set a style for the submit/login button */
+        .form-container .btn {
+            background-color: #04AA6D;
+            color: white;
+            padding: 16px 20px;
             border: none;
-            border-radius: $input-border-radius;
-            background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, lighten($input-thumb-color, 60%)), color-stop(100%, $input-thumb-color));
-            /* android <= 2.2 */
-            background-image: -webkit-linear-gradient(top, lighten($input-thumb-color, 60%) 0, $input-thumb-color 100%);
-            /* older mobile safari and android > 2.2 */
-            ;
-            background-image: linear-gradient(to bottom, lighten($input-thumb-color, 60%) 0, $input-thumb-color 100%);
-            /* W3C */
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 10px;
+            opacity: 0.8;
         }
 
-        input[type="range"]::-moz-range-thumb {
-            pointer-events: all;
-            position: relative;
-            z-index: 10;
-            -moz-appearance: none;
-            width: $input-height;
-            height: $input-height;
-            border: none;
-            border-radius: $input-border-radius;
-            background-image: linear-gradient(to bottom, lighten($input-thumb-color, 60%) 0, $input-thumb-color 100%);
-            /* W3C */
+        /* Add a red background color to the cancel button */
+        .form-container .cancel {
+            background-color: red;
         }
 
-        input[type="range"]::-ms-thumb {
-            pointer-events: all;
-            position: relative;
-            z-index: 10;
-            -ms-appearance: none;
-            width: $input-height;
-            height: $input-height;
-            border-radius: $input-border-radius;
-            border: 0;
-            background-image: linear-gradient(to bottom, lighten($input-thumb-color, 60%) 0, $input-thumb-color 100%);
-            /* W3C */
+        /* Add some hover effects to buttons */
+        .form-container .btn:hover,
+        .open-button:hover {
+            opacity: 1;
         }
 
-        input[type=range]::-moz-range-track {
-            position: relative;
-            z-index: -1;
-            background-color: rgba(0, 0, 0, 1);
-            border: 0;
+    </style>
+</head>
+
+<body>
+
+    <h2>Popup Form</h2>
+    <p>Click on the button at the bottom of this page to open the login form.</p>
+    <p>Note that the button and the form is fixed - they will always be positioned to the bottom of the browser window.
+    </p>
+
+    <button class="open-button" onclick="openForm()">Open Form</button>
+
+    <div class="form-popup" id="myForm">
+        <form action="/action_page.php" class="form-container">
+            <h1>Login</h1>
+
+            <label for="email"><b>Email</b></label>
+            <input type="text" placeholder="Enter Email" name="email" required>
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" required>
+
+            <button type="submit" class="btn">Login</button>
+            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+        </form>
+    </div>
+
+    <script>
+        function openForm() {
+            document.getElementById("myForm").style.display = "block";
         }
 
-        input[type=range]:last-of-type::-moz-range-track {
-            -moz-appearance: none;
-            background: none transparent;
-            border: 0;
+        function closeForm() {
+            document.getElementById("myForm").style.display = "none";
         }
+    </script>
 
-        input[type=range]::-moz-focus-outer {
-            border: 0;
-        }
-    }
+</body>
 
-</style>
-section.range-slider {
-@include range-slider(300px, 300px, 50px #F1EFEF, #413F41, left);
-}
-<script>
-    function getVals() {
-        // Get slider values
-        var parent = this.parentNode;
-        var slides = parent.getElementsByTagName("input");
-        var slide1 = parseFloat(slides[0].value);
-        var slide2 = parseFloat(slides[1].value);
-        // Neither slider will clip the other, so make sure we determine which is larger
-        if (slide1 > slide2) {
-            var tmp = slide2;
-            slide2 = slide1;
-            slide1 = tmp;
-        }
-
-        var displayElement = parent.getElementsByClassName("rangeValues")[0];
-        displayElement.innerHTML = "$ " + slide1 + "k - $" + slide2 + "k";
-    }
-
-    window.onload = function() {
-        // Initialize Sliders
-        var sliderSections = document.getElementsByClassName("range-slider");
-        for (var x = 0; x < sliderSections.length; x++) {
-            var sliders = sliderSections[x].getElementsByTagName("input");
-            for (var y = 0; y < sliders.length; y++) {
-                if (sliders[y].type === "range") {
-                    sliders[y].oninput = getVals;
-                    // Manually trigger event first time to display values
-                    sliders[y].oninput();
-                }
-            }
-        }
-    }
-</script>
+</html>
