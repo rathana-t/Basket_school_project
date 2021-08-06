@@ -8,7 +8,7 @@
             </h1>
             <div class="row justify-content-center">
                 <div class="col-md-6">
-                    
+
                     <form action="{{ url('sellerRegister') }}" method="POST">
                         @csrf
                         <div class="card shadow-sm">

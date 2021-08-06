@@ -64,6 +64,8 @@ class HomeController extends Controller
     }
     public function cart()
     {
+        $second_cate = DB::table('se_categories')->get();
+
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
             $uid = $data_user->id;
@@ -77,7 +79,7 @@ class HomeController extends Controller
                 $total_price_all_quantity = $total_price_all_quantity + $item->total;
                 $counter++;
             }
-            return view('home/cart', compact('data_user', 'data_pro', 'counter', 'total_price_all_quantity'));
+            return view('home/cart', compact('data_user','second_cate', 'data_pro', 'counter', 'total_price_all_quantity'));
         } else {
             return view('home/login');
         }
