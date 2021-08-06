@@ -35,6 +35,8 @@ Route::post('/register', [UserController::class, 'register'])->name("register");
 Route::get('/profile/{id}', [UserController::class, 'profile'])->name('display-profile')->middleware('checker');
 // Route::get('/edit/{id}', [UserController::class, 'edit_profile'])->name('edit-profile');
 Route::post('/update/{id}', [UserController::class, 'update_profile'])->name('update-profile');
+Route::get('/history-order/{id}', [UserController::class, 'history_order'])->name('order-history');
+Route::get('/wishlist/{id}', [UserController::class, 'wish_list'])->name('list-wish');
 Route::get('/logout', [UserController::class, 'logout'])->middleware('checker');
 
 //=============Seller===================
