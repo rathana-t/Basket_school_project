@@ -66,14 +66,29 @@ class UserController extends Controller
     }
     public function update_profile(Request $request, $id){
         $update = Users::find($id);
+        $second_cate = DB::table('se_categories')->get();
         $this->validate($request,[
                 'username' => 'required',
             ]);
             $update->username = $request->username;
             $update->update();
-            return view('home/user-profile/index')->with('success','updated successfully');
+            if (session()->has('user')) {
+                $data_user = Users::findOrFail(session('user'));
+                return view('home/user-profile/index', compact('data_user','second_cate'));
+            } else {
+                return view('home/user-profile/index')->with('success','updated successfully');
+            }
     }
-    
+    public function history_order($id){
+        $data_user = Users::find($id);
+        $second_cate = DB::table('se_categories')->get();
+        return view('home/user-profile/orderHistory',compact('data_user','second_cate'));
+    }
+    public function wish_list($id){
+        $data_user = Users::find($id);
+        $second_cate = DB::table('se_categories')->get();
+        return view('home/user-profile/wishList',compact('data_user','second_cate'));
+    }
     public function logout()
     {
     Session::forget('user');

@@ -38,7 +38,7 @@
                 <div class="navbar-menu">
                     <div class="container pl-0 pr-0 pt-2 pb-2">
                         <nav class="nav">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{ route('display-profile', $data_user->id) }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                                     class="bi bi-person-fill" viewBox="0 0 16 16">
                                     <path
@@ -46,7 +46,7 @@
                                 </svg>
                                 <p>Profile</p>
                             </a>
-                            <a class="nav-link" href="">
+                            <a class="nav-link" href="{{ route('order-history', $data_user->id) }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                                     class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd"
@@ -56,7 +56,7 @@
                                 </svg>
                                 <p>Order</p>
                             </a>
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                                     class="bi bi-currency-dollar" viewBox="0 0 16 16">
                                     <path
@@ -64,7 +64,7 @@
                                 </svg>
                                 <p>Payment</p>
                             </a>
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{ route('list-wish', $data_user->id) }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                                     class="bi bi-heart" viewBox="0 0 16 16">
                                     <path

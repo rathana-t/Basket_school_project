@@ -3,5 +3,5 @@
 @section('content')
 
     @include('/home/components/navbar_user')
-    <h1>Hello</h1>
+    <h4 class="text-warning mt-2">Welcome back {{ $data_user->username }}</h4>
 @endsection
