@@ -9,7 +9,7 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
-                    <form class="input-group">
+                    <form class="input-group" action="{{ url('/search') }}">
                         <input type="text" class="form-control"
                             aria-label="Dollar amount (with dot and two decimal places)" placeholder="Search....">
                         <div class="input-group-append">

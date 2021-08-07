@@ -78,7 +78,7 @@
                                 <div class="col-md-7 ">
                                     <div> <a>{{ $item->name }}</a> </div>
                                     <div class="text-muted"> <a>Price: {{ $item->price }} &nbsp;$</a> </div>
-                                    <a>
+                                    <a href="{{ url('/product', $item->id) }}">
                                         <button type="button" class="btn btn-info mt-3">View detail</button>
                                     </a>
                                 </div>

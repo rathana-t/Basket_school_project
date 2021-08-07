@@ -198,7 +198,7 @@ class SellerController extends Controller
     {
         $req->validate([
             'imageFile' => 'required',
-            'imageFile.*' => 'mimes:jpeg,jpg,png,gif,csv,txt,pdf|max:2048'
+            'imageFile.*' => 'mimes:jpeg,webp.jpg,png,gif,csv,txt,pdf|max:2048'
           ]);
 
         if ($req->hasfile('imageFile')) {

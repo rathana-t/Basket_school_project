@@ -1,7 +1,7 @@
 @extends('admin\admin')
 
 @section('sidebar-content')
-    @include('/admin/components/msg')
+    {{-- @include('/admin/components/msg') --}}
     <div class="text-center">
         <h1>
             This is product request page
