@@ -475,7 +475,13 @@ span.value.upper::before {
 .build .nav-link {
     margin-left: 20px;
 }
+<<<<<<< HEAD
+.build .nav-link .change{
+    margin-left: -15px;
+}
+=======
 
+>>>>>>> 7157e96cc466b43a4f687d745142fe817bb236c7
 .wish-list .img-modify {
     width: 140px;
 }
