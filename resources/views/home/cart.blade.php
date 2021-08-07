@@ -156,7 +156,7 @@
                         @endif
                     @endforeach --}}
                     <input style="width: 150px" type="number" min="1" class="text-center" placeholder="New quantity"
-                        name="edit_cart_value" id="">
+                        name="edit_cart_value" id="" required>
                     <input type="hidden" name="edit_cart_id" id="edit_cart_id">
 
                     <div class="modal-footer">

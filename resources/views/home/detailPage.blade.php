@@ -52,6 +52,8 @@
                                     <span><strong>Store</strong></span>
                                     <span class="pl-4">Phnom Penh</span>
                                 </p>
+                                @include('/admin/components/msg')
+
                                 <p class="store_name">
                                     <span><strong>Brand</strong></span>
                                     <span class="pl-4"> {{ $detail->brand_name }} </span>
@@ -65,8 +67,8 @@
                                             <input type="hidden" value="{{ $data_user->id }}" name="user_id">
                                             <input type="hidden" value="{{ $detail->id }}" name="product_id">
                                             <input type="hidden" value="{{ $detail->price }}" name="total">
-                                            <input type="number" class="form-group col-md-2" id="quantity" required
-                                                name="quantity" min="1" max="100">
+                                            <input type="number" class="form-group col-md-2" id="quantity" placeholder="Qty"
+                                                required name="quantity" min="1" max="100">
                                             <button type="submit" class="btn btn-primary">
                                                 Add to cart
                                             </button>
