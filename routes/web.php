@@ -37,6 +37,8 @@ Route::get('/profile/{id}', [UserController::class, 'profile'])->name('display-p
 Route::post('/update/{id}', [UserController::class, 'update_profile'])->name('update-profile');
 Route::get('/history-order/{id}', [UserController::class, 'history_order'])->name('order-history');
 Route::get('/wishlist/{id}', [UserController::class, 'wish_list'])->name('list-wish');
+Route::get('/changepassword/{id}', [UserController::class, 'ch_password'])->name('change-password');
+Route::post('/confirmChange/{id}', [UserController::class, 'confirm_ch'])->name('confirm-change');
 Route::get('/logout', [UserController::class, 'logout'])->middleware('checker');
 
 //=============Seller===================

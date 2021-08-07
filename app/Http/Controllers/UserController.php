@@ -89,6 +89,37 @@ class UserController extends Controller
         $second_cate = DB::table('se_categories')->get();
         return view('home/user-profile/wishList',compact('data_user','second_cate'));
     }
+    public function ch_password($id){
+        $data_user = Users::find($id);
+        $second_cate = DB::table('se_categories')->get();
+
+        return view('home/user-profile/changePassword',compact('data_user','second_cate'));
+    }
+    public function confirm_ch($id){
+        $user = Users::find($id);
+        $second_cate = DB::table('se_categories')->get();
+        $data = request()->validate([
+                'oldpassword' => 'required',
+                'newpassword' => 'required',
+                'confirmpassword' => 'required',
+            ]);
+        if ($user) {
+        $validPassword = Hash::check($data['oldpassword'], $user->password);
+        if ($validPassword) {
+
+            if($data['newpassword']==$data['confirmpassword']){
+
+                $data['newpassword'] = Hash::make($data['newpassword']);
+                unset($data['confirmpassword']);
+                $pass = $data['newpassword'];
+                $user->password = $data['newpassword'];
+                $user->update();
+            }
+        }
+        return redirect()->back()->with('success','Successfully Change');
+    }
+}
+
     public function logout()
     {
     Session::forget('user');

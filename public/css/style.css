@@ -466,6 +466,9 @@ span.value.upper::before {
 .build .nav-link{
     margin-left: 20px;
 }
+.build .nav-link .change{
+    margin-left: -15px;
+}
 .wish-list .img-modify {
     width: 140px;
 }
