@@ -65,20 +65,28 @@ class HomeController extends Controller
     public function cart()
     {
         $second_cate = DB::table('se_categories')->get();
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4ffba4f44643070b94f1d4314d144bc886c29904
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
             $uid = $data_user->id;
 
             $data_pro = carts::join('products', 'products.id', '=', 'carts.product_id')
                 ->where('carts.user_id', '=', $data_user->id)
-                ->select('products.*', 'carts.total', 'carts.quantity')->get();
+                ->select('products.*', 'carts.id as cart_id','carts.total', 'carts.quantity')->get();
             $counter = 0;
             $total_price_all_quantity = 0;
             foreach ($data_pro as $item) {
                 $total_price_all_quantity = $total_price_all_quantity + $item->total;
                 $counter++;
             }
+<<<<<<< HEAD
             return view('home/cart', compact('data_user', 'data_pro', 'counter', 'total_price_all_quantity', 'second_cate'));
+=======
+            return view('home/cart', compact('data_user','second_cate', 'data_pro', 'counter', 'total_price_all_quantity'));
+>>>>>>> 4ffba4f44643070b94f1d4314d144bc886c29904
         } else {
             return view('home/login', 'second_cate');
         }
@@ -114,6 +122,8 @@ class HomeController extends Controller
 
     public function search(Request $req)
     {
+        $second_cate = DB::table('se_categories')->get();
+
         $brand = brands::all();
         $sort = "";
         $brand_id = "";
@@ -125,13 +135,15 @@ class HomeController extends Controller
         $callinput = $req->input('query');
         if (session()->has('user')) {
             $data_user = users::findOrFail(session('user'));
-            return view('home/search', compact('data', 'sort', 'max_price', 'min_price', 'pro_name', 'brand', 'data_user', 'brand_id', 'brandId'));
+            return view('home/search', compact('second_cate','data', 'sort', 'max_price', 'min_price', 'pro_name', 'brand', 'data_user', 'brand_id', 'brandId'));
         }
-        return view('home/search', compact('data', 'sort', 'max_price', 'min_price', 'pro_name', 'brand', 'brand_id', 'brandId'));
+        return view('home/search', compact('second_cate','data', 'sort', 'max_price', 'min_price', 'pro_name', 'brand', 'brand_id', 'brandId'));
     }
 
     public function search_filter(Request $req)
     {
+        $second_cate = DB::table('se_categories')->get();
+
         $brand = brands::all();
 
         $sort = $req->sort;
@@ -197,9 +209,9 @@ class HomeController extends Controller
 
         if (session()->has('user')) {
             $data_user = users::findOrFail(session('user'));
-            return view('home/search', compact('data', 'pro_name', 'sort', 'brand', 'data_user', 'brand_id', 'brandId', 'max_price', 'min_price'));
+            return view('home/search', compact('second_cate','data', 'pro_name', 'sort', 'brand', 'data_user', 'brand_id', 'brandId', 'max_price', 'min_price'));
         }
-        return view('home/search', compact('data', 'pro_name', 'sort', 'brand', 'brandId', 'max_price', 'brand_id', 'min_price'));
+        return view('home/search', compact('second_cate','data', 'pro_name', 'sort', 'brand', 'brandId', 'max_price', 'brand_id', 'min_price'));
     }
     public function order()
     {
@@ -252,13 +264,21 @@ class HomeController extends Controller
         $cate_name = categories::find($id);
         $products = DB::table('products')
             ->join('categories', 'products.category_id', '=', 'categories.id')
+            ->join('se_categories','se_categories.id' ,'=', 'products.s_cat_id')
             ->where('categories.id', $id)
-            ->select('products.*', 'categories.name as cateName')
+            ->select('products.*', 'categories.name as cateName','se_categories.name as se_cate')
             ->get();
+<<<<<<< HEAD
         if (session()->has('user')) {
             $data_user = users::findOrFail(session('user'));
             return view('/home/categoryItem', compact('data_user', 'products', 'cate_name', 'second_cate', 'second_cateItem'));
         }
         return view('/home/categoryItem', compact('products', 'cate_name', 'second_cate', 'second_cateItem'));
+=======
+            if (session()->has('user')) {
+                $data_user = users::findOrFail(session('user'));
+            }
+        return view('/home/categoryItem', compact('data_user','products', 'cate_name', 'second_cate'));
+>>>>>>> 4ffba4f44643070b94f1d4314d144bc886c29904
     }
 }

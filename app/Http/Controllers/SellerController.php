@@ -68,7 +68,7 @@ class SellerController extends Controller
         $data = request()->validate([
             'store_name' => 'required',
             'email' => 'required|email|max:70|unique:sellers,email',
-            'phone' => 'required|unique:sellers,phone',
+            'phone' => 'required|min:9|unique:sellers,phone',
             'address' => 'required',
             'password' => 'required|min:8',
             'con_password' => 'required|min:8|same:password',
@@ -198,7 +198,7 @@ class SellerController extends Controller
     {
         $req->validate([
             'imageFile' => 'required',
-            'imageFile.*' => 'mimes:jpeg,jpg,png,gif,csv,txt,pdf|max:2048'
+            'imageFile.*' => 'mimes:jpeg,webp.jpg,png,gif,csv,txt,pdf|max:2048'
           ]);
 
         if ($req->hasfile('imageFile')) {

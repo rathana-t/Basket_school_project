@@ -30,7 +30,7 @@ class CartController extends Controller
                 $cart->total=$cart->quantity * $request->total;
 
                 $cart->update();
-                return redirect()->back();
+                return redirect()->back()->with('add-to-cart-success','Added to cart');
         }
     }
     $newcart = new carts();
@@ -42,5 +42,26 @@ class CartController extends Controller
 
     $newcart->save();
     return redirect()->back();
+    }
+    public function remove_cart(Request $req){
+        $cart_id = $req->input('remove_cart_id');
+        $cart = carts::find($cart_id);
+        $cart->delete();
+        return redirect()->back();
+    }
+    public function edit_cart_quantity(Request $req)
+    {
+        $cart_id = $req->input('edit_cart_id');
+        $cart = carts::find($cart_id);
+        $data_pro = products::join('carts','carts.product_id','=','products.id')->where('carts.id', $cart_id)->get();
+        $price = 0;
+        foreach ($data_pro as $item) {
+           $price = $item->price;
+        }
+        // dd($price);
+        $cart->quantity= $req->input('edit_cart_value');
+        $cart->total = $price * $cart->quantity;
+        $cart->update();
+        return redirect()->back();
     }
 }

@@ -72,25 +72,31 @@
                 </div>
                 <div class="popular-item">
                     <div class="row">
-                        @for ($i = 0; $i < 4; $i++)
-                            <div class="col-md-3 col-sm-6 col-xs-12">
-                                <img src="http://progearcambodia.com/wp-content/uploads/2019/10/mx-master-3.png" alt=""
-                                    class="img-fluid">
-                                <div class="pl-3 pr-3 pb-3">
-                                    <div class="product_name">
-                                        <a href="">
-                                            Product name
-                                        </a>
-                                    </div>
-                                    <div class="store_name">
-                                        <a href="" class="text-muted">Store</a>
-                                    </div>
-                                    <div class="price">
-                                        <a href="">$200</a>
-                                    </div>
+                        @foreach ($data_pro as $pro)
+                            @if ($pro->s_cat_id == $item->id)
+                                <div class="col-md-3 col-sm-6 col-xs-12">
+                                    <a href="{{ route('detail', $pro->id) }}">
+
+                                        <?php foreach (json_decode($pro->img_product)as $picture) { ?>
+                                        <img src="/images/imgProduct/{{ $picture }}" alt="" class="img-fluid">
+                                        <?php break; } ?>
+                                        <div class="pl-3 pr-3 pb-3">
+                                            <div class="product_name">
+                                                <a>{{ $pro->name }}</a>
+                                            </div>
+                                            <div class="store_name">
+                                                <a href="" class="text-muted">Store</a>
+                                            </div>
+                                            <div class="price">
+                                                <a href="">$ {{ $pro->price }}</a>
+                                            </div>
+                                        </div>
+                                    </a>
                                 </div>
-                            </div>
-                        @endfor
+                            @endif
+
+                        @endforeach
+
                     </div>
                 </div>
             </div>

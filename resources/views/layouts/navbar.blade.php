@@ -9,7 +9,7 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
-                    <form class="input-group">
+                    <form class="input-group" action="{{ url('/search') }}">
                         <input type="text" class="form-control"
                             aria-label="Dollar amount (with dot and two decimal places)" placeholder="Search....">
                         <div class="input-group-append">
@@ -26,7 +26,7 @@
 
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item cs-pt">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="25" fill="currentColor"
                                 class="bi bi-heart" viewBox="0 0 16 16">
                                 <path
@@ -34,7 +34,11 @@
                             </svg>
                         </a>
                     </li>
+<<<<<<< HEAD
                     <a class="nav-link" href="/cart">
+=======
+                    <a class="nav-link" href="{{ url('/cart') }}">
+>>>>>>> 4ffba4f44643070b94f1d4314d144bc886c29904
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="25" fill="currentColor"
                             class="bi bi-bag-check" viewBox="0 0 16 16">
                             <path fill-rule="evenodd"
@@ -75,7 +79,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         @foreach ($second_cate as $item)
-                            <a class="dropdown-item" href="#">{{ $item->name }}</a>
+                            <a class="dropdown-item" href="">{{ $item->name }}</a>
                         @endforeach
                     </div>
                     <a class="nav-link active" href="#">Brands</a>

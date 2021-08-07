@@ -43,15 +43,17 @@
                                     </h4>
                                 </div>
                                 <p class="des">
-                                    {{-- {{ $detail->description }} --}}
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem eos minima, quod vel
+                                    {{ $detail->description }}
+                                    {{-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem eos minima, quod vel
                                     obcaecati libero corporis consectetur sed! Culpa dolores omnis tenetur eius, facilis
-                                    sint magnam est sed animi dicta.
+                                    sint magnam est sed animi dicta. --}}
                                 </p>
                                 <p class="store_name mb-3">
                                     <span><strong>Store</strong></span>
                                     <span class="pl-4">Phnom Penh</span>
                                 </p>
+                                @include('/admin/components/msg')
+
                                 <p class="store_name">
                                     <span><strong>Brand</strong></span>
                                     <span class="pl-4"> {{ $detail->brand_name }} </span>
@@ -65,8 +67,13 @@
                                             <input type="hidden" value="{{ $data_user->id }}" name="user_id">
                                             <input type="hidden" value="{{ $detail->id }}" name="product_id">
                                             <input type="hidden" value="{{ $detail->price }}" name="total">
+<<<<<<< HEAD
                                             <input type="number" class="form-group" id="quantity" required
                                                 name="quantity" min="1" max="100" style="width: 50px">
+=======
+                                            <input type="number" class="form-group col-md-2" id="quantity" placeholder="Qty"
+                                                required name="quantity" min="1" max="100">
+>>>>>>> 4ffba4f44643070b94f1d4314d144bc886c29904
                                             <button type="submit" class="btn btn-primary">
                                                 Add to cart
                                             </button>

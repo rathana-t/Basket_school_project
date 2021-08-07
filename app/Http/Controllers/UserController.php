@@ -62,8 +62,63 @@ class UserController extends Controller
     {
         $data_user = Users::find($id);
         $second_cate = DB::table('se_categories')->get();
-        return view('home/user-profile/u_profile',compact('data_user','second_cate'));
+        return view('home/user-profile/userProfile',compact('data_user','second_cate'));
     }
+    public function update_profile(Request $request, $id){
+        $update = Users::find($id);
+        $second_cate = DB::table('se_categories')->get();
+        $this->validate($request,[
+                'username' => 'required',
+            ]);
+            $update->username = $request->username;
+            $update->update();
+            if (session()->has('user')) {
+                $data_user = Users::findOrFail(session('user'));
+                return view('home/user-profile/index', compact('data_user','second_cate'));
+            } else {
+                return view('home/user-profile/index')->with('success','updated successfully');
+            }
+    }
+    public function history_order($id){
+        $data_user = Users::find($id);
+        $second_cate = DB::table('se_categories')->get();
+        return view('home/user-profile/orderHistory',compact('data_user','second_cate'));
+    }
+    public function wish_list($id){
+        $data_user = Users::find($id);
+        $second_cate = DB::table('se_categories')->get();
+        return view('home/user-profile/wishList',compact('data_user','second_cate'));
+    }
+    public function ch_password($id){
+        $data_user = Users::find($id);
+        $second_cate = DB::table('se_categories')->get();
+
+        return view('home/user-profile/changePassword',compact('data_user','second_cate'));
+    }
+    public function confirm_ch($id){
+        $user = Users::find($id);
+        $second_cate = DB::table('se_categories')->get();
+        $data = request()->validate([
+                'oldpassword' => 'required',
+                'newpassword' => 'required',
+                'confirmpassword' => 'required',
+            ]);
+        if ($user) {
+        $validPassword = Hash::check($data['oldpassword'], $user->password);
+        if ($validPassword) {
+
+            if($data['newpassword']==$data['confirmpassword']){
+
+                $data['newpassword'] = Hash::make($data['newpassword']);
+                unset($data['confirmpassword']);
+                $pass = $data['newpassword'];
+                $user->password = $data['newpassword'];
+                $user->update();
+            }
+        }
+        return redirect()->back()->with('success','Successfully Change');
+    }
+}
 
     public function logout()
     {

@@ -13,11 +13,11 @@ Route::get('/test', function () {
     return view('test');
 });
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/login', [HomeController::class, 'login']);
+Route::get('/login', [HomeController::class, 'login'])->name('login');
 Route::get('/reg', [HomeController::class, 'reg']);
 Route::get('/product/{id}', [HomeController::class, 'detail'])->name('detail');
 Route::get('/blog', [HomeController::class, 'blog']);
-Route::get('/cart', [HomeController::class, 'cart']);
+Route::get('/cart', [HomeController::class, 'cart'])->name('route_cart')->middleware('checker');
 Route::post('/search-filter', [HomeController::class, 'search_filter'])->name('search-filter');
 Route::get('/search', [HomeController::class, 'search']);
 Route::get('/order', [HomeController::class, 'order']);
@@ -26,25 +26,30 @@ Route::get('/category/{id}', [HomeController::class, 'categoryItem']);
 Route::get('/all-category', [HomeController::class, 'allCategory']);
 Route::get('/smallcate/{id}', [HomeController::class, 'smallcate']);
 Route::get('/brand/{id}', [HomeController::class, 'brand']);
-
 Route::get('/store', [HomeController::class, 'store']);
 
 
 Route::post('/signin', [UserController::class, 'signin'])->name("signin");
 Route::post('/register', [UserController::class, 'register'])->name("register");
 Route::get('/profile/{id}', [UserController::class, 'profile'])->name('display-profile')->middleware('checker');
+// Route::get('/edit/{id}', [UserController::class, 'edit_profile'])->name('edit-profile');
+Route::post('/update/{id}', [UserController::class, 'update_profile'])->name('update-profile');
+Route::get('/history-order/{id}', [UserController::class, 'history_order'])->name('order-history');
+Route::get('/wishlist/{id}', [UserController::class, 'wish_list'])->name('list-wish');
+Route::get('/changepassword/{id}', [UserController::class, 'ch_password'])->name('change-password');
+Route::post('/confirmChange/{id}', [UserController::class, 'confirm_ch'])->name('confirm-change');
 Route::get('/logout', [UserController::class, 'logout'])->middleware('checker');
+Route::delete('remove-cart', [CartController::class, 'remove_cart']);
+Route::post('edit-quantity-cart', [CartController::class, 'edit_cart_quantity']);
 
 //=============Seller===================
 
 Route::post('/add-to-cart', [CartController::class, 'add_to_cart'])->name('add_to_cart');
-
 Route::get('/sellerLogInPage', [SellerController::class, 'login_page']);
 Route::get('/sellerRegisterPage', [SellerController::class, 'register_page']);
 Route::post('/sellerLogIn', [SellerController::class, 'login']);
 Route::post('/sellerRegister', [SellerController::class, 'register']);
 Route::get('/logout_seller', [SellerController::class, 'logout'])->middleware('checker_seller');
-
 Route::get('/forseller', [SellerController::class, 'forseller']);
 
 Route::get('/seller/dashboard', [SellerController::class, 'dashboard'])->middleware('checker_seller');

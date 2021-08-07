@@ -1,13 +1,17 @@
 @extends('application')
 
 @section('content')
+
+    @include('/admin/components/modal')
+
+
     <div class="container mt-4">
         <h6>Your Shopping Cart and product</h6>
         <div class="row">
             <div class="col-md-8 ">
                 <div class="d-flex ml-5">
-                    <div class="font-weight-light m-1">Product</div>
-                    <div class="p-2 des-margin">Description</div>
+                    <div class="p-2 des-margin">Product</div>
+                    <div class="ml-auto p-2">Description</div>
                     <div class="ml-auto p-2">Qty</div>
                     <div class="ml-auto p-2">Total price</div>
                 </div>
@@ -31,14 +35,18 @@
                                         class="mb-1">
                                     <?php break; } ?>
                                 </div>
-                                <div class="p-2 des-margin">{{ $item->description }}</div>
-
-                                <div class="ml-auto p-">{{ $item->quantity }}</div>
+                                <div class="wrapperrr">
+                                    <div class="p-2 des-margin textoverflow">{{ $item->description }}</div>
+                                </div>
+                                <div class="ml-auto p-2">{{ $item->quantity }}
+                                    <button type="button" value="{{ $item->cart_id }}" class="edit_cart">edit</button>
+                                </div>
                                 <div class="ml-auto p-2">$ {{ $item->total }}</div>
                             </div>
                             <p class="font-weight-light m-1">$ {{ $item->price }}</p>
                             <div class="delete m-1">
-                                <a href="#" class="text-primary">Delete</a>
+                                <button type="button" value="{{ $item->cart_id }}"
+                                    class="remove_cart text-primary">Remove</button>
                                 <a href="#" class="text-primary"><img src="/images/line.png"> Save for later</a>
                             </div>
                         </div>
@@ -56,7 +64,8 @@
                 </div>
                 {{-- <p class="font-weight-light cart-text">The price and availability of items at PLP.com are subject to
                     change. The Cart is a temporary place to store a list of your items and reflects each item's most recent
-                    price.</p> --}}
+                    price.
+                    </p> --}}
             </div>
 
             <div class="col-md-4 custom">
@@ -125,6 +134,58 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="edit_cart_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ url('edit-quantity-cart') }}" method="POST" class="text-center">
+                    @csrf
+                    <div class="modal-body text-center">
+                        Edit quantity of product
+                    </div>
+                    {{-- @foreach ($data_pro as $item)
+                        @if ($item->cart_id == 1)
+                            <input style="width: 100px" type="number" min="1" class="text-center"
+                                value="{{ $item->quantity }}" name="edit_cart_value" id="">
+                        @endif
+                    @endforeach --}}
+                    <input style="width: 150px" type="number" min="1" class="text-center" placeholder="New quantity"
+                        name="edit_cart_value" id="" required>
+                    <input type="hidden" name="edit_cart_id" id="edit_cart_id">
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Ok</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
     <script>
+        $(document).ready(function() {
+            $(document).on('click', '.remove_cart', function() {
+                var cart_id = $(this).val();
+                // alert(cart_id);
+                $('#remove_cart_modal').modal('show');
+                $('#remove_cart_id').val(cart_id);
+            })
+        });
+        $(document).ready(function() {
+            $(document).on('click', '.edit_cart', function() {
+                var cart_id = $(this).val();
+                // alert(cart_id);
+                $('#edit_cart_modal').modal('show');
+                $('#edit_cart_id').val(cart_id);
+            })
+        });
     </script>
 @stop
