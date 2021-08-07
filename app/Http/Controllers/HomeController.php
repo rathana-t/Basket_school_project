@@ -65,10 +65,6 @@ class HomeController extends Controller
     public function cart()
     {
         $second_cate = DB::table('se_categories')->get();
-<<<<<<< HEAD
-=======
-
->>>>>>> 4ffba4f44643070b94f1d4314d144bc886c29904
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
             $uid = $data_user->id;
@@ -82,11 +78,7 @@ class HomeController extends Controller
                 $total_price_all_quantity = $total_price_all_quantity + $item->total;
                 $counter++;
             }
-<<<<<<< HEAD
-            return view('home/cart', compact('data_user', 'data_pro', 'counter', 'total_price_all_quantity', 'second_cate'));
-=======
             return view('home/cart', compact('data_user','second_cate', 'data_pro', 'counter', 'total_price_all_quantity'));
->>>>>>> 4ffba4f44643070b94f1d4314d144bc886c29904
         } else {
             return view('home/login', 'second_cate');
         }
@@ -268,17 +260,9 @@ class HomeController extends Controller
             ->where('categories.id', $id)
             ->select('products.*', 'categories.name as cateName','se_categories.name as se_cate')
             ->get();
-<<<<<<< HEAD
-        if (session()->has('user')) {
-            $data_user = users::findOrFail(session('user'));
-            return view('/home/categoryItem', compact('data_user', 'products', 'cate_name', 'second_cate', 'second_cateItem'));
-        }
-        return view('/home/categoryItem', compact('products', 'cate_name', 'second_cate', 'second_cateItem'));
-=======
             if (session()->has('user')) {
                 $data_user = users::findOrFail(session('user'));
             }
         return view('/home/categoryItem', compact('data_user','products', 'cate_name', 'second_cate'));
->>>>>>> 4ffba4f44643070b94f1d4314d144bc886c29904
     }
 }

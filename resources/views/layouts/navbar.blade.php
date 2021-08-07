@@ -34,11 +34,7 @@
                             </svg>
                         </a>
                     </li>
-<<<<<<< HEAD
-                    <a class="nav-link" href="/cart">
-=======
                     <a class="nav-link" href="{{ url('/cart') }}">
->>>>>>> 4ffba4f44643070b94f1d4314d144bc886c29904
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="25" fill="currentColor"
                             class="bi bi-bag-check" viewBox="0 0 16 16">
                             <path fill-rule="evenodd"
