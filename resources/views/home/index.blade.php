@@ -52,7 +52,12 @@
                                     <div class="p-3 text-center">
                                         <img src="/images/brandImages/{{ $item->brand_img }}" alt="" class="img-fluid">
                                         <div class="border-bottom pb-1"></div>
-                                        <p>10 Prodoucts</p>
+                                        @foreach ($result as $a)
+                                            @if ($a->brand_id == $item->id)
+                                                <p>{{ $a->total_pro }}
+                                            @endif
+                                        @endforeach
+                                        Products</p>
                                     </div>
                                 </div>
                             </div>

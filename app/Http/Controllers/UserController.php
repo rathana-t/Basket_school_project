@@ -114,9 +114,10 @@ class UserController extends Controller
                 $pass = $data['newpassword'];
                 $user->password = $data['newpassword'];
                 $user->update();
+        return redirect()->back()->with('success','Successfully update');
             }
         }
-        return redirect()->back()->with('success','Successfully Change');
+        return redirect()->back()->with('Error','Incorrect Input');
     }
 }
 

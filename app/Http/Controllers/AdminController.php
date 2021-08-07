@@ -217,6 +217,15 @@ class AdminController extends Controller
         $product->delete();
         return redirect()->back()->with('delete-success', 'Product has been delete successfully');
     }
+    public function delete_se_cate(Request $req){
+
+        $se_cate_id = $req->input('delete_se_cate_id');
+        $se_cate = se_categories::find($se_cate_id);
+        $pro = products::where('s_cat_id', $se_cate_id);
+        $se_cate->delete();
+        $pro->delete();
+        return redirect()->back()->with('delete-se-cate', 'secondary category has been delete successfully');
+    }
     public function delete_cat(Request $req)
     {
         $cat_id = $req->input('delete_category_id');

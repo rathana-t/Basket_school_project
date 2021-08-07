@@ -92,6 +92,7 @@ Route::prefix('admin')->group(function () {
     Route::delete('delete-product', [AdminController::class, 'delete']);
     Route::delete('category-product', [AdminController::class, 'delete_cat']);
     Route::delete('delete-brand', [AdminController::class, 'delete_brand']);
+    Route::delete('delete-se_cate_id', [AdminController::class, 'delete_se_cate']);
 
     Route::get('/user', [AdminController::class, 'user']);
     Route::get('/user/{id}', [AdminController::class, 'userDetail']);

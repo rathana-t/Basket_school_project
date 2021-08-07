@@ -29,6 +29,10 @@ class HomeController extends Controller
         $second_cate = DB::table('se_categories')->get();
         $cate = DB::table('categories')->limit(4)->get();
         $brand = DB::table('brands')->get();
+        $result = DB::table('products')
+        ->select(DB::raw('count(count) as total_pro'),'brand_id')
+        ->groupBy('brand_id')
+        ->get();
         $recently_product = DB::table('products')
             ->join('sellers', 'products.seller_id', '=', 'sellers.id')
             ->select('products.*', 'sellers.store_name')
@@ -45,9 +49,9 @@ class HomeController extends Controller
             ->get();
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
-            return view('home/index', compact('data_user', 'data_pro', 'cate', 'brand', 'second_cate', 'count', 'recently_product'));
+            return view('home/index', compact('data_user','result', 'data_pro', 'cate', 'brand', 'second_cate', 'count', 'recently_product'));
         } else {
-            return view('home/index', compact('data_pro', 'cate', 'brand', 'second_cate', 'count', 'recently_product'));
+            return view('home/index', compact('data_pro','result', 'cate', 'brand', 'second_cate', 'count', 'recently_product'));
         }
     }
 
@@ -263,6 +267,6 @@ class HomeController extends Controller
             if (session()->has('user')) {
                 $data_user = users::findOrFail(session('user'));
             }
-        return view('/home/categoryItem', compact('data_user','products', 'cate_name', 'second_cate'));
+        return view('/home/categoryItem', compact('data_user','products','second_cateItem', 'cate_name', 'second_cate'));
     }
 }

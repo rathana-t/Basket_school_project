@@ -58,9 +58,9 @@ class SellerController extends Controller
                 session()->put('seller', $seller->id);
                 return redirect('/blog')->with('success', "Successfully Login!");
             }
-            return redirect()->back()->with("fail", "Incorrect Phone Number or password!")->withInput();
+            return redirect()->back()->with("fail", "Incorrect Email/Phone Number or password!")->withInput();
         }
-        return redirect()->back()->with("fail", "Incorrect Phone Number or password!")->withInput();
+        return redirect()->back()->with("fail", "Incorrect Email/Phone Number or password!")->withInput();
     }
 
     public function register()

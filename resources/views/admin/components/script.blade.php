@@ -21,6 +21,14 @@
         }
     }
     $(document).ready(function() {
+        $(document).on('click', '.delete_se_cate', function() {
+            var prod_id = $(this).val();
+            // alert(prod_id);
+            $('#Delete_se_cate_Modal').modal('show');
+            $('#delete_se_cate_id').val(prod_id);
+        })
+    });
+    $(document).ready(function() {
         $(document).on('click', '.deletebtn', function() {
             var prod_id = $(this).val();
             // alert(prod_id);

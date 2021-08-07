@@ -73,6 +73,7 @@
                                                 Add to cart
                                             </button>
                                         </form>
+
                                     @else
                                         <a href="{{ url('login') }}" class="btn btn-primary ">
                                             Add to cart

@@ -9,15 +9,20 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row mt-2">
-                            <div class="col-lg-12">
+                            <div class="col-lg-12 text-center">
                                 @if ($message = Session::get('success'))
                                     <div class="alert alert-success">
                                         <p>{{ $message }}</p>
                                     </div>
                                 @endif
+                                @if ($message = Session::get('Error'))
+                                    <div class="alert alert-danger">
+                                        <p>{{ $message }}</p>
+                                    </div>
+                                @endif
                             </div>
                             <div class="col-lg-12">
-                                @if ($errors->any())
+                                {{-- @if ($errors->any())
                                     <div class="alert alert-danger">
                                         <strong>Whooops!</strong> There were some problems with your input.<br><br>
                                         <ul>
@@ -26,7 +31,7 @@
                                             @endforeach
                                         </ul>
                                     </div>
-                                @endif
+                                @endif --}}
 
                                 <form action="{{ route('confirm-change', $data_user->id) }}" method="POST"
                                     id="ChangePassword">
@@ -37,7 +42,7 @@
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
                                                 <strong>Old Password:</strong>
-                                                <input type="password" name="oldpassword" value="" class="form-control"
+                                                <input type="password" name="oldpassword" class="form-control"
                                                     placeholder="Old Password">
                                                 {!! $errors->first('oldpassword', "<span class='text-danger'>:message</span>") !!}
                                             </div>

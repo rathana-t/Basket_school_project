@@ -41,7 +41,7 @@ class CartController extends Controller
     $newcart->product_id = $request->product_id;
 
     $newcart->save();
-    return redirect()->back();
+    return redirect()->back()->with('add-to-cart-success','Added to cart');
     }
     public function remove_cart(Request $req){
         $cart_id = $req->input('remove_cart_id');

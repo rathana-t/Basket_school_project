@@ -1,6 +1,8 @@
 @extends('admin\admin')
 
 @section('sidebar-content')
+    @include('/admin/components/modal')
+
     <div class="text-center">
         <h1>
             All
@@ -45,7 +47,7 @@
                         <a href="product/{{ $item->id }}">
                             <button type="button" class="btn btn-info">View</button>
                         </a>
-                        <button type="button" value="{{ $item->id }}" class="deletebtn btn btn-danger">
+                        <button type="button" value="{{ $item->id }}" class="delete_se_cate btn btn-danger">
                             Delete
                         </button>
                     </td>
