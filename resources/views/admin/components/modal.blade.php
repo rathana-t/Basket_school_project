@@ -72,3 +72,29 @@
         </div>
     </div>
 </div>
+
+
+<div class="modal fade" id="remove_cart_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{ url('remove-cart') }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <div class="modal-body text-center">
+                    Remove this product from you cart ?
+                </div>
+                <input type="hidden" name="remove_cart_id" id="remove_cart_id">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Delete</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

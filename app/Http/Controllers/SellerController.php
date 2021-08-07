@@ -68,7 +68,7 @@ class SellerController extends Controller
         $data = request()->validate([
             'store_name' => 'required',
             'email' => 'required|email|max:70|unique:sellers,email',
-            'phone' => 'required|unique:sellers,phone',
+            'phone' => 'required|min:9|unique:sellers,phone',
             'address' => 'required',
             'password' => 'required|min:8',
             'con_password' => 'required|min:8|same:password',

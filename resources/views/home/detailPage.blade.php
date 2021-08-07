@@ -43,10 +43,10 @@
                                     </h4>
                                 </div>
                                 <p class="des">
-                                    {{-- {{ $detail->description }} --}}
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem eos minima, quod vel
+                                    {{ $detail->description }}
+                                    {{-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem eos minima, quod vel
                                     obcaecati libero corporis consectetur sed! Culpa dolores omnis tenetur eius, facilis
-                                    sint magnam est sed animi dicta.
+                                    sint magnam est sed animi dicta. --}}
                                 </p>
                                 <p class="store_name mb-3">
                                     <span><strong>Store</strong></span>

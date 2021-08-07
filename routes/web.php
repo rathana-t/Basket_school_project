@@ -26,7 +26,6 @@ Route::get('/category/{id}', [HomeController::class, 'categoryItem']);
 Route::get('/all-category', [HomeController::class, 'allCategory']);
 Route::get('/smallcate/{id}', [HomeController::class, 'smallcate']);
 Route::get('/brand/{id}', [HomeController::class, 'brand']);
-
 Route::get('/store', [HomeController::class, 'store']);
 
 
@@ -40,6 +39,8 @@ Route::get('/wishlist/{id}', [UserController::class, 'wish_list'])->name('list-w
 Route::get('/changepassword/{id}', [UserController::class, 'ch_password'])->name('change-password');
 Route::post('/confirmChange/{id}', [UserController::class, 'confirm_ch'])->name('confirm-change');
 Route::get('/logout', [UserController::class, 'logout'])->middleware('checker');
+Route::delete('remove-cart', [CartController::class, 'remove_cart']);
+Route::post('edit-quantity-cart', [CartController::class, 'edit_cart_quantity']);
 
 //=============Seller===================
 
