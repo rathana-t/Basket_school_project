@@ -101,7 +101,7 @@ class UserController extends Controller
         $data = request()->validate([
                 'oldpassword' => 'required',
                 'newpassword' => 'required',
-                'confirmpassword' => 'required',
+                'confirmpassword' => 'required:samepassword',
             ]);
         if ($user) {
         $validPassword = Hash::check($data['oldpassword'], $user->password);
