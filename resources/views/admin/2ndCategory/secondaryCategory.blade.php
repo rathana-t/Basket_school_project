@@ -55,4 +55,6 @@
             @endforeach
         </tbody>
     </table>
+    {{ $seCategory->links() }}
+
 @stop

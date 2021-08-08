@@ -32,7 +32,7 @@ class AdminController extends Controller
 
     public function user()
     {
-        $users = users::all();
+        $users = DB::table('users')->paginate(5);
         return view('admin/user/user', compact('users'));
     }
 
@@ -44,7 +44,7 @@ class AdminController extends Controller
 
     public function seller()
     {
-        $sellers = sellers::all();
+        $sellers = DB::table('sellers')->paginate(5);
         return view('admin/seller/seller', compact('sellers'));
     }
     public function sellerDetail($id)
@@ -62,7 +62,7 @@ class AdminController extends Controller
     }
     public function brand()
     {
-        $brands = brands::all();
+        $brands = DB::table('brands')->paginate(5);
         return view('/admin/brand/brand', compact('brands'));
     }
 
@@ -92,7 +92,7 @@ class AdminController extends Controller
 
     public function category()
     {
-        $categories = categories::all();
+        $categories = DB::table('categories')->paginate(5);
         return view('admin/category/category', compact('categories'));
     }
     public function addCategory()
@@ -120,7 +120,7 @@ class AdminController extends Controller
 
     public function secondaryCategory()
     {
-        $seCategory = se_categories::all();
+        $seCategory = DB::table('se_categories')->paginate(5);
         return view('admin/2ndCategory/secondaryCategory', compact('seCategory'));
     }
     public function addSecondaryCategory()
@@ -169,7 +169,7 @@ class AdminController extends Controller
             ->join('categories', 'products.category_id', '=', 'categories.id')
             ->select('products.*', 'categories.name as cat_name', 'brands.name as brand_name')
             ->where('products.completed', '=', '0')
-            ->get();
+            ->paginate(5);
         return view('admin/productRequest/productRequest', compact('pro', 'count'));
     }
 
@@ -203,10 +203,10 @@ class AdminController extends Controller
         $brand_id = $req->input('delete_brand_id');
         $brand = brands::find($brand_id);
         $product = products::where('brand_id', $brand_id);
-        foreach ( $product as $item){
+        foreach ($product as $item) {
             $imgaes = json_decode($item->img_product);
-            foreach($imgaes as $file){
-                unlink(public_path("images/imgProduct/").$file);
+            foreach ($imgaes as $file) {
+                unlink(public_path("images/imgProduct/") . $file);
             }
         }
         $product->delete();
@@ -218,21 +218,21 @@ class AdminController extends Controller
         $product_id = $req->input('delete_product_id');
         $product = products::find($product_id);
         $imgaes = json_decode($product->img_product);
-        foreach($imgaes as $file){
-            unlink(public_path("images/imgProduct/").$file);
+        foreach ($imgaes as $file) {
+            unlink(public_path("images/imgProduct/") . $file);
         }
         $product->delete();
         return redirect()->back()->with('delete-success', 'Product has been delete successfully');
     }
-    public function delete_se_cate(Request $req){
-
+    public function delete_se_cate(Request $req)
+    {
         $se_cate_id = $req->input('delete_se_cate_id');
         $se_cate = se_categories::find($se_cate_id);
         $product = products::where('s_cat_id', $se_cate_id);
-        foreach ( $product as $item){
+        foreach ($product as $item) {
             $imgaes = json_decode($item->img_product);
-            foreach($imgaes as $file){
-                unlink(public_path("images/imgProduct/").$file);
+            foreach ($imgaes as $file) {
+                unlink(public_path("images/imgProduct/") . $file);
             }
         }
         $se_cate->delete();
@@ -243,12 +243,12 @@ class AdminController extends Controller
     {
         $cat_id = $req->input('delete_category_id');
         $cat = categories::find($cat_id);
-        $se_cate = se_categories::where('category_id',$cat_id);
+        $se_cate = se_categories::where('category_id', $cat_id);
         $product = products::where('category_id', $cat_id);
-        foreach ( $product as $item){
+        foreach ($product as $item) {
             $imgaes = json_decode($item->img_product);
-            foreach($imgaes as $file){
-                unlink(public_path("images/imgProduct/").$file);
+            foreach ($imgaes as $file) {
+                unlink(public_path("images/imgProduct/") . $file);
             }
         }
         $se_cate->delete();

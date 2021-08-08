@@ -51,4 +51,6 @@
             @endforeach
         </tbody>
     </table>
+    {{ $sellers->links() }}
+
 @stop
