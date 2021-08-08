@@ -47,4 +47,5 @@
             </tbody>
         </table>
     </div>
+    {{ $users->links() }}
 @stop

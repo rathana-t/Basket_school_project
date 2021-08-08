@@ -55,4 +55,6 @@
             @endforeach
         </tbody>
     </table>
+    {{ $brands->links() }}
+
 @stop

@@ -11,7 +11,7 @@
                 @csrf
                 @method('DELETE')
                 <div class="modal-body text-center">
-                    Are you sure?
+                    Also delete all (products and secondary categories) in this category, Are you sure?
                 </div>
                 <input type="hidden" name="delete_category_id" id="delete_cate_id">
                 <div class="modal-footer">
@@ -37,7 +37,7 @@
                 @csrf
                 @method('DELETE')
                 <div class="modal-body text-center">
-                    Are you sure?
+                    Also delete all products in this secondary category, Are you sure?
                 </div>
                 <input type="hidden" name="delete_se_cate_id" id="delete_se_cate_id">
                 <div class="modal-footer">
@@ -87,7 +87,7 @@
                 @csrf
                 @method('DELETE')
                 <div class="modal-body text-center">
-                    Are you sure?
+                    Also delete all products in this brand, Are you sure?
                 </div>
                 <input type="hidden" name="delete_brand_id" id="delete_brand_id">
                 <div class="modal-footer">
@@ -113,7 +113,7 @@
                 @csrf
                 @method('DELETE')
                 <div class="modal-body text-center">
-                    Remove this product from you cart ?
+                    Remove this products from you cart ?
                 </div>
                 <input type="hidden" name="remove_cart_id" id="remove_cart_id">
                 <div class="modal-footer">

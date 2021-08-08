@@ -77,6 +77,15 @@
                                     </svg>
                                     Save for later
                                 </button>
+                                <a href="{{ url('/product', $item->id) }}" type="button" class="btn-sm btn btn-info">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                        <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+                                        <path
+                                            d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
+                                    </svg>
+                                    View
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -85,11 +94,25 @@
 
                 <div class="d-flex flex-row-reverse mt-1">
                     @if ($counter > 1)
-                        <div class="p-2 ">Subtotal({{ $counter }} main items) : $ {{ $total_price_all_quantity }}
-                        </div>
+                        @if ($quantity > 1)
+                            <div class="p-2 ">Subtotal({{ $counter }} Products , {{ $quantity }} items) : $
+                                {{ $total_price_all_quantity }}
+                            </div>
+                        @else
+                            <div class="p-2 ">Subtotal({{ $counter }} Products , {{ $quantity }} item) : $
+                                {{ $total_price_all_quantity }}
+                            </div>
+                        @endif
                     @else
-                        <div class="p-2 ">Subtotal({{ $counter }} main item) : $ {{ $total_price_all_quantity }}
-                        </div>
+                        @if ($quantity > 1)
+                            <div class="p-2 ">Subtotal({{ $counter }} Product , {{ $quantity }} items) : $
+                                {{ $total_price_all_quantity }}
+                            </div>
+                        @else
+                            <div class="p-2 ">Subtotal({{ $counter }} Product , {{ $quantity }} item) : $
+                                {{ $total_price_all_quantity }}
+                            </div>
+                        @endif
                     @endif
 
                 </div>
