@@ -211,7 +211,8 @@ class HomeController extends Controller
     }
     public function order()
     {
-        return view('home/order');
+        $second_cate = DB::table('se_categories')->get();
+        return view('home/order',compact('second_cate'));
     }
     public function category()
     {
@@ -250,8 +251,8 @@ class HomeController extends Controller
     }
     public function store()
     {
-
-        return view('home/store');
+        $second_cate = DB::table('se_categories')->get();
+        return view('home/store',compact('second_cate'));
     }
     public function categoryItem($id)
     {
