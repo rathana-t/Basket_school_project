@@ -202,6 +202,12 @@ class AdminController extends Controller
     {
         $brand_id = $req->input('delete_brand_id');
         $brand = brands::find($brand_id);
+        $product = products::where('brand_id', $brand_id);
+        $imgaes = json_decode($product->img_product);
+        foreach($imgaes as $file){
+            unlink(public_path("images/imgProduct/").$file);
+        }
+        $product->delete();
         $brand->delete();
         return redirect()->back()->with('delete-success', 'Product has been delete successfully');
     }
@@ -209,7 +215,6 @@ class AdminController extends Controller
     {
         $product_id = $req->input('delete_product_id');
         $product = products::find($product_id);
-
         $imgaes = json_decode($product->img_product);
         foreach($imgaes as $file){
             unlink(public_path("images/imgProduct/").$file);
@@ -221,18 +226,28 @@ class AdminController extends Controller
 
         $se_cate_id = $req->input('delete_se_cate_id');
         $se_cate = se_categories::find($se_cate_id);
-        $pro = products::where('s_cat_id', $se_cate_id);
+        $product = products::where('s_cat_id', $se_cate_id);
+        $imgaes = json_decode($product->img_product);
+        foreach($imgaes as $file){
+            unlink(public_path("images/imgProduct/").$file);
+        }
         $se_cate->delete();
-        $pro->delete();
+        $product->delete();
         return redirect()->back()->with('delete-se-cate', 'secondary category has been delete successfully');
     }
     public function delete_cat(Request $req)
     {
         $cat_id = $req->input('delete_category_id');
         $cat = categories::find($cat_id);
-        $pro = products::where('category_id', $cat_id);
+        $se_cate = se_categories::where('category_id',$cat_id)->get();
+        $product = products::where('category_id', $cat_id);
+        $imgaes = json_decode($product->img_product);
+        foreach($imgaes as $file){
+            unlink(public_path("images/imgProduct/").$file);
+        }
+        $se_cate->delete();
         $cat->delete();
-        $pro->delete();
+        $product->delete();
         return redirect()->back()->with('delete-success', 'Product has been delete successfully');
     }
 

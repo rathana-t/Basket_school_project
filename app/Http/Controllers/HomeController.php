@@ -77,12 +77,14 @@ class HomeController extends Controller
                 ->where('carts.user_id', '=', $data_user->id)
                 ->select('products.*', 'carts.id as cart_id','carts.total', 'carts.quantity')->get();
             $counter = 0;
+            $quantity = 0;
             $total_price_all_quantity = 0;
             foreach ($data_pro as $item) {
                 $total_price_all_quantity = $total_price_all_quantity + $item->total;
+                $quantity =  $quantity + $item->quantity;
                 $counter++;
             }
-            return view('home/cart', compact('data_user','second_cate', 'data_pro', 'counter', 'total_price_all_quantity'));
+            return view('home/cart', compact('quantity','data_user','second_cate', 'data_pro', 'counter', 'total_price_all_quantity'));
         } else {
             return view('home/login', 'second_cate');
         }
