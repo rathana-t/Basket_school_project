@@ -1,6 +1,8 @@
 @extends('application')
 
 @section('content')
+    @include('/home/components/navigation')
+
     <div class="container">
 
         <div class="popular mt-4">
@@ -15,7 +17,7 @@
                     @foreach ($recently_product as $item)
                         <div class="col-md-3 col-sm-6 col-xs-12">
                             <div class="mb-3">
-                                <a href="/product/{{ $item->id }}">
+                                <a href="/recenltyProduct/product/{{ $item->id }}">
                                     <?php foreach (json_decode($item->img_product)as $picture) { ?>
                                     <img src="{{ asset('images/imgProduct') }}/{{ $picture }}" alt=""
                                         class="img-fluid">

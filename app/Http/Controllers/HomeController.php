@@ -113,6 +113,7 @@ class HomeController extends Controller
 
     public function detail($id)
     {
+        $product_id = products::find($id);
         $second_cate = DB::table('se_categories')->get();
         $detail_pro = products::join('brands', 'products.brand_id', '=', 'brands.id')
             ->join('se_categories', 'products.s_cat_id', '=', 'se_categories.id')
@@ -122,9 +123,9 @@ class HomeController extends Controller
             ->get();
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
-            return view('home/detailPage', compact('data_user', 'detail_pro', 'second_cate'));
+            return view('home/detailPage', compact('data_user', 'detail_pro', 'second_cate', 'product_id'));
         } else {
-            return view('home/detailPage', compact('detail_pro', 'second_cate'));
+            return view('home/detailPage', compact('detail_pro', 'second_cate', 'product_id'));
         }
     }
 
@@ -235,6 +236,10 @@ class HomeController extends Controller
     public function order()
     {
         $second_cate = DB::table('se_categories')->get();
+        if (session()->has('user')) {
+            $data_user = users::findOrFail(session('user'));
+            return view('home/order', compact('second_cate', 'data_user'));
+        }
         return view('home/order', compact('second_cate'));
     }
     public function category()
@@ -271,6 +276,7 @@ class HomeController extends Controller
     }
     public function brand($id)
     {
+        $brand_id = brands::find($id);
         $second_cate = DB::table('se_categories')->get();
         $product = products::join('brands', 'products.brand_id', '=', 'brands.id')
             ->where('products.brand_id', $id)
@@ -278,9 +284,9 @@ class HomeController extends Controller
             ->get();
         if (session()->has('user')) {
             $data_user = users::findOrFail(session('user'));
-            return view('home/brandlistproduct', compact('data_user', 'product', 'second_cate'));
+            return view('home/brandlistproduct', compact('data_user', 'product', 'second_cate', 'brand_id'));
         }
-        return view('home/brandlistproduct', compact('product', 'second_cate'));
+        return view('home/brandlistproduct', compact('product', 'second_cate', 'brand_id'));
     }
     public function store()
     {

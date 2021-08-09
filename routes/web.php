@@ -16,20 +16,20 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/login', [HomeController::class, 'login'])->name('login');
 Route::get('/reg', [HomeController::class, 'reg']);
 Route::get('/product/{id}', [HomeController::class, 'detail'])->name('detail');
-Route::get('/product', [HomeController::class, 'products']);
+Route::get('/product', [HomeController::class, 'products'])->name('products');
 Route::get('/blog', [HomeController::class, 'blog']);
 Route::get('/cart', [HomeController::class, 'cart'])->name('route_cart')->middleware('checker');
 Route::post('/search-filter', [HomeController::class, 'search_filter'])->name('search-filter');
 Route::get('/search', [HomeController::class, 'search']);
 Route::get('/order', [HomeController::class, 'order']);
-Route::get('/category', [HomeController::class, 'category']);
-Route::get('/category/{id}', [HomeController::class, 'categoryItem']);
-Route::get('/all-category', [HomeController::class, 'allCategory']);
+Route::get('/category', [HomeController::class, 'category'])->name('category');
+Route::get('/category/{id}', [HomeController::class, 'categoryItem'])->name('categoryItem');
 Route::get('/smallcate/{id}', [HomeController::class, 'smallcate']);
-Route::get('/brand/{id}', [HomeController::class, 'brand']);
-Route::get('/brand', [HomeController::class, 'allBrand']);
+Route::get('/brand/{id}', [HomeController::class, 'brand'])->name('brandItem');
+Route::get('/brand', [HomeController::class, 'allBrand'])->name('brands');
 Route::get('/store', [HomeController::class, 'store']);
-Route::get('/recenltyProduct', [HomeController::class, 'recenltyProduct']);
+Route::get('/recenltyProduct', [HomeController::class, 'recenltyProduct'])->name('recentlyProducts');
+Route::get('/recenltyProduct/product/{id}', [HomeController::class, 'detail'])->name('recentlyProductsDetail');
 
 
 Route::post('/signin', [UserController::class, 'signin'])->name("signin");

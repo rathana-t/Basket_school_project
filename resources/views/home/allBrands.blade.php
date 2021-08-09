@@ -1,6 +1,8 @@
 @extends('application')
 
 @section('content')
+    @include('/home/components/navigation')
+
     <div class="container">
         <div class="brand mt-4">
             <h5>

@@ -1,6 +1,7 @@
 @extends('application')
 
 @section('content')
+    @include('/home/components/navigation')
     <div class="container">
         <div class="cate-item">
             <h1>

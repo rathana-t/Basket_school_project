@@ -1,6 +1,8 @@
 @extends('application')
 
 @section('content')
+    @include('/home/components/navigation')
+
     <div class="container">
         <div class="popular mt-4">
             <div class="mb-3 d-flex justify-content-between">
