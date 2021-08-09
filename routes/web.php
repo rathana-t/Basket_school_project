@@ -16,6 +16,7 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/login', [HomeController::class, 'login'])->name('login');
 Route::get('/reg', [HomeController::class, 'reg']);
 Route::get('/product/{id}', [HomeController::class, 'detail'])->name('detail');
+Route::get('/product', [HomeController::class, 'products']);
 Route::get('/blog', [HomeController::class, 'blog']);
 Route::get('/cart', [HomeController::class, 'cart'])->name('route_cart')->middleware('checker');
 Route::post('/search-filter', [HomeController::class, 'search_filter'])->name('search-filter');
@@ -26,7 +27,9 @@ Route::get('/category/{id}', [HomeController::class, 'categoryItem']);
 Route::get('/all-category', [HomeController::class, 'allCategory']);
 Route::get('/smallcate/{id}', [HomeController::class, 'smallcate']);
 Route::get('/brand/{id}', [HomeController::class, 'brand']);
+Route::get('/brand', [HomeController::class, 'allBrand']);
 Route::get('/store', [HomeController::class, 'store']);
+Route::get('/recenltyProduct', [HomeController::class, 'recenltyProduct']);
 
 
 Route::post('/signin', [UserController::class, 'signin'])->name("signin");
