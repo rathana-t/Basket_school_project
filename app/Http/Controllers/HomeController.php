@@ -26,7 +26,9 @@ class HomeController extends Controller
     public function index()
     {
         $count = 0;
-        $second_cate = DB::table('se_categories')->get();
+        $second_cate = DB::table('se_categories')
+            ->limit(8)
+            ->get();
         $cate = DB::table('categories')->limit(4)->get();
         $brand = DB::table('brands')->get();
         $result = DB::table('products')
@@ -45,7 +47,7 @@ class HomeController extends Controller
             ->select('products.*', 'sellers.store_name')
             ->where('completed', 1)
             ->inRandomOrder()
-            ->limit(16)
+            ->limit(8)
             ->get();
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
