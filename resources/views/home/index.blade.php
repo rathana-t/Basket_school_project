@@ -2,48 +2,8 @@
 
 @section('content')
     @include('/home/components/navigation')
-    <style>
-        .header .carousel img {
-            height: 300px;
-            object-fit: cover;
-            position: relative;
-        }
-
-        .header .carousel .carousel-caption {
-            background-color: aliceblue;
-            color: black;
-            height: 50px;
-        }
-
-        .header .carousel .hero-text {
-            text-align: center;
-            position: absolute;
-            top: 70%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: black;
-        }
-
-        .header .carousel .hero-text h1 {
-            padding: 5px;
-            background-color: #f8f9fa;
-            border-radius: 5px;
-        }
-
-        .header a {
-            color: black;
-            text-decoration: none;
-        }
-
-        .header a:hover {
-            color: #007bff;
-            text-decoration: none;
-        }
-
-    </style>
-
     <div class="container">
-        <div class="header mt-3">
+        <div class="header mt-4 mb-4">
             <div class="row">
                 <div class="col-md-4">
                     <ul class="list-group">
@@ -71,14 +31,14 @@
             </div>
         </div>
 
-        <div class="popular mt-4">
+        <div class="product mt-4 mb-4">
             <div class="mb-3 d-flex justify-content-between">
                 <h5>
                     Products
                 </h5>
                 <a href="/product" class="btn btn-outline-primary">See all</a>
             </div>
-            <div class="popular-item">
+            <div class="product-item">
                 <div class="row">
                     @foreach ($data_pro as $item)
                         <div class="col-md-3 col-sm-6 col-xs-12">
@@ -113,7 +73,7 @@
             </div>
         </div>
 
-        <div class="category mt-4">
+        <div class="category mt-4 mb-4">
             <div class="d-flex justify-content-between mb-3">
                 <h5>
                     Category
@@ -142,7 +102,7 @@
             </div>
         </div>
 
-        <div class="category mt-4">
+        <div class="category mt-4 mb-4">
             <div class="d-flex justify-content-between mb-3">
                 <h5>
                     Subcategory
@@ -170,13 +130,11 @@
                 </div>
             </div>
         </div>
-
-
     </div>
 
-    <div style="height: 250px; background-color: #f8f9fa;">
+    <div class="background-color">
         <div class="container d-flex justify-item-center">
-            <div class="brand mt-4">
+            <div class="brand mt-4 mb-4">
                 <div class="mb-1 d-flex justify-content-between">
                     <h5>
                         Brand

@@ -1,4 +1,4 @@
-<footer class="sticky-footer d-flex align-items-center mt-5">
+<footer class="sticky-footer d-flex align-items-center mt-5 bg-light">
     <div class="container">
         <div class="row">
             <div class="col-lg-5 col-md-5 col-sm-4 col-xs-12 ">
