@@ -25,7 +25,7 @@
 
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item cs-pt">
-                    <a class="nav-link" href="">
+                    <a class="nav-link" href="{{ url('wishlist') }}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="25" fill="currentColor"
                             class="bi bi-heart" viewBox="0 0 16 16">
                             <path

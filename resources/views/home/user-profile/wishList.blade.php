@@ -9,10 +9,7 @@
         <h4>MY WISHLIST</h4>
         @include('/admin/components/msg')
 
-
         @if ($test > 0)
-
-
             <table class="table">
                 <thead>
                     <tr>

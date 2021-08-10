@@ -97,7 +97,7 @@
     #hideMe2 {
         padding: 10px;
         position: absolute;
-        margin: 500;
+        left: 700px;
         top: 250px;
         -webkit-animation: cssAnimation 1.5s forwards;
         animation: cssAnimation 1.5s forwards;
