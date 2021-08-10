@@ -21,7 +21,7 @@ Route::get('/blog', [HomeController::class, 'blog']);
 Route::get('/cart', [HomeController::class, 'cart'])->name('route_cart')->middleware('checker');
 Route::post('/search-filter', [HomeController::class, 'search_filter'])->name('search-filter');
 Route::get('/search', [HomeController::class, 'search']);
-Route::get('/order', [HomeController::class, 'order']);
+Route::get('/order/{id}', [HomeController::class, 'order']);
 Route::get('/category', [HomeController::class, 'category'])->name('category');
 Route::get('/category/{id}', [HomeController::class, 'categoryItem'])->name('categoryItem');
 Route::get('/smallcate/{id}', [HomeController::class, 'smallcate']);
@@ -38,16 +38,18 @@ Route::get('/profile/{id}', [UserController::class, 'profile'])->name('display-p
 // Route::get('/edit/{id}', [UserController::class, 'edit_profile'])->name('edit-profile');
 Route::post('/update/{id}', [UserController::class, 'update_profile'])->name('update-profile');
 Route::get('/history-order/{id}', [UserController::class, 'history_order'])->name('order-history');
-Route::get('/wishlist/{id}', [UserController::class, 'wish_list'])->name('list-wish');
+Route::get('/wishlist', [UserController::class, 'wish_list'])->name('list-wish');
 Route::get('/changepassword/{id}', [UserController::class, 'ch_password'])->name('change-password');
 Route::post('/confirmChange/{id}', [UserController::class, 'confirm_ch'])->name('confirm-change');
 Route::get('/logout', [UserController::class, 'logout'])->middleware('checker');
 Route::delete('remove-cart', [CartController::class, 'remove_cart']);
+Route::delete('remove-wishlist', [CartController::class, 'remove_wishlist']);
 Route::post('edit-quantity-cart', [CartController::class, 'edit_cart_quantity']);
 
 //=============Seller===================
 
 Route::post('/add-to-cart', [CartController::class, 'add_to_cart'])->name('add_to_cart');
+Route::post('/add-to-widhlist', [CartController::class, 'add_to_widhlist'])->name('add_to_wishlist');;
 Route::get('/sellerLogInPage', [SellerController::class, 'login_page']);
 Route::get('/sellerRegisterPage', [SellerController::class, 'register_page']);
 Route::post('/sellerLogIn', [SellerController::class, 'login']);

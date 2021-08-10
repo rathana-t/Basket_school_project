@@ -18,6 +18,29 @@
                 {{ Session::get('add-to-cart-success') }}
             </div>
         @endif
+        @if (Session::has('add-to-wishlist-success'))
+            <div class="alert alert-warning alert-dismissible fade show " id="hideMe" role="alert">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                    class="bi bi-heart-fill" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z">
+                    </path>
+                </svg>
+                {{ Session::get('add-to-wishlist-success') }}
+            </div>
+        @endif
+        @if (Session::has('remove-wishlist-success'))
+            <div class="alert alert-danger alert-dismissible fade show " id="hideMe2" role="alert">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                    class="bi bi-heart-fill" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z">
+                    </path>
+                </svg>
+                {{ Session::get('remove-wishlist-success') }}
+            </div>
+        @endif
+
         @if (Session::has('delete-success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ Session::get('delete-success') }}
@@ -65,6 +88,16 @@
         padding: 10px;
         position: absolute;
         left: -100px;
+        top: 250px;
+        -webkit-animation: cssAnimation 1.5s forwards;
+        animation: cssAnimation 1.5s forwards;
+
+    }
+
+    #hideMe2 {
+        padding: 10px;
+        position: absolute;
+        margin: 500;
         top: 250px;
         -webkit-animation: cssAnimation 1.5s forwards;
         animation: cssAnimation 1.5s forwards;
