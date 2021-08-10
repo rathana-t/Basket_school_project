@@ -29,7 +29,7 @@
             background-color: #f8f9fa;
             border-radius: 5px;
         }
-        
+
     </style>
 
     <div class="container">
@@ -144,13 +144,13 @@
                             <div class="card shadow-sm mb-2">
                                 <div class="m-3">
                                     <p>{{ $item->name }}</p>
-                                    <a href="category/{{ $item->id }}">
+                                    <a href="/smallcate/{{ $item->id }}">
                                         <div class="text-center">
                                             <img src="/images/secondCategory/{{ $item->secondarycategory_img }}" alt=""
                                                 class="img-fluid mb-2">
                                         </div>
                                     </a>
-                                    <a href="category/{{ $item->id }}">See all</a>
+                                    <a href="">See all</a>
                                 </div>
                             </div>
                         </div>

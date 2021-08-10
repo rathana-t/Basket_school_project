@@ -2,7 +2,6 @@
 
 @section('content')
     <div class="container">
-        @include('home/components/selectbyBrand')
         <h1>
             {{ $smallCateName->name }}
         </h1>

@@ -29,6 +29,10 @@ class HomeController extends Controller
         $second_cate = DB::table('se_categories')
             ->limit(8)
             ->get();
+        $randSecond_cate = DB::table('se_categories')
+            ->limit(6)
+            ->inRandomOrder()
+            ->get();
         $cate = DB::table('categories')->limit(4)->get();
         $brand = DB::table('brands')->get();
         $result = DB::table('products')
@@ -51,9 +55,9 @@ class HomeController extends Controller
             ->get();
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
-            return view('home/index', compact('data_user', 'result', 'data_pro', 'cate', 'brand', 'second_cate', 'count', 'recently_product', 'randBrand'));
+            return view('home/index', compact('data_user', 'result', 'data_pro', 'cate', 'brand', 'second_cate', 'count', 'recently_product', 'randSecond_cate'));
         } else {
-            return view('home/index', compact('data_pro', 'result', 'cate', 'brand', 'second_cate', 'count', 'recently_product', 'randBrand'));
+            return view('home/index', compact('data_pro', 'result', 'cate', 'brand', 'second_cate', 'count', 'recently_product', 'randSecond_cate'));
         }
     }
     public function products()
@@ -256,14 +260,14 @@ class HomeController extends Controller
     }
     public function smallcate($id)
     {
-        $brand = brands::all();
+        $second_cate = DB::table('se_categories')->get();
         $smallCateName = se_categories::find($id);
         $smallCate = DB::table('products')
             ->join('se_categories', 'products.s_cat_id', '=', 'se_categories.id')
             ->where('se_categories.id', $id)
             ->select('products.*', 'se_categories.id as sec_id')
             ->get();
-        return view('home/secondaryCate', compact('smallCate', 'smallCateName', 'brand'));
+        return view('home/secondaryCate', compact('smallCate', 'smallCateName', 'second_cate'));
     }
 
     public function allBrand()
