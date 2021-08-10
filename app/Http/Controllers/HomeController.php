@@ -71,17 +71,6 @@ class HomeController extends Controller
             ->paginate(16);
         return view('home/products', compact('products', 'second_cate'));
     }
-    public function recenltyProduct()
-    {
-        $second_cate = DB::table('se_categories')->get();
-        $recently_product = DB::table('products')
-            ->join('sellers', 'products.seller_id', '=', 'sellers.id')
-            ->select('products.*', 'sellers.store_name')
-            ->where('completed', 1)
-            ->orderByDesc('created_at')
-            ->get();
-        return view('home/recenltyProduct', compact('recently_product', 'second_cate'));
-    }
     public function login()
     {
         $second_cate = DB::table('se_categories')->get();
@@ -258,7 +247,13 @@ class HomeController extends Controller
         }
         return view('home/category', compact('cate', 'second_cate'));
     }
-    public function smallcate($id)
+
+    public function smallcate()
+    {
+        $second_cate = DB::table('se_categories')->get();
+        return view('home/secondaryCate', compact('second_cate'));
+    }
+    public function smallcateItem($id)
     {
         $second_cate = DB::table('se_categories')->get();
         $smallCateName = se_categories::find($id);
@@ -267,7 +262,7 @@ class HomeController extends Controller
             ->where('se_categories.id', $id)
             ->select('products.*', 'se_categories.id as sec_id')
             ->get();
-        return view('home/secondaryCate', compact('smallCate', 'smallCateName', 'second_cate'));
+        return view('home/secondaryCateItem', compact('smallCate', 'smallCateName', 'second_cate'));
     }
 
     public function allBrand()

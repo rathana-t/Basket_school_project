@@ -1,27 +1,33 @@
 @extends('application')
 
 @section('content')
+    @include('/home/components/navigation')
     <div class="container">
-        <h1>
-            {{ $smallCateName->name }}
-        </h1>
-        <div class="cate-item">
-            <div class="row mt-3">
-                @foreach ($smallCate as $item)
-                    <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="text-center mb-4">
-                            <a href="{{ route('detail', $item->id) }}">
-                                <?php foreach (json_decode($item->img_product)as $picture) { ?>
-                                <img src="/images/imgProduct/{{ $picture }}" alt="" class="img-fluid mb-1">
-                                <?php break; } ?><br>
-                                <a>{{ $item->name }}</a>
-                                <div>
-                                    <a>{{ $item->price }} &nbsp;$</a>
+        <div class="category mt-4 mb-4">
+            <div class="mb-3">
+                <h5>
+                    Subcategory
+                </h5>
+            </div>
+            <div class="category-item">
+                <div class="row mt-3">
+                    @foreach ($second_cate as $item)
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="card shadow-sm mb-3">
+                                <div class="m-3">
+                                    <p>{{ $item->name }}</p>
+                                    <a href="/smallcate/{{ $item->id }}">
+                                        <div class="text-center">
+                                            <img src="/images/secondCategory/{{ $item->secondarycategory_img }}" alt=""
+                                                class="img-fluid mb-2">
+                                        </div>
+                                    </a>
+                                    <a href="">See all</a>
                                 </div>
-                            </a>
+                            </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>

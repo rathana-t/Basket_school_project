@@ -50,7 +50,8 @@ body {
 }
 
 .header a {
-    color: black;
+    font-size: 16px;
+    color: #323b49;
     text-decoration: none;
 }
 
@@ -119,20 +120,16 @@ body {
     color: #035ebe;
 }
 
-.background-color {
-    height: 250px;
-}
-
-.background-color .brand h5 {
+.brand h5 {
     color: #323b49;
     font-size: 20px;
 }
 
-.background-color .brand a {
+.brand a {
     font-size: 12px;
 }
 
-.background-color .brand .brand-item a {
+.brand .brand-item a {
     text-decoration: none;
     font-size: 14px;
     color: #323b49;
