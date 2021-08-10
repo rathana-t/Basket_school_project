@@ -3,10 +3,33 @@
 @section('content')
     @include('/home/components/navigation')
     <style>
-        .carousel img {
+        .header .carousel img {
             height: 300px;
-            object-fit: cover
+            object-fit: cover;
+            position: relative;
         }
+
+        .header .carousel .carousel-caption {
+            background-color: aliceblue;
+            color: black;
+            height: 50px;
+        }
+
+        .header .carousel .hero-text {
+            text-align: center;
+            position: absolute;
+            top: 70%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: black;
+        }
+
+        .header .carousel .hero-text h1 {
+            padding: 5px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+
     </style>
 
     <div class="container">
@@ -23,46 +46,17 @@
                     </ul>
                 </div>
                 <div class="col-md-8">
-                    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-                        <ol class="carousel-indicators">
-                            <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-                            <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-                            <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-                        </ol>
+                    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="http://127.0.0.1:8000/images/imgProduct/610645d094c9ekeyboard.jpg"
-                                    class="d-block w-100" alt="...">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h5>First slide label</h5>
-                                    <p>Some representative placeholder content for the first slide.</p>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
                                 <img src="http://127.0.0.1:8000/images/imgProduct/61055d265e740dell-ultrasharp-27-4k-premiercolor-monitor-front.jpg"
                                     class="d-block w-100" alt="...">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h5>Second slide label</h5>
-                                    <p>Some representative placeholder content for the second slide.</p>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <img src="http://127.0.0.1:8000/images/imgProduct/6104ef00f332ftwarren_rtx3080.0.jpg"
-                                    class="d-block w-100" alt="...">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h5>Third slide label</h5>
-                                    <p>Some representative placeholder content for the third slide.</p>
+                                <div class="hero-text">
+                                    <h1>Top sale product</h1>
+                                    <a href="" class="btn btn-primary">View</a>
                                 </div>
                             </div>
                         </div>
-                        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
                     </div>
                 </div>
             </div>
