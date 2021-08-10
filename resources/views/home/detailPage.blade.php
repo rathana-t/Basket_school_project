@@ -92,9 +92,18 @@
                                             </div>
                                             {{-- <input type="number" class="form-group col-md-2" id="quantity" placeholder="Qty"
                                                 required name="quantity" min="1" max="100"> --}}
-
                                             <button type="submit" class="btn btn-primary">
                                                 Add to cart
+                                            </button>
+
+                                        </form>
+                                        <form action="{{ route('add_to_wishlist') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="u_id" value="{{ $data_user->id }}" id="">
+
+                                            <input type="hidden" name="pro_id" value="{{ $detail->id }}" id="">
+                                            <button type="submit" class="btn btn-warning">
+                                                Add to wishlist
                                             </button>
                                         </form>
 
@@ -102,8 +111,8 @@
                                         <a href="{{ url('login') }}" class="btn btn-primary ">
                                             Add to cart
                                         </a>
-                                        <a href="" class="btn btn-outline-primary mr-5">
-                                            buy now
+                                        <a href="{{ url('login') }}" class="btn btn-warning">
+                                            Add to wishlist
                                         </a>
                                     @endif
                                 </div>

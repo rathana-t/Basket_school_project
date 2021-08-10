@@ -84,10 +84,23 @@ class UserController extends Controller
         $second_cate = DB::table('se_categories')->get();
         return view('home/user-profile/orderHistory',compact('data_user','second_cate'));
     }
-    public function wish_list($id){
-        $data_user = Users::find($id);
+    public function wish_list(){
         $second_cate = DB::table('se_categories')->get();
-        return view('home/user-profile/wishList',compact('data_user','second_cate'));
+        if (session()->has('user')) {
+            $data_user = Users::findOrFail(session('user'));
+            $data_pro = products::join('wishlist','wishlist.pro_id','=','products.id')
+            ->join('users','users.id','=','wishlist.u_id')
+            ->select('products.*','wishlist.id as wish_id')
+            ->get();
+
+            $test=0;
+            foreach($data_pro as $item){
+                $test++;
+            }
+            return view('home/user-profile/wishList',compact('data_user','second_cate','data_pro','test'));
+        } else {
+            return view('home/login',compact('second_cate'));
+        }
     }
     public function ch_password($id){
         $data_user = Users::find($id);

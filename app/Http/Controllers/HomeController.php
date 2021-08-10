@@ -96,7 +96,7 @@ class HomeController extends Controller
 
             $data_pro = carts::join('products', 'products.id', '=', 'carts.product_id')
                 ->where('carts.user_id', '=', $data_user->id)
-                ->select('products.*', 'carts.id as cart_id', 'carts.total', 'carts.quantity')->get();
+                ->select('products.*', 'carts.id as cart_id', 'carts.total', 'carts.quantity')->orderByDesc('carts.updated_at')->get();
             $counter = 0;
             $quantity = 0;
             $total_price_all_quantity = 0;
@@ -233,14 +233,14 @@ class HomeController extends Controller
         }
         return view('home/search', compact('second_cate', 'data', 'pro_name', 'sort', 'brand', 'brandId', 'max_price', 'brand_id', 'min_price'));
     }
-    public function order()
+    public function order($id)
     {
         $second_cate = DB::table('se_categories')->get();
         if (session()->has('user')) {
             $data_user = users::findOrFail(session('user'));
-            return view('home/order', compact('second_cate', 'data_user'));
+            return view('home/user-profile/order', compact('second_cate', 'data_user'));
         }
-        return view('home/order', compact('second_cate'));
+        return view('home/login', compact('second_cate'));
     }
     public function category()
     {
