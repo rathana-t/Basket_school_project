@@ -30,6 +30,16 @@
             border-radius: 5px;
         }
 
+        .header a {
+            color: black;
+            text-decoration: none;
+        }
+
+        .header a:hover {
+            color: #007bff;
+            text-decoration: none;
+        }
+
     </style>
 
     <div class="container">
@@ -38,7 +48,9 @@
                 <div class="col-md-4">
                     <ul class="list-group">
                         @foreach ($randSecond_cate as $item)
-                            <li class="list-group-item">{{ $item->name }}</li>
+                            <a href="/smallcate/{{ $item->id }}">
+                                <li class="list-group-item">{{ $item->name }}</li>
+                            </a>
                         @endforeach
                     </ul>
                 </div>
@@ -46,7 +58,7 @@
                     <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="http://127.0.0.1:8000/images/imgProduct/61055d265e740dell-ultrasharp-27-4k-premiercolor-monitor-front.jpg"
+                                <img src="https://images.macrumors.com/t/jXqUxBjwyt16A254unbNN51zn9A=/1920x/https://images.macrumors.com/article-new/2019/02/MR-Future-Products-2020-2.png"
                                     class="d-block w-100" alt="...">
                                 <div class="hero-text">
                                     <h1>Top sale product</h1>
