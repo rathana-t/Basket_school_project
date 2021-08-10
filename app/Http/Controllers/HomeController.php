@@ -260,6 +260,7 @@ class HomeController extends Controller
     }
     public function smallcate($id)
     {
+
         $second_cate = DB::table('se_categories')->get();
         $smallCateName = se_categories::find($id);
         $smallCate = DB::table('products')
@@ -267,6 +268,10 @@ class HomeController extends Controller
             ->where('se_categories.id', $id)
             ->select('products.*', 'se_categories.id as sec_id')
             ->get();
+            if (session()->has('user')) {
+                $data_user = users::findOrFail(session('user'));
+                return view('home/secondaryCate', compact('smallCate','data_user', 'smallCateName', 'second_cate'));
+            }
         return view('home/secondaryCate', compact('smallCate', 'smallCateName', 'second_cate'));
     }
 
