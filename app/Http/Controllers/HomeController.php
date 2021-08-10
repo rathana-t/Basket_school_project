@@ -51,9 +51,9 @@ class HomeController extends Controller
             ->get();
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
-            return view('home/index', compact('data_user', 'result', 'data_pro', 'cate', 'brand', 'second_cate', 'count', 'recently_product'));
+            return view('home/index', compact('data_user', 'result', 'data_pro', 'cate', 'brand', 'second_cate', 'count', 'recently_product', 'randBrand'));
         } else {
-            return view('home/index', compact('data_pro', 'result', 'cate', 'brand', 'second_cate', 'count', 'recently_product'));
+            return view('home/index', compact('data_pro', 'result', 'cate', 'brand', 'second_cate', 'count', 'recently_product', 'randBrand'));
         }
     }
     public function products()

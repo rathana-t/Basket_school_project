@@ -73,7 +73,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 @foreach ($second_cate as $item)
-                    <a class="dropdown-item" href="">{{ $item->name }}</a>
+                    <a class="dropdown-item" href="/category/{{ $item->id }}">{{ $item->name }}</a>
                 @endforeach
             </div>
             <a class="nav-link active" href="#">Brands</a>
