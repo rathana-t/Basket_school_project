@@ -50,20 +50,18 @@
                                             class="img-fluid">
                                         <?php break; } ?>
                                     </a>
-                                    <div class="pl-3 pr-3 pb-3">
-                                        <div class="product_name">
-                                            <a href="/prodcut/product/{{ $item->id }}">
-                                                {{ $item->name }}
-                                            </a>
-                                        </div>
-                                        <div class="store_name">
-                                            <a href="" class="text-muted">Store</a>
-                                        </div>
-                                        <div class="price">
-                                            <a href="/prodcut/product/{{ $item->id }}">
-                                                ${{ $item->price }}
-                                            </a>
-                                        </div>
+                                    <div class="product_name">
+                                        <a href="/prodcut/product/{{ $item->id }}">
+                                            {{ $item->name }}
+                                        </a>
+                                    </div>
+                                    <div class="store_name">
+                                        <a href="" class="text-muted">Store</a>
+                                    </div>
+                                    <div class="price">
+                                        <a href="/prodcut/product/{{ $item->id }}">
+                                            ${{ $item->price }}
+                                        </a>
                                     </div>
                                 </div>
                             </div>

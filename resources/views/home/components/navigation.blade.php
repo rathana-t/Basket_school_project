@@ -22,7 +22,10 @@
         @elseif (\Route::current()->getName() == 'categoryItem')
             <a href="/">Home</a>
             >
-            <a href="/category/{{ $cate_name->id }}" class="ac">CategoryItem</a>
+            <a href="/category">All Category</a>
+            >
+            <a href="/category/{{ $cate_name->id }}" class="ac">{{ $cate_name->name }}</a>
+
 
         @elseif (\Route::current()->getName() == 'detail')
             <a href="/">Home</a>
@@ -39,7 +42,7 @@
             >
             <a href="/product">All products</a>
             >
-            <a href="/product/product/{{ $product_id->id }}" class="ac">ProductItem</a>
+            <a href="/product/product/{{ $product_id->id }}" class="ac">{{ $product_id->name }}</a>
 
         @elseif (\Route::current()->getName() == 'smallcate')
             <a href="/#Subcategory">Home</a>

@@ -134,6 +134,46 @@ body {
     font-size: 14px;
     color: #323b49;
 }
+.categoryItem h1 {
+    color: #323b49;
+    font-size: 24px;
+}
+
+.categoryItem h5 {
+    color: #323b49;
+    font-size: 20px;
+}
+
+.categoryItem a {
+    font-size: 12px;
+}
+
+.categoryItem img {
+    object-fit: contain;
+    height: 180px;
+}
+
+.categoryItem .product_name a {
+    text-decoration: none;
+    font-size: 14px;
+    color: #323b49;
+}
+
+.categoryItem .store_name a {
+    text-decoration: none;
+    font-size: 14px;
+    color: #323b49;
+}
+
+.categoryItem .price a {
+    text-decoration: none;
+    font-size: 14px;
+    color: #323b49;
+}
+
+.categoryItem a:hover {
+    color: #035ebe;
+}
 
 .sticky-footer {
     top: 100%;
