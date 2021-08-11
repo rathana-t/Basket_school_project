@@ -77,7 +77,7 @@
                             <div class="m-4">
                                 <div class="border-bottom d-flex justify-content-between">
                                     <h1>Seller Info</h1>
-                                    <a href="">
+                                    <a href="{{ url('/seller/editProfile') }}">
                                         <img src="/images/logo/edit.svg" alt="" class="img-fluid">
                                     </a>
                                 </div>

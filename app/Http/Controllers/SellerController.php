@@ -178,6 +178,38 @@ class SellerController extends Controller
             return view('seller/profile');
         }
     }
+    public function edit_profile()
+    {
+        if(session()->has('seller')){
+            $data_seller = sellers::findOrFail(session('seller'));
+            return view('seller/editProfile',compact('data_seller'));
+        }
+        else{
+            return view('/seller/login');
+        }
+    }
+    public function accept_change(Request $request)
+    {
+        if(session()->has('seller')){
+            $update = sellers::findOrFail(session('seller'));
+            $seller = sellers::find($update->id);
+        $this->validate($request,[
+            'store_name'=>'required',
+            'email'=>'required',
+            'phone'=>'required',
+            'address'=>'required',
+        ]);
+        $seller->store_name= $request->store_name;
+        $seller->email= $request->email;
+        $seller->phone= $request->phone;
+        $seller->address= $request->address;
+        $seller->update();
+        return redirect()->back();
+        }
+        return view('/seller/login');
+            // return view('/seller/profile')->with('success','Changed Successfully');
+       
+    }
     public function add_product($id)
     {
         $cat = DB::table('se_categories')
@@ -192,8 +224,6 @@ class SellerController extends Controller
             return view('seller/product/add_product');
         }
     }
-
-
     public function postProduct(Request $req, $id)
     {
         $req->validate([

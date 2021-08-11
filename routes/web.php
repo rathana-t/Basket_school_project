@@ -65,6 +65,8 @@ Route::post('/seller/postProduct/{id}', [SellerController::class, 'postProduct']
 Route::get('/seller/new-order', [SellerController::class, 'new_order'])->middleware('checker_seller');
 Route::get('/seller/old-order', [SellerController::class, 'old_order'])->middleware('checker_seller');
 Route::get('/seller/profile', [SellerController::class, 'profile']);
+Route::get('/seller/editProfile', [SellerController::class, 'edit_profile']);
+Route::post('/seller/accept-change', [SellerController::class, 'accept_change'])->name('acceptChange');
 Route::get('/seller/messages', [SellerController::class, 'sellerMessages']);
 Route::get('/seller/messages/{id}', [SellerController::class, 'detailMsg']);
 Route::get('/edit/product/{id}', [AdminController::class, 'edit'])->name('edit_product');
