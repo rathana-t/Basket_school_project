@@ -153,9 +153,43 @@ class SellerController extends Controller
     {
         if (session()->has('seller')) {
             $data_seller = sellers::findOrFail(session('seller'));
-            return view('seller/new_order', compact('data_seller'));
+            $data = orders::join('users','users.id','=','orders.u_id')
+            ->join('carts','carts.id','=','orders.cart_id')
+            ->join('products','products.id','=','carts.product_id')
+            ->where('orders.pending',1)
+            ->where('orders.seller_id',$data_seller->id)
+            ->select('products.*','carts.total','orders.id as order_id','carts.quantity','users.username as u_name','users.phone as u_phone','users.address as u_address')->get();
+            return view('seller/new_order', compact('data_seller','data'));
         } else {
-            return view('seller/new_order');
+            return view('seller/login');
+        }
+    }
+    public function con_pending($id){
+        if (session()->has('seller')) {
+            $data_seller = sellers::findOrFail(session('seller'));
+
+            $data = orders::find($id);
+
+            $data->pending = 0;
+            $data->processing = 1;
+            $data->update();
+            return redirect()->back();
+        }
+
+    }
+    public function order_processing()
+    {
+        if (session()->has('seller')) {
+            $data_seller = sellers::findOrFail(session('seller'));
+            $data = orders::join('users','users.id','=','orders.u_id')
+            ->join('carts','carts.id','=','orders.cart_id')
+            ->join('products','products.id','=','carts.product_id')
+            ->where('orders.processing',1)
+            ->where('orders.seller_id',$data_seller->id)
+            ->select('products.*','carts.total','carts.quantity','orders.id as order_id','users.username as u_name','users.phone as u_phone','users.address as u_address')->get();
+            return view('seller/processing', compact('data_seller','data'));
+        } else {
+            return view('seller/login');
         }
     }
 
@@ -208,7 +242,7 @@ class SellerController extends Controller
         }
         return view('/seller/login');
             // return view('/seller/profile')->with('success','Changed Successfully');
-       
+
     }
     public function add_product($id)
     {

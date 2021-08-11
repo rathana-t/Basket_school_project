@@ -28,7 +28,7 @@
                     <td>$ {{ $item->total }}</td>
                     <td>{{ $item->created_at }}</td>
                     <td>
-                        <a href="/confirm-pending/{{ $item->order_id }}">
+                        <a href="/confirm-processing/{{ $item->order_id }}">
                             <button class="btn btn-primary">
                                 Confirm
                             </button>

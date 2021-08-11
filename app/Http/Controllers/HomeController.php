@@ -62,6 +62,7 @@ class HomeController extends Controller
     }
     public function products()
     {
+
         $second_cate = DB::table('se_categories')->get();
         $products = DB::table('products')
             ->join('sellers', 'products.seller_id', '=', 'sellers.id')
@@ -69,6 +70,11 @@ class HomeController extends Controller
             ->where('completed', 1)
             ->inRandomOrder()
             ->paginate(16);
+            if (session()->has('user')) {
+                $data_user = Users::findOrFail(session('user'));
+        return view('home/products', compact('data_user','products', 'second_cate'));
+
+            }
         return view('home/products', compact('products', 'second_cate'));
     }
     public function login()
@@ -91,6 +97,7 @@ class HomeController extends Controller
 
             $data_pro = carts::join('products', 'products.id', '=', 'carts.product_id')
                 ->where('carts.user_id', '=', $data_user->id)
+                ->where('carts.in_order',0)
                 ->select('products.*', 'carts.id as cart_id', 'carts.total', 'carts.quantity')->orderByDesc('carts.updated_at')->get();
             $counter = 0;
             $quantity = 0;
@@ -252,7 +259,13 @@ class HomeController extends Controller
         $second_cate = DB::table('se_categories')->get();
         if (session()->has('user')) {
             $data_user = users::findOrFail(session('user'));
-            return view('home/user-profile/order', compact('second_cate', 'data_user'));
+
+            $data = orders::join('carts','carts.id','=','orders.cart_id')
+            ->join('products','products.id','=','carts.product_id')
+            ->where('orders.u_id',$data_user->id)
+            ->select('products.*','orders.*','carts.quantity','carts.total')->get();
+
+            return view('home/user-profile/order', compact('second_cate', 'data','data_user'));
         }
         return view('home/login', compact('second_cate'));
     }

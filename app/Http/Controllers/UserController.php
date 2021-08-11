@@ -89,7 +89,7 @@ class UserController extends Controller
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
             $data_pro = products::join('wishlist','wishlist.pro_id','=','products.id')
-            ->join('users','users.id','=','wishlist.u_id')
+            ->where('wishlist.u_id',$data_user->id)
             ->select('products.*','wishlist.id as wish_id')
             ->get();
 
@@ -128,11 +128,33 @@ class UserController extends Controller
                 $user->password = $data['newpassword'];
                 $user->update();
         return redirect()->back()->with('success','Successfully update');
+              }
             }
-        }
         return redirect()->back()->with('Error','Incorrect Input');
+        }
     }
-}
+    public function confirm_order_prooduct(){
+        if (session()->has('user')) {
+            $data_user = Users::findOrFail(session('user'));
+            $uid = $data_user->id;
+
+            $data_pro = carts::join('products', 'products.id', '=', 'carts.product_id')
+                ->where('carts.user_id', '=', $data_user->id)
+                ->where('carts.in_order',0)
+                ->select('products.*', 'carts.id as cart_id', 'carts.total', 'carts.quantity')->orderByDesc('carts.updated_at')->get();
+            $counter = 0;
+            $quantity = 0;
+            $total_price_all_quantity = 0;
+            foreach ($data_pro as $item) {
+                $total_price_all_quantity = $total_price_all_quantity + $item->total;
+                $quantity =  $quantity + $item->quantity;
+                $counter++;
+            }
+            return view('home/user-profile/confirm_order', compact('quantity', 'data_user',  'data_pro', 'counter', 'total_price_all_quantity'));
+        } else {
+            return view('home/login');
+        }
+    }
 
     public function logout()
     {

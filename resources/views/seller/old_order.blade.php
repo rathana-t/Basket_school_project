@@ -9,12 +9,11 @@
     <table class="table table-hover">
         <thead>
             <tr class="text-center">
-                <th scope="col">Image</th>
+                <th scope="col">Image product</th>
                 <th scope="col">NO.</th>
-                <th scope="col">Name</th>
-                <th scope="col">Address</th>
-                <th scope="col">Product</th>
-                <th scope="col">Price</th>
+                <th scope="col">Customer Name</th>
+                <th scope="col">Customer phone</th>
+                <th scope="col">Customer Address</th>
                 <th scope="col">Quality</th>
                 <th scope="col">Total price</th>
                 <th scope="col">OrderDate</th>
@@ -23,7 +22,6 @@
         </thead>
         <tbody>
             <tr class="seller-list text-center">
-                <td>...</td>
                 <td>...</td>
                 <td>...</td>
                 <td>...</td>
