@@ -33,7 +33,8 @@
                                     </div>
                                 @endif --}}
 
-                                <form action="{{ route('confirm-change') }}" method="POST" id="ChangePassword">
+                                <form action="{{ route('confirm-change', $data_user->id) }}" method="POST"
+                                    id="ChangePassword">
                                     @csrf
                                     {{-- @method('PUT') --}}
 
