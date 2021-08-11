@@ -1,9 +1,11 @@
+/* Finish */
 * {
     font-family: "Poppins", sans-serif;
 }
 
 body {
     min-height: 120vh;
+    background-color: rgb(248, 248, 248) !important;
 }
 .navbar-menu a {
     color: #323b49;
@@ -237,6 +239,8 @@ footer ul li {
 .login .btn-primary {
     background-color: #006fbf;
 }
+
+/* end  */
 
 /* Vitou */
 
@@ -486,6 +490,7 @@ span.value.upper::before {
 
 .modify .card {
     border: none;
+    background-color: rgb(248, 248, 248) !important;
 }
 
 .modify .small-txt {
