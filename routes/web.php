@@ -25,6 +25,7 @@ Route::get('/search', [HomeController::class, 'search']);
 Route::get('/order/{id}', [HomeController::class, 'order']);
 Route::get('/category', [HomeController::class, 'category'])->name('category');
 Route::get('/category/{id}', [HomeController::class, 'categoryItem'])->name('categoryItem');
+Route::get('/category/{id}/product/{id1}', [HomeController::class, 'detail2'])->name('categoryProductItem');
 Route::get('/smallcate', [HomeController::class, 'smallcate'])->name('smallcate');
 Route::get('/smallcate/{id}', [HomeController::class, 'smallcateItem']);
 Route::get('/brand/{id}', [HomeController::class, 'brand'])->name('brandItem');

@@ -26,6 +26,15 @@
             >
             <a href="/category/{{ $cate_name->id }}" class="ac">{{ $cate_name->name }}</a>
 
+        @elseif (\Route::current()->getName() == 'categoryProductItem')
+            <a href="/">Home</a>
+            >
+            <a href="/category">All Category</a>
+            >
+            <a href="/category/{{ $categoryId->id }}">{{ $categoryId->name }}</a>
+            >
+            <a href="/category/{{ $categoryId->id }}/product/{{ $product_id->id }}"
+                class="ac">{{ $product_id->name }}</a>
 
         @elseif (\Route::current()->getName() == 'detail')
             <a href="/">Home</a>

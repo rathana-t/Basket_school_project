@@ -124,6 +124,25 @@ class HomeController extends Controller
         }
     }
 
+    public function detail2($id2,$id)
+    {
+        $categoryId = categories::find($id2);
+        $product_id = products::find($id);
+        $second_cate = DB::table('se_categories')->get();
+        $detail_pro = products::join('brands', 'products.brand_id', '=', 'brands.id')
+            ->join('se_categories', 'products.s_cat_id', '=', 'se_categories.id')
+            ->join('categories', 'products.category_id', '=', 'categories.id')
+            ->where('products.id', $id)
+            ->select('products.*', 'categories.name as cat_name', 'brands.name as brand_name', 'se_categories.name as se_cate')
+            ->get();
+        if (session()->has('user')) {
+            $data_user = Users::findOrFail(session('user'));
+            return view('home/detailPage', compact('data_user', 'detail_pro', 'second_cate', 'product_id','categoryId'));
+        } else {
+            return view('home/detailPage', compact('detail_pro', 'second_cate', 'product_id','categoryId'));
+        }
+    }
+
     public function blog()
     {
         if (session()->has('seller')) {
