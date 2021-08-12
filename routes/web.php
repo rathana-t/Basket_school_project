@@ -27,9 +27,11 @@ Route::get('/category', [HomeController::class, 'category'])->name('category');
 Route::get('/category/{id}', [HomeController::class, 'categoryItem'])->name('categoryItem');
 Route::get('/category/{id}/product/{id1}', [HomeController::class, 'detail2'])->name('categoryProductItem');
 Route::get('/smallcate', [HomeController::class, 'smallcate'])->name('smallcate');
-Route::get('/smallcate/{id}', [HomeController::class, 'smallcateItem']);
-Route::get('/brand/{id}', [HomeController::class, 'brand'])->name('brandItem');
+Route::get('/smallcate/{id}', [HomeController::class, 'smallcateItem'])->name('smallcateItem');
+Route::get('/smallcate/{id}/product/{id1}', [HomeController::class, 'detail3'])->name('smallcateProductItem');
 Route::get('/brand', [HomeController::class, 'allBrand'])->name('brands');
+Route::get('/brand/{id}', [HomeController::class, 'brand'])->name('brandItem');
+Route::get('/brand/{id}/product/{id1}', [HomeController::class, 'detail4'])->name('brandProductItem');
 Route::get('/store', [HomeController::class, 'store']);
 
 Route::post('/signin', [UserController::class, 'signin'])->name("signin");
