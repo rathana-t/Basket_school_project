@@ -66,6 +66,7 @@ Route::get('/seller/new-order', [SellerController::class, 'new_order'])->middlew
 Route::get('/seller/old-order', [SellerController::class, 'old_order'])->middleware('checker_seller');
 Route::get('/seller/profile', [SellerController::class, 'profile']);
 Route::get('/seller/editProfile', [SellerController::class, 'edit_profile']);
+Route::post('/seller/editImage', [SellerController::class, 'edit_image'])->name('changeImage');
 Route::post('/seller/accept-change', [SellerController::class, 'accept_change'])->name('acceptChange');
 Route::get('/seller/messages', [SellerController::class, 'sellerMessages']);
 Route::get('/seller/messages/{id}', [SellerController::class, 'detailMsg']);

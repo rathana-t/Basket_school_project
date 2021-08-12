@@ -113,7 +113,7 @@
     }
 
     /* end side bar */
-
+    /*seller profile */
     .background-color {
         background: #EDEBFA;
         margin: auto;
@@ -130,6 +130,12 @@
         height: 320px;
     }
 
+    .profile-text-style label {
+        font-size: 20px;
+        color: #0049B6;
+        font-family: monospace;
+    }
+
     .seller-info .card {
         height: 320px;
     }
@@ -140,24 +146,35 @@
     }
 
     .seller-info .card .shop-info h1 {
-        font-size: 18px;
-        font-weight: 400;
-        line-height: 30px;
+        font-size: 20px;
+        font-weight: 30px;
         color: #000000;
     }
 
-    .address .card h1 {
+    .seller-info .card .shop-info p {
+        font-size: 17px;
+        font-weight: 30px;
+        color: #222222;
+    }
+
+    .seller-address .address h1 {
         font-size: 22px;
         color: #0049B6;
     }
 
-    .address .card .address-info h1 {
-        font-size: 18px;
-        font-weight: 400;
-        line-height: 30px;
+    .seller-address .address-info h1 {
+        font-size: 20px;
+        font-weight: 30px;
         color: #000000;
     }
 
+    .seller-address .address-info p {
+        font-size: 17px;
+        font-weight: 30px;
+        color: #222222;
+    }
+
+    /*end seller profile */
     .category .card {
         height: 300px;
     }
