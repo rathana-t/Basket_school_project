@@ -254,7 +254,7 @@ class HomeController extends Controller
         }
         return view('home/search', compact('second_cate', 'data', 'pro_name', 'sort', 'brand', 'brandId', 'max_price', 'brand_id', 'min_price'));
     }
-    public function order($id)
+    public function order()
     {
         $second_cate = DB::table('se_categories')->get();
         if (session()->has('user')) {
@@ -262,7 +262,7 @@ class HomeController extends Controller
 
             $data = orders::join('carts','carts.id','=','orders.cart_id')
             ->join('products','products.id','=','carts.product_id')
-            ->where('orders.u_id',$data_user->id)
+            ->where('carts.user_id',$data_user->id)
             ->select('products.*','orders.*','carts.quantity','carts.total')->get();
 
             return view('home/user-profile/order', compact('second_cate', 'data','data_user'));

@@ -36,8 +36,6 @@ class OrderController extends Controller
             foreach($cart as $item){
                 $order = new orders();
                 $order->cart_id = $item->cart_id;
-                $order->u_id = $data_user->id;
-                $order->seller_id = $item->seller_id;
                 $order->pending = 1;
                 $order->save();
             }

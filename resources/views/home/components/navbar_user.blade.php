@@ -58,7 +58,7 @@
                                 </svg>
                                 <p>Order history</p>
                             </a>
-                            <a class="nav-link" href="{{ url('/order', $data_user->id) }}">
+                            <a class="nav-link" href="{{ url('/order') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                                     class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd"
