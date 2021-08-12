@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light">
     <div class="container mt-2 mb-2">
         <a class="navbar-brand" href="/">Navbar</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -64,7 +64,7 @@
         </div>
     </div>
 </nav>
-<div class="navbar-menu border-top border-bottom bg-light">
+<div class="navbar-menu border-top border-bottom">
     <div class="container pl-0 pr-0 pt-2 pb-2">
         <nav class="nav">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"

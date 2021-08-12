@@ -9,7 +9,14 @@
         <h4>MY WISHLIST</h4>
         @include('/admin/components/msg')
 
-        @if ($test > 0)
+        @if ($test == 0)
+
+            <div class="text-center mt-4">
+                <a href="{{ url('/') }}" type="button" class="btn btn-info">
+                    Your WishList is Empty! Go Shopping ?
+                </a>
+            </div>
+        @else
             <table class="table">
                 <thead>
                     <tr>
@@ -58,15 +65,9 @@
                                 </button>
                             </td>
                         </tr>
+                    @endforeach
                 </tbody>
             </table>
-        @endforeach
-    @else
-        <div class="text-center mt-4">
-            <a href="{{ url('/') }}" type="button" class="btn btn-info">
-                Your WishList is Empty! Go Shopping ?
-            </a>
-        </div>
         @endif
 
     </div>

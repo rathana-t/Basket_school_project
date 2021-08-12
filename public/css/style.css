@@ -1,15 +1,21 @@
 /* Finish */
+
 * {
     font-family: "Poppins", sans-serif;
 }
 
 body {
     min-height: 120vh;
+}
+.bg-color {
+    min-height: 120vh;
     background-color: rgb(248, 248, 248) !important;
 }
+
 .navbar-menu a {
     color: #323b49;
 }
+
 .cs-pt {
     padding-top: 3px;
 }
@@ -136,6 +142,7 @@ body {
     font-size: 14px;
     color: #323b49;
 }
+
 .categoryItem h1 {
     color: #323b49;
     font-size: 24px;

@@ -1,11 +1,11 @@
-<footer class="sticky-footer d-flex align-items-center mt-5 bg-light">
+<footer class="sticky-footer d-flex align-items-center mt-5">
     <div class="container">
         <div class="row">
             <div class="col-lg-5 col-md-5 col-sm-4 col-xs-12 ">
                 <ul class="money">
                     <h1>Make Money With Us</h1>
                     <li>
-                        <a href="{{url('/blog')}}">Sell product on our page</a>
+                        <a href="{{ url('/blog') }}">Sell product on our page</a>
                     </li>
                 </ul>
             </div>

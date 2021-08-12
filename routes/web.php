@@ -22,13 +22,16 @@ Route::get('/blog', [HomeController::class, 'blog']);
 Route::get('/cart', [HomeController::class, 'cart'])->name('route_cart')->middleware('checker');
 Route::post('/search-filter', [HomeController::class, 'search_filter'])->name('search-filter');
 Route::get('/search', [HomeController::class, 'search']);
-Route::get('/order/{id}', [HomeController::class, 'order']);
+Route::get('/order', [HomeController::class, 'order']);
 Route::get('/category', [HomeController::class, 'category'])->name('category');
 Route::get('/category/{id}', [HomeController::class, 'categoryItem'])->name('categoryItem');
+Route::get('/category/{id}/product/{id1}', [HomeController::class, 'detail2'])->name('categoryProductItem');
 Route::get('/smallcate', [HomeController::class, 'smallcate'])->name('smallcate');
-Route::get('/smallcate/{id}', [HomeController::class, 'smallcateItem']);
-Route::get('/brand/{id}', [HomeController::class, 'brand'])->name('brandItem');
+Route::get('/smallcate/{id}', [HomeController::class, 'smallcateItem'])->name('smallcateItem');
+Route::get('/smallcate/{id}/product/{id1}', [HomeController::class, 'detail3'])->name('smallcateProductItem');
 Route::get('/brand', [HomeController::class, 'allBrand'])->name('brands');
+Route::get('/brand/{id}', [HomeController::class, 'brand'])->name('brandItem');
+Route::get('/brand/{id}/product/{id1}', [HomeController::class, 'detail4'])->name('brandProductItem');
 Route::get('/store', [HomeController::class, 'store']);
 
 Route::post('/signin', [UserController::class, 'signin'])->name("signin");
@@ -44,17 +47,21 @@ Route::get('/logout', [UserController::class, 'logout'])->middleware('checker');
 Route::delete('remove-cart', [CartController::class, 'remove_cart']);
 Route::delete('remove-wishlist', [CartController::class, 'remove_wishlist']);
 Route::post('edit-quantity-cart', [CartController::class, 'edit_cart_quantity']);
+Route::get('/confirm-order-product', [UserController::class, 'confirm_order_prooduct']);
+Route::post('/order-product', [OrderController::class, 'order']);
 
 //=============Seller===================
 
 Route::post('/add-to-cart', [CartController::class, 'add_to_cart'])->name('add_to_cart');
-Route::post('/add-to-widhlist', [CartController::class, 'add_to_widhlist'])->name('add_to_wishlist');;
+Route::post('/add-to-wishlist', [CartController::class, 'add_to_wishlist'])->name('add_to_wishlist');
+Route::get('/add-to-wishlist2/{id}/product/{id2}', [CartController::class, 'add_to_wishlist2'])->name('add_to_wishlist2');
 Route::get('/sellerLogInPage', [SellerController::class, 'login_page']);
 Route::get('/sellerRegisterPage', [SellerController::class, 'register_page']);
 Route::post('/sellerLogIn', [SellerController::class, 'login']);
 Route::post('/sellerRegister', [SellerController::class, 'register']);
 Route::get('/logout_seller', [SellerController::class, 'logout'])->middleware('checker_seller');
 Route::get('/forseller', [SellerController::class, 'forseller']);
+Route::get('/confirm-pending/{id}', [SellerController::class, 'con_pending']);
 
 Route::get('/seller/dashboard', [SellerController::class, 'dashboard'])->middleware('checker_seller');
 Route::get('/seller/products', [SellerController::class, 'products'])->middleware('checker_seller');
@@ -63,6 +70,7 @@ Route::get('/seller/choose-category', [SellerController::class, 'choose_main_cat
 Route::get('/seller/add-product/{id}', [SellerController::class, 'add_product'])->middleware('checker_seller');
 Route::post('/seller/postProduct/{id}', [SellerController::class, 'postProduct'])->name('sellerpostProduct');
 Route::get('/seller/new-order', [SellerController::class, 'new_order'])->middleware('checker_seller');
+Route::get('/seller/processing', [SellerController::class, 'order_processing'])->middleware('checker_seller');
 Route::get('/seller/old-order', [SellerController::class, 'old_order'])->middleware('checker_seller');
 Route::get('/seller/profile', [SellerController::class, 'profile']);
 Route::get('/seller/editProfile', [SellerController::class, 'edit_profile']);

@@ -2,6 +2,7 @@
 
 @section('content')
     @include('/home/components/navigation')
+    @include('/admin/components/msg')
 
     <div class="container">
         @foreach ($detail_pro as $detail)
@@ -53,7 +54,6 @@
                                     <span><strong>Store</strong></span>
                                     <span class="pl-4">Phnom Penh</span>
                                 </p>
-                                @include('/admin/components/msg')
 
                                 <p class="store_name">
                                     <span><strong>Brand</strong></span>
@@ -69,7 +69,7 @@
                                             <input type="hidden" value="{{ $detail->id }}" name="product_id">
                                             <input type="hidden" value="{{ $detail->price }}" name="total">
 
-                                            <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+                                            {{-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
                                             <div class="form-group" style="width: 130px">
                                                 <div class="input-group">
                                                     <span class="input-group-btn">
@@ -80,7 +80,8 @@
                                                         </button>
                                                     </span>
                                                     <input style="height: 34px" type="text" name="quantity"
-                                                        class="form-control input-number" value="1" min="1" max="100">
+                                                        class="form-control input-number" value="1" min="1"
+                                                        max="{{ $detail->stock }}">
                                                     <span class="input-group-btn">
                                                         <button style="height: 34px" type="button"
                                                             class="btn btn-success btn-number" data-type="plus"
@@ -89,9 +90,10 @@
                                                         </button>
                                                     </span>
                                                 </div>
-                                            </div>
-                                            {{-- <input type="number" class="form-group col-md-2" id="quantity" placeholder="Qty"
-                                                required name="quantity" min="1" max="100"> --}}
+                                            </div> --}}
+                                            <input type="number" class="form-group col-md-2" value="1" id="quantity"
+                                                placeholder="Qty" required name="quantity" min="1"
+                                                max="{{ $detail->stock }}">
                                             <button type="submit" class="btn btn-primary">
                                                 Add to cart
                                             </button>
@@ -103,6 +105,11 @@
 
                                             <input type="hidden" name="pro_id" value="{{ $detail->id }}" id="">
                                             <button type="submit" class="btn btn-warning">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                                                </svg>
                                                 Add to wishlist
                                             </button>
                                         </form>

@@ -26,13 +26,13 @@ class CartController extends Controller
     public function add_to_cart(Request $request)
     {
         $allcart = carts::all();
+
     foreach($allcart as $cart){
-        if ($cart->user_id ==  $request->user_id && $request->product_id == $cart->product_id) {
+            if ($cart->user_id ==  $request->user_id && $request->product_id == $cart->product_id && $cart->in_order == 0) {
                 $cart->quantity = $cart->quantity +  $request->quantity;
                 $cart->total=$cart->quantity * $request->total;
-
                 $cart->update();
-                return redirect()->back()->with('add-to-cart-success','Added to cart');
+                return redirect()->back()->with('add-to-cart-success', 'Added to cart');
         }
     }
     $newcart = new carts();
@@ -66,7 +66,8 @@ class CartController extends Controller
         $cart->update();
         return redirect()->back();
     }
-    public function add_to_widhlist(Request $reg){
+
+    public function add_to_wishlist(Request $reg){
 
         $allwishlist = wishlist::all();
         foreach($allwishlist as $wishlist){
@@ -78,6 +79,23 @@ class CartController extends Controller
         $wishlist = new wishlist();
         $wishlist->u_id = $data_user->id;
         $wishlist->pro_id = $reg->pro_id;
+
+        $wishlist->save();
+
+        return redirect()->back()->with('add-to-wishlist-success','Added to wishlist');
+    }
+    public function add_to_wishlist2($id,$id2){
+
+        $allwishlist = wishlist::all();
+        foreach($allwishlist as $wishlist){
+        if ($wishlist->u_id ==  $id && $id2 == $wishlist->pro_id) {
+                return redirect()->back()->with('add-to-wishlist-success','Added to wishlist');
+            }
+        }
+        // $data_user = Users::findOrFail(session('user'));
+        $wishlist = new wishlist();
+        $wishlist->u_id = $id;
+        $wishlist->pro_id = $id2;
 
         $wishlist->save();
 

@@ -3,10 +3,11 @@
 @section('content')
 
     @include('/admin/components/modal')
-
+    @include('/admin/components/msg')
 
     <div class="container mt-4">
         <h6>Your Shopping Cart and product</h6>
+
         <div class="row">
             <div class="col-md-8 ">
                 <div class="d-flex">
@@ -30,6 +31,7 @@
                                 <p class="text-primary m-1 sizetext">
                                     {{ $item->name }}
                                 </p>
+
                                 {{-- <p class="font-weight-lighter m-1 sizetext">#WOM304870</p> --}}
                                 <div class="d-flex">
                                     <div class="font-weight-light m-1">
@@ -38,6 +40,7 @@
                                             class="mb-1">
                                         <?php break; } ?>
                                     </div>
+
                                     <div class="wrapperrr">
                                         <div class="p-2 des-margin textoverflow">{{ $item->description }}</div>
                                     </div>
@@ -53,6 +56,7 @@
                                                     d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
                                             </svg>
                                         </button>
+
                                     </div>
                                     <div class="ml-auto p-2">$ {{ $item->total }}</div>
                                 </div>
@@ -71,15 +75,15 @@
                                         </svg>
                                         Delete
                                     </button>
-                                    <button type="button" class="btn-sm btn btn-primary">
+                                    <a href="{{ route('add_to_wishlist2', [$data_user->id, $item->id]) }}"
+                                        class="btn-sm btn btn-warning">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                            class="bi bi-save2" viewBox="0 0 16 16">
+                                            class="bi bi-heart" viewBox="0 0 16 16">
                                             <path
-                                                d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v4.5h2a.5.5 0 0 1 .354.854l-2.5 2.5a.5.5 0 0 1-.708 0l-2.5-2.5A.5.5 0 0 1 5.5 6.5h2V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1H2z">
-                                            </path>
+                                                d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
                                         </svg>
-                                        Save for later
-                                    </button>
+                                        Add to wishlist
+                                    </a>
                                     <a href="{{ url('/product', $item->id) }}" type="button" class="btn-sm btn btn-info">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                             class="bi bi-eye-fill" viewBox="0 0 16 16">
@@ -123,7 +127,6 @@
                             </div>
                         @endif
                     @endif
-
                 </div>
 
                 {{-- <p class="font-weight-light cart-text">The price and availability of items at PLP.com are subject to
@@ -150,12 +153,11 @@
                                             id="exampleRadios1" value="option1" checked>
                                         <label class="form-check-label" for="exampleRadios1">
                                             Pay later/ Cash on Delivery
-                                            <p class="new-table">$15.00</p>
+                                            <p class="new-table">$ {{ $total_price_all_quantity }}</p>
                                         </label>
                                     </div>
                                 </div>
                             </td>
-
                         </tr>
                         <tr>
                             <td class="pay" colspan=" 4">
@@ -165,26 +167,37 @@
                                             id="exampleRadios2" value="option1" checked>
                                         <label class="form-check-label" for="exampleRadios2">
                                             Pay method
-                                            <p class="new-table">$15.00</p>
+                                            <p class="new-table">$ {{ $total_price_all_quantity }}</p>
                                         </label>
                                     </div>
                                 </div>
                             </td>
-
                         </tr>
-
                         <tr>
-                            <td colspan=" 4">
-                                <div class="">
-                                    <button type="submit" class="btn btn-primary text-center w-100">Checkout</button>
-                                </div>
-                            </td>
+                            @if ($counter > 0)
+                                <td colspan=" 4">
+                                    <div class="">
+                                        <a href="{{ url('/confirm-order-product') }}"
+                                            class="fill_address btn btn-primary text-center w-100">Checkout</a>
+                                    </div>
+                                </td>
+                            @else
+                                <td colspan=" 4">
+                                    <div class="">
+                                        <a href="" class="fill_address btn btn-primary text-center w-100">No product</a>
+                                    </div>
+                                </td>
+                            @endif
+
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+
+
+
 
     <div class="modal fade" id="edit_cart_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -238,12 +251,21 @@
                 $('#edit_cart_id').val(cart_id);
             })
         });
+        // $(document).ready(function() {
+        //     $(document).on('click', '.fill_address', function() {
+        //         var cart_id = $(this).val();
+        //         // alert(cart_id);
+        //         $('#address_user_modal').modal('show');
+        //         // $('#edit_cart_id').val(cart_id);
+        //     })
+        // });
 
-        $(document).ready(function() {
-            $('#link2').on('click', function() {
-                var id_cart = $(this).val();
-                window.location.href = '{{ url('/product') }}'.val(cart_id);
-            });
-        });
+
+        // $(document).ready(function() {
+        //     $('#link2').on('click', function() {
+        //         var id_cart = $(this).val();
+        //         window.location.href = '{{ url('/product') }}'.val(cart_id);
+        //     });
+        // });
     </script>
 @stop

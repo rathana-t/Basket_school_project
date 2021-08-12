@@ -3,7 +3,7 @@
 @section('content')
     @include('/home/components/navigation')
     <div class="container">
-        <div class="header mt-4 mb-4">
+        <div class="header pb-2">
             <div class="row">
                 <div class="col-md-4">
                     <ul class="list-group">
@@ -14,6 +14,7 @@
                         @endforeach
                     </ul>
                 </div>
+
                 <div class="col-md-8">
                     <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
@@ -31,7 +32,7 @@
             </div>
         </div>
 
-        <div class="product mt-4 mb-4" id="Product">
+        <div class="product pt-4 pb-2" id="Product">
             <div class="mb-3 d-flex justify-content-between">
                 <h5>
                     Products
@@ -58,11 +59,30 @@
                                     <div class="store_name">
                                         <a href="" class="text-muted">Store</a>
                                     </div>
+
                                     <div class="price">
                                         <a href="/prodcut/product/{{ $item->id }}">
                                             ${{ $item->price }}
                                         </a>
                                     </div>
+                                    {{-- @if (Session::has('user'))
+                                        <a href="/add-to-wishlist2/{{ $data_user->id }}/product/{{ $item->id }}"
+                                            class="btn-sm btn btn-warning">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                                                <path
+                                                    d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                                            </svg>
+                                        </a>
+                                    @else
+                                        <a href="/login" class="btn-sm btn btn-warning">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                                                <path
+                                                    d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                                            </svg>
+                                        </a>
+                                    @endif --}}
                                 </div>
                             </div>
                         </div>
@@ -71,7 +91,7 @@
             </div>
         </div>
 
-        <div class="category mt-4 mb-4" id="Category">
+        <div class="category pt-4 pb-2" id="Category">
             <div class="d-flex justify-content-between mb-3">
                 <h5>
                     Category
@@ -82,7 +102,7 @@
                 <div class="row mt-3">
                     @foreach ($cate as $item)
                         <div class="col-md-3 col-sm-6 col-xs-12">
-                            <div class="card shadow-sm">
+                            <div class="card mb-3">
                                 <div class="m-3">
                                     <p>{{ $item->name }}</p>
                                     <a href="category/{{ $item->id }}">
@@ -91,7 +111,6 @@
                                                 class="img-fluid">
                                         </div>
                                     </a>
-                                    <a href="category/{{ $item->id }}">See all</a>
                                 </div>
                             </div>
                         </div>
@@ -100,7 +119,7 @@
             </div>
         </div>
 
-        <div class="category mt-4 mb-4" id="Subcategory">
+        <div class="category pt-4 pb-2" id="Subcategory">
             <div class="d-flex justify-content-between mb-3">
                 <h5>
                     Subcategory
@@ -111,7 +130,7 @@
                 <div class="row mt-3">
                     @foreach ($second_cate as $item)
                         <div class="col-md-3 col-sm-6 col-xs-12">
-                            <div class="card shadow-sm mb-3">
+                            <div class="card mb-3">
                                 <div class="m-3">
                                     <p>{{ $item->name }}</p>
                                     <a href="/smallcate/{{ $item->id }}">
@@ -120,7 +139,6 @@
                                                 class="img-fluid">
                                         </div>
                                     </a>
-                                    <a href="">See all</a>
                                 </div>
                             </div>
                         </div>
@@ -129,7 +147,7 @@
             </div>
         </div>
 
-        <div class="brand mt-4 mb-4" id="Brand">
+        <div class="brand pt-4 pb-4" id="Brand">
             <div class="mb-3 d-flex justify-content-between">
                 <h5>
                     Brand
@@ -140,7 +158,7 @@
                 <div class="row">
                     @foreach ($brand as $item)
                         <div class="col-6 col-md-2">
-                            <div class="card">
+                            <div class="card mb-3">
                                 <div class="p-3 text-center">
                                     <a href="/brand/{{ $item->id }}">
                                         <img src="/images/brandImages/{{ $item->brand_img }}" alt="" class="img-fluid">
