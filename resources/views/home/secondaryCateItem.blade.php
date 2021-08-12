@@ -4,10 +4,10 @@
     @include('/home/components/navigation')
 
     <div class="container">
-        <div class="categoryItem">
-            <h1>
+        <div class="categoryItem pt-3">
+            <h5>
                 {{ $smallCateName->name }}
-            </h1>
+            </h5>
             <div class="cate-item">
                 <div class="row mt-3">
                     @foreach ($products as $item)
@@ -21,7 +21,7 @@
                                         <?php break; } ?>
                                     </a>
                                     <div class="product_name">
-                                        <a href="/prodcut/product/{{ $item->id }}">
+                                        <a href="/smallcate/{{ $smallCateName->id }}/product/{{ $item->id }}">
                                             {{ $item->name }}
                                         </a>
                                     </div>
@@ -29,7 +29,7 @@
                                         <a href="" class="text-muted">Store</a>
                                     </div>
                                     <div class="price">
-                                        <a href="/prodcut/product/{{ $item->id }}">
+                                        <a href="/smallcate/{{ $smallCateName->id }}/product/{{ $item->id }}">
                                             ${{ $item->price }}
                                         </a>
                                     </div>

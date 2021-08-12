@@ -4,10 +4,10 @@
     @include('/home/components/navigation')
 
     <div class="container">
-        <div class="categoryItem">
-            <h1>
+        <div class="categoryItem pt-3">
+            <h5>
                 {{ $brand_id->name }}
-            </h1>
+            </h5>
             <div class="cate-item">
                 <div class="row mt-3">
                     @foreach ($product as $item)

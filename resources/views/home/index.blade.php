@@ -3,7 +3,7 @@
 @section('content')
     @include('/home/components/navigation')
     <div class="container">
-        <div class="header mt-4 mb-4">
+        <div class="header pb-2">
             <div class="row">
                 <div class="col-md-4">
                     <ul class="list-group">
@@ -32,7 +32,7 @@
             </div>
         </div>
 
-        <div class="product mt-4 mb-4" id="Product">
+        <div class="product pt-4 pb-2" id="Product">
             <div class="mb-3 d-flex justify-content-between">
                 <h5>
                     Products
@@ -91,7 +91,7 @@
             </div>
         </div>
 
-        <div class="category mt-4 mb-4" id="Category">
+        <div class="category pt-4 pb-2" id="Category">
             <div class="d-flex justify-content-between mb-3">
                 <h5>
                     Category
@@ -102,7 +102,7 @@
                 <div class="row mt-3">
                     @foreach ($cate as $item)
                         <div class="col-md-3 col-sm-6 col-xs-12">
-                            <div class="card shadow-sm">
+                            <div class="card mb-3">
                                 <div class="m-3">
                                     <p>{{ $item->name }}</p>
                                     <a href="category/{{ $item->id }}">
@@ -111,7 +111,6 @@
                                                 class="img-fluid">
                                         </div>
                                     </a>
-                                    <a href="category/{{ $item->id }}">See all</a>
                                 </div>
                             </div>
                         </div>
@@ -120,7 +119,7 @@
             </div>
         </div>
 
-        <div class="category mt-4 mb-4" id="Subcategory">
+        <div class="category pt-4 pb-2" id="Subcategory">
             <div class="d-flex justify-content-between mb-3">
                 <h5>
                     Subcategory
@@ -131,7 +130,7 @@
                 <div class="row mt-3">
                     @foreach ($second_cate as $item)
                         <div class="col-md-3 col-sm-6 col-xs-12">
-                            <div class="card shadow-sm mb-3">
+                            <div class="card mb-3">
                                 <div class="m-3">
                                     <p>{{ $item->name }}</p>
                                     <a href="/smallcate/{{ $item->id }}">
@@ -140,7 +139,6 @@
                                                 class="img-fluid">
                                         </div>
                                     </a>
-                                    <a href="">See all</a>
                                 </div>
                             </div>
                         </div>
@@ -149,7 +147,7 @@
             </div>
         </div>
 
-        <div class="brand mt-4 mb-4" id="Brand">
+        <div class="brand pt-4 pb-4" id="Brand">
             <div class="mb-3 d-flex justify-content-between">
                 <h5>
                     Brand
@@ -160,7 +158,7 @@
                 <div class="row">
                     @foreach ($brand as $item)
                         <div class="col-6 col-md-2">
-                            <div class="card">
+                            <div class="card mb-3">
                                 <div class="p-3 text-center">
                                     <a href="/brand/{{ $item->id }}">
                                         <img src="/images/brandImages/{{ $item->brand_img }}" alt="" class="img-fluid">

@@ -1,4 +1,4 @@
-<div class="container pt-4 mb-4">
+<div class="container pt-4 pb-2">
     <style>
         .navigation a {
             text-decoration: none;
@@ -54,14 +54,14 @@
             <a href="/smallcate" class="ac">Subcategory</a>
 
         @elseif (\Route::current()->getName() == 'smallcateItem')
-            <a href="/">Home</a>
+            <a href="/#Subcategory">Home</a>
             >
             <a href="/smallcate">Subcategory</a>
             >
             <a href="/smallcate/{{ $smallCateName->id }}" class="ac">{{ $smallCateName->name }}</a>
 
         @elseif (\Route::current()->getName() == 'smallcateProductItem')
-            <a href="/">Home</a>
+            <a href="/#Subcategory">Home</a>
             >
             <a href="/smallcate">Subcategory</a>
             >

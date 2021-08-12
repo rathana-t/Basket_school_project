@@ -318,6 +318,10 @@ class HomeController extends Controller
     public function smallcate()
     {
         $second_cate = DB::table('se_categories')->get();
+        if (session()->has('user')) {
+            $data_user = users::findOrFail(session('user'));
+            return view('home/secondaryCate', compact('second_cate', 'data_user'));
+        }
         return view('home/secondaryCate', compact('second_cate'));
     }
     public function smallcateItem($id)
@@ -329,6 +333,10 @@ class HomeController extends Controller
             ->where('se_categories.id', $id)
             ->select('products.*', 'se_categories.id as sec_id')
             ->get();
+        if (session()->has('user')) {
+            $data_user = users::findOrFail(session('user'));
+            return view('home/secondaryCateItem', compact('products', 'smallCateName', 'second_cate', 'data_user'));
+        }
         return view('home/secondaryCateItem', compact('products', 'smallCateName', 'second_cate'));
     }
 
@@ -340,6 +348,10 @@ class HomeController extends Controller
             ->groupBy('brand_id')
             ->get();
         $brands = DB::table('brands')->get();
+        if (session()->has('user')) {
+            $data_user = users::findOrFail(session('user'));
+            return view('/home/allBrands', compact('brands', 'result', 'second_cate', 'data_user'));
+        }
         return view('/home/allBrands', compact('brands', 'result', 'second_cate'));
     }
     public function brand($id)

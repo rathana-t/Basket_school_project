@@ -4,7 +4,7 @@
     @include('/home/components/navigation')
 
     <div class="container">
-        <div class="brand mt-4">
+        <div class="brand pt-3">
             <h5>
                 Brand
             </h5>
