@@ -27,25 +27,26 @@ class CartController extends Controller
     {
         $allcart = carts::all();
 
-    foreach($allcart as $cart){
+        foreach ($allcart as $cart) {
             if ($cart->user_id ==  $request->user_id && $request->product_id == $cart->product_id && $cart->in_order == 0) {
                 $cart->quantity = $cart->quantity +  $request->quantity;
-                $cart->total=$cart->quantity * $request->total;
+                $cart->total = $cart->quantity * $request->total;
                 $cart->update();
                 return redirect()->back()->with('add-to-cart-success', 'Added to cart');
+            }
         }
-    }
-    $newcart = new carts();
+        $newcart = new carts();
 
-    $newcart->quantity = $request->quantity;
-    $newcart->total = $request->total *  $request->quantity;
-    $newcart->user_id = $request->user_id;
-    $newcart->product_id = $request->product_id;
+        $newcart->quantity = $request->quantity;
+        $newcart->total = $request->total *  $request->quantity;
+        $newcart->user_id = $request->user_id;
+        $newcart->product_id = $request->product_id;
 
-    $newcart->save();
-    return redirect()->back()->with('add-to-cart-success','Added to cart');
+        $newcart->save();
+        return redirect()->back()->with('add-to-cart-success', 'Added to cart');
     }
-    public function remove_cart(Request $req){
+    public function remove_cart(Request $req)
+    {
         $cart_id = $req->input('remove_cart_id');
         $cart = carts::find($cart_id);
         $cart->delete();
@@ -55,24 +56,25 @@ class CartController extends Controller
     {
         $cart_id = $req->input('edit_cart_id');
         $cart = carts::find($cart_id);
-        $data_pro = products::join('carts','carts.product_id','=','products.id')->where('carts.id', $cart_id)->get();
+        $data_pro = products::join('carts', 'carts.product_id', '=', 'products.id')->where('carts.id', $cart_id)->get();
         $price = 0;
         foreach ($data_pro as $item) {
-           $price = $item->price;
+            $price = $item->price;
         }
         // dd($price);
-        $cart->quantity= $req->input('edit_cart_value');
+        $cart->quantity = $req->input('edit_cart_value');
         $cart->total = $price * $cart->quantity;
         $cart->update();
         return redirect()->back();
     }
 
-    public function add_to_wishlist(Request $reg){
+    public function add_to_wishlist(Request $reg)
+    {
 
         $allwishlist = wishlist::all();
-        foreach($allwishlist as $wishlist){
-        if ($wishlist->u_id ==  $reg->u_id && $reg->pro_id == $wishlist->pro_id) {
-                return redirect()->back()->with('add-to-wishlist-success','Added to wishlist');
+        foreach ($allwishlist as $wishlist) {
+            if ($wishlist->u_id ==  $reg->u_id && $reg->pro_id == $wishlist->pro_id) {
+                return redirect()->back()->with('add-to-wishlist-success', 'Added to wishlist');
             }
         }
         $data_user = Users::findOrFail(session('user'));
@@ -82,14 +84,15 @@ class CartController extends Controller
 
         $wishlist->save();
 
-        return redirect()->back()->with('add-to-wishlist-success','Added to wishlist');
+        return redirect()->back()->with('add-to-wishlist-success', 'Added to wishlist');
     }
-    public function add_to_wishlist2($id,$id2){
+    public function add_to_wishlist2($id, $id2)
+    {
 
         $allwishlist = wishlist::all();
-        foreach($allwishlist as $wishlist){
-        if ($wishlist->u_id ==  $id && $id2 == $wishlist->pro_id) {
-                return redirect()->back()->with('add-to-wishlist-success','Added to wishlist');
+        foreach ($allwishlist as $wishlist) {
+            if ($wishlist->u_id ==  $id && $id2 == $wishlist->pro_id) {
+                return redirect()->back()->with('add-to-wishlist-success', 'Added to wishlist');
             }
         }
         // $data_user = Users::findOrFail(session('user'));
@@ -99,12 +102,13 @@ class CartController extends Controller
 
         $wishlist->save();
 
-        return redirect()->back()->with('add-to-wishlist-success','Added to wishlist');
+        return redirect()->back()->with('add-to-wishlist-success', 'Added to wishlist');
     }
-    public function remove_wishlist(Request $req){
+    public function remove_wishlist(Request $req)
+    {
         $wish_id = $req->input('remove_wish_id');
         $wish = wishlist::find($wish_id);
         $wish->delete();
-        return redirect()->back()->with('remove-wishlist-success','Removed');
+        return redirect()->back()->with('remove-wishlist-success', 'Removed');
     }
 }

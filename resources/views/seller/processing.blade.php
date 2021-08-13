@@ -30,7 +30,7 @@
                     <td>
                         <a href="/confirm-processing/{{ $item->order_id }}">
                             <button class="btn btn-primary">
-                                Confirm
+                                Delivery
                             </button>
                         </a>
                         <a href="{{ url('product', $item->id) }}">

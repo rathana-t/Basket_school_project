@@ -4,199 +4,203 @@
 
     @include('/admin/components/modal')
     @include('/admin/components/msg')
+    @include('/home/components/navigation')
+    <style>
+        .shopping-cart table td {
+            vertical-align: middle;
 
-    <div class="container mt-4">
-        <h6>Your Shopping Cart and product</h6>
+        }
 
-        <div class="row">
-            <div class="col-md-8 ">
-                <div class="d-flex">
-                    <div class="p-2 des-margin">Product</div>
-                    <div class="ml-auto p-2">Description</div>
-                    <div class="ml-auto p-2">Qty</div>
-                    <div class="ml-auto p-2">Total price</div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-8">
-                <div class="border-top"></div>
+        table td img {
+            height: 100px;
+            object-fit: contain;
+            border-radius: 5px;
+        }
 
-                @if ($counter > 0)
-                    @foreach ($data_pro as $item)
+        .shopping-cart a {
+            color: #323b49;
+            text-decoration: none;
+        }
 
-                        <div class="order-margin show-order">
+        .table-bordered {
+            background-color: white;
+        }
 
-                            <div class="container">
-                                <p class="text-primary m-1 sizetext">
-                                    {{ $item->name }}
-                                </p>
+    </style>
+    <div class="shopping-cart">
+        <div class="container">
+            <div class="pt-3">
+                <h5 class="mb-3">
+                    Shopping Cart
+                </h5>
+                <div>
+                    <div class="row">
+                        <div class="col-md-9">
+                            @if ($counter > 0)
+                                <div class="card">
+                                    <div class="p-1">
+                                        <table class="table table-borderless">
+                                            <thead>
+                                                <tr class="">
+                                                    <th scope="col" colspan="2">PRODUCT</th>
+                                                    <th scope="col">QUANTITY</th>
+                                                    <th scope="col">PRICE</th>
+                                                    <th scope="col">TOTAL</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
 
-                                {{-- <p class="font-weight-lighter m-1 sizetext">#WOM304870</p> --}}
-                                <div class="d-flex">
-                                    <div class="font-weight-light m-1">
-                                        <?php foreach (json_decode($item->img_product)as $picture) { ?>
-                                        <img style="width: 100px;" src="/images/imgProduct/{{ $picture }}" alt=""
-                                            class="mb-1">
-                                        <?php break; } ?>
+                                                @foreach ($data_pro as $item)
+                                                    <tr class="">
+                                                        <td colspan="2">
+                                                            <a href="{{ url('/product', $item->id) }}">
+                                                                <?php foreach (json_decode($item->img_product)as $picture) { ?>
+                                                                <img style="width: 100px;"
+                                                                    src="/images/imgProduct/{{ $picture }}" alt=""
+                                                                    class="mb-1">
+                                                                <?php break; } ?>
+                                                                {{ $item->name }}
+
+                                                            </a>
+                                                        </td>
+                                                        <td>
+                                                            <a href="{{ url('/product', $item->id) }}">
+                                                                {{ $item->quantity }}
+                                                            </a>
+
+                                                            <button type="button" value="{{ $item->cart_id }}"
+                                                                class="btn-sm edit_cart  btn btn-primary">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                    height="16" fill="currentColor"
+                                                                    class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                                    <path
+                                                                        d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                                                    <path fill-rule="evenodd"
+                                                                        d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                                                </svg>
+                                                            </button>
+                                                        </td>
+                                                        <td>
+                                                            <a href="{{ url('/product', $item->id) }}">
+                                                                <p class="font-weight-light m-1">$ {{ $item->price }}</p>
+                                                            </a>
+                                                        </td>
+                                                        <td>
+                                                            <a href="{{ url('/product', $item->id) }}">
+                                                                <div class="ml-auto p-2">$ {{ $item->total }}</div>
+                                                            </a>
+                                                        </td>
+                                                        <td>
+                                                            <button type="button" value="{{ $item->cart_id }}"
+                                                                class="btn-sm remove_cart btn btn-outline-danger">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                    height="16" fill="currentColor" class="bi bi-trash"
+                                                                    viewBox="0 0 16 16">
+                                                                    <path
+                                                                        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z">
+                                                                    </path>
+                                                                    <path fill-rule="evenodd"
+                                                                        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z">
+                                                                    </path>
+                                                                </svg>
+                                                                Remove
+                                                            </button>
+                                                            <a href="{{ route('add_to_wishlist2', [$data_user->id, $item->id]) }}"
+                                                                class="btn-sm btn btn-danger text-white">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                    height="16" fill="currentColor" class="bi bi-heart"
+                                                                    viewBox="0 0 16 16">
+                                                                    <path
+                                                                        d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                                                                </svg>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
                                     </div>
-
-                                    <div class="wrapperrr">
-                                        <div class="p-2 des-margin textoverflow">{{ $item->description }}</div>
-                                    </div>
-                                    <div class="ml-auto p-2">{{ $item->quantity }}
-
-                                        <button type="button" value="{{ $item->cart_id }}"
-                                            class="btn-sm edit_cart  btn btn-primary">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                                                <path fill-rule="evenodd"
-                                                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-                                            </svg>
-                                        </button>
-
-                                    </div>
-                                    <div class="ml-auto p-2">$ {{ $item->total }}</div>
+                                    {{-- @if ($counter > 1)
+                                        @if ($quantity > 1)
+                                            <div class="p-2 ">
+                                                ({{ $counter }} Products , {{ $quantity }} items) : $
+                                                {{ $total_price_all_quantity }}
+                                            </div>
+                                        @else
+                                            <div class="p-2 ">
+                                                ({{ $counter }} Products , {{ $quantity }} item) : $
+                                                {{ $total_price_all_quantity }}
+                                            </div>
+                                        @endif
+                                    @else
+                                        @if ($quantity > 1)
+                                            <div class="p-2 ">
+                                                Subtotal({{ $counter }} Product , {{ $quantity }} items) : $
+                                                {{ $total_price_all_quantity }}
+                                            </div>
+                                        @else
+                                            <div class="p-2 ">
+                                                Subtotal({{ $counter }} Product , {{ $quantity }} item) : $
+                                                {{ $total_price_all_quantity }}
+                                            </div>
+                                        @endif
+                                    @endif --}}
                                 </div>
-                                <p class="font-weight-light m-1">$ {{ $item->price }}</p>
-                                <div class="delete m-1">
-                                    <button type="button" value="{{ $item->cart_id }}"
-                                        class="btn-sm remove_cart btn btn-danger">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                            class="bi bi-trash" viewBox="0 0 16 16">
-                                            <path
-                                                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z">
-                                            </path>
-                                            <path fill-rule="evenodd"
-                                                d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z">
-                                            </path>
-                                        </svg>
-                                        Delete
-                                    </button>
-                                    <a href="{{ route('add_to_wishlist2', [$data_user->id, $item->id]) }}"
-                                        class="btn-sm btn btn-warning">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                            class="bi bi-heart" viewBox="0 0 16 16">
-                                            <path
-                                                d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                                        </svg>
-                                        Add to wishlist
-                                    </a>
-                                    <a href="{{ url('/product', $item->id) }}" type="button" class="btn-sm btn btn-info">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                            class="bi bi-eye-fill" viewBox="0 0 16 16">
-                                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
-                                            <path
-                                                d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
-                                        </svg>
-                                        View
+                            @else
+                                <div class="text-center mt-4">
+                                    <a href="{{ url('/') }}" type="button" class="btn btn-info">
+                                        Your Cart is Empty! Go Shopping ?
                                     </a>
                                 </div>
+                            @endif
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card" style="width: 18rem;">
+                                <div class="card-header" style="background-color:white">
+                                    Choose payment option to checkout
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="exampleRadios"
+                                                id="exampleRadios1" value="option1" checked>
+                                            <label class="form-check-label" for="exampleRadios1">
+                                                Pay later/ Cash on Delivery
+                                                <p class="new-table">$ {{ $total_price_all_quantity }}</p>
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="exampleRadios"
+                                                id="exampleRadios2" value="option1" checked>
+                                            <label class="form-check-label" for="exampleRadios2">
+                                                Pay method
+                                                <p class="new-table">$ {{ $total_price_all_quantity }}</p>
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item">
+                                        @if ($counter > 0)
+                                            <div class="text-center">
+                                                <a href="{{ url('/confirm-order-product') }}"
+                                                    class="fill_address btn btn-primary text-center text-white">Checkout</a>
+                                            </div>
+                                        @else
+                                            <div class="">
+                                                <a href="" class="fill_address btn btn-primary text-center text-white">No
+                                                    product</a>
+                                            </div>
+                                        @endif
+                                    </li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="border-bottom mt-3"></div>
-                    @endforeach
-                @else
-                    <div class="text-center mt-4">
-                        <a href="{{ url('/') }}" type="button" class="btn btn-info">
-                            Your Cart is Empty! Go Shopping ?
-                        </a>
                     </div>
-                @endif
-                <div class="d-flex flex-row-reverse mt-1">
-                    @if ($counter > 1)
-                        @if ($quantity > 1)
-                            <div class="p-2 ">Subtotal({{ $counter }} Products , {{ $quantity }} items) : $
-                                {{ $total_price_all_quantity }}
-                            </div>
-                        @else
-                            <div class="p-2 ">Subtotal({{ $counter }} Products , {{ $quantity }} item) : $
-                                {{ $total_price_all_quantity }}
-                            </div>
-                        @endif
-                    @else
-                        @if ($quantity > 1)
-                            <div class="p-2 ">Subtotal({{ $counter }} Product , {{ $quantity }} items) : $
-                                {{ $total_price_all_quantity }}
-                            </div>
-                        @else
-                            <div class="p-2 ">Subtotal({{ $counter }} Product , {{ $quantity }} item) : $
-                                {{ $total_price_all_quantity }}
-                            </div>
-                        @endif
-                    @endif
                 </div>
-
-                {{-- <p class="font-weight-light cart-text">The price and availability of items at PLP.com are subject to
-                    change. The Cart is a temporary place to store a list of your items and reflects each item's most recent
-                    price.
-                    </p> --}}
-            </div>
-
-            <div class="col-md-4 custom">
-                <table class="table table-bordered">
-                    <tbody>
-                        <tr>
-                            <td colspan="4">
-                                <p class="text-center font-weight-bold new-table">Choose payment option to
-                                    checkout</p>
-                                <p class="text-center sizetext new-table">Buy over 10$ for free delivery</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="pay" colspan="4">
-                                <div class="new-text">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="exampleRadios"
-                                            id="exampleRadios1" value="option1" checked>
-                                        <label class="form-check-label" for="exampleRadios1">
-                                            Pay later/ Cash on Delivery
-                                            <p class="new-table">$ {{ $total_price_all_quantity }}</p>
-                                        </label>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="pay" colspan=" 4">
-                                <div class="new-text">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="exampleRadios"
-                                            id="exampleRadios2" value="option1" checked>
-                                        <label class="form-check-label" for="exampleRadios2">
-                                            Pay method
-                                            <p class="new-table">$ {{ $total_price_all_quantity }}</p>
-                                        </label>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            @if ($counter > 0)
-                                <td colspan=" 4">
-                                    <div class="">
-                                        <a href="{{ url('/confirm-order-product') }}"
-                                            class="fill_address btn btn-primary text-center w-100">Checkout</a>
-                                    </div>
-                                </td>
-                            @else
-                                <td colspan=" 4">
-                                    <div class="">
-                                        <a href="" class="fill_address btn btn-primary text-center w-100">No product</a>
-                                    </div>
-                                </td>
-                            @endif
-
-                        </tr>
-                    </tbody>
-                </table>
             </div>
         </div>
     </div>
-
-
 
 
     <div class="modal fade" id="edit_cart_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
