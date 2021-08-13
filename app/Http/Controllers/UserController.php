@@ -58,9 +58,13 @@ class UserController extends Controller
         // return redirect('/signin')->with('success', 'Successfully Registered!');
     }
 
-    public function profile($id)
+    public function profile()
     {
-        $data_user = Users::find($id);
+        if (session()->has('user')) {
+            $data_user = Users::findOrFail(session('user'));
+        } else {
+            return view('home/login',compact('second_cate'));
+        }
         $second_cate = DB::table('se_categories')->get();
         return view('home/user-profile/userProfile',compact('data_user','second_cate'));
     }
@@ -79,8 +83,12 @@ class UserController extends Controller
                 return view('home/user-profile/index')->with('success','updated successfully');
             }
     }
-    public function history_order($id){
-        $data_user = Users::find($id);
+    public function history_order(){
+        if (session()->has('user')) {
+            $data_user = Users::findOrFail(session('user'));
+        }else{
+            return view('home/login',compact('second_cate'));
+        }
         $second_cate = DB::table('se_categories')->get();
         return view('home/user-profile/orderHistory',compact('data_user','second_cate'));
     }
@@ -102,8 +110,12 @@ class UserController extends Controller
             return view('home/login',compact('second_cate'));
         }
     }
-    public function ch_password($id){
-        $data_user = Users::find($id);
+    public function ch_password(){
+        if (session()->has('user')) {
+            $data_user = Users::findOrFail(session('user'));
+        }else{
+            return view('home/login',compact('second_cate'));
+        }
         $second_cate = DB::table('se_categories')->get();
 
         return view('home/user-profile/changePassword',compact('data_user','second_cate'));

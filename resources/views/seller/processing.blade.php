@@ -33,7 +33,7 @@
                                 Confirm
                             </button>
                         </a>
-                        <a href="">
+                        <a href="{{ url('product', $item->id) }}">
                             <button class="btn btn-primary">
                                 view
                             </button>

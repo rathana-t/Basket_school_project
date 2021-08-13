@@ -34,12 +34,12 @@ Route::get('/store', [HomeController::class, 'store']);
 
 Route::post('/signin', [UserController::class, 'signin'])->name("signin");
 Route::post('/register', [UserController::class, 'register'])->name("register");
-Route::get('/profile/{id}', [UserController::class, 'profile'])->name('display-profile')->middleware('checker');
+Route::get('/profile', [UserController::class, 'profile'])->name('display-profile')->middleware('checker');
 // Route::get('/edit/{id}', [UserController::class, 'edit_profile'])->name('edit-profile');
 Route::post('/update/{id}', [UserController::class, 'update_profile'])->name('update-profile');
-Route::get('/history-order/{id}', [UserController::class, 'history_order'])->name('order-history');
+Route::get('/history-order', [UserController::class, 'history_order'])->name('order-history');
 Route::get('/wishlist', [UserController::class, 'wish_list'])->name('list-wish');
-Route::get('/changepassword/{id}', [UserController::class, 'ch_password'])->name('change-password');
+Route::get('/changepassword', [UserController::class, 'ch_password'])->name('change-password');
 Route::post('/confirmChange/{id}', [UserController::class, 'confirm_ch'])->name('confirm-change');
 Route::get('/logout', [UserController::class, 'logout'])->middleware('checker');
 Route::delete('remove-cart', [CartController::class, 'remove_cart']);
