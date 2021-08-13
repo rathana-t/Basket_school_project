@@ -38,7 +38,7 @@
                 <div class="navbar-menu">
                     <div class="container pl-0 pr-0 pt-2 pb-2">
                         <nav class="nav">
-                            <a class="nav-link" href="{{ route('display-profile', $data_user->id) }}">
+                            <a class="nav-link" href="{{ route('display-profile') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                                     class="bi bi-person-fill" viewBox="0 0 16 16">
                                     <path
@@ -46,7 +46,7 @@
                                 </svg>
                                 <p>Profile</p>
                             </a>
-                            <a class="nav-link" href="{{ route('order-history', $data_user->id) }}">
+                            <a class="nav-link" href="{{ route('order-history') }}">
 
                                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                                     class="bi bi-clock-history" viewBox="0 0 16 16">
@@ -84,7 +84,7 @@
                                 </svg>
                                 <p>Wishlist</p>
                             </a>
-                            <a class="nav-link" href="{{ route('change-password', $data_user->id) }}">
+                            <a class="nav-link" href="{{ route('change-password') }}">
                                 <div class="change">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                                         class="bi bi-shield-check" viewBox="0 0 16 16">

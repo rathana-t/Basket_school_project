@@ -44,7 +44,7 @@
                 </a>
                 @if (Session::has('user'))
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('display-profile', $data_user->id) }}">
+                        <a class="nav-link" href="{{ route('display-profile') }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="28" fill="currentColor"
                                 class="bi bi-person" viewBox="0 0 16 16">
                                 <path

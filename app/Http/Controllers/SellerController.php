@@ -164,12 +164,10 @@ class SellerController extends Controller
             return view('seller/login');
         }
     }
-    public function con_pending($id){
+    public function con_pending(Request $req){
         if (session()->has('seller')) {
             $data_seller = sellers::findOrFail(session('seller'));
-
-            $data = orders::find($id);
-
+            $data = orders::find($req->order_id);
             $data->pending = 0;
             $data->processing = 1;
             $data->update();
@@ -179,7 +177,7 @@ class SellerController extends Controller
     }
     public function order_processing()
     {
-        if (session()->has('seller')) {
+        if (session()->has('seller')){
             $data_seller = sellers::findOrFail(session('seller'));
             $data = orders::join('carts','carts.id','=','orders.cart_id')
             ->join('users','users.id','=','carts.user_id')
@@ -193,10 +191,10 @@ class SellerController extends Controller
         }
     }
 
-    public function old_order()
-    {
+    public function con_processing(Request $req){
         if (session()->has('seller')) {
             $data_seller = sellers::findOrFail(session('seller'));
+<<<<<<< HEAD
             $data_seller = sellers::findOrFail(session('seller'));
             $data = orders::join('carts','carts.id','=','orders.cart_id')
             ->join('users','users.id','=','carts.user_id')
@@ -208,8 +206,19 @@ class SellerController extends Controller
             return view('seller/old_order',compact('data_seller','data'));
         } else {
             return view('seller/old_order');
+=======
+            $data = orders::find($req->order_id);
+            $data->processing = 0;
+            $data->delivery = 1;
+
+            $data->update();
+
+            return redirect()->back();
+>>>>>>> 5189c73726e638ea408eacc3a23edc3c6d518b11
         }
     }
+
+
 
     public function profile()
     {
