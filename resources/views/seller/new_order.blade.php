@@ -28,11 +28,10 @@
                     <td>$ {{ $item->total }}</td>
                     <td>{{ $item->created_at }}</td>
                     <td>
-                        <a href="/confirm-pending/{{ $item->order_id }}">
-                            <button class="btn btn-primary">
-                                Confirm
-                            </button>
-                        </a>
+                        <button type="button" value="{{ $item->order_id }}" class="open_pending_modal btn btn-primary">
+                            Confirm
+                        </button>
+
                         <a href="">
                             <button class="btn btn-primary">
                                 view
@@ -49,4 +48,43 @@
 
         </tbody>
     </table>
+
+    {{-- modal --}}
+
+    <div class="modal fade" id="pending_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ url('/confirm-pending') }}" method="POST" class="text-center">
+                    @csrf
+                    <div class="modal-body text-center">
+                        Accept this product !!!.
+                    </div>
+                    <input type="hidden" name="order_id" id="order_id">
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                        <button type="submit" class="btn btn-primary">Yes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {{-- <script></script> --}}
+    <script>
+        $(document).ready(function() {
+            $(document).on('click', '.open_pending_modal', function() {
+                var cart_id = $(this).val();
+                // alert(cart_id);
+                $('#pending_modal').modal('show');
+                $('#order_id').val(cart_id);
+            })
+        });
+    </script>
 @endsection

@@ -28,11 +28,11 @@
                     <td>$ {{ $item->total }}</td>
                     <td>{{ $item->created_at }}</td>
                     <td>
-                        <a href="/confirm-processing/{{ $item->order_id }}">
-                            <button class="btn btn-primary">
-                                Delivery
-                            </button>
-                        </a>
+
+                        <button type="button" value="{{ $item->order_id }}" class="open_delivery_modal btn btn-primary">
+                            Delivery
+                        </button>
+
                         <a href="{{ url('product', $item->id) }}">
                             <button class="btn btn-primary">
                                 view
@@ -49,4 +49,43 @@
 
         </tbody>
     </table>
+
+    {{-- modal --}}
+
+    <div class="modal fade" id="delivery_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ url('/confirm-processing-to-delivery') }}" method="POST" class="text-center">
+                    @csrf
+                    <div class="modal-body text-center">
+                        Are you redy to delivery this product to customer!!!.
+                    </div>
+                    <input type="hidden" name="order_id" id="order_id">
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                        <button type="submit" class="btn btn-primary">Yes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {{-- <script></script> --}}
+    <script>
+        $(document).ready(function() {
+            $(document).on('click', '.open_delivery_modal', function() {
+                var cart_id = $(this).val();
+                // alert(cart_id);
+                $('#delivery_modal').modal('show');
+                $('#order_id').val(cart_id);
+            })
+        });
+    </script>
 @endsection

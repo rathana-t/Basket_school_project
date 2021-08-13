@@ -212,7 +212,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('edit-quantity-cart') }}" method="POST" class="text-center">
+                <form action="{{ url('/edit-quantity-cart') }}" method="POST" class="text-center">
                     @csrf
                     <div class="modal-body text-center">
                         Edit quantity of product

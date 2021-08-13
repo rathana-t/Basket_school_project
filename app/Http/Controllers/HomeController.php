@@ -289,21 +289,7 @@ class HomeController extends Controller
         }
         return view('home/search', compact('second_cate', 'data', 'pro_name', 'sort', 'brand', 'brandId', 'max_price', 'brand_id', 'min_price'));
     }
-    public function order()
-    {
-        $second_cate = DB::table('se_categories')->get();
-        if (session()->has('user')) {
-            $data_user = users::findOrFail(session('user'));
 
-            $data = orders::join('carts', 'carts.id', '=', 'orders.cart_id')
-                ->join('products', 'products.id', '=', 'carts.product_id')
-                ->where('carts.user_id', $data_user->id)
-                ->select('products.*', 'orders.*', 'carts.quantity', 'carts.total')->get();
-
-            return view('home/user-profile/order', compact('second_cate', 'data', 'data_user'));
-        }
-        return view('home/login', compact('second_cate'));
-    }
     public function category()
     {
         $second_cate = DB::table('se_categories')->get();
