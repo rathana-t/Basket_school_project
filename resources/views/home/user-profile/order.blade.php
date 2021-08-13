@@ -21,9 +21,6 @@
                                         ---->
                                         <p @if ($item->processing == 1) class="active"
                                             @else class="text-muted" @endif>Processing</p>
-                                        ---->
-                                        <p @if ($item->delivery == 1) class="active"
-                                            @else class="text-muted" @endif>Delivered</p>
                                     </div>
                                 </div>
                                 <div class="card-body">

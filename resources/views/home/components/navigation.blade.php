@@ -14,6 +14,12 @@
     <div class="navigation">
         @if (\Route::current()->getName() == '')
 
+        @elseif (\Route::current()->getName() == 'route_cart')
+            <a href="/#Product">Home</a>
+            >
+            <a href="/product">Products</a>
+            >
+            <a href="/cart" class="ac">Cart</a>
         @elseif (\Route::current()->getName() == 'category')
             <a href="/#Category">Home</a>
             >
