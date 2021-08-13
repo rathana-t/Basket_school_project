@@ -27,9 +27,11 @@ Route::get('/category', [HomeController::class, 'category'])->name('category');
 Route::get('/category/{id}', [HomeController::class, 'categoryItem'])->name('categoryItem');
 Route::get('/category/{id}/product/{id1}', [HomeController::class, 'detail2'])->name('categoryProductItem');
 Route::get('/smallcate', [HomeController::class, 'smallcate'])->name('smallcate');
-Route::get('/smallcate/{id}', [HomeController::class, 'smallcateItem']);
-Route::get('/brand/{id}', [HomeController::class, 'brand'])->name('brandItem');
+Route::get('/smallcate/{id}', [HomeController::class, 'smallcateItem'])->name('smallcateItem');
+Route::get('/smallcate/{id}/product/{id1}', [HomeController::class, 'detail3'])->name('smallcateProductItem');
 Route::get('/brand', [HomeController::class, 'allBrand'])->name('brands');
+Route::get('/brand/{id}', [HomeController::class, 'brand'])->name('brandItem');
+Route::get('/brand/{id}/product/{id1}', [HomeController::class, 'detail4'])->name('brandProductItem');
 Route::get('/store', [HomeController::class, 'store']);
 
 Route::post('/signin', [UserController::class, 'signin'])->name("signin");
@@ -72,6 +74,7 @@ Route::get('/seller/processing', [SellerController::class, 'order_processing'])-
 Route::get('/seller/old-order', [SellerController::class, 'old_order'])->middleware('checker_seller');
 Route::get('/seller/profile', [SellerController::class, 'profile']);
 Route::get('/seller/editProfile', [SellerController::class, 'edit_profile']);
+Route::post('/seller/editImage', [SellerController::class, 'edit_image'])->name('changeImage');
 Route::post('/seller/accept-change', [SellerController::class, 'accept_change'])->name('acceptChange');
 Route::get('/seller/messages', [SellerController::class, 'sellerMessages']);
 Route::get('/seller/messages/{id}', [SellerController::class, 'detailMsg']);

@@ -76,7 +76,7 @@
             </li>
             <li>
                 <a clas href="/seller/profile">
-                    <div>
+                    <div class=" {{ Request::is('seller*/profile') ? 'ac' : '' }} mt-2">
                         <img src="/images/sidebar-seller-logo/align.svg" alt="">
                         <span class="pl-3">Profile</span>
                     </div>
@@ -84,7 +84,7 @@
             </li>
             <li>
                 <a clas href="/seller/messages">
-                    <div>
+                    <div class=" {{ Request::is('seller*/messages') ? 'ac' : '' }} mt-2">
                         <img src="/images/sidebar-seller-logo/align.svg" alt="">
                         <span class="pl-3">Messages</span>
                     </div>

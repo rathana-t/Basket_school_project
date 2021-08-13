@@ -5,7 +5,7 @@
                 <ul class="money">
                     <h1>Make Money With Us</h1>
                     <li>
-                        <a href="{{url('/blog')}}">Sell product on our page</a>
+                        <a href="{{ url('/blog') }}">Sell product on our page</a>
                     </li>
                 </ul>
             </div>

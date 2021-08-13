@@ -20,8 +20,8 @@
     </div>
 
     <div class="container mt-2">
-        <div class="text-center">
-            <h1 class="blue-style font-weight-bold">
+        <div class="text-center seller-profile-name">
+            <h1 class="font-weight-bold">
                 {{ $data_seller->store_name }}
                 <button style="float: right" class="btn btn-danger"
                     onclick="document.getElementById('id01').style.display='block'">
@@ -32,19 +32,30 @@
     </div>
 
     <body>
+
         <div class="container background-color mt-2">
             <div class="row pl-3 pr-3 pt-3 pb-3">
                 <div class="col-md-5 profile-column">
                     <div class="card text-center">
-                        <img src="https://wallpaperaccess.com/full/3143683.jpg" class="img-fluid m-4">
-                        <form>
-                            <div class="form-group info">
-                                <label for="exampleFormControlFile1" class="blue-style">
-                                    Upload or Change Logo
-                                </label>
-                                <input type="file" id="exampleFormControlFile1" style="display:none">
-                            </div>
-                        </form>
+                        <img src="/images/sellerProfile/{{ $data_seller->profile }}" alt="" class="img-fluid mt-4"
+                            style="object-fit:contain;">
+                        <label for="exampleFormControlFile1">
+                            <form action="{{ url('/seller/editImage') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="form-group profile-text-style">
+                                    <label for="exampleFormControlFile1" class="mt-2">
+                                        @if ($data_seller->profile == '')
+                                            Upload Photo
+                                        @else
+                                            Change Photo
+                                        @endif
+                                    </label>
+                                    <input type="file" name="imageFile" style="display: none" id="exampleFormControlFile1"
+                                        onchange="javascript:this.form.submit();" />
+                                </div>
+                            </form>
+                        </label>
+                        {{-- <input type="file" id="exampleFormControlFile1" style="display:none"> --}}
                     </div>
                 </div>
                 <div class="col-md-7 seller-info">
@@ -70,12 +81,12 @@
                     </div>
                 </div>
             </div>
-            <div class="address pb-3 pl-3 pr-3">
+            <div class="pb-3 pl-3 pr-3">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <div class="m-4">
-                                <div class="border-bottom d-flex justify-content-between">
+                            <div class="m-4 seller-address">
+                                <div class="border-bottom d-flex justify-content-between address">
                                     <h1>Seller Info</h1>
                                     <a href="{{ url('/seller/editProfile') }}">
                                         <img src="/images/logo/edit.svg" alt="" class="img-fluid">

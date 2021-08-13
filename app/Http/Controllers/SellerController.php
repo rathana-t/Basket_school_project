@@ -222,6 +222,23 @@ class SellerController extends Controller
             return view('/seller/login');
         }
     }
+    public function edit_image(Request $request)
+    {
+        if(session()->has('seller')){
+            $updateImage = sellers::findOrFail(session('seller'));
+            $sellerImage = sellers::find($updateImage->id);
+            if($request->hasfile('imageFile')) {
+                $file=$request->file('imageFile');
+                $extension=$file->getClientOriginalExtension();
+                $filename= time().'.'.$extension;
+                $file->move(public_path().'/images/sellerProfile',$filename);
+                $sellerImage->profile= $filename;
+            }
+            $sellerImage->update();
+            return redirect()->back();
+        }
+        return view('/seller/login');
+    }
     public function accept_change(Request $request)
     {
         if(session()->has('seller')){
@@ -264,7 +281,6 @@ class SellerController extends Controller
             'imageFile' => 'required',
             'imageFile.*' => 'mimes:jpeg,webp.jpg,png,gif,csv,txt,pdf|max:2048'
           ]);
-
         if ($req->hasfile('imageFile')) {
             foreach ($req->file('imageFile') as $file) {
                 $name = uniqid() . $file->getClientOriginalExtension();
@@ -284,7 +300,6 @@ class SellerController extends Controller
             $pro->img_product = json_encode($imgData);
             $pro->seller_id = $req->session()->get('seller');
         }
-
         $pro->save();
         return redirect('/seller/products')->with('product_add', 'Your product has been add successfully!');
     }
