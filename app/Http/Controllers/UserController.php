@@ -79,11 +79,6 @@ class UserController extends Controller
                 return view('home/user-profile/index')->with('success','updated successfully');
             }
     }
-    public function history_order($id){
-        $data_user = Users::find($id);
-        $second_cate = DB::table('se_categories')->get();
-        return view('home/user-profile/orderHistory',compact('data_user','second_cate'));
-    }
     public function wish_list(){
         $second_cate = DB::table('se_categories')->get();
         if (session()->has('user')) {
@@ -132,6 +127,22 @@ class UserController extends Controller
             }
         return redirect()->back()->with('Error','Incorrect Input');
         }
+    }
+    public function history_order(){
+        if (session()->has('user')) {
+            $data_user = Users::findOrFail(session('user'));
+
+            $data = orders::join('carts', 'carts.id', '=', 'orders.cart_id')
+            ->join('products', 'products.id', '=', 'carts.product_id')
+            ->where('carts.user_id', $data_user->id)
+            ->where('orders.delivery','=','1')
+
+            ->select('products.*', 'orders.created_at as cre','orders.updated_at as up', 'carts.quantity', 'carts.total')->orderByDesc('orders.updated_at')->get();
+        }else{
+            return view('home/login',compact('second_cate'));
+        }
+        $second_cate = DB::table('se_categories')->get();
+        return view('home/user-profile/orderHistory',compact('data_user','second_cate','data'));
     }
     public function confirm_order_prooduct(){
         if (session()->has('user')) {

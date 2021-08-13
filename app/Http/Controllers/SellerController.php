@@ -197,7 +197,15 @@ class SellerController extends Controller
     {
         if (session()->has('seller')) {
             $data_seller = sellers::findOrFail(session('seller'));
-            return view('seller/old_order', compact('data_seller'));
+            $data_seller = sellers::findOrFail(session('seller'));
+            $data = orders::join('carts','carts.id','=','orders.cart_id')
+            ->join('users','users.id','=','carts.user_id')
+            ->join('products','products.id','=','carts.product_id')
+            ->where('orders.delivery',1)
+            ->where('products.seller_id',$data_seller->id)
+            ->select('products.*','carts.total','carts.quantity','orders.id as order_id','users.username as u_name','users.phone as u_phone','users.address as u_address')->get();
+
+            return view('seller/old_order',compact('data_seller','data'));
         } else {
             return view('seller/old_order');
         }
