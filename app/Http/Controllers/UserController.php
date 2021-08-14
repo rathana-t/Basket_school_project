@@ -102,13 +102,8 @@ class UserController extends Controller
             return redirect()->back();
         }
     }
-<<<<<<< HEAD
-
-    public function wish_list(){
-=======
     public function wish_list()
     {
->>>>>>> 872ddcaf214a3a630af2887b0a3f8fff1bb30265
         $second_cate = DB::table('se_categories')->get();
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
@@ -163,9 +158,6 @@ class UserController extends Controller
             return redirect()->back()->with('Error', 'Incorrect Input');
         }
     }
-<<<<<<< HEAD
-    public function confirm_order_prooduct(){
-=======
     public function history_order()
     {
         if (session()->has('user')) {
@@ -187,7 +179,6 @@ class UserController extends Controller
     {
         $second_cate = DB::table('se_categories')->get();
 
->>>>>>> 872ddcaf214a3a630af2887b0a3f8fff1bb30265
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
             $uid = $data_user->id;
