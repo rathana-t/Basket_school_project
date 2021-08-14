@@ -2,30 +2,8 @@
 
 @section('content')
     @include('/home/components/navigation')
-    @include('/admin/components/msg')
-    <style>
-        .wrapper {
-            max-height: 400px;
-            display: flex;
-            overflow-x: auto;
-        }
+    @include('/home/components/msg')
 
-        .wrapper .Item img {
-            height: 100px;
-            object-fit: contain;
-        }
-
-        .wrapper::-webkit-scrollbar {
-            height: 5px;
-            width: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #afb3b6;
-            border-radius: 5px;
-        }
-
-    </style>
     <div class="container">
         @foreach ($detail_pro as $detail)
             <div class="deatail_page mt-5">

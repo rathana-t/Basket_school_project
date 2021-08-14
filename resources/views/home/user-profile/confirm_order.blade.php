@@ -1,48 +1,110 @@
-<div class="modal-content">
+@extends('application')
 
-    @foreach ($data_pro as $item)
-        <p class="text-primary m-1 sizetext">
-            {{ $item->name }}
-        </p>
-        <div class="font-weight-light m-1">
-            <?php foreach (json_decode($item->img_product)as $picture) { ?>
-            <img style="width: 100px;" src="/images/imgProduct/{{ $picture }}" alt="" class="mb-1">
-            <?php break; } ?>
+@section('content')
+    <div class="container">
+
+
+
+
+        <div class="shopping-cart">
+            <div class="container">
+                <div class="pt-3">
+                    <h5 class="mb-3">
+                        Review products
+                    </h5>
+                    <div>
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <div class="card mb-3">
+                                    <div class="p-2">
+                                        <table class="table table-borderless">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col" colspan="3">Product</th>
+                                                    <th scope="col">Price</th>
+                                                    <th scope="col">Quantity</th>
+                                                    <th scope="col">Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($data_pro as $item)
+                                                    <tr class="mb-3">
+                                                        <td colspan="3">
+                                                            <?php foreach (json_decode($item->img_product)as $picture) { ?>
+                                                            <img style="width: 100px;"
+                                                                src="/images/imgProduct/{{ $picture }}" alt=""
+                                                                class="img-fluid">
+                                                            <?php break; } ?>
+                                                            {{ $item->name }}
+                                                        </td>
+                                                        <td>
+                                                            $ {{ $item->price }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $item->quantity }}
+                                                            @if ($item->quantity > 1)
+                                                                Items
+                                                            @else
+                                                                Item
+                                                            @endif
+                                                        </td>
+                                                        <td>
+                                                            $ {{ $item->total }}
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="countProduct">
+                                        <div class="border-top">
+                                            <div class="p-3">
+                                                @if ($counter > 1)
+                                                    @if ($quantity > 1)
+                                                        <div class="p-2 ">
+                                                            {{ $counter }} Products , {{ $quantity }} items
+                                                        </div>
+                                                    @else
+                                                        <div class="p-2 ">
+                                                            {{ $counter }} Products , {{ $quantity }} item)
+                                                        </div>
+                                                    @endif
+                                                @else
+                                                    @if ($quantity > 1)
+                                                        <div class="p-2 ">
+                                                            {{ $counter }} Product , {{ $quantity }} items)
+                                                        </div>
+                                                    @else
+                                                        <div class="p-2 ">
+                                                            {{ $counter }} Product , {{ $quantity }} item
+                                                        </div>
+                                                    @endif
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <form action="{{ url('/order-product') }}" method="POST">
+                                    @csrf
+                                    <div class="pb-3">
+                                        <label for="">Address</label>
+                                        <textarea rows="4" class="form-control" id="" name="address" name="description"
+                                            required style="width: 300px">{{ $data_user->address }}</textarea>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <a href="/cart" class="btn btn-secondary text-white">Cancel</a>
+                                        <button type="submit" class="btn btn-primary">Order</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
-    @endforeach
-    <div class="d-flex flex-row-reverse mt-1">
-        @if ($counter > 1)
-            @if ($quantity > 1)
-                <div class="p-2 ">Subtotal({{ $counter }} Products , {{ $quantity }} items) : $
-                    {{ $total_price_all_quantity }}
-                </div>
-            @else
-                <div class="p-2 ">Subtotal({{ $counter }} Products , {{ $quantity }} item) : $
-                    {{ $total_price_all_quantity }}
-                </div>
-            @endif
-        @else
-            @if ($quantity > 1)
-                <div class="p-2 ">Subtotal({{ $counter }} Product , {{ $quantity }} items) : $
-                    {{ $total_price_all_quantity }}
-                </div>
-            @else
-                <div class="p-2 ">Subtotal({{ $counter }} Product , {{ $quantity }} item) : $
-                    {{ $total_price_all_quantity }}
-                </div>
-            @endif
-        @endif
+
     </div>
-    <form action="{{ url('/order-product') }}" method="POST">
-        @csrf
-        <div class="modal-body text-center">
-            Thank you for buy the product please fill your address, and we will call to your phone number that
-            you use in your acctount.
-        </div>
-        <input type="text" name="address" value="{{ $data_user->address }}" placeholder="address" required>
-        <div class="modal-footer">
-            <a href="/cart" class="btn btn-secondary">Cancel</a>
-            <button type="submit" class="btn btn-primary">Ok</button>
-        </div>
-    </form>
-</div>
+
+@endsection
