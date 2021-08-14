@@ -23,7 +23,7 @@
                                         <?php break; } ?>
                                     </a>
                                     <div class="product_name">
-                                        <a href="/prodcut/product/{{ $item->id }}">
+                                        <a href="/product/product/{{ $item->id }}">
                                             {{ $item->name }}
                                         </a>
                                     </div>
@@ -32,7 +32,7 @@
                                     </div>
 
                                     <div class="price">
-                                        <a href="/prodcut/product/{{ $item->id }}">
+                                        <a href="/product/product/{{ $item->id }}">
                                             ${{ $item->price }}
                                         </a>
                                     </div>
