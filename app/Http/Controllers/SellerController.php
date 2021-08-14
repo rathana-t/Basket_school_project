@@ -194,7 +194,20 @@ class SellerController extends Controller
     public function con_processing(Request $req){
         if (session()->has('seller')) {
             $data_seller = sellers::findOrFail(session('seller'));
-<<<<<<< HEAD
+            $data = orders::find($req->order_id);
+            $data->processing = 0;
+            $data->delivery = 1;
+
+            $data->update();
+
+            return redirect()->back();
+        }
+    }
+
+    public function old_order()
+    {
+        if (session()->has('seller')) {
+            $data_seller = sellers::findOrFail(session('seller'));
             $data_seller = sellers::findOrFail(session('seller'));
             $data = orders::join('carts','carts.id','=','orders.cart_id')
             ->join('users','users.id','=','carts.user_id')
@@ -206,19 +219,8 @@ class SellerController extends Controller
             return view('seller/old_order',compact('data_seller','data'));
         } else {
             return view('seller/old_order');
-=======
-            $data = orders::find($req->order_id);
-            $data->processing = 0;
-            $data->delivery = 1;
-
-            $data->update();
-
-            return redirect()->back();
->>>>>>> 5189c73726e638ea408eacc3a23edc3c6d518b11
         }
     }
-
-
 
     public function profile()
     {
