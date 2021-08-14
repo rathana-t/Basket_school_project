@@ -39,7 +39,7 @@
                                     </div>
                                 </div>
                             </div>
-                        @else
+                        @elseif($item->pending == 1 || $item->processing == 1)
 
                             <div class="card mb-3">
                                 <div class="card-header">
