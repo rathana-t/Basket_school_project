@@ -101,10 +101,6 @@ class UserController extends Controller
                 return view('home/user-profile/index')->with('success','updated successfully');
             }
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> 5189c73726e638ea408eacc3a23edc3c6d518b11
     public function wish_list(){
         $second_cate = DB::table('se_categories')->get();
         if (session()->has('user')) {

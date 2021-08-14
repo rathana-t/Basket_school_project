@@ -194,19 +194,6 @@ class SellerController extends Controller
     public function con_processing(Request $req){
         if (session()->has('seller')) {
             $data_seller = sellers::findOrFail(session('seller'));
-<<<<<<< HEAD
-            $data_seller = sellers::findOrFail(session('seller'));
-            $data = orders::join('carts','carts.id','=','orders.cart_id')
-            ->join('users','users.id','=','carts.user_id')
-            ->join('products','products.id','=','carts.product_id')
-            ->where('orders.delivery',1)
-            ->where('products.seller_id',$data_seller->id)
-            ->select('products.*','carts.total','carts.quantity','orders.id as order_id','users.username as u_name','users.phone as u_phone','users.address as u_address')->get();
-
-            return view('seller/old_order',compact('data_seller','data'));
-        } else {
-            return view('seller/old_order');
-=======
             $data = orders::find($req->order_id);
             $data->processing = 0;
             $data->delivery = 1;
@@ -214,7 +201,6 @@ class SellerController extends Controller
             $data->update();
 
             return redirect()->back();
->>>>>>> 5189c73726e638ea408eacc3a23edc3c6d518b11
         }
     }
 
