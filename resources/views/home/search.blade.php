@@ -1,6 +1,13 @@
 @extends('application')
 @section('content')
     <style>
+        div.b {
+            white-space: nowrap;
+            width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
         .search img {
             object-fit: contain;
             height: 180px;
@@ -95,7 +102,9 @@
                                     </a>
                                     <div class="product_name">
                                         <a href="/product/product/{{ $item->id }}">
-                                            {{ $item->name }}
+                                            <div class="b">
+                                                {{ $item->name }}
+                                            </div>
                                         </a>
                                     </div>
                                     <div class="store_name">
