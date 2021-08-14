@@ -1,8 +1,35 @@
 @extends('application')
 @section('content')
     <style>
-        .search-filter label {
-            color: rgba(50, 50, 255, 0.842)
+        .search img {
+            object-fit: contain;
+            height: 180px;
+        }
+
+        .search a {
+            font-size: 12px;
+        }
+
+        .search .product_name a {
+            text-decoration: none;
+            font-size: 14px;
+            color: #323b49;
+        }
+
+        .search .store_name a {
+            text-decoration: none;
+            font-size: 14px;
+            color: #323b49;
+        }
+
+        .search .price a {
+            text-decoration: none;
+            font-size: 14px;
+            color: #323b49;
+        }
+
+        .search a:hover {
+            color: #035ebe;
         }
 
     </style>
@@ -13,7 +40,6 @@
                     <form action="{{ route('search-filter') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="search-filter">
-
                             <div class="m-3">
                                 <label for="exampleInputEmail1">Product</label>
                                 <input type="text" class="form-control" id="exampleInputPhone" placeholder="Product name"
@@ -55,27 +81,37 @@
                     </form>
                 </div>
             </div>
-            <div class="col-md-9">
-                @foreach ($data as $item)
-                    <div class="row">
-                        <div class="card mb-2">
-                            <div class="row p-2">
-                                <div class="col-md-5 text-center border-right">
-                                    <?php foreach (json_decode($item->img_product)as $picture) { ?>
-                                    <img src="/images/imgProduct/{{ $picture }}" alt="" class="mb-1 img-fluid">
-                                    <?php break; } ?>
-                                </div>
-                                <div class="col-md-7 ">
-                                    <div> <a>{{ $item->name }}</a> </div>
-                                    <div class="text-muted"> <a>Price: {{ $item->price }} &nbsp;$</a> </div>
-                                    <a href="{{ url('/product', $item->id) }}">
-                                        <button type="button" class="btn btn-info mt-3">View detail</button>
+            <div class="col-md-9 search">
+                <div class="row">
+                    @foreach ($data as $item)
+                        <div class="col-xs-6 col-sm-4">
+                            <div class="card mb-3">
+                                <div class="p-3">
+                                    <a href="/product/product/{{ $item->id }}">
+                                        <?php foreach (json_decode($item->img_product)as $picture) { ?>
+                                        <img src="{{ asset('images/imgProduct') }}/{{ $picture }}" alt=""
+                                            class="img-fluid">
+                                        <?php break; } ?>
                                     </a>
+                                    <div class="product_name">
+                                        <a href="/product/product/{{ $item->id }}">
+                                            {{ $item->name }}
+                                        </a>
+                                    </div>
+                                    <div class="store_name">
+                                        <a href="" class="text-muted">Store</a>
+                                    </div>
+
+                                    <div class="price">
+                                        <a href="/product/product/{{ $item->id }}">
+                                            ${{ $item->price }}
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>
