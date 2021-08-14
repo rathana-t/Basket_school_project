@@ -9,8 +9,8 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
                 <form class="input-group" action="{{ url('/search') }}">
-                    <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)"
-                        placeholder="Search....">
+                    <input type="text" name="query" class="form-control"
+                        aria-label="Dollar amount (with dot and two decimal places)" placeholder="Search....">
                     <div class="input-group-append">
                         <button class="btn btn-primary" type="submit">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
