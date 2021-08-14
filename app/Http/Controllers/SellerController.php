@@ -26,6 +26,17 @@ use Illuminate\Support\Facades\Session;
 class SellerController extends Controller
 {
 
+    public function remove_cancel($id){
+        if (session()->has('seller')) {
+            $data_seller = sellers::findOrFail(session('seller'));
+            $data = orders::find($id);
+            $data->delivery = 2;
+
+            $data->update();
+
+            return redirect()->back();
+        }
+    }
     public function login_page()
     {
         if (session()->has('seller')) {
@@ -157,6 +168,7 @@ class SellerController extends Controller
             ->join('users','users.id','=','carts.user_id')
             ->join('products','products.id','=','carts.product_id')
             ->where('orders.pending',1)
+            ->where('orders.delivery',0)
             ->where('products.seller_id',$data_seller->id)
             ->select('products.*','carts.total','orders.id as order_id','carts.quantity','users.username as u_name','users.phone as u_phone','users.address as u_address')->get();
             return view('seller/new_order', compact('data_seller','data'));
@@ -167,6 +179,14 @@ class SellerController extends Controller
     public function con_pending(Request $req){
         if (session()->has('seller')) {
             $data_seller = sellers::findOrFail(session('seller'));
+            $pros = products::join('carts', 'carts.product_id', '=', 'products.id')
+            ->join('orders', 'orders.cart_id', '=', 'carts.id')
+            ->where('orders.id', $req->order_id)
+            ->select('products.*', 'carts.quantity')->get();
+            foreach( $pros as $pro){
+            $pro->stock = $pro->stock - $pro->quantity;
+            $pro->update();
+        }
             $data = orders::find($req->order_id);
             $data->pending = 0;
             $data->processing = 1;
@@ -195,9 +215,23 @@ class SellerController extends Controller
         if (session()->has('seller')) {
             $data_seller = sellers::findOrFail(session('seller'));
             $data = orders::find($req->order_id);
+            $data->message = $req->message;
             $data->processing = 0;
             $data->delivery = 1;
 
+            $data->update();
+
+            return redirect()->back();
+        }
+    }
+
+    public function cancel_pending(Request $req){
+        if (session()->has('seller')) {
+            $data_seller = sellers::findOrFail(session('seller'));
+            // return $req->cancel_order_id;
+            $data = orders::find($req->cancel_order_id);
+            $data->message = $req->message;
+            $data->delivery = 1;
             $data->update();
 
             return redirect()->back();
@@ -214,7 +248,7 @@ class SellerController extends Controller
             ->join('products','products.id','=','carts.product_id')
             ->where('orders.delivery',1)
             ->where('products.seller_id',$data_seller->id)
-            ->select('products.*','carts.total','carts.quantity','orders.id as order_id','users.username as u_name','users.phone as u_phone','users.address as u_address')->get();
+            ->select('products.*','carts.total','carts.quantity','orders.id as order_id','orders.pending','orders.delivery','users.username as u_name','users.phone as u_phone','users.address as u_address')->get();
 
             return view('seller/old_order',compact('data_seller','data'));
         } else {
@@ -248,8 +282,7 @@ class SellerController extends Controller
             $sellerImage = sellers::find($updateImage->id);
             if($request->hasfile('imageFile')) {
                 $file=$request->file('imageFile');
-                $extension=$file->getClientOriginalExtension();
-                $filename= time().'.'.$extension;
+                $filename= uniqid() . $file->getClientOriginalExtension();
                 $file->move(public_path().'/images/sellerProfile',$filename);
                 $sellerImage->profile= $filename;
             }
@@ -343,7 +376,7 @@ class SellerController extends Controller
             ->select('messages.*')
             ->orderByDesc('messages.created_at')
             ->get();
-        return view('seller/messages', compact('sellerHasMessage'));
+        return view('seller/messages', compact('data_seller','sellerHasMessage'));
     }
 
     public function detailMsg($id)

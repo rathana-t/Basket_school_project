@@ -13,10 +13,18 @@
                         <div class="">
                             <p class="small-txt">Order date</p>
                             <p class="big-txt">{{ $item->cre }}</p>
-                            <p class="small-txt">Quantity</p>
-                            <p class="big-txt">{{ $item->quantity }}</p>
-                            <p class="small-txt">Total</p>
-                            <p class="big-txt">$ {{ $item->total }}</p>
+                            <p class="small-txt">Message</p>
+                            <p class="small-txt">{{ $item->message }}</p>
+                            <div class="row">
+                                <div class="col">
+                                    <p class="small-txt">Quantity</p>
+                                    <p class="big-txt">{{ $item->quantity }}</p>
+                                </div>
+                                <div class="col">
+                                    <p class="small-txt">Total</p>
+                                    <p class="big-txt">$ {{ $item->total }}</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-9">

@@ -6,7 +6,7 @@
         </button>
     </div>
     <div class="text-center mt-4">
-        <a href=""><img src="https://wallpaperaccess.com/full/3143683.jpg" alt="" class="img-fluid"></a>
+        <a href=""><img src="/images/sellerProfile/{{ $data_seller->profile }}" alt="" class="img-fluid"></a>
     </div>
     <div class="p-4">
         <ul class="mb-5 list-unstyled components">

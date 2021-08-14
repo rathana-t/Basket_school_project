@@ -21,30 +21,55 @@
         </thead>
         <tbody>
             @foreach ($data as $item)
-                <tr class="seller-list text-center">
-                    <td><?php foreach (json_decode($item->img_product)as $picture) { ?>
-                        <img src="{{ asset('images/imgProduct') }}/{{ $picture }}" alt="" class="img-fluid">
-                        <?php break; } ?>
-                    </td>
-                    <td>{{ $item->u_name }}</td>
-                    <td>{{ $item->u_phone }}</td>
-                    <td>{{ $item->u_address }}</td>
-                    <td>{{ $item->quantity }}</td>
-                    <td>$ {{ $item->total }}</td>
-                    <td>{{ $item->created_at }}</td>
-                    <td>
-                        <a href="{{ url('product', $item->id) }}">
-                            <button class="btn btn-primary">
-                                view
-                            </button>
-                        </a>
-                        <a href="">
-                            <button class="btn btn-danger">
-                                delete
-                            </button>
-                        </a>
-                    </td>
-                </tr>
+                @if ($item->pending == 1 && $item->delivery == 1)
+                    <tr class="seller-list text-center" style="color: rgb(223, 89, 12)">
+                        <td><?php foreach (json_decode($item->img_product)as $picture) { ?>
+                            <img src="{{ asset('images/imgProduct') }}/{{ $picture }}" alt="" class="img-fluid">
+                            <?php break; } ?>
+                        </td>
+                        <td>{{ $item->u_name }}</td>
+                        <td>{{ $item->u_phone }}</td>
+                        <td>{{ $item->u_address }}</td>
+                        <td>{{ $item->quantity }}</td>
+                        <td>$ {{ $item->total }}</td>
+                        <td>{{ $item->created_at }}</td>
+                        <td>
+                            <p>Cancelled</p>
+                            <a href="{{ url('/remove-cancel', $item->order_id) }}">
+                                <button class="btn btn-danger">
+                                    delete
+                                </button>
+                            </a>
+                        </td>
+                    </tr>
+                @elseif($item->delivery==2)
+
+                @else
+                    <tr class="seller-list text-center">
+                        <td><?php foreach (json_decode($item->img_product)as $picture) { ?>
+                            <img src="{{ asset('images/imgProduct') }}/{{ $picture }}" alt="" class="img-fluid">
+                            <?php break; } ?>
+                        </td>
+                        <td>{{ $item->u_name }}</td>
+                        <td>{{ $item->u_phone }}</td>
+                        <td>{{ $item->u_address }}</td>
+                        <td>{{ $item->quantity }}</td>
+                        <td>$ {{ $item->total }}</td>
+                        <td>{{ $item->created_at }}</td>
+                        <td>
+                            <a href="{{ url('product', $item->id) }}">
+                                <button class="btn btn-primary">
+                                    view
+                                </button>
+                            </a>
+                            <a href="{{ url('/remove-cancel', $item->order_id) }}">
+                                <button class="btn btn-danger">
+                                    delete
+                                </button>
+                            </a>
+                        </td>
+                    </tr>
+                @endif
             @endforeach
 
         </tbody>

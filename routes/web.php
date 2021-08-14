@@ -32,6 +32,7 @@ Route::get('/brand/{id}', [HomeController::class, 'brand'])->name('brandItem');
 Route::get('/brand/{id}/product/{id1}', [HomeController::class, 'detail4'])->name('brandProductItem');
 Route::get('/brand', [HomeController::class, 'allBrand'])->name('brands');
 Route::get('/store', [HomeController::class, 'store']);
+Route::get('/delete-order/{id}', [OrderController::class, 'delete_card']);
 
 Route::post('/signin', [UserController::class, 'signin'])->name("signin");
 Route::post('/register', [UserController::class, 'register'])->name("register");
@@ -51,6 +52,7 @@ Route::get('/confirm-order-product', [UserController::class, 'confirm_order_proo
 Route::post('/order-product', [OrderController::class, 'order']);
 
 //=============Seller===================
+Route::post('/seller/editImage', [SellerController::class, 'edit_image']);
 
 Route::post('/add-to-cart', [CartController::class, 'add_to_cart'])->name('add_to_cart');
 Route::post('/add-to-wishlist', [CartController::class, 'add_to_wishlist'])->name('add_to_wishlist');
@@ -63,6 +65,8 @@ Route::get('/logout_seller', [SellerController::class, 'logout'])->middleware('c
 Route::get('/forseller', [SellerController::class, 'forseller']);
 Route::post('/confirm-pending', [SellerController::class, 'con_pending']);
 Route::post('/confirm-processing-to-delivery', [SellerController::class, 'con_processing']);
+Route::post('/cancel-pending', [SellerController::class, 'cancel_pending']);
+Route::get('/remove-cancel/{id}', [SellerController::class, 'remove_cancel']);
 
 Route::get('/seller/dashboard', [SellerController::class, 'dashboard'])->middleware('checker_seller');
 Route::get('/seller/products', [SellerController::class, 'products'])->middleware('checker_seller');

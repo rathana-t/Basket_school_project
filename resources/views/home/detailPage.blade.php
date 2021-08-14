@@ -65,14 +65,29 @@
                                 <hr>
                                 <div style="margin-top: 10px">
                                     @if (Session::has('user'))
-                                        <form action="{{ route('add_to_cart') }}" method="POST"
-                                            enctype="multipart/form-data">
-                                            @csrf
-                                            <input type="hidden" value="{{ $data_user->id }}" name="user_id">
-                                            <input type="hidden" value="{{ $detail->id }}" name="product_id">
-                                            <input type="hidden" value="{{ $detail->price }}" name="total">
 
-                                            {{-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+                                        @if ($detail->stock == 0)
+                                            <button class="btn btn-warning mt-2" style="width: 170px">
+                                                <span class="p-2">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        fill="currentColor" class="bi bi-bag-x-fill" viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd"
+                                                            d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zM6.854 8.146a.5.5 0 1 0-.708.708L7.293 10l-1.147 1.146a.5.5 0 0 0 .708.708L8 10.707l1.146 1.147a.5.5 0 0 0 .708-.708L8.707 10l1.147-1.146a.5.5 0 0 0-.708-.708L8 9.293 6.854 8.146z" />
+                                                    </svg>
+                                                </span>
+                                                No Stock
+                                            </button>
+                                        @else
+
+                                            <form action="{{ route('add_to_cart') }}" method="POST"
+                                                enctype="multipart/form-data">
+                                                @csrf
+                                                <input type="hidden" value="{{ $data_user->id }}" name="user_id">
+                                                <input type="hidden" value="{{ $detail->id }}" name="product_id">
+                                                <input type="hidden" value="{{ $detail->price }}" name="total">
+
+                                                {{-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
                                             <div class="form-group" style="width: 130px">
                                                 <div class="input-group">
                                                     <span class="input-group-btn">
@@ -94,20 +109,22 @@
                                                     </span>
                                                 </div>
                                             </div> --}}
-                                            <input type="number" class="form-control form-control-sm" value="1"
-                                                id="quantity" placeholder="Qty" required name="quantity" min="1"
-                                                max="{{ $detail->stock }}" style="width: 170px">
-                                            <button type="submit" class="btn btn-primary mt-2" style="width: 170px">
-                                                <span class="p-2">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                        fill="currentColor" class="bi bi-bag-check-fill"
-                                                        viewBox="0 0 16 16">
-                                                        <path fill-rule="evenodd"
-                                                            d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zm-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
-                                                    </svg>
-                                                </span>
-                                                Add to cart
-                                            </button>
+                                                <input type="number" class="form-control form-control-sm" value="1"
+                                                    id="quantity" placeholder="Qty" required name="quantity" min="1"
+                                                    max="{{ $detail->stock }}" style="width: 170px">
+                                                <button type="submit" class="btn btn-primary mt-2" style="width: 170px">
+                                                    <span class="p-2">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                            fill="currentColor" class="bi bi-bag-check-fill"
+                                                            viewBox="0 0 16 16">
+                                                            <path fill-rule="evenodd"
+                                                                d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zm-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
+                                                        </svg>
+                                                    </span>
+                                                    Add to cart
+                                                </button>
+                                        @endif
+
 
                                         </form>
                                         <form action="{{ route('add_to_wishlist') }}" method="POST" class="mt-2">

@@ -38,11 +38,7 @@
                                 view
                             </button>
                         </a>
-                        <a href="">
-                            <button class="btn btn-danger">
-                                cancel
-                            </button>
-                        </a>
+
                     </td>
                 </tr>
             @endforeach
@@ -67,6 +63,7 @@
                         Are you redy to delivery this product to customer!!!.
                     </div>
                     <input type="hidden" name="order_id" id="order_id">
+                    <textarea name="message" id="" required></textarea>
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>

@@ -11,6 +11,7 @@
             <thead>
                 <tr>
                     <th scope="col" class="text-left">ID</th>
+                    <th scope="col" class="text-left">Image</th>
                     <th scope="col" class="text-left">Name</th>
                     <th scope="col" class="text-left">Price</th>
                     <th scope="col" class="text-left">Stock</th>
@@ -23,8 +24,12 @@
                     <tr class="seller-list-product">
                         <th scope="row" class="text-left">
                             {{ ++$i }}
-                            </a>
                         </th>
+                        <td class="text-left">
+                            <?php foreach (json_decode($item->img_product)as $picture) { ?>
+                            <img src="{{ asset('images/imgProduct') }}/{{ $picture }}" alt="" class="img-fluid">
+                            <?php break; } ?>
+                        </td>
                         <td class="text-left">
                             <a href="{{ route('detail', $item->id) }}">
                                 {{ $item->name }}

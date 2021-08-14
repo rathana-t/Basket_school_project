@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
+use SebastianBergmann\CodeCoverage\Report\PHP;
+
 // use Symfony\Component\HttpFoundation\Session\Session;
 
 class UserController extends Controller
@@ -35,8 +37,8 @@ class UserController extends Controller
             $data = orders::join('carts', 'carts.id', '=', 'orders.cart_id')
                 ->join('products', 'products.id', '=', 'carts.product_id')
                 ->where('carts.user_id', $data_user->id)
-                ->where('orders.delivery', '=', '0')
-                ->select('products.*', 'orders.*', 'carts.quantity', 'carts.total')->orderByDesc('orders.updated_at')->get();
+                // ->where('orders.delivery', '=', '0')
+                ->select('products.*', 'orders.*','orders.id as order_id', 'carts.quantity', 'carts.total')->orderByDesc('orders.updated_at')->get();
 
             return view('home/user-profile/order', compact('second_cate', 'data', 'data_user'));
         }
@@ -168,7 +170,7 @@ class UserController extends Controller
                 ->join('brands', 'products.brand_id', '=', 'brands.id')
                 ->where('carts.user_id', $data_user->id)
                 ->where('orders.delivery', '=', '1')
-                ->select('products.*', 'orders.created_at as cre', 'orders.updated_at as up', 'carts.quantity', 'carts.total', 'brands.name as brandName')->orderByDesc('orders.updated_at')->get();
+                ->select('products.*', 'orders.message','orders.created_at as cre', 'orders.updated_at as up', 'carts.quantity', 'carts.total', 'brands.name as brandName')->orderByDesc('orders.updated_at')->get();
         } else {
             return view('home/login', compact('second_cate'));
         }

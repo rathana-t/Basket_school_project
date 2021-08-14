@@ -21,6 +21,14 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 class OrderController extends Controller
 {
+    public function delete_card($id){
+        if (session()->has('user')) {
+            $data = orders::find($id);
+
+            $data->delete();
+            return redirect()->back();
+        }
+    }
     public function order(Request $req){
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
