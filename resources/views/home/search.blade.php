@@ -1,10 +1,10 @@
 @extends('application')
 @section('content')
     <style>
-        
+
 
     </style>
-    <div class="container mt-4">
+    <div class="container pt-4">
         <div class="row">
             <div class="col-md-3">
                 <div class="card">
@@ -86,6 +86,7 @@
                     @endforeach
                 </div>
             </div>
+            {{ $data->links() }}
         </div>
     </div>
 @endsection
