@@ -201,6 +201,7 @@ class SellerController extends Controller
             $data->update();
 
             return redirect()->back();
+<<<<<<< HEAD
         }
     }
 
@@ -219,6 +220,8 @@ class SellerController extends Controller
             return view('seller/old_order',compact('data_seller','data'));
         } else {
             return view('seller/old_order');
+=======
+>>>>>>> 872ddcaf214a3a630af2887b0a3f8fff1bb30265
         }
     }
 

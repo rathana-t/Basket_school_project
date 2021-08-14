@@ -3,7 +3,10 @@
 * {
     font-family: "Poppins", sans-serif;
 }
-
+.container h5 {
+    color: #323b49;
+    font-size: 20px;
+}
 body {
     min-height: 120vh;
 }
@@ -247,60 +250,91 @@ footer ul li {
     background-color: #006fbf;
 }
 
-/* end  */
-
-/* Vitou */
-
-.set-margin {
-    margin-top: 30px;
+.deatail_page h5 {
+    line-height: 36px;
+    color: #323b49;
+    font-size: 20px;
 }
 
-.view {
-    height: 850px;
-}
-
-.description {
-    overflow-y: auto;
-    height: 150px;
-}
-
-.set button {
-    border: 1px solid orange;
-    text-align: center;
-    height: 50px;
-    width: 120px;
-}
-
-.set p {
-    line-height: 1px;
+.deatail_page .order {
     font-size: 12px;
+    color: #00b517;
 }
 
-.sizetext {
-    font-size: 14px;
+.deatail_page .price {
+    line-height: 30px;
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: 500;
 }
 
-.box {
-    margin: 5px;
-    width: 20px;
-    height: 20px;
-    border-radius: 3px;
+.deatail_page .des {
+    line-height: 30px;
+    overflow-y: auto;
+    max-height: 150px;
+    font-size: 16px;
 }
 
-.favourite a {
-    font-size: 13px;
-    text-decoration: none;
+.deatail_page strong {
+    font-weight: 500;
+}
+.deatail_page .wrapper {
+    max-height: 400px;
+    display: flex;
+    overflow-x: auto;
 }
 
-.related-product img {
-    width: 400px;
-    height: 200px;
-    object-fit: cover;
+.deatail_page .wrapper .Item img {
+    height: 100px;
+    object-fit: contain;
+}
+
+.deatail_page .wrapper::-webkit-scrollbar {
+    height: 5px;
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #afb3b6;
     border-radius: 5px;
 }
-
-/* orderPage */
-
+.shopping-cart table td {
+    vertical-align: middle;
+}
+.shopping-cart a {
+    color: #323b49;
+    text-decoration: none;
+}
+.shopping-cart a:hover {
+    color: #035ebe;
+    text-decoration: none;
+}
+.shopping-cart .table-bordered {
+    background-color: white;
+}
+.shopping-cart tr th {
+    color: #323b49;
+    font-size: 16px;
+    font-weight: 400;
+}
+.shopping-cart tr td {
+    height: 110px;
+    color: #323b49;
+    font-size: 16px;
+    font-weight: 300;
+}
+.shopping-cart tr td img {
+    object-fit: contain;
+    border-radius: 5px;
+}
+.shopping-cart .payment ul li {
+    color: #323b49;
+    font-size: 16px;
+}
+.shopping-cart .countProduct {
+    color: #009b5a;
+}
 .order .row .set-img {
     height: 180px;
 }
@@ -338,29 +372,79 @@ footer ul li {
 }
 
 .order .new-text {
+    color: #323b49;
     margin-top: -5px;
 }
 
 .order .new-text p {
+    color: #323b49;
     margin-bottom: 6px;
 }
-
-/* end  */
-
 .order img {
+    height: 150px;
     border-radius: 5px;
-    height: 90px;
     object-fit: contain;
 }
-
 .order p {
-    margin-top: 0;
-    margin-bottom: 0;
+    color: #323b49;
+    font-size: 16px;
 }
 
 .order .active {
     color: #ff4c34;
 }
+.order .card-header {
+    background-color: #ffffff;
+}
+.list-style ul {
+    list-style: none;
+}
+
+.list-style ul li a {
+    text-decoration: none;
+    color: #505050;
+}
+.modify .small-txt {
+    color: #323b49;
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.modify .big-txt {
+    color: #323b49;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.modify .orange-txt {
+    color: #ff4c34;
+    font-size: 16px;
+}
+
+.modify img {
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.wrapperrr {
+    max-width: 300px;
+}
+
+.textoverflow {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    height: 78px;
+    -webkit-line-clamp: 3;
+}
+.navbar-menu .ac {
+    color: #ff4c34 !important;
+}
+.navbar-menu a:hover {
+    color: #ff4c34 !important;
+}
+/* end  */
 
 @media only screen and (max-width: 1223px) {
     .form-inline .search {
@@ -374,18 +458,9 @@ footer ul li {
     }
 }
 
-.list-style ul {
-    list-style: none;
-}
-
-.list-style ul li a {
-    text-decoration: none;
-    color: #505050;
-}
-
 /* merge double range */
 
-.item {
+/* .item {
     display: none;
 }
 
@@ -430,11 +505,11 @@ span.value.upper::before {
 .min-max-slider > input {
     cursor: pointer;
     position: absolute;
-}
+} */
 
 /* webkit specific styling */
 
-.min-max-slider > input {
+/* .min-max-slider > input {
     -webkit-appearance: none;
     outline: none !important;
     background: transparent;
@@ -451,40 +526,23 @@ span.value.upper::before {
 
 .min-max-slider > input::-webkit-slider-thumb {
     -webkit-appearance: none;
-    /* Override default look */
     appearance: none;
     width: 14px;
-    /* Set a specific slider handle width */
     height: 14px;
-    /* Slider handle height */
     background: #eee;
-    /* Green background */
     cursor: pointer;
-    /* Cursor on hover */
     border: 1px solid gray;
     border-radius: 100%;
 }
 
 .min-max-slider > input::-webkit-slider-runnable-track {
     cursor: pointer;
-}
+} */
 
 .search_product img {
     height: 150px;
     object-fit: contain;
     border-radius: 5px;
-}
-
-.fixed .con-color {
-    background-color: rgb(219, 219, 219);
-}
-
-.build a {
-    color: #000000 !important;
-}
-
-.build .nav-link {
-    margin-left: 20px;
 }
 
 .wish-list .img-modify {
@@ -493,74 +551,4 @@ span.value.upper::before {
 
 .wish-list td {
     vertical-align: middle;
-}
-
-.modify .card {
-    border: none;
-    background-color: rgb(248, 248, 248) !important;
-}
-
-.modify .small-txt {
-    font-size: 11px;
-    font-weight: normal;
-}
-
-.modify .big-txt {
-    font-family: "Poppins";
-    font-size: 17px;
-    font-weight: bold;
-}
-
-.modify .orange-txt {
-    font-family: "poppins";
-    color: orange;
-    font-size: 17px;
-    font-weight: bold 100px;
-}
-
-.modify img {
-    object-fit: cover;
-    border-radius: 5px;
-}
-
-.wrapperrr {
-    max-width: 300px;
-}
-
-.textoverflow {
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    height: 78px;
-    -webkit-line-clamp: 3;
-}
-
-.deatail_page h5 {
-    line-height: 36px;
-    color: #323b49;
-    font-size: 20px;
-}
-
-.deatail_page .order {
-    font-size: 12px;
-    color: #00b517;
-}
-
-.deatail_page .price {
-    line-height: 30px;
-    font-size: 18px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    font-weight: 500;
-}
-
-.deatail_page .des {
-    line-height: 30px;
-    overflow-y: auto;
-    max-height: 150px;
-    font-size: 16px;
-}
-
-.deatail_page strong {
-    font-weight: 500;
 }
