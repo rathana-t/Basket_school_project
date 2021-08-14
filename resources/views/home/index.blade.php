@@ -53,7 +53,9 @@
                                     </a>
                                     <div class="product_name">
                                         <a href="/product/product/{{ $item->id }}">
-                                            {{ $item->name }}
+                                            <div class="b">
+                                                {{ $item->name }}
+                                            </div>
                                         </a>
                                     </div>
                                     <div class="store_name">

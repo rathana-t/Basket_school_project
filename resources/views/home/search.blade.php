@@ -1,43 +1,7 @@
 @extends('application')
 @section('content')
     <style>
-        div.b {
-            white-space: nowrap;
-            width: 200px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .search img {
-            object-fit: contain;
-            height: 180px;
-        }
-
-        .search a {
-            font-size: 12px;
-        }
-
-        .search .product_name a {
-            text-decoration: none;
-            font-size: 14px;
-            color: #323b49;
-        }
-
-        .search .store_name a {
-            text-decoration: none;
-            font-size: 14px;
-            color: #323b49;
-        }
-
-        .search .price a {
-            text-decoration: none;
-            font-size: 14px;
-            color: #323b49;
-        }
-
-        .search a:hover {
-            color: #035ebe;
-        }
+        
 
     </style>
     <div class="container mt-4">
