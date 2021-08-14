@@ -1,25 +1,7 @@
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
+@include('/home/components/modal')
+@include('/home/components/msg')
 
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body text-center">
-                Are you sure?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <form action="/logout" method="GET">
-                    <button type="submit" class="btn btn-primary">Logout</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container border-bottom">
+<div class="container border-bottom pt-2">
     <div class="d-flex justify-content-between">
         <div class="mt-3">
             <h6>{{ $data_user->username }}</h6>

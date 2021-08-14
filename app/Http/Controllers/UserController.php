@@ -165,10 +165,10 @@ class UserController extends Controller
 
             $data = orders::join('carts', 'carts.id', '=', 'orders.cart_id')
                 ->join('products', 'products.id', '=', 'carts.product_id')
+                ->join('brands', 'products.brand_id', '=', 'brands.id')
                 ->where('carts.user_id', $data_user->id)
                 ->where('orders.delivery', '=', '1')
-
-                ->select('products.*', 'orders.created_at as cre', 'orders.updated_at as up', 'carts.quantity', 'carts.total')->orderByDesc('orders.updated_at')->get();
+                ->select('products.*', 'orders.created_at as cre', 'orders.updated_at as up', 'carts.quantity', 'carts.total', 'brands.name as brandName')->orderByDesc('orders.updated_at')->get();
         } else {
             return view('home/login', compact('second_cate'));
         }

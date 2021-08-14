@@ -3,7 +3,10 @@
 * {
     font-family: "Poppins", sans-serif;
 }
-
+.container h5 {
+    color: #323b49;
+    font-size: 20px;
+}
 body {
     min-height: 120vh;
 }
@@ -369,24 +372,29 @@ footer ul li {
 }
 
 .order .new-text {
+    color: #323b49;
     margin-top: -5px;
 }
 
 .order .new-text p {
+    color: #323b49;
     margin-bottom: 6px;
 }
 .order img {
+    height: 150px;
     border-radius: 5px;
-    height: 90px;
     object-fit: contain;
 }
 .order p {
-    margin-top: 0;
-    margin-bottom: 0;
+    color: #323b49;
+    font-size: 16px;
 }
 
 .order .active {
     color: #ff4c34;
+}
+.order .card-header {
+    background-color: #ffffff;
 }
 .list-style ul {
     list-style: none;
@@ -396,7 +404,46 @@ footer ul li {
     text-decoration: none;
     color: #505050;
 }
+.modify .small-txt {
+    color: #323b49;
+    font-size: 12px;
+    font-weight: 300;
+}
 
+.modify .big-txt {
+    color: #323b49;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.modify .orange-txt {
+    color: #ff4c34;
+    font-size: 16px;
+}
+
+.modify img {
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.wrapperrr {
+    max-width: 300px;
+}
+
+.textoverflow {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    height: 78px;
+    -webkit-line-clamp: 3;
+}
+.navbar-menu .ac {
+    color: #ff4c34 !important;
+}
+.navbar-menu a:hover {
+    color: #ff4c34 !important;
+}
 /* end  */
 
 @media only screen and (max-width: 1223px) {
@@ -498,60 +545,10 @@ span.value.upper::before {
     border-radius: 5px;
 }
 
-.build .nav-link {
-    margin-left: 20px;
-}
-
 .wish-list .img-modify {
     width: 140px;
 }
 
 .wish-list td {
     vertical-align: middle;
-}
-
-.modify .card {
-    border: none;
-    background-color: rgb(248, 248, 248) !important;
-}
-
-.modify .small-txt {
-    font-size: 11px;
-    font-weight: normal;
-}
-
-.modify .big-txt {
-    font-family: "Poppins";
-    font-size: 17px;
-    font-weight: bold;
-}
-
-.modify .orange-txt {
-    font-family: "poppins";
-    color: orange;
-    font-size: 17px;
-    font-weight: bold 100px;
-}
-
-.modify img {
-    object-fit: cover;
-    border-radius: 5px;
-}
-
-.wrapperrr {
-    max-width: 300px;
-}
-
-.textoverflow {
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    height: 78px;
-    -webkit-line-clamp: 3;
-}
-.navbar-menu .ac {
-    color: #ff4c34 !important;
-}
-.navbar-menu a:hover {
-    color: #ff4c34 !important;
 }
