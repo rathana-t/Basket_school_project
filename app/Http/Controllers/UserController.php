@@ -177,6 +177,8 @@ class UserController extends Controller
     }
     public function confirm_order_prooduct()
     {
+        $second_cate = DB::table('se_categories')->get();
+
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
             $uid = $data_user->id;
@@ -193,7 +195,7 @@ class UserController extends Controller
                 $quantity =  $quantity + $item->quantity;
                 $counter++;
             }
-            return view('home/user-profile/confirm_order', compact('quantity', 'data_user',  'data_pro', 'counter', 'total_price_all_quantity'));
+            return view('home/user-profile/confirm_order', compact('second_cate', 'quantity', 'data_user',  'data_pro', 'counter', 'total_price_all_quantity'));
         } else {
             return view('home/login');
         }
