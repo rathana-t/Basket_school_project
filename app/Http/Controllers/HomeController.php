@@ -23,6 +23,26 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 class HomeController extends Controller
 {
+    static public function countCart()
+    {
+        $data_user = Users::findOrFail(session('user'));
+        return  carts::join('products', 'products.id', '=', 'carts.product_id')
+            ->where('carts.user_id', '=', $data_user->id)
+            ->where('carts.in_order', 0)
+            ->count();
+    }
+    static public function countWishlist()
+    {
+        $data_user = Users::findOrFail(session('user'));
+        return products::join('wishlist', 'wishlist.pro_id', '=', 'products.id')
+            ->where('wishlist.u_id', $data_user->id)
+            ->select('products.*', 'wishlist.id as wish_id')
+            ->count();
+    }
+    static public function secondCat()
+    {
+        return DB::table('se_categories')->get();
+    }
     public function index()
     {
         $count = 0;
@@ -62,8 +82,6 @@ class HomeController extends Controller
     }
     public function products()
     {
-
-        $second_cate = DB::table('se_categories')->get();
         $products = DB::table('products')
             ->join('sellers', 'products.seller_id', '=', 'sellers.id')
             ->select('products.*', 'sellers.store_name')
@@ -72,9 +90,9 @@ class HomeController extends Controller
             ->paginate(16);
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
-            return view('home/products', compact('data_user', 'products', 'second_cate'));
+            return view('home/products', compact('data_user', 'products'));
         }
-        return view('home/products', compact('products', 'second_cate'));
+        return view('home/products', compact('products'));
     }
     public function login()
     {
