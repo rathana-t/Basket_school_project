@@ -8,9 +8,6 @@
             <h5>
                 {{ $smallCateName->name }}
             </h5>
-            <div style="background-image: url('/images/secondCategory/{{ $smallCateName->secondarycategory_img }}')" class="gggg">
-                <h1>THE PLANET FOR WOMEN ENTREPRENEURS</h1>
-            </div>
             <div class="cate-item">
                 <div class="row mt-3">
                     @foreach ($products as $item)

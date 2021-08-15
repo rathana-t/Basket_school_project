@@ -5,29 +5,46 @@
     <div class="container">
         <div class="header pb-2">
             <div class="row">
-                <div class="col-md-4">
-                    <ul class="list-group">
-                        @foreach ($randSecond_cate as $item)
-                            <a href="/smallcate/{{ $item->id }}">
-                                <li class="list-group-item">{{ $item->name }}</li>
-                            </a>
-                        @endforeach
-                    </ul>
-                </div>
-
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
                                 <img src="https://images.macrumors.com/t/jXqUxBjwyt16A254unbNN51zn9A=/1920x/https://images.macrumors.com/article-new/2019/02/MR-Future-Products-2020-2.png"
                                     class="d-block w-100" alt="...">
-                                <div class="hero-text">
+                                <div class="hero-text ">
                                     <h1>Top sale product</h1>
-                                    <a href="" class="btn btn-primary">View</a>
+                                    <a href="" class="btn btn-primary text-white">View</a>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="category pt-4 pb-2" id="Category">
+            <div class="d-flex justify-content-between mb-3">
+                <h5>
+                    Category
+                </h5>
+                <a href="/category" class="btn btn-outline-primary">See all</a>
+            </div>
+            <div class="category-item">
+                <div class="row mt-3">
+                    @foreach ($cate as $item)
+                        <div class="col-xs-6 col-sm-4">
+                            <a href="category/{{ $item->id }}">
+                                <div class="card-banner align-items-end background-img mb-4"
+                                    style="background-image: url('/images/categoryImages/{{ $item->category_img }}')">
+                                    <div class="caption m-4 w-100">
+                                        <h5 class="text-white card-title">
+                                            {{ $item->name }}
+                                        </h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -93,32 +110,7 @@
             </div>
         </div>
 
-        <div class="category pt-4 pb-2" id="Category">
-            <div class="d-flex justify-content-between mb-3">
-                <h5>
-                    Category
-                </h5>
-                <a href="/category" class="btn btn-outline-primary">See all</a>
-            </div>
-            <div class="category-item">
-                <div class="row mt-3">
-                    @foreach ($cate as $item)
-                        <div class="col-xs-6 col-sm-4">
-                            <a href="category/{{ $item->id }}">
-                                <div class="card-banner align-items-end background-img mb-4"
-                                    style="background-image: url('/images/categoryImages/{{ $item->category_img }}')">
-                                    <div class="caption m-4 w-100">
-                                        <h5 class="text-white card-title">
-                                            {{ $item->name }}
-                                        </h5>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
+
 
         <div class="category pt-4 pb-2" id="Subcategory">
             <div class="d-flex justify-content-between mb-3">

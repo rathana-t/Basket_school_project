@@ -66,13 +66,13 @@
                                                         </div>
                                                     @else
                                                         <div class="p-2 ">
-                                                            {{ $counter }} Products , {{ $quantity }} item)
+                                                            {{ $counter }} Products , {{ $quantity }} item
                                                         </div>
                                                     @endif
                                                 @else
                                                     @if ($quantity > 1)
                                                         <div class="p-2 ">
-                                                            {{ $counter }} Product , {{ $quantity }} items)
+                                                            {{ $counter }} Product , {{ $quantity }} items
                                                         </div>
                                                     @else
                                                         <div class="p-2 ">
