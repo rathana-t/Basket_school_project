@@ -37,10 +37,16 @@ class UserController extends Controller
             $data = orders::join('carts', 'carts.id', '=', 'orders.cart_id')
                 ->join('products', 'products.id', '=', 'carts.product_id')
                 ->where('carts.user_id', $data_user->id)
-                // ->where('orders.delivery', '=', '0')
+                ->where('orders.pending', 1)
+                ->orwhere('orders.processing', 1)
+                ->orwhere('orders.seller_cancel', 1)
                 ->select('products.*', 'orders.*','orders.id as order_id', 'carts.quantity', 'carts.total')->orderByDesc('orders.updated_at')->get();
-
-            return view('home/user-profile/order', compact('second_cate', 'data', 'data_user'));
+                $count = 0;
+                foreach($data as $d){
+                    $count=1;
+                    break;
+                }
+            return view('home/user-profile/order', compact('second_cate','count','data', 'data_user'));
         }
         return view('home/login', compact('second_cate'));
     }
@@ -189,10 +195,10 @@ class UserController extends Controller
                 ->where('carts.user_id', '=', $data_user->id)
                 ->where('carts.in_order', 0)
                 ->select('products.*', 'carts.id as cart_id', 'carts.total', 'carts.quantity')->orderByDesc('carts.updated_at')->get();
-            $counter = 0;
-            $quantity = 0;
-            $total_price_all_quantity = 0;
-            foreach ($data_pro as $item) {
+                $counter = 0;
+                $quantity = 0;
+                $total_price_all_quantity = 0;
+                foreach ($data_pro as $item) {
                 $total_price_all_quantity = $total_price_all_quantity + $item->total;
                 $quantity =  $quantity + $item->quantity;
                 $counter++;

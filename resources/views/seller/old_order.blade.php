@@ -20,7 +20,7 @@
             <tbody>
                 @foreach ($data as $item)
                     @include('/seller/components/modal')
-                    @if ($item->pending == 1 && $item->delivery == 1)
+                    @if ($item->seller_cancel == 1)
                         <tr class="product-list text-center" style="color: rgb(223, 89, 12)">
                             <td><?php foreach (json_decode($item->img_product)as $picture) { ?>
                                 <img src="{{ asset('images/imgProduct') }}/{{ $picture }}" alt="" class="img-fluid">
@@ -47,8 +47,7 @@
                                 </a>
                             </td>
                         </tr>
-                    @elseif($item->delivery==2)
-
+                    @elseif($item->seller_remove_cancel ==2 || $item->seller_remove_cancel==1)
                     @else
                         <tr class="product-list text-center">
                             <td><?php foreach (json_decode($item->img_product)as $picture) { ?>
@@ -74,7 +73,7 @@
                                         view
                                     </button>
                                 </a>
-                                <a href="{{ url('/remove-cancel', $item->order_id) }}">
+                                <a href="{{ url('/remove-oldorder', $item->order_id) }}">
                                     <button class="btn btn-danger">
                                         delete
                                     </button>
