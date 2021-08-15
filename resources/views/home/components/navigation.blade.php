@@ -26,14 +26,14 @@
             <a href="/category" class="ac">Category</a>
 
         @elseif (\Route::current()->getName() == 'categoryItem')
-            <a href="/">Home</a>
+            <a href="/#Category">Home</a>
             >
             <a href="/category">Category</a>
             >
             <a href="/category/{{ $cate_name->id }}" class="ac">{{ $cate_name->name }}</a>
 
         @elseif (\Route::current()->getName() == 'categoryProductItem')
-            <a href="/">Home</a>
+            <a href="/#Category">Home</a>
             >
             <a href="/category">Category</a>
             >

@@ -103,18 +103,17 @@
             <div class="category-item">
                 <div class="row mt-3">
                     @foreach ($cate as $item)
-                        <div class="col-md-3 col-sm-6 col-xs-12">
-                            <div class="card mb-3">
-                                <div class="m-3">
-                                    <p>{{ $item->name }}</p>
-                                    <a href="category/{{ $item->id }}">
-                                        <div class="text-center">
-                                            <img src="/images/categoryImages/{{ $item->category_img }}" alt=""
-                                                class="img-fluid">
-                                        </div>
-                                    </a>
+                        <div class="col-xs-6 col-sm-4">
+                            <a href="category/{{ $item->id }}">
+                                <div class="card-banner align-items-end background-img mb-4"
+                                    style="background-image: url('/images/categoryImages/{{ $item->category_img }}')">
+                                    <div class="caption m-4 w-100">
+                                        <h5 class="text-white card-title">
+                                            {{ $item->name }}
+                                        </h5>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     @endforeach
                 </div>

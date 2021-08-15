@@ -67,7 +67,7 @@ body {
 }
 
 .header a:hover {
-    color: #035ebe;
+    color: #ff4c34;
     text-decoration: none;
 }
 
@@ -104,7 +104,7 @@ body {
 }
 
 .product .product-item a:hover {
-    color: #035ebe;
+    color: #ff4c34;
 }
 
 .category h5 {
@@ -120,6 +120,38 @@ body {
     height: 180px;
     object-fit: contain;
 }
+.category .category-item .background-img {
+    height: 220px;
+}
+.category .category-item a:hover .caption {
+    background-color: rgba(0, 0, 0, 0.65);
+    z-index: 10;
+    padding: 1.25rem;
+    color: #fff;
+}
+.category .category-item a:hover .m-4 {
+    transition: 0.09s;
+    margin: 1.5rem !important;
+}
+.category .category-item .card-banner {
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    background-color: #fff;
+    background-size: cover;
+    background-position: center center;
+    border-radius: 0.37rem;
+}
+.category .category-item .card-banner .m-4 {
+    transition: 0.09s;
+    margin: 0 !important;
+}
+.category .category-item .card-banner .caption {
+    background-color: rgba(0, 0, 0, 0.65);
+    z-index: 10;
+    padding: 1.25rem;
+    color: #fff;
+}
 
 .category .category-item a {
     text-decoration: none;
@@ -128,7 +160,7 @@ body {
 }
 
 .category .category-item a:hover {
-    color: #035ebe;
+    color: #ff4c34;
 }
 
 .brand h5 {
@@ -184,7 +216,7 @@ body {
 }
 
 .categoryItem a:hover {
-    color: #035ebe;
+    color: #ff4c34;
 }
 
 .sticky-footer {
@@ -307,7 +339,7 @@ footer ul li {
     text-decoration: none;
 }
 .shopping-cart a:hover {
-    color: #035ebe;
+    color: #ff4c34;
     text-decoration: none;
 }
 .shopping-cart .table-bordered {
@@ -479,7 +511,7 @@ div.b {
 }
 
 .search a:hover {
-    color: #035ebe;
+    color: #ff4c34;
 }
 /* end  */
 
