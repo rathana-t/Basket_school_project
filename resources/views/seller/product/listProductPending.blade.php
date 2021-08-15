@@ -4,49 +4,47 @@
     @include('/admin/components/modal')
 
     @include('seller\components\msg')
-
-    <h1 class="text-center mb-5">List all products</h1>
-    <div class="text-center">
-        <table class="table">
+    <div style="min-height: 75vh">
+        <table class="table text-center">
             <thead>
                 <tr>
-                    <th scope="col" class="text-left">ID</th>
-                    <th scope="col" class="text-left">Image</th>
-                    <th scope="col" class="text-left">Name</th>
-                    <th scope="col" class="text-left">Price</th>
-                    <th scope="col" class="text-left">Stock</th>
-                    <th scope="col" class="text-left">Post at</th>
-                    <th scope="col" class="text-left">Action</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Post at</th>
+                    <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($sellerHasProduct as $item)
-                    <tr class="seller-list-product">
-                        <th scope="row" class="text-left">
+                    <tr class="product-list">
+                        <td>
                             {{ ++$i }}
                             </a>
-                        </th>
-                        <td class="text-left">
+                        </td>
+                        <td>
                             <?php foreach (json_decode($item->img_product)as $picture) { ?>
                             <img src="{{ asset('images/imgProduct') }}/{{ $picture }}" alt="" class="img-fluid">
                             <?php break; } ?>
                         </td>
-                        <td class="text-left">
+                        <td>
                             <a href="seller/{{ $item->name }}">
                                 {{ $item->name }}
                             </a>
                         </td>
-                        <td class="text-left">
+                        <td>
                             <a href="seller/{{ $item->price }}">
                                 {{ $item->price }}
                             </a>
                         </td>
-                        <td class="text-left">
+                        <td>
                             <a href="seller/{{ $item->stock }}">
                                 {{ $item->stock }}
                             </a>
                         </td>
-                        <td class="text-left">
+                        <td>
                             <a href="seller/{{ $item->created_at }}">
                                 {{ $item->created_at }}
                             </a>
@@ -63,4 +61,5 @@
             </tbody>
         </table>
     </div>
+    {{ $sellerHasProduct->links() }}
 @stop

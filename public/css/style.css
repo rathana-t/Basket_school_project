@@ -438,6 +438,9 @@ footer ul li {
 .order .card-header {
     background-color: #ffffff;
 }
+.order .card-footer {
+    background-color: #ffffff;
+}
 .list-style ul {
     list-style: none;
 }
@@ -630,4 +633,7 @@ span.value.upper::before {
 
 .wish-list td {
     vertical-align: middle;
+}
+.user-navbar a {
+    color: rgba(0, 0, 0, 0.5);
 }

@@ -2,11 +2,6 @@
 
 @section('sidebar-content')
     <div class="container">
-        <div class="text-center">
-            <h1>
-                This is add new product page
-            </h1>
-        </div>
         @foreach ($cat as $item)
             <form action="{{ route('sellerpostProduct', $item->main_cat_id) }}" method="POST"
                 enctype="multipart/form-data">

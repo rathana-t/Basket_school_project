@@ -187,15 +187,19 @@ class AdminController extends Controller
     }
     public function edit($id)
     {
-        $pros = products::join('brands', 'products.brand_id', '=',  'brands.id')
-            ->join('se_categories', 'products.s_cat_id', '=', 'se_categories.id')
-            ->where('products.id', $id)
-            ->select('products.*', 'se_categories.name as cat_name', 'brands.name as brand_name')
-            ->get();
-
-        $brands = DB::table('brands')->get();
-        $cats = DB::table('se_categories')->get();
-        return view('seller/product/edit', compact('pros', 'brands', 'cats'));
+        if (session()->has('seller')) {
+            $data_seller = sellers::findOrFail(session('seller'));
+            $pros = products::join('brands', 'products.brand_id', '=',  'brands.id')
+                ->join('se_categories', 'products.s_cat_id', '=', 'se_categories.id')
+                ->where('products.id', $id)
+                ->where('products.seller_id', $data_seller->id)
+                ->select('products.*', 'se_categories.name as cat_name', 'brands.name as brand_name')
+                ->get();
+            $brands = DB::table('brands')->get();
+            $cats = DB::table('se_categories')->get();
+            return view('seller/product/edit', compact('data_seller', 'pros', 'brands', 'cats'));
+        }
+        return view('/seller/login');
     }
 
     public function delete_brand(Request $req)

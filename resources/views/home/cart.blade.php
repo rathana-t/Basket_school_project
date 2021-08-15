@@ -121,7 +121,7 @@
                                 </div>
                             @else
                                 <div class="text-center mt-4">
-                                    <a href="{{ url('/') }}" type="button" class="btn btn-info">
+                                    <a href="{{ url('/') }}" type="button" class="btn btn-info text-white">
                                         Your Cart is Empty! Go Shopping ?
                                     </a>
                                 </div>

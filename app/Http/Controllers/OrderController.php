@@ -21,7 +21,8 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 class OrderController extends Controller
 {
-    public function delete_card($id){
+    public function delete_card($id)
+    {
         if (session()->has('user')) {
             $data = orders::find($id);
 
@@ -29,7 +30,8 @@ class OrderController extends Controller
             return redirect()->back();
         }
     }
-    public function order(Request $req){
+    public function order(Request $req)
+    {
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
 
@@ -37,22 +39,22 @@ class OrderController extends Controller
             $data_user->update();
 
             $cart = carts::join('products', 'products.id', '=', 'carts.product_id')
-            ->where('carts.user_id', '=', $data_user->id)
-            ->where('carts.in_order',0)
-            ->select('products.*', 'carts.id as cart_id')->get();
+                ->where('carts.user_id', '=', $data_user->id)
+                ->where('carts.in_order', 0)
+                ->select('products.*', 'carts.id as cart_id')->get();
 
-            foreach($cart as $item){
+            foreach ($cart as $item) {
                 $order = new orders();
                 $order->cart_id = $item->cart_id;
                 $order->pending = 1;
                 $order->save();
             }
-            foreach($cart as $item){
+            foreach ($cart as $item) {
                 $set_cart = carts::find($item->cart_id);
                 $set_cart->in_order = 1;
                 $set_cart->update();
             }
-            return redirect("/cart");
+            return redirect("/order");
         }
     }
 }

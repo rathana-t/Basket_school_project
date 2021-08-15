@@ -5,7 +5,7 @@
             <span class="sr-only">Toggle Menu</span>
         </button>
     </div>
-    <div class="text-center mt-4">
+    <div class="text-center mt-4 sellerImg">
         <a href=""><img src="/images/sellerProfile/{{ $data_seller->profile }}" alt="" class="img-fluid"></a>
     </div>
     <div class="p-4">
@@ -22,7 +22,7 @@
                 <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                     <div>
                         <img src="/images/sidebar-logo/3.svg" alt="">
-                        <span class="pl-3">Products</span>
+                        <span class="pl-3 {{ Request::is('seller*/products') ? 'ac' : '' }}">Products</span>
                     </div>
                 </a>
                 <ul class="collapse list-unstyled" id="homeSubmenu">

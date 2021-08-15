@@ -26,7 +26,8 @@ use Illuminate\Support\Facades\Session;
 class SellerController extends Controller
 {
 
-    public function remove_cancel($id){
+    public function remove_cancel($id)
+    {
         if (session()->has('seller')) {
             $data_seller = sellers::findOrFail(session('seller'));
             $data = orders::find($id);
@@ -116,7 +117,6 @@ class SellerController extends Controller
 
     public function products()
     {
-
         if (session()->has('seller')) {
             $data_seller = sellers::findOrFail(session('seller'));
         }
@@ -126,7 +126,9 @@ class SellerController extends Controller
             ->join('sellers', 'products.seller_id', '=', 'sellers.id')
             ->where('sellers.id', $id)
             ->where('products.completed', '=', '1')
-            ->select('products.*', 'sellers.store_name', 'sellers.phone', 'sellers.address')->get();
+            ->select('products.*', 'sellers.store_name', 'sellers.phone', 'sellers.address')
+            ->orderBy('created_at', 'desc')
+            ->paginate(5);
         $data_seller = sellers::find($id);
 
         $i = 0;
@@ -143,7 +145,9 @@ class SellerController extends Controller
             ->join('sellers', 'products.seller_id', '=', 'sellers.id')
             ->where('sellers.id', $id)
             ->where('products.completed', '=', '0')
-            ->select('products.*', 'sellers.store_name', 'sellers.phone', 'sellers.address')->get();
+            ->select('products.*', 'sellers.store_name', 'sellers.phone', 'sellers.address')
+            ->orderBy('created_at', 'desc')
+            ->paginate(5);
         $data_seller = sellers::find($id);
 
         $i = 0;
@@ -164,54 +168,59 @@ class SellerController extends Controller
     {
         if (session()->has('seller')) {
             $data_seller = sellers::findOrFail(session('seller'));
-            $data = orders::join('carts','carts.id','=','orders.cart_id')
-            ->join('users','users.id','=','carts.user_id')
-            ->join('products','products.id','=','carts.product_id')
-            ->where('orders.pending',1)
-            ->where('orders.delivery',0)
-            ->where('products.seller_id',$data_seller->id)
-            ->select('products.*','carts.total','orders.id as order_id','carts.quantity','users.username as u_name','users.phone as u_phone','users.address as u_address')->get();
-            return view('seller/new_order', compact('data_seller','data'));
+            $data = orders::join('carts', 'carts.id', '=', 'orders.cart_id')
+                ->join('users', 'users.id', '=', 'carts.user_id')
+                ->join('products', 'products.id', '=', 'carts.product_id')
+                ->where('orders.pending', 1)
+                ->where('orders.delivery', 0)
+                ->where('products.seller_id', $data_seller->id)
+                ->select('products.*', 'carts.total', 'orders.id as order_id', 'carts.quantity', 'users.username as u_name', 'users.phone as u_phone', 'users.address as u_address')
+                ->orderBy('updated_at', 'desc')
+                ->paginate(5);
+            return view('seller/new_order', compact('data_seller', 'data'));
         } else {
             return view('seller/login');
         }
     }
-    public function con_pending(Request $req){
+    public function con_pending(Request $req)
+    {
         if (session()->has('seller')) {
             $data_seller = sellers::findOrFail(session('seller'));
             $pros = products::join('carts', 'carts.product_id', '=', 'products.id')
-            ->join('orders', 'orders.cart_id', '=', 'carts.id')
-            ->where('orders.id', $req->order_id)
-            ->select('products.*', 'carts.quantity')->get();
-            foreach( $pros as $pro){
-            $pro->stock = $pro->stock - $pro->quantity;
-            $pro->update();
-        }
+                ->join('orders', 'orders.cart_id', '=', 'carts.id')
+                ->where('orders.id', $req->order_id)
+                ->select('products.*', 'carts.quantity')->get();
+            foreach ($pros as $pro) {
+                $pro->stock = $pro->stock - $pro->quantity;
+                $pro->update();
+            }
             $data = orders::find($req->order_id);
             $data->pending = 0;
             $data->processing = 1;
             $data->update();
             return redirect()->back();
         }
-
     }
     public function order_processing()
     {
-        if (session()->has('seller')){
+        if (session()->has('seller')) {
             $data_seller = sellers::findOrFail(session('seller'));
-            $data = orders::join('carts','carts.id','=','orders.cart_id')
-            ->join('users','users.id','=','carts.user_id')
-            ->join('products','products.id','=','carts.product_id')
-            ->where('orders.processing',1)
-            ->where('products.seller_id',$data_seller->id)
-            ->select('products.*','carts.total','carts.quantity','orders.id as order_id','users.username as u_name','users.phone as u_phone','users.address as u_address')->get();
-            return view('seller/processing', compact('data_seller','data'));
+            $data = orders::join('carts', 'carts.id', '=', 'orders.cart_id')
+                ->join('users', 'users.id', '=', 'carts.user_id')
+                ->join('products', 'products.id', '=', 'carts.product_id')
+                ->where('orders.processing', 1)
+                ->where('products.seller_id', $data_seller->id)
+                ->select('products.*', 'carts.total', 'carts.quantity', 'orders.id as order_id', 'users.username as u_name', 'users.phone as u_phone', 'users.address as u_address')
+                ->orderBy('updated_at', 'desc')
+                    ->paginate(5);
+            return view('seller/processing', compact('data_seller', 'data'));
         } else {
             return view('seller/login');
         }
     }
 
-    public function con_processing(Request $req){
+    public function con_processing(Request $req)
+    {
         if (session()->has('seller')) {
             $data_seller = sellers::findOrFail(session('seller'));
             $data = orders::find($req->order_id);
@@ -225,7 +234,8 @@ class SellerController extends Controller
         }
     }
 
-    public function cancel_pending(Request $req){
+    public function cancel_pending(Request $req)
+    {
         if (session()->has('seller')) {
             $data_seller = sellers::findOrFail(session('seller'));
             // return $req->cancel_order_id;
@@ -243,14 +253,16 @@ class SellerController extends Controller
         if (session()->has('seller')) {
             $data_seller = sellers::findOrFail(session('seller'));
             $data_seller = sellers::findOrFail(session('seller'));
-            $data = orders::join('carts','carts.id','=','orders.cart_id')
-            ->join('users','users.id','=','carts.user_id')
-            ->join('products','products.id','=','carts.product_id')
-            ->where('orders.delivery',1)
-            ->where('products.seller_id',$data_seller->id)
-            ->select('products.*','carts.total','carts.quantity','orders.id as order_id','orders.pending','orders.delivery','users.username as u_name','users.phone as u_phone','users.address as u_address')->get();
+            $data = orders::join('carts', 'carts.id', '=', 'orders.cart_id')
+                ->join('users', 'users.id', '=', 'carts.user_id')
+                ->join('products', 'products.id', '=', 'carts.product_id')
+                ->where('orders.delivery', 1)
+                ->where('products.seller_id', $data_seller->id)
+                ->select('products.*', 'carts.total', 'carts.quantity', 'orders.id as order_id', 'orders.pending', 'orders.delivery', 'users.username as u_name', 'users.phone as u_phone', 'users.address as u_address')
+                ->orderBy('updated_at', 'desc')
+                ->paginate(5);
 
-            return view('seller/old_order',compact('data_seller','data'));
+            return view('seller/old_order', compact('data_seller', 'data'));
         } else {
             return view('seller/old_order');
         }
@@ -267,24 +279,23 @@ class SellerController extends Controller
     }
     public function edit_profile()
     {
-        if(session()->has('seller')){
+        if (session()->has('seller')) {
             $data_seller = sellers::findOrFail(session('seller'));
-            return view('seller/editProfile',compact('data_seller'));
-        }
-        else{
+            return view('seller/editProfile', compact('data_seller'));
+        } else {
             return view('/seller/login');
         }
     }
     public function edit_image(Request $request)
     {
-        if(session()->has('seller')){
+        if (session()->has('seller')) {
             $updateImage = sellers::findOrFail(session('seller'));
             $sellerImage = sellers::find($updateImage->id);
-            if($request->hasfile('imageFile')) {
-                $file=$request->file('imageFile');
-                $filename= uniqid() . $file->getClientOriginalExtension();
-                $file->move(public_path().'/images/sellerProfile',$filename);
-                $sellerImage->profile= $filename;
+            if ($request->hasfile('imageFile')) {
+                $file = $request->file('imageFile');
+                $filename = uniqid() . $file->getClientOriginalExtension();
+                $file->move(public_path() . '/images/sellerProfile', $filename);
+                $sellerImage->profile = $filename;
             }
             $sellerImage->update();
             return redirect()->back();
@@ -293,24 +304,24 @@ class SellerController extends Controller
     }
     public function accept_change(Request $request)
     {
-        if(session()->has('seller')){
+        if (session()->has('seller')) {
             $update = sellers::findOrFail(session('seller'));
             $seller = sellers::find($update->id);
-        $this->validate($request,[
-            'store_name'=>'required',
-            'email'=>'required',
-            'phone'=>'required',
-            'address'=>'required',
-        ]);
-        $seller->store_name= $request->store_name;
-        $seller->email= $request->email;
-        $seller->phone= $request->phone;
-        $seller->address= $request->address;
-        $seller->update();
-        return redirect()->back();
+            $this->validate($request, [
+                'store_name' => 'required',
+                'email' => 'required',
+                'phone' => 'required',
+                'address' => 'required',
+            ]);
+            $seller->store_name = $request->store_name;
+            $seller->email = $request->email;
+            $seller->phone = $request->phone;
+            $seller->address = $request->address;
+            $seller->update();
+            return redirect()->back();
         }
         return view('/seller/login');
-            // return view('/seller/profile')->with('success','Changed Successfully');
+        // return view('/seller/profile')->with('success','Changed Successfully');
 
     }
     public function add_product($id)
@@ -332,7 +343,7 @@ class SellerController extends Controller
         $req->validate([
             'imageFile' => 'required',
             'imageFile.*' => 'mimes:jpeg,webp.jpg,png,gif,csv,txt,pdf|max:2048'
-          ]);
+        ]);
         if ($req->hasfile('imageFile')) {
             foreach ($req->file('imageFile') as $file) {
                 $name = uniqid() . $file->getClientOriginalExtension();
@@ -376,7 +387,7 @@ class SellerController extends Controller
             ->select('messages.*')
             ->orderByDesc('messages.created_at')
             ->get();
-        return view('seller/messages', compact('data_seller','sellerHasMessage'));
+        return view('seller/messages', compact('data_seller', 'sellerHasMessage'));
     }
 
     public function detailMsg($id)

@@ -90,7 +90,7 @@
     }
 
     #sidebar img {
-        width: 184px;
+        object-fit: contain;
         height: 138px;
         border-radius: 5px;
     }
@@ -258,6 +258,35 @@
     .remove:hover {
         background: white;
         color: black;
+    }
+
+    .sellerImg {
+        object-fit: contain;
+    }
+
+    .seller-order img {
+        object-fit: contain;
+    }
+
+    .product-list img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 5px;
+    }
+
+    .product-list a {
+        color: #323b49;
+        text-decoration: none;
+    }
+
+    .category a {
+        color: #323b49
+    }
+
+    .category a:hover {
+        color: #FFA79B;
+        text-decoration: none;
     }
 
 </style>

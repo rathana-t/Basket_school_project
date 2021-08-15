@@ -1,50 +1,62 @@
 @extends('seller\seller')
 
 @section('sidebar-content')
-    <table class="table table-hover">
-        <thead>
-            <tr class="text-center">
-                <th scope="col">Image product</th>
-                <th scope="col">Customer Name</th>
-                <th scope="col">Customer phone</th>
-                <th scope="col">Customer Address</th>
-                <th scope="col">Quality</th>
-                <th scope="col">Total price</th>
-                <th scope="col">OrderDate</th>
-                <th scope="col">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($data as $item)
-                <tr class="seller-list text-center">
-                    <td><?php foreach (json_decode($item->img_product)as $picture) { ?>
-                        <img src="{{ asset('images/imgProduct') }}/{{ $picture }}" alt="" class="img-fluid">
-                        <?php break; } ?>
-                    </td>
-                    <td>{{ $item->u_name }}</td>
-                    <td>{{ $item->u_phone }}</td>
-                    <td>{{ $item->u_address }}</td>
-                    <td>{{ $item->quantity }}</td>
-                    <td>$ {{ $item->total }}</td>
-                    <td>{{ $item->created_at }}</td>
-                    <td>
+    <div style="min-height: 75vh">
 
-                        <button type="button" value="{{ $item->order_id }}" class="open_delivery_modal btn btn-primary">
-                            Delivery
-                        </button>
-
-                        <a href="{{ url('product', $item->id) }}">
-                            <button class="btn btn-primary">
-                                view
-                            </button>
-                        </a>
-
-                    </td>
+        <table class="table table-hover">
+            <thead>
+                <tr class="text-center">
+                    <th scope="col">Image product</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Customer Name</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Quality</th>
+                    <th scope="col">Total price</th>
+                    <th scope="col">OrderDate</th>
+                    <th scope="col">Action</th>
                 </tr>
-            @endforeach
+            </thead>
+            <tbody>
+                @foreach ($data as $item)
+                    @include('/seller/components/modal')
 
-        </tbody>
-    </table>
+                    <tr class="seller-list text-center">
+                        <td><?php foreach (json_decode($item->img_product)as $picture) { ?>
+                            <img src="{{ asset('images/imgProduct') }}/{{ $picture }}" alt="" class="img-fluid">
+                            <?php break; } ?>
+                        </td>
+                        <td>{{ $item->name }}</td>
+                        <td>{{ $item->stock }}</td>
+                        <td>{{ $item->u_name }}</td>
+                        <td>{{ $item->u_phone }}</td>
+                        <td>
+                            <a data-toggle="modal" data-target="#address" style="cursor: pointer">
+                                {{ $item->u_address }}
+                            </a>
+                        </td>
+                        <td>{{ $item->quantity }}</td>
+                        <td>$ {{ $item->total }}</td>
+                        <td>{{ $item->created_at }}</td>
+                        <td>
+                            <button type="button" value="{{ $item->order_id }}"
+                                class="open_delivery_modal btn btn-primary">
+                                Delivery
+                            </button>
+
+                            <a href="{{ url('product', $item->id) }}" class="btn btn-info">
+                                View
+                            </a>
+
+                        </td>
+                    </tr>
+                @endforeach
+
+            </tbody>
+        </table>
+    </div>
+    {{ $data->links() }}
 
     {{-- modal --}}
 
