@@ -15,7 +15,7 @@
                     <div>
                         <div class="row">
                             <div class="col-lg-9">
-                                <div class="card mb-3">
+                                <div class="card mb-3 shadow-sm">
                                     <div class="p-2">
                                         <table class="table table-borderless">
                                             <thead>

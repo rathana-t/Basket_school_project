@@ -3,6 +3,7 @@
 @section('content')
     @include('/home/components/navigation')
     <div class="container">
+
         <div class="header pb-2">
             <div class="row">
                 <div class="col-md-12">
@@ -32,7 +33,7 @@
             <div class="category-item">
                 <div class="row mt-3">
                     @foreach ($cate as $item)
-                        <div class="col-xs-6 col-sm-4">
+                        <div class="col-md-3 col-sm-6 col-xs-12">
                             <a href="category/{{ $item->id }}">
                                 <div class="card-banner align-items-end background-img mb-4"
                                     style="background-image: url('/images/categoryImages/{{ $item->category_img }}')">
@@ -68,23 +69,29 @@
                                             class="img-fluid">
                                         <?php break; } ?>
                                     </a>
-                                    <div class="product_name">
-                                        <a href="/product/product/{{ $item->id }}">
-                                            <div class="b">
-                                                {{ $item->name }}
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="store_name">
-                                        <a href="" class="text-muted">Store</a>
-                                    </div>
+                                </div>
 
-                                    <div class="price">
-                                        <a href="/product/product/{{ $item->id }}">
-                                            ${{ $item->price }}
-                                        </a>
+                                <div class="border-top">
+                                    <div class="pl-4 pr-4 pb-2 pt-2">
+                                        <div class="product_name">
+                                            <a href="/product/product/{{ $item->id }}">
+                                                <div class="b">
+                                                    {{ $item->name }}
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="price">
+                                            <a href="/product/product/{{ $item->id }}">
+                                                ${{ $item->price }}
+                                            </a>
+                                        </div>
+                                        <div class="store_name">
+                                            <a href="" class="text-muted">Store</a>
+                                        </div>
                                     </div>
-                                    {{-- @if (Session::has('user'))
+                                </div>
+
+                                {{-- @if (Session::has('user'))
                                         <a href="/add-to-wishlist2/{{ $data_user->id }}/product/{{ $item->id }}"
                                             class="btn-sm btn btn-warning">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -102,7 +109,6 @@
                                             </svg>
                                         </a>
                                     @endif --}}
-                                </div>
                             </div>
                         </div>
                     @endforeach
@@ -155,13 +161,13 @@
                                 <div class="p-3 text-center">
                                     <a href="/brand/{{ $item->id }}">
                                         <img src="/images/brandImages/{{ $item->brand_img }}" alt="" class="img-fluid">
-                                        <div class="border-bottom pb-1"></div>
+                                        <div class="border-bottom pb-2 pt-1"></div>
                                         @foreach ($result as $a)
                                             @if ($a->brand_id == $item->id)
-                                                <p>{{ $a->total_pro }}
+                                                {{ $a->total_pro }} 
                                             @endif
                                         @endforeach
-                                        Products</p>
+                                        <span>Products</span>
                                     </a>
                                 </div>
                             </div>

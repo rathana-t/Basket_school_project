@@ -22,19 +22,25 @@
                                             class="img-fluid">
                                         <?php break; } ?>
                                     </a>
-                                    <div class="product_name">
-                                        <a href="/product/product/{{ $item->id }}">
-                                            {{ $item->name }}
-                                        </a>
-                                    </div>
-                                    <div class="store_name">
-                                        <a href="" class="text-muted">Store</a>
-                                    </div>
+                                </div>
 
-                                    <div class="price">
-                                        <a href="/product/product/{{ $item->id }}">
-                                            ${{ $item->price }}
-                                        </a>
+                                <div class="border-top">
+                                    <div class="pl-4 pr-4 pb-2 pt-2">
+                                        <div class="product_name">
+                                            <a href="/product/product/{{ $item->id }}">
+                                                <div class="b">
+                                                    {{ $item->name }}
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="price">
+                                            <a href="/product/product/{{ $item->id }}">
+                                                ${{ $item->price }}
+                                            </a>
+                                        </div>
+                                        <div class="store_name">
+                                            <a href="" class="text-muted">Store</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

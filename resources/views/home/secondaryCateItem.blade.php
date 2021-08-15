@@ -4,11 +4,11 @@
     @include('/home/components/navigation')
 
     <div class="container">
-        <div class="categoryItem pt-3">
+        <div class="product pt-3">
             <h5>
                 {{ $smallCateName->name }}
             </h5>
-            <div class="cate-item">
+            <div class="product-item">
                 <div class="row mt-3">
                     @foreach ($products as $item)
                         <div class="col-md-3 col-sm-6 col-xs-12">
@@ -20,18 +20,22 @@
                                             class="img-fluid">
                                         <?php break; } ?>
                                     </a>
-                                    <div class="product_name">
-                                        <a href="/smallcate/{{ $smallCateName->id }}/product/{{ $item->id }}">
-                                            {{ $item->name }}
-                                        </a>
-                                    </div>
-                                    <div class="store_name">
-                                        <a href="" class="text-muted">Store</a>
-                                    </div>
-                                    <div class="price">
-                                        <a href="/smallcate/{{ $smallCateName->id }}/product/{{ $item->id }}">
-                                            ${{ $item->price }}
-                                        </a>
+                                </div>
+                                <div class="border-top">
+                                    <div class="pl-4 pr-4 pb-2 pt-2">
+                                        <div class="product_name">
+                                            <a href="/smallcate/{{ $smallCateName->id }}/product/{{ $item->id }}">
+                                                {{ $item->name }}
+                                            </a>
+                                        </div>
+                                        <div class="price">
+                                            <a href="/smallcate/{{ $smallCateName->id }}/product/{{ $item->id }}">
+                                                ${{ $item->price }}
+                                            </a>
+                                        </div>
+                                        <div class="store_name">
+                                            <a href="" class="text-muted">Store</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

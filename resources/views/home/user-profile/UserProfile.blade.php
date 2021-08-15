@@ -6,7 +6,7 @@
     <div class="container pt-4">
         <div class="row">
             <div class="col-md-8">
-                <div class="card">
+                <div class="card shadow-sm">
                     <div class="p-4">
                         <form action="{{ route('update-profile', $data_user->id) }}" method="POST">
                             @csrf

@@ -7,7 +7,7 @@
     <div class="container mt-4 pb-4">
         <h5 class="">History Order</h5>
         @foreach ($data as $item)
-            <div class="card mb-3">
+            <div class="card mb-3 shadow-sm">
                 <div class="row modify p-3">
                     <div class="col-md-3 border-right">
                         <div class="">

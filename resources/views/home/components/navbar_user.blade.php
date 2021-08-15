@@ -1,22 +1,9 @@
 @include('/home/components/modal')
 @include('/home/components/msg')
 
-<div class="container border-bottom pt-2">
-    <div class="d-flex justify-content-between">
-        <div class="mt-3">
-            <h6>{{ $data_user->username }}</h6>
-            <p class="pb-2">{{ $data_user->phone }}</p>
-        </div>
-        <div class="mt-3">
-            <h6>$0.000</h6>
-            <p class="pb-2">Balance</p>
-        </div>
-    </div>
-</div>
-
 <div class="text-center">
     <div class="navbar-menu user-navbar">
-        <div class="container pl-0 pr-0 pt-2 pb-2 border-bottom ">
+        <div class="container pl-0 pr-0 pt-3 pb-2 border-bottom ">
             <nav class="nav">
                 <a class="nav-link {{ Request::is('profile') ? 'ac' : '' }}" href="{{ route('display-profile') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"

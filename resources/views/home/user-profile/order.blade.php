@@ -9,7 +9,7 @@
                 <div class="col-md-12">
                     @foreach ($data as $item)
                         @if ($item->pending == 1 && ($item->delivery == 1 || $item->delivery == 2))
-                            <div class="card mb-3" style="border-color: rgba(255, 0, 0, 0.829)">
+                            <div class="card mb-3 shadow-sm" style="border-color: rgba(255, 0, 0, 0.829)">
                                 <div class="card-header">
                                     <div style="color: red">
                                         Order was cancelled message "
@@ -42,7 +42,7 @@
                                 </div>
                             </div>
                         @elseif($item->pending == 1 || $item->processing == 1)
-                            <div class="card mb-4">
+                            <div class="card mb-4 shadow-sm">
                                 <div class="card-header">
                                     <div class="d-flex justify-content-around">
                                         <div @if ($item->pending == 1) class="active"

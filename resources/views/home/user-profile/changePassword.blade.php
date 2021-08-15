@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 offset-md-2">
-                <div class="card">
+                <div class="card shadow-sm">
                     <div class="card-body">
                         <div class="row mt-2">
                             <div class="col-lg-12 text-center">

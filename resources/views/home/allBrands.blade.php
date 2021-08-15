@@ -16,13 +16,13 @@
                                 <div class="p-3 text-center">
                                     <a href="/brand/{{ $item->id }}">
                                         <img src="/images/brandImages/{{ $item->brand_img }}" alt="" class="img-fluid">
-                                        <div class="border-bottom pb-1"></div>
+                                        <div class="border-bottom pb-2 pt-1"></div>
                                         @foreach ($result as $a)
                                             @if ($a->brand_id == $item->id)
-                                                <p>{{ $a->total_pro }}
+                                                {{ $a->total_pro }}
                                             @endif
                                         @endforeach
-                                        Products</p>
+                                        <span>Products</span>
                                     </a>
                                 </div>
                             </div>
