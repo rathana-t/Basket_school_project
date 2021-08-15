@@ -51,6 +51,7 @@ Route::delete('remove-wishlist', [CartController::class, 'remove_wishlist']);
 Route::post('edit-quantity-cart', [CartController::class, 'edit_cart_quantity']);
 Route::get('/confirm-order-product', [UserController::class, 'confirm_order_prooduct']);
 Route::post('/order-product', [OrderController::class, 'order']);
+Route::get('/user_cancel_order/{id}', [OrderController::class, 'user_cancel_order']);
 
 //=============Seller===================
 Route::post('/seller/editImage', [SellerController::class, 'edit_image']);
@@ -68,6 +69,7 @@ Route::post('/confirm-pending', [SellerController::class, 'con_pending']);
 Route::post('/confirm-processing-to-delivery', [SellerController::class, 'con_processing']);
 Route::post('/cancel-pending', [SellerController::class, 'cancel_pending']);
 Route::get('/remove-cancel/{id}', [SellerController::class, 'remove_cancel']);
+Route::get('/remove-oldorder/{id}', [SellerController::class, 'remove_old_order']);
 
 Route::get('/seller/dashboard', [SellerController::class, 'dashboard'])->middleware('checker_seller');
 Route::get('/seller/products', [SellerController::class, 'products'])->middleware('checker_seller');

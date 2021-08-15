@@ -21,6 +21,20 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 class OrderController extends Controller
 {
+    public function user_cancel_order($id){
+        if (session()->has('user')) {
+            $data_seller = sellers::findOrFail(session('seller'));
+            // return $req->cancel_order_id;
+            $data = orders::find($id);
+            // $data->message = $req->message;
+            $data->user_cancel = 1;
+            $data->pending = 0;
+            $data->processing = 0;
+            $data->update();
+
+            return redirect()->back();
+        }
+    }
     public function delete_card($id)
     {
         if (session()->has('user')) {

@@ -48,7 +48,9 @@
                             <a href="{{ url('product', $item->id) }}" class="btn btn-info">
                                 View
                             </a>
-
+                            <button type="button" value="{{ $item->order_id }}" class="cancel_modal btn btn-danger">
+                                cancel
+                            </button>
                         </td>
                     </tr>
                 @endforeach
@@ -85,7 +87,31 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="modal_cancel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
 
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ url('/cancel-pending') }}" method="POST" class="text-center">
+                    @csrf
+                    <div class="modal-body text-center">
+                        Leave some message to customer!!
+                    </div>
+                    <input type="hidden" name="cancel_order_id" id="cancel_order_id">
+                    <textarea name="message" id="" required></textarea>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                        <button type="submit" class="btn btn-primary">Yes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     {{-- <script></script> --}}
     <script>
         $(document).ready(function() {
@@ -94,6 +120,15 @@
                 // alert(cart_id);
                 $('#delivery_modal').modal('show');
                 $('#order_id').val(cart_id);
+            })
+        });
+
+        $(document).ready(function() {
+            $(document).on('click', '.cancel_modal', function() {
+                var cart_id = $(this).val();
+                // alert(cart_id);
+                $('#modal_cancel').modal('show');
+                $('#cancel_order_id').val(cart_id);
             })
         });
     </script>

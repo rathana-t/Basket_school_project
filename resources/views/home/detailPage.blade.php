@@ -67,7 +67,7 @@
                                     @if (Session::has('user'))
 
 
-                                        @if ($detail->stock == 0)
+                                        @if ($detail->stock <= 0)
                                             <button class="btn btn-warning mt-2" style="width: 170px">
                                                 <span class="p-2">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"

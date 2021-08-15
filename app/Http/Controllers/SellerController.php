@@ -26,12 +26,24 @@ use Illuminate\Support\Facades\Session;
 class SellerController extends Controller
 {
 
+    public function remove_old_order($id){
+        if (session()->has('seller')) {
+            $data_seller = sellers::findOrFail(session('seller'));
+            $data = orders::find($id);
+            $data->seller_remove_cancel = 2;
+
+            $data->update();
+
+            return redirect()->back();
+        }
+    }
+
     public function remove_cancel($id)
     {
         if (session()->has('seller')) {
             $data_seller = sellers::findOrFail(session('seller'));
             $data = orders::find($id);
-            $data->delivery = 2;
+            $data->seller_remove_cancel = 1;
 
             $data->update();
 
@@ -172,7 +184,7 @@ class SellerController extends Controller
                 ->join('users', 'users.id', '=', 'carts.user_id')
                 ->join('products', 'products.id', '=', 'carts.product_id')
                 ->where('orders.pending', 1)
-                ->where('orders.delivery', 0)
+                // ->where('orders.delivery', 0)
                 ->where('products.seller_id', $data_seller->id)
                 ->select('products.*', 'carts.total', 'orders.id as order_id', 'carts.quantity', 'users.username as u_name', 'users.phone as u_phone', 'users.address as u_address')
                 ->orderBy('updated_at', 'desc')
@@ -241,7 +253,9 @@ class SellerController extends Controller
             // return $req->cancel_order_id;
             $data = orders::find($req->cancel_order_id);
             $data->message = $req->message;
-            $data->delivery = 1;
+            $data->seller_cancel = 1;
+            $data->pending = 0;
+            $data->processing = 0;
             $data->update();
 
             return redirect()->back();
@@ -257,8 +271,9 @@ class SellerController extends Controller
                 ->join('users', 'users.id', '=', 'carts.user_id')
                 ->join('products', 'products.id', '=', 'carts.product_id')
                 ->where('orders.delivery', 1)
+                ->orwhere('orders.seller_cancel', 1)
                 ->where('products.seller_id', $data_seller->id)
-                ->select('products.*', 'carts.total', 'carts.quantity', 'orders.id as order_id', 'orders.pending', 'orders.delivery', 'users.username as u_name', 'users.phone as u_phone', 'users.address as u_address')
+                ->select('products.*', 'carts.total', 'carts.quantity', 'orders.id as order_id','orders.seller_cancel',  'orders.pending', 'orders.delivery', 'users.username as u_name', 'users.phone as u_phone', 'users.address as u_address')
                 ->orderBy('updated_at', 'desc')
                 ->paginate(5);
 
