@@ -9,15 +9,20 @@
                 <div class="col-md-12">
                     @foreach ($data as $item)
                         @if ($item->pending == 1 && ($item->delivery == 1 || $item->delivery == 2))
-                            <div style="background-color:rgb(187, 64, 64)" class="card mb-3">
-                                <div class="card-header">
+                            <div class="card mb-3">
+                                <div class="card-header" style="background-color: rgb(161, 161, 161)">
                                     <div class="d-flex justify-content-around">
-                                        <p>Your order was cancelled by Store or Seller, message => {{ $item->message }}
-                                        </p>
+                                        <div class="text-white">
+                                            Order was cancelled message " {{ $item->message }} "
+                                        </div>
+                                        <div class="remove-btn">
+                                            <a href="{{ url('/delete-order', $item->order_id) }}" class="p-3">
+                                                Remove
+                                            </a>
+                                        </div>
+
                                     </div>
-                                    <a href="{{ url('/delete-order', $item->order_id) }}">
-                                        <button class="btn btn-danger">Delete</button>
-                                    </a>
+
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
@@ -40,15 +45,14 @@
                                 </div>
                             </div>
                         @elseif($item->pending == 1 || $item->processing == 1)
-
                             <div class="card mb-3">
                                 <div class="card-header">
                                     <div class="d-flex justify-content-around">
-                                        <p @if ($item->pending == 1) class="active"
-                                        @else class="text-muted" @endif>Pending</p>
+                                        <div @if ($item->pending == 1) class="active"
+                                        @else class="text-muted" @endif>Pending</div>
                                         ---->
-                                        <p @if ($item->processing == 1) class="active"
-                                            @else class="text-muted" @endif>Processing</p>
+                                        <div @if ($item->processing == 1) class="active"
+                                            @else class="text-muted" @endif>Processing</div>
                                     </div>
                                 </div>
                                 <div class="card-body">

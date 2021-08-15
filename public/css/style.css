@@ -370,8 +370,16 @@ footer ul li {
 .order .row .set-img {
     height: 180px;
 }
-.order .row .set-img {
-    height: 180px;
+.order .remove-btn {
+    background-color: rgb(245, 58, 58);
+    border-radius: 5px;
+}
+.order .remove-btn a {
+    color: #fff;
+}
+.order .remove-btn a:hover {
+    color: #fff;
+    text-decoration: none;
 }
 .order .des-margin {
     margin-left: 160px;
