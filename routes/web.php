@@ -10,7 +10,8 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/test', function () {
-    return view('test');
+    // var_dump('time' . new DataTime);
+    var_dump('time' . date("Y m d H:i:s"));
 });
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/login', [HomeController::class, 'login'])->name('login');
