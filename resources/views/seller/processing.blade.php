@@ -22,7 +22,7 @@
                 @foreach ($data as $item)
                     @include('/seller/components/modal')
 
-                    @if ($item->user_cancel == 0 && $item->processing == 1)
+                    @if ($item->user_cancel == 0 && $item->processing == 1 && $item->seller_cancel == 0)
                         <tr class="text-center product-list">
                             <td><?php foreach (json_decode($item->img_product)as $picture) { ?>
                                 <img src="{{ asset('images/imgProduct') }}/{{ $picture }}" alt="" class="img-fluid">

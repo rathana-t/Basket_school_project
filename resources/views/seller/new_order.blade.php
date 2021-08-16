@@ -23,7 +23,7 @@
                 @foreach ($data as $item)
                     @include('/seller/components/modal')
 
-                    @if ($item->user_cancel == 0 && $item->pending == 1)
+                    @if ($item->user_cancel == 0 && $item->pending == 1 && $item->seller_cancel == 0)
                         <tr class="text-center product-list">
                             <td><?php foreach (json_decode($item->img_product)as $picture) { ?>
                                 <img src="{{ asset('images/imgProduct') }}/{{ $picture }}" alt="" class="img-fluid">
@@ -145,7 +145,7 @@
                         Leave some message to customer!!
                     </div>
                     <input type="hidden" name="cancel_order_id" id="cancel_order_id">
-                    <textarea name="message" id="" required></textarea>
+                    <textarea name="message" id="" required>sorry!</textarea>
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>

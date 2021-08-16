@@ -37,9 +37,8 @@ class UserController extends Controller
             $data = orders::join('carts', 'carts.id', '=', 'orders.cart_id')
                 ->join('products', 'products.id', '=', 'carts.product_id')
                 ->where('carts.user_id', $data_user->id)
-                ->where('orders.pending', 1)
-                ->orwhere('orders.processing', 1)
-                ->orwhere('orders.seller_cancel', 1)
+                // ->where('orders.seller_cancel', 1)
+                ->where('carts.in_order', 1)
                 ->select('products.*', 'orders.*','orders.id as order_id', 'carts.quantity', 'carts.total')->orderByDesc('orders.updated_at')->get();
                 $count = 0;
                 foreach($data as $d){

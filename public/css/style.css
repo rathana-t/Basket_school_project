@@ -3,19 +3,24 @@
 * {
     font-family: "Poppins", sans-serif;
 }
+
 .container {
     max-width: 1400px !important;
 }
+
 .custom-pt {
     padding-top: 1px;
 }
+
 .container h5 {
     color: #323b49;
     font-size: 20px;
 }
+
 body {
     min-height: 120vh;
 }
+
 .bg-color {
     min-height: 120vh;
     background-color: rgb(248, 248, 248) !important;
@@ -74,6 +79,7 @@ body {
 .product a {
     font-size: 12px;
 }
+
 .product .product-item .card:hover {
     transition: 0.2s;
     box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.15) !important;
@@ -120,19 +126,23 @@ body {
     height: 180px;
     object-fit: contain;
 }
+
 .category .category-item .background-img {
     height: 220px;
 }
+
 .category .category-item a:hover .caption {
     background-color: rgba(0, 0, 0, 0.65);
     z-index: 10;
     padding: 1.25rem;
     color: #fff;
 }
+
 .category .category-item a:hover .m-4 {
     transition: 0.2s;
     margin: 1.5rem !important;
 }
+
 .category .category-item .card-banner {
     display: flex;
     position: relative;
@@ -142,16 +152,19 @@ body {
     background-position: center center;
     border-radius: 0.37rem;
 }
+
 .category .category-item .card-banner .m-4 {
     transition: 0.2s;
     margin: 0 !important;
 }
+
 .category .category-item .card-banner .caption {
     background-color: rgba(0, 0, 0, 0.65);
     z-index: 10;
     padding: 1.25rem;
     color: #fff;
 }
+
 .card-img-overlay {
     position: absolute;
     top: 0;
@@ -160,6 +173,7 @@ body {
     left: 0;
     padding: 1.25rem;
 }
+
 .category .category-item a {
     text-decoration: none;
     font-size: 14px;
@@ -184,11 +198,13 @@ body {
     font-size: 14px;
     color: #323b49;
 }
+
 .brand .brand-item img {
     height: 70px;
     object-fit: contain;
     border-radius: 5px;
 }
+
 .categoryItem h1 {
     color: #323b49;
     font-size: 24px;
@@ -322,6 +338,7 @@ footer ul li {
 .deatail_page strong {
     font-weight: 500;
 }
+
 .deatail_page .wrapper {
     max-height: 400px;
     display: flex;
@@ -342,47 +359,58 @@ footer ul li {
     background: #afb3b6;
     border-radius: 5px;
 }
+
 .shopping-cart table td {
     vertical-align: middle;
 }
+
 .shopping-cart a {
     color: #323b49;
     text-decoration: none;
 }
+
 .shopping-cart a:hover {
     color: #ff4c34;
     text-decoration: none;
 }
+
 .shopping-cart .table-bordered {
     background-color: white;
 }
+
 .shopping-cart tr th {
     color: #323b49;
     font-size: 16px;
     font-weight: 400;
 }
+
 .shopping-cart tr td {
     height: 110px;
     color: #323b49;
     font-size: 16px;
     font-weight: 300;
 }
+
 .shopping-cart tr td img {
     object-fit: contain;
     border-radius: 5px;
 }
+
 .shopping-cart .payment ul li {
     color: #323b49;
     font-size: 16px;
 }
+
 .shopping-cart .countProduct {
     color: #009b5a;
 }
+
 .order img {
     height: 150px;
     border-radius: 5px;
     object-fit: contain;
 }
+
 .order p {
     color: #323b49;
     font-size: 16px;
@@ -391,12 +419,15 @@ footer ul li {
 .order .active {
     color: #ff4c34;
 }
+
 .order .card-header {
     background-color: #ffffff;
 }
+
 .order .card-footer {
     background-color: #ffffff;
 }
+
 .list-style ul {
     list-style: none;
 }
@@ -405,6 +436,7 @@ footer ul li {
     text-decoration: none;
     color: #505050;
 }
+
 .modify .small-txt {
     color: #323b49;
     font-size: 12px;
@@ -439,12 +471,15 @@ footer ul li {
     height: 78px;
     -webkit-line-clamp: 3;
 }
+
 .navbar-menu .ac {
     color: #ff4c34 !important;
 }
+
 .navbar-menu a:hover {
     color: #ff4c34 !important;
 }
+
 div.b {
     white-space: nowrap;
     width: 200px;
@@ -482,6 +517,8 @@ div.b {
 .search a:hover {
     color: #ff4c34;
 }
+
+
 /* end  */
 
 @media only screen and (max-width: 1223px) {
@@ -496,7 +533,9 @@ div.b {
     }
 }
 
+
 /* merge double range */
+
 
 /* .item {
     display: none;
@@ -545,7 +584,9 @@ span.value.upper::before {
     position: absolute;
 } */
 
+
 /* webkit specific styling */
+
 
 /* .min-max-slider > input {
     -webkit-appearance: none;
@@ -590,6 +631,7 @@ span.value.upper::before {
 .wish-list td {
     vertical-align: middle;
 }
+
 .user-navbar a {
     color: rgba(0, 0, 0, 0.5);
 }
