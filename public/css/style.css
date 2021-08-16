@@ -378,61 +378,6 @@ footer ul li {
 .shopping-cart .countProduct {
     color: #009b5a;
 }
-.order .row .set-img {
-    height: 180px;
-}
-.order .remove-btn {
-    background-color: rgb(245, 58, 58);
-    border-radius: 5px;
-}
-.order .remove-btn a {
-    color: #fff;
-}
-.order .remove-btn a:hover {
-    color: #fff;
-    text-decoration: none;
-}
-.order .des-margin {
-    margin-left: 160px;
-}
-
-.order .order-margin {
-    margin-top: 20px;
-}
-
-.order .show-order {
-    display: flex;
-}
-
-.order .row .delete a {
-    text-decoration: none;
-}
-
-.order .table tr td {
-    border: 1px solid black;
-    height: 40px;
-}
-
-.order .pay:hover {
-    background-color: rgb(243, 243, 243);
-    transition: 0.4s;
-    color: rgb(0, 0, 0);
-}
-
-.order .new-table {
-    margin-top: -6px;
-    margin-bottom: 6px;
-}
-
-.order .new-text {
-    color: #323b49;
-    margin-top: -5px;
-}
-
-.order .new-text p {
-    color: #323b49;
-    margin-bottom: 6px;
-}
 .order img {
     height: 150px;
     border-radius: 5px;

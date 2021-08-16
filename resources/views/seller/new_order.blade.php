@@ -120,7 +120,7 @@
                     </div>
                     <input type="hidden" name="order_id" id="order_id">
                     <textarea name="message" rows="4"
-                        required>Thank you for order please call to our store: {{ $data_seller->phone }}</textarea>
+                        required>Order accepted contact : {{ $data_seller->phone }}</textarea>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
                         <button type="submit" class="btn btn-primary">Yes</button>

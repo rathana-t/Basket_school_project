@@ -3,11 +3,11 @@
 @section('content')
     <div class="container">
         <div class="login">
-            <h1 class="text-center mt-5 mb-4">
+            <h1 class="text-center pt-4 mb-4">
                 Login
             </h1>
             <div class="row justify-content-center">
-                <div class="col-md-6">
+                <div class="col-md-5">
                     @if (session('fail'))
                         <div class="text-danger" style="margin-left:25%">
                             {{ session('fail') }}
@@ -26,10 +26,10 @@
                                     <input type="password" class="form-control" id="exampleInputPassword1" name="password"
                                         required>
                                 </div>
-                                <div class="form-group form-check">
+                                {{-- <div class="form-group form-check">
                                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
                                     <label class="form-check-label" for="exampleCheck1">Remember me!</label>
-                                </div>
+                                </div> --}}
                                 <button type="submit" class="btn btn-primary">Login</button>
                             </div>
                         </div>

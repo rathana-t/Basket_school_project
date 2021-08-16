@@ -24,16 +24,12 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-6 text-center border-right">
-                                                <div class="font-weight-light m-1">
-                                                    <?php foreach (json_decode($item->img_product)as $picture) { ?>
-                                                    <img src="/images/imgProduct/{{ $picture }}" alt=""
-                                                        class="img-fluid">
-                                                    <?php break; } ?>
-                                                </div>
+                                                <?php foreach (json_decode($item->img_product)as $picture) { ?>
+                                                <img src="/images/imgProduct/{{ $picture }}" alt="" class="img-fluid">
+                                                <?php break; } ?>
                                             </div>
                                             <div class="col-md-6">
                                                 <h5 class="card-title">{{ $item->name }}</h5>
-                                                <p class="card-text">Price: $ {{ $item->price }}</p>
                                                 <p class="card-text">Quantity: {{ $item->quantity }} item</p>
                                                 <p class="card-text">Total: $ {{ $item->total }}</p>
                                                 <p class="card-text"><small class="text-muted">Order 3 mins ago(not
@@ -78,16 +74,13 @@
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col-md-6 text-center border-right">
-                                                    <div class="font-weight-light m-1">
-                                                        <?php foreach (json_decode($item->img_product)as $picture) { ?>
-                                                        <img src="/images/imgProduct/{{ $picture }}" alt=""
-                                                            class="img-fluid">
-                                                        <?php break; } ?>
-                                                    </div>
+                                                    <?php foreach (json_decode($item->img_product)as $picture) { ?>
+                                                    <img src="/images/imgProduct/{{ $picture }}" alt=""
+                                                        class="img-fluid">
+                                                    <?php break; } ?>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <h5 class="card-title">{{ $item->name }}</h5>
-                                                    <p class="card-text">Price: $ {{ $item->price }}</p>
                                                     <p class="card-text">Quantity: {{ $item->quantity }}
                                                         @if ($item->quantity > 1)
                                                             items
@@ -108,13 +101,9 @@
                                                     <div class="text-left">
                                                         @if ($item->processing == 1)
                                                             <div style="color: rgb(61, 192, 0)">
-                                                                Order was accepted, message "
-                                                                <span
-                                                                    style="color: #323b49">{{ $item->processing_message }}</span>
-                                                                "
+                                                                {{ $item->processing_message }}
                                                             </div>
                                                         @endif
-
                                                     </div>
                                                 </div>
                                                 <div class="col">
