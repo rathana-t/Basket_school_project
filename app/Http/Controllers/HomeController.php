@@ -372,10 +372,19 @@ class HomeController extends Controller
         }
         return view('home/brandlistproduct', compact('product', 'second_cate', 'brand_id'));
     }
-    public function store()
+    public function store($id)
     {
+        $countProduct = DB::table('products')
+            ->where('completed', 1)
+            ->where('seller_id', $id)
+            ->count();
+        $store = sellers::find($id);
+        $product = DB::table('products')
+            ->where('completed', 1)
+            ->where('seller_id', $id)
+            ->get();
         $second_cate = DB::table('se_categories')->get();
-        return view('home/store', compact('second_cate'));
+        return view('home/store', compact('second_cate', 'product', 'store', 'countProduct'));
     }
     public function categoryItem($id)
     {

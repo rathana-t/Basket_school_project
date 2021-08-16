@@ -32,7 +32,7 @@ Route::get('/smallcate/{id}/product/{id1}', [HomeController::class, 'detail3'])-
 Route::get('/brand/{id}', [HomeController::class, 'brand'])->name('brandItem');
 Route::get('/brand/{id}/product/{id1}', [HomeController::class, 'detail4'])->name('brandProductItem');
 Route::get('/brand', [HomeController::class, 'allBrand'])->name('brands');
-Route::get('/store', [HomeController::class, 'store']);
+Route::get('/store/{id}', [HomeController::class, 'store']);
 Route::get('/delete-order/{id}', [OrderController::class, 'delete_card']);
 
 Route::post('/signin', [UserController::class, 'signin'])->name("signin");

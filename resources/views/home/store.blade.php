@@ -14,47 +14,61 @@
         }
 
     </style>
-    <div class="container">
-        <div class="store_img text-center">
-            <img src="https://media.wired.com/photos/6081f4280c9b5877078878e2/16:9/w_2399,h_1349,c_limit/business_plaintext_apple_1313768378.jpg"
-                alt="" class="img-fluid">
-        </div>
-        <div class="store_content">
-            <div class="store-info border-bottom mb-4 mt-4">
-                <h4>
-                    Store_name
-                </h4>
-                <div class="text-muted">
-                    <p>
-                        070425858
-                    </p>
-                    <p>
-                        Joined .....
-                    </p>
-                    <p>
-                        Location:.....
-                    </p>
+
+    <div class="store_content">
+        <div class="store-info pt-4">
+            <div class="shadow-sm">
+                <div class="container pb-4">
+                    <h4>
+                        {{ $store->store_name }}
+                    </h4>
+                    <div class="text-muted">
+                        <p>
+                            @if ($countProduct > 1)
+                                {{ $countProduct }} products
+                            @else
+                                {{ $countProduct }} product
+                            @endif
+                        </p>
+                    </div>
                 </div>
             </div>
-            <div class="">
-                <h1 class="text-center">
-                    All product in ..
-                </h1>
+        </div>
+        <div class="container product">
+            <div class="product-item pt-4 pb-3">
                 <div class="row item">
-                    @for ($i = 0; $i < 10; $i++)
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                            <div class="text-center">
-                                <img src="https://media.wired.com/photos/6081f4280c9b5877078878e2/16:9/w_2399,h_1349,c_limit/business_plaintext_apple_1313768378.jpg"
-                                    alt="" class="img-fluid">
-                                <p>
-                                    Product name
-                                </p>
-                                <p>
-                                    Price 100
-                                </p>
+                    @foreach ($product as $item)
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="card mb-3">
+
+                                <div class="m-3">
+                                    <a href="/product/product/{{ $item->id }}">
+                                        <?php foreach (json_decode($item->img_product)as $picture) { ?>
+                                        <img src="{{ asset('images/imgProduct') }}/{{ $picture }}" alt=""
+                                            class="img-fluid">
+                                        <?php break; } ?>
+                                    </a>
+                                </div>
+
+                                <div class="border-top">
+                                    <div class="pl-4 pr-4 pb-2 pt-2">
+                                        <div class="product_name">
+                                            <a href="/product/product/{{ $item->id }}">
+                                                <div class="b">
+                                                    {{ $item->name }}
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="price">
+                                            <a href="/product/product/{{ $item->id }}">
+                                                ${{ $item->price }}
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    @endfor
+                    @endforeach
                 </div>
             </div>
         </div>

@@ -86,7 +86,9 @@
                                             </a>
                                         </div>
                                         <div class="store_name">
-                                            <a href="" class="text-muted">Store</a>
+                                            <a href="/store/{{ $item->seller_id }}" class="text-muted">
+                                                {{ $item->store_name }}
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -164,7 +166,7 @@
                                         <div class="border-bottom pb-2 pt-1"></div>
                                         @foreach ($result as $a)
                                             @if ($a->brand_id == $item->id)
-                                                {{ $a->total_pro }} 
+                                                {{ $a->total_pro }}
                                             @endif
                                         @endforeach
                                         <span>Products</span>
