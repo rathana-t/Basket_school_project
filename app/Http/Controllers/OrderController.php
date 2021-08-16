@@ -28,8 +28,6 @@ class OrderController extends Controller
             $data = orders::find($id);
             // $data->message = $req->message;
             $data->user_cancel = 1;
-            $data->pending = 0;
-            $data->processing = 0;
             $data->update();
 
             return redirect()->back();

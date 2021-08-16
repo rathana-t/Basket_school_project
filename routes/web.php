@@ -70,6 +70,7 @@ Route::post('/confirm-processing-to-delivery', [SellerController::class, 'con_pr
 Route::post('/cancel-pending', [SellerController::class, 'cancel_pending']);
 Route::get('/remove-cancel/{id}', [SellerController::class, 'remove_cancel']);
 Route::get('/remove-oldorder/{id}', [SellerController::class, 'remove_old_order']);
+Route::get('/delete_user_cancel_order/{id}', [SellerController::class, 'delete_user_cancel_order']);
 
 Route::get('/seller/dashboard', [SellerController::class, 'dashboard'])->middleware('checker_seller');
 Route::get('/seller/products', [SellerController::class, 'products'])->middleware('checker_seller');

@@ -26,11 +26,21 @@ use Illuminate\Support\Facades\Session;
 class SellerController extends Controller
 {
 
+    public function delete_user_cancel_order($id){
+        if (session()->has('seller')) {
+            $data_seller = sellers::findOrFail(session('seller'));
+            $data = orders::find($id);
+
+            $data->delete();
+
+            return redirect()->back();
+        }
+    }
     public function remove_old_order($id){
         if (session()->has('seller')) {
             $data_seller = sellers::findOrFail(session('seller'));
             $data = orders::find($id);
-            $data->seller_remove_cancel = 2;
+            $data->seller_remove_cancel = 1;
 
             $data->update();
 
@@ -184,9 +194,9 @@ class SellerController extends Controller
                 ->join('users', 'users.id', '=', 'carts.user_id')
                 ->join('products', 'products.id', '=', 'carts.product_id')
                 ->where('orders.pending', 1)
-                // ->where('orders.delivery', 0)
+                ->orwhere('orders.user_cancel', 1)
                 ->where('products.seller_id', $data_seller->id)
-                ->select('products.*', 'carts.total', 'orders.id as order_id', 'carts.quantity', 'users.username as u_name', 'users.phone as u_phone', 'users.address as u_address')
+                ->select('products.*', 'carts.total','orders.pending','orders.user_cancel', 'orders.id as order_id', 'carts.quantity', 'users.username as u_name', 'users.phone as u_phone', 'users.address as u_address')
                 ->orderBy('updated_at', 'desc')
                 ->paginate(5);
             return view('seller/new_order', compact('data_seller', 'data'));
@@ -208,6 +218,7 @@ class SellerController extends Controller
             }
             $data = orders::find($req->order_id);
             $data->pending = 0;
+            $data->processing_message = $req->message;
             $data->processing = 1;
             $data->update();
             return redirect()->back();
@@ -221,8 +232,9 @@ class SellerController extends Controller
                 ->join('users', 'users.id', '=', 'carts.user_id')
                 ->join('products', 'products.id', '=', 'carts.product_id')
                 ->where('orders.processing', 1)
+                ->orwhere('orders.user_cancel', 1)
                 ->where('products.seller_id', $data_seller->id)
-                ->select('products.*', 'carts.total', 'carts.quantity', 'orders.id as order_id', 'users.username as u_name', 'users.phone as u_phone', 'users.address as u_address')
+                ->select('products.*', 'carts.total','orders.user_cancel','orders.processing', 'carts.quantity', 'orders.id as order_id', 'users.username as u_name', 'users.phone as u_phone', 'users.address as u_address')
                 ->orderBy('updated_at', 'desc')
                     ->paginate(5);
             return view('seller/processing', compact('data_seller', 'data'));
@@ -272,8 +284,9 @@ class SellerController extends Controller
                 ->join('products', 'products.id', '=', 'carts.product_id')
                 ->where('orders.delivery', 1)
                 ->orwhere('orders.seller_cancel', 1)
+                ->orwhere('orders.seller_remove_cancel', 1)
                 ->where('products.seller_id', $data_seller->id)
-                ->select('products.*', 'carts.total', 'carts.quantity', 'orders.id as order_id','orders.seller_cancel',  'orders.pending', 'orders.delivery', 'users.username as u_name', 'users.phone as u_phone', 'users.address as u_address')
+                ->select('products.*', 'carts.total','orders.seller_remove_cancel', 'carts.quantity', 'orders.id as order_id','orders.seller_cancel',  'orders.pending', 'orders.delivery', 'users.username as u_name', 'users.phone as u_phone', 'users.address as u_address')
                 ->orderBy('updated_at', 'desc')
                 ->paginate(5);
 

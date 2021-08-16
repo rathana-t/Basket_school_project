@@ -22,39 +22,77 @@
                 @foreach ($data as $item)
                     @include('/seller/components/modal')
 
-                    <tr class="seller-list text-center">
-                        <td><?php foreach (json_decode($item->img_product)as $picture) { ?>
-                            <img src="{{ asset('images/imgProduct') }}/{{ $picture }}" alt="" class="img-fluid">
-                            <?php break; } ?>
-                        </td>
-                        <td>{{ $item->name }}</td>
-                        <td>{{ $item->stock }}</td>
-                        <td>{{ $item->u_name }}</td>
-                        <td>{{ $item->u_phone }}</td>
-                        <td>
-                            <a data-toggle="modal" data-target="#address" style="cursor: pointer">
-                                {{ $item->u_address }}
-                            </a>
-                        </td>
-                        <td>{{ $item->quantity }}</td>
-                        <td>$ {{ $item->total }}</td>
-                        <td>{{ $item->created_at }}</td>
-                        <td>
-                            <button type="button" value="{{ $item->order_id }}"
-                                class="open_delivery_modal btn btn-primary">
-                                Delivery
-                            </button>
+                    @if ($item->user_cancel == 0 && $item->processing == 1)
+                        <tr class="text-center product-list">
+                            <td><?php foreach (json_decode($item->img_product)as $picture) { ?>
+                                <img src="{{ asset('images/imgProduct') }}/{{ $picture }}" alt="" class="img-fluid">
+                                <?php break; } ?>
+                            </td>
+                            <td>{{ $item->name }}</td>
+                            <td>{{ $item->stock }}</td>
+                            <td>{{ $item->u_name }}</td>
+                            <td>{{ $item->u_phone }}</td>
+                            <td>
+                                <a data-toggle="modal" data-target="#address" style="cursor: pointer">
+                                    {{ $item->u_address }}
+                                </a>
+                            </td>
+                            <td>{{ $item->quantity }}</td>
+                            <td>$ {{ $item->total }}</td>
+                            <td>{{ $item->created_at }}</td>
+                            <td>
+                                <button type="button" value="{{ $item->order_id }}"
+                                    class="open_delivery_modal btn btn-primary">
+                                    Delivery
+                                </button>
 
-                            <a href="{{ url('product', $item->id) }}" class="btn btn-info">
-                                View
-                            </a>
-                            <button type="button" value="{{ $item->order_id }}" class="cancel_modal btn btn-danger">
-                                cancel
-                            </button>
-                        </td>
-                    </tr>
+                                <a href="{{ url('product', $item->id) }}" class="btn btn-info">
+                                    View
+                                </a>
+                                <button type="button" value="{{ $item->order_id }}" class="cancel_modal btn btn-danger">
+                                    cancel
+                                </button>
+                            </td>
+                        </tr>
+                    @endif
+
                 @endforeach
+                @foreach ($data as $item)
+                    @include('/seller/components/modal')
 
+                    @if ($item->user_cancel == 1 && $item->processing == 1)
+                        <tr class="text-center product-list" style="color: red">
+                            <td><?php foreach (json_decode($item->img_product)as $picture) { ?>
+                                <img src="{{ asset('images/imgProduct') }}/{{ $picture }}" alt=""
+                                    class="img-fluid">
+                                <?php break; } ?>
+                            </td>
+                            <td>{{ $item->name }}</td>
+                            <td>{{ $item->stock }}</td>
+                            <td>{{ $item->u_name }}</td>
+                            <td>{{ $item->u_phone }}</td>
+                            <td>
+                                <a data-toggle="modal" data-target="#address" style="cursor: pointer">
+                                    {{ $item->u_address }}
+                                </a>
+                            </td>
+                            <td>{{ $item->quantity }}</td>
+                            <td>$ {{ $item->total }}</td>
+                            <td>{{ $item->created_at }}</td>
+                            <td>
+                                <p>Cancelled</p>
+
+                                <a href="{{ url('product', $item->id) }}" class="btn btn-info text-white">
+                                    view
+                                </a>
+                                <a href="{{ url('delete_user_cancel_order', $item->order_id) }}"
+                                    class="btn btn-danger text-white">
+                                    remove
+                                </a>
+                            </td>
+                        </tr>
+                    @endif
+                @endforeach
             </tbody>
         </table>
     </div>
@@ -77,7 +115,7 @@
                         Are you redy to delivery this product to customer!!!.
                     </div>
                     <input type="hidden" name="order_id" id="order_id">
-                    <textarea name="message" id="" required></textarea>
+                    <textarea name="message" id="" required>Thank you for order our product.</textarea>
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
@@ -102,7 +140,7 @@
                         Leave some message to customer!!
                     </div>
                     <input type="hidden" name="cancel_order_id" id="cancel_order_id">
-                    <textarea name="message" id="" required></textarea>
+                    <textarea name="message" id="" required>sorry</textarea>
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
