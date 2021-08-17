@@ -15,31 +15,24 @@
         </thead>
         <tbody>
             @foreach ($sellers as $item)
+
                 <tr class="seller-list">
-                    <th scope="row" class="text-left">
-                        <a href="seller/{{ $item->id }}">
-                            {{ $item->id }}
-                        </a>
-                    </th>
-                    <td class="text-left">
-                        <a href="seller/{{ $item->id }}">
-                            {{ $item->store_name }}
-                        </a>
+                    <td>
+                        {{ $item->id }}
                     </td>
                     <td class="text-left">
-                        <a href="seller/{{ $item->id }}">
-                            {{ $item->phone }}
-                        </a>
+                        {{ $item->store_name }}
                     </td>
                     <td class="text-left">
-                        <a href="seller/{{ $item->id }}">
+                        {{ $item->phone }}
+                    </td>
+                    <td class="text-left">
+                        <div class="b">
                             {{ $item->address }}
-                        </a>
+                        </div>
                     </td>
                     <td class="text-left">
-                        <a href="seller/{{ $item->id }}">
-                            {{ $item->created_at }}
-                        </a>
+                        {{ $item->created_at }}
                     </td>
                     <td class="text-left">
                         <a href="seller/{{ $item->id }}">
@@ -51,6 +44,7 @@
             @endforeach
         </tbody>
     </table>
+
     {{ $sellers->links() }}
 
 @stop

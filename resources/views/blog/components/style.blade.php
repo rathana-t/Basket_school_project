@@ -3,6 +3,10 @@
         font-family: "Poppins", sans-serif;
     }
 
+    body {
+        min-height: 120vh;
+    }
+
     .background-img {
         background-image: url("/images/blog/office.png");
         background-position: center;

@@ -346,6 +346,7 @@ footer ul li {
 }
 
 .deatail_page .wrapper .Item img {
+    width: 300px;
     height: 100px;
     object-fit: contain;
 }

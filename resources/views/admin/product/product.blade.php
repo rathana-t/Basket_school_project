@@ -35,44 +35,28 @@
                         </a>
                     </td>
                     <td>
-                        <a href="product/{{ $item->id }}">
-                            {{ $item->id }}
-                        </a>
+                        {{ $item->id }}
                     </td>
                     <td>
-                        <a href="product/{{ $item->id }}">
-                            {{ $item->top_buy }}
-                        </a>
+                        {{ $item->top_buy }}
                     </td>
                     <td>
-                        <a href="product/{{ $item->id }}">
-                            {{ $item->name }}
-                        </a>
+                        {{ $item->name }}
                     </td>
                     <td>
-                        <a href="product/{{ $item->id }}">
-                            {{ $item->price }}
-                        </a>
+                        {{ $item->price }}
                     </td>
                     <td>
-                        <a href="product/{{ $item->id }}">
-                            {{ $item->stock }}
-                        </a>
+                        {{ $item->stock }}
                     </td>
                     <td>
-                        <a href="product/{{ $item->id }}">
-                            {{ $item->brand_name }}
-                        </a>
+                        {{ $item->brand_name }}
                     </td>
                     <td>
-                        <a href="product/{{ $item->id }}">
-                            {{ $item->cat_name }}
-                        </a>
+                        {{ $item->cat_name }}
                     </td>
                     <td>
-                        <a href="product/{{ $item->id }}">
-                            {{ $item->created_at }}
-                        </a>
+                        {{ $item->created_at }}
                     </td>
                     <td>
                         <a href="product/{{ $item->id }}">

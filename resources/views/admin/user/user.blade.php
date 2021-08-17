@@ -9,6 +9,7 @@
                     <th scope="col" class="text-left">ID</th>
                     <th scope="col" class="text-left">Username</th>
                     <th scope="col" class="text-left">Phonenumber</th>
+                    <th scope="col" class="text-left">Address</th>
                     <th scope="col" class="text-left">Joined</th>
                     <th scope="col" class="text-left">Action</th>
                 </tr>
@@ -17,24 +18,27 @@
                 @foreach ($users as $item)
                     <tr class="user-list">
                         <th scope="row" class="text-left">
-                            <a href="user/{{ $item->id }}">
-                                {{ $item->id }}
-                            </a>
+                            {{ $item->id }}
                         </th>
                         <td class="text-left">
-                            <a href="user/{{ $item->id }}">
-                                {{ $item->username }}
-                            </a>
+                            {{ $item->username }}
                         </td>
                         <td class="text-left">
-                            <a href="user/{{ $item->id }}">
-                                {{ $item->phone }}
-                            </a>
+                            {{ $item->phone }}
                         </td>
                         <td class="text-left">
-                            <a href="user/{{ $item->id }}">
-                                {{ $item->created_at }}
-                            </a>
+                            @if ($item->address == '')
+                                <div style="color: rgba(255, 140, 0, 0.836)">
+                                    No address
+                                </div>
+                            @else
+                                <div class="b">
+                                    {{ $item->address }}
+                                </div>
+                            @endif
+                        </td>
+                        <td class="text-left">
+                            {{ $item->created_at }}
                         </td>
                         <td class="text-left">
                             <a href="user/{{ $item->id }}">
