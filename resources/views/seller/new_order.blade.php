@@ -82,7 +82,7 @@
                             <td>$ {{ $item->total }}</td>
                             <td>{{ $item->created_at }}</td>
                             <td>
-                                <p>Cancelled</p>
+                                <p>Canceled</p>
 
                                 <a href="{{ url('product', $item->id) }}" class="btn btn-info text-white">
                                     view

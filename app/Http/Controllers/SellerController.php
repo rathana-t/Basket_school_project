@@ -415,14 +415,17 @@ class SellerController extends Controller
 
     public function detailMsg($id)
     {
+        if (session()->has('seller')) {
+            $data_seller = sellers::findOrFail(session('seller'));
+        }
         $message = messages::find($id);
         if ($message->sent == 0) {
             $message->sent = $message->sent;
-            return view('seller/detailMessage', compact('message'));
+            return view('seller/detailMessage', compact('message','data_seller'));
         } else {
             $message->sent = $message->sent - 1;
             $message->update();
-            return view('seller/detailMessage', compact('message'));
+            return view('seller/detailMessage', compact('message','data_seller'));
         }
     }
 }
