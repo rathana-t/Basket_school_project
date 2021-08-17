@@ -42,7 +42,7 @@
                 <a href="#products" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                     <div>
                         <img src="/images/sidebar-logo/3.svg" alt="">
-                        <span class="pl-3">Products</span>
+                        <span class="pl-3 {{ Request::is('admin/product*') ? 'ac' : '' }}">Products</span>
                     </div>
                 </a>
                 <ul class="collapse list-unstyled" id="products">
@@ -53,7 +53,7 @@
                             </div>
                         </a>
                         <a clas href="/admin/productRequest">
-                            <div class="pl-3 mt-2 {{ Request::is('admin/productRequest') ? 'ac' : '' }}">
+                            <div class="pl-3 mt-2 {{ Request::is('admin/productRequest*') ? 'ac' : '' }}">
                                 Request Products
                             </div>
                         </a>

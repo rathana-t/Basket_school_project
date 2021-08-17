@@ -1,12 +1,16 @@
 @extends('admin\admin')
 
 @section('sidebar-content')
-    <h1 class="text-center">Seller</h1>
+
+    @include('/admin/components/modal')
+    <h5 class="text-center pb-3">Seller</h5>
     <table class="table table-hover">
         <thead>
             <tr>
+                <th scope="col" class="text-left">Image</th>
                 <th scope="col" class="text-left">ID</th>
                 <th scope="col" class="text-left">Store name</th>
+                <th scope="col" class="text-left">Email</th>
                 <th scope="col" class="text-left">Phonenumber</th>
                 <th scope="col" class="text-left">Address</th>
                 <th scope="col" class="text-left">Joined</th>
@@ -15,8 +19,12 @@
         </thead>
         <tbody>
             @foreach ($sellers as $item)
-
                 <tr class="seller-list">
+                    <td>
+                        <a href="seller/{{ $item->id }}">
+                            <img src="/images/sellerProfile/{{ $item->profile }}" alt="" class="img-fluid">
+                        </a>
+                    </td>
                     <td>
                         {{ $item->id }}
                     </td>
@@ -24,10 +32,13 @@
                         {{ $item->store_name }}
                     </td>
                     <td class="text-left">
+                        {{ $item->email }}
+                    </td>
+                    <td class="text-left">
                         {{ $item->phone }}
                     </td>
                     <td class="text-left">
-                        <div class="b">
+                        <div class="b Address" style="cursor: pointer">
                             {{ $item->address }}
                         </div>
                     </td>
@@ -46,5 +57,7 @@
     </table>
 
     {{ $sellers->links() }}
+
+
 
 @stop

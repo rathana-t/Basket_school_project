@@ -40,6 +40,14 @@
                             </p>
                             <div class="row mb-4">
                                 <div class="col-md-3">
+                                    <strong>Stock</strong>
+                                </div>
+                                <div class="col">
+                                    {{ $item->stock }}
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col-md-3">
                                     <strong>Store name</strong>
                                 </div>
                                 <div class="col">
@@ -82,7 +90,7 @@
                             <div style="margin-top: 10px">
                                 <button type="button" class="btn btn-primary" data-toggle="modal"
                                     data-target="#exampleModal">
-                                    Send report
+                                    Send message
                                 </button>
                             </div>
                         </div>
@@ -120,7 +128,4 @@
             </div>
         </form>
     @endforeach
-
-
-
 @stop

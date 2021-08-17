@@ -200,4 +200,12 @@
         width: 10px;
     }
 
+    .color-o {
+        color: orangered;
+    }
+
+    .deatail_page img {
+        height: 500px;
+    }
+
 </style>

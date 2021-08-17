@@ -26,7 +26,7 @@
             @foreach ($pro as $item)
                 <tr class="seller-list text-center">
                     <td>
-                        <a href="productRequest/{{ $item->stock }}">
+                        <a href="productRequest/{{ $item->id }}">
                             <?php foreach (json_decode($item->img_product)as $picture) { ?>
                             <img src="/images/imgProduct/{{ $picture }}" alt="">
                             <?php break; } ?>

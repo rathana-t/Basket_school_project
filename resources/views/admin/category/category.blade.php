@@ -21,7 +21,7 @@
         </thead>
         <tbody>
             @foreach ($categories as $item)
-                <tr class="list">
+                <tr class="seller-list">
                     <td>
                         <a>
                             <img src="/images/categoryImages/{{ $item->category_img }}" alt="">

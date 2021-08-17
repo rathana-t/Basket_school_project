@@ -105,7 +105,7 @@ Route::prefix('admin')->group(function () {
     Route::post('/store-Secondcategory', [AdminController::class, 'storeSecondCategory'])->name('secondcategory_store');
 
     Route::get('/seller', [AdminController::class, 'seller']);
-    Route::get('/seller/{id}', [AdminController::class, 'sellerDetail']);
+    Route::get('/seller/{id}', [AdminController::class, 'sellerDetail'])->name('sellerHasProduct');
 
     Route::get('/product', [AdminController::class, 'product']);
     Route::get('/productRequest', [AdminController::class, 'productRequest']);

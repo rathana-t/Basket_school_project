@@ -1,6 +1,7 @@
 @extends('admin\admin')
 
 @section('sidebar-content')
+    @include('/admin/components/modal')
     <h1 class="text-center">User</h1>
     <div class="text-center">
         <table class="table table-hover">
@@ -32,7 +33,7 @@
                                     No address
                                 </div>
                             @else
-                                <div class="b">
+                                <div class="b Address" style="cursor: pointer">
                                     {{ $item->address }}
                                 </div>
                             @endif

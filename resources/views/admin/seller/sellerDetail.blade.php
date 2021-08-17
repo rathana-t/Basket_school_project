@@ -2,16 +2,16 @@
 
 @section('sidebar-content')
     <div class="text-center">
-        <h1> {{ $seller->store_name }} has Product </h1>
-        <p>
-            All Product {{ $sellerHasProductCount }}
-        </p>
+        <h5 class="pb-3">
+            <span style="color: orangered">{{ $seller->store_name }}</span> has Product
+            {{ $sellerHasProductCount }}
+        </h5>
     </div>
-    <div style="min-height: 75vh">
 
+    <div style="min-height: 75vh">
         <table class="table table-hover">
             <thead>
-                <tr class="text-center">
+                <tr class="">
                     <th scope="col">Image</th>
                     <th scope="col">ID</th>
                     <th scope="col">Product name</th>
@@ -23,11 +23,13 @@
             </thead>
             <tbody>
                 @foreach ($sellerHasProduct as $item)
-                    <tr class="seller-list text-center">
+                    <tr class="seller-list">
                         <td>
-                            <?php foreach (json_decode($item->img_product)as $picture) { ?>
-                            <img src="/images/imgProduct/{{ $picture }}" alt="">
-                            <?php break; } ?>
+                            <a href="/admin/product/{{ $item->id }}">
+                                <?php foreach (json_decode($item->img_product)as $picture) { ?>
+                                <img src="/images/imgProduct/{{ $picture }}" alt="">
+                                <?php break; } ?>
+                            </a>
                         </td>
                         <td scope="row">
                             {{ $item->id }}
@@ -46,8 +48,8 @@
                             {{ $item->created_at }}
                         </td>
                         <td>
-                            <a href="{{ route('detail', $item->id) }}" class="btn btn-info text-white">
-                                View
+                            <a href="/admin/product/{{ $item->id }}">
+                                <button type="button" class="btn btn-info">View</button>
                             </a>
                             <button type="button" class="btn btn-danger">Delete</button>
                         </td>

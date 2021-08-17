@@ -52,10 +52,12 @@ class AdminController extends Controller
         $sellerHasProductCount = DB::table('products')
             ->join('sellers', 'products.seller_id', '=', 'sellers.id')
             ->where('sellers.id', $id)
+            ->where('products.completed', '=', '1')
             ->count();
         $sellerHasProduct = DB::table('products')
             ->join('sellers', 'products.seller_id', '=', 'sellers.id')
             ->where('sellers.id', $id)
+            ->where('products.completed', '=', '1')
             ->select('products.*', 'sellers.store_name', 'sellers.phone', 'sellers.address')->paginate(5);
         $seller = sellers::find($id);
         return view('admin/seller/sellerDetail', compact('seller', 'sellerHasProduct', 'sellerHasProductCount'));
@@ -277,9 +279,9 @@ class AdminController extends Controller
             ->join('se_categories', 'products.s_cat_id', '=', 'se_categories.id')
             ->join('categories', 'products.category_id', '=', 'categories.id')
             ->join('sellers', 'products.seller_id', '=', 'sellers.id')
-            ->where('products.completed', '=', '0')
             ->where('products.id', $id)
-            ->select('products.*', 'categories.name as cat_name', 'brands.name as brand_name', 'sellers.store_name')
+            ->where('products.completed', '=', '0')
+            ->select('products.*', 'categories.name as cat_name', 'brands.name as brand_name', 'sellers.address', 'sellers.store_name', 'se_categories.name as secondCate')
             ->get();
         return view('admin/productRequest/productRequestDetail', compact('detail_pro'));
     }

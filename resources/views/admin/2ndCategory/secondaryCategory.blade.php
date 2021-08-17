@@ -10,9 +10,9 @@
         <a href="{{ url('/admin/add-secondarycategory') }}"> Add New Category </a>
     </div>
 
-    <table class="table table-hover text-center">
+    <table class="table table-hover">
         <thead>
-            <tr class="text-center">
+            <tr >
                 <th scope="col">Image</th>
                 <th scope="col">ID</th>
                 <th scope="col">Secondary category name</th>

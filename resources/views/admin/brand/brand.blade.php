@@ -10,7 +10,7 @@
         <a href="{{ url('/admin/add-brand') }}"> Add New Brand </a>
     </div>
 
-    <table class="table table-hover">
+    <table class="table table-hover seller-list">
         <thead>
             <tr class="text-center">
                 <th scope="col" class="text-left">Image</th>
@@ -22,10 +22,10 @@
         </thead>
         <tbody>
             @foreach ($brands as $item)
-                <tr class="list">
+                <tr>
                     <td>
                         <a>
-                            <img src="/images/brandImages/{{ $item->brand_img }}" alt="">
+                            <img src="/images/brandImages/{{ $item->brand_img }}" alt="" style="object-fit: contain">
                         </a>
                     </td>
                     <td>
