@@ -43,7 +43,7 @@
                                             <div class="col">
                                                 <div class="text-left">
                                                     <div style="color: red">
-                                                        Order was cancelled message "
+                                                        Order was canceled message "
                                                         <span style="color: #323b49">{{ $item->message }}</span> "
                                                     </div>
                                                 </div>
