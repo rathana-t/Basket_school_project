@@ -23,29 +23,23 @@
                             {{ ++$i }}
                         </td>
                         <td>
-                            <?php foreach (json_decode($item->img_product)as $picture) { ?>
-                            <img src="{{ asset('images/imgProduct') }}/{{ $picture }}" alt="" class="img-fluid">
-                            <?php break; } ?>
-                        </td>
-                        <td>
                             <a href="{{ route('detail', $item->id) }}">
-                                {{ $item->name }}
+                                <?php foreach (json_decode($item->img_product)as $picture) { ?>
+                                <img src="{{ asset('images/imgProduct') }}/{{ $picture }}" alt="" class="img-fluid">
+                                <?php break; } ?>
                             </a>
                         </td>
                         <td>
-                            <a href="{{ route('detail', $item->id) }}">
-                                $ {{ $item->price }}
-                            </a>
+                            {{ $item->name }}
                         </td>
                         <td>
-                            <a href="{{ route('detail', $item->id) }}">
-                                {{ $item->stock }}
-                            </a>
+                            $ {{ $item->price }}
                         </td>
                         <td>
-                            <a href="{{ route('detail', $item->id) }}">
-                                {{ $item->created_at }}
-                            </a>
+                            {{ $item->stock }}
+                        </td>
+                        <td>
+                            {{ $item->created_at }}
                         </td>
                         <td>
                             <a href="{{ route('detail', $item->id) }}" class="btn btn-info text-white">

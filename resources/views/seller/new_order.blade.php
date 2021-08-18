@@ -8,13 +8,13 @@
             <thead>
                 <tr class="text-center">
                     <th scope="col">Image product</th>
-                    <th scope="col">Name</th>
+                    <th scope="col">Product</th>
                     <th scope="col">Stock</th>
-                    <th scope="col">Customer Name</th>
+                    <th scope="col">Name</th>
                     <th scope="col">Phone</th>
                     <th scope="col">Address</th>
                     <th scope="col">Quality</th>
-                    <th scope="col">Total price</th>
+                    <th scope="col">Total</th>
                     <th scope="col">OrderDate</th>
                     <th scope="col">Action</th>
                 </tr>
@@ -25,31 +25,33 @@
 
                     @if ($item->user_cancel == 0 && $item->pending == 1 && $item->seller_cancel == 0)
                         <tr class="text-center product-list">
-                            <td><?php foreach (json_decode($item->img_product)as $picture) { ?>
-                                <img src="{{ asset('images/imgProduct') }}/{{ $picture }}" alt="" class="img-fluid">
-                                <?php break; } ?>
+                            <td>
+                                <a href="{{ url('product', $item->id) }}">
+                                    <?php foreach (json_decode($item->img_product)as $picture) { ?>
+                                    <img src="{{ asset('images/imgProduct') }}/{{ $picture }}" alt=""
+                                        class="img-fluid">
+                                    <?php break; } ?>
+                                </a>
                             </td>
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->stock }}</td>
                             <td>{{ $item->u_name }}</td>
                             <td>{{ $item->u_phone }}</td>
                             <td>
-                                <a data-toggle="modal" data-target="#address" style="cursor: pointer">
+                                <div class="b Address" style="cursor: pointer">
                                     {{ $item->u_address }}
-                                </a>
+                                </div>
                             </td>
                             <td>{{ $item->quantity }}</td>
                             <td>$ {{ $item->total }}</td>
-                            <td>{{ $item->created_at }}</td>
+                            <td>{{ $item->updated_at }}</td>
                             <td>
                                 <button type="button" value="{{ $item->order_id }}"
                                     class="open_pending_modal btn btn-primary">
                                     Confirm
                                 </button>
 
-                                <a href="{{ url('product', $item->id) }}" class="btn btn-info text-white">
-                                    view
-                                </a>
+
                                 <button type="button" value="{{ $item->order_id }}"
                                     class="open_cancel_modal btn btn-danger">
                                     cancel
@@ -64,29 +66,30 @@
 
                     @if ($item->user_cancel == 1 && $item->pending == 1)
                         <tr class="text-center product-list" style="color: red">
-                            <td><?php foreach (json_decode($item->img_product)as $picture) { ?>
-                                <img src="{{ asset('images/imgProduct') }}/{{ $picture }}" alt=""
-                                    class="img-fluid">
-                                <?php break; } ?>
+                            <td>
+                                <a href="{{ url('product', $item->id) }}">
+                                    <?php foreach (json_decode($item->img_product)as $picture) { ?>
+                                    <img src="{{ asset('images/imgProduct') }}/{{ $picture }}" alt=""
+                                        class="img-fluid">
+                                    <?php break; } ?>
+                                </a>
                             </td>
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->stock }}</td>
                             <td>{{ $item->u_name }}</td>
                             <td>{{ $item->u_phone }}</td>
                             <td>
-                                <a data-toggle="modal" data-target="#address" style="cursor: pointer">
+                                <div class="b Address" style="cursor: pointer">
                                     {{ $item->u_address }}
-                                </a>
+                                </div>
                             </td>
                             <td>{{ $item->quantity }}</td>
                             <td>$ {{ $item->total }}</td>
-                            <td>{{ $item->created_at }}</td>
+                            <td>{{ $item->updated_at }}</td>
                             <td>
                                 <p>Canceled</p>
 
-                                <a href="{{ url('product', $item->id) }}" class="btn btn-info text-white">
-                                    view
-                                </a>
+
                                 <a href="{{ url('delete_user_cancel_order', $item->order_id) }}"
                                     class="btn btn-danger text-white">
                                     remove
@@ -108,7 +111,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-
+                    Message
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -116,11 +119,11 @@
                 <form action="{{ url('/confirm-pending') }}" method="POST" class="text-center">
                     @csrf
                     <div class="modal-body text-center">
-                        Accept this order.
+                        <input type="hidden" name="order_id" id="order_id">
+                        <textarea name="message" rows="2" required
+                            class="form-control">Order accepted contact : {{ $data_seller->phone }}</textarea>
                     </div>
-                    <input type="hidden" name="order_id" id="order_id">
-                    <textarea name="message" rows="4"
-                        required>Order accepted contact : {{ $data_seller->phone }}</textarea>
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
                         <button type="submit" class="btn btn-primary">Yes</button>
@@ -134,7 +137,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-
+                    Message
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -142,10 +145,10 @@
                 <form action="{{ url('/cancel-pending') }}" method="POST" class="text-center">
                     @csrf
                     <div class="modal-body text-center">
-                        Leave some message to customer!!
+                        <input type="hidden" name="cancel_order_id" id="cancel_order_id">
+                        <textarea name="message" id="" required
+                            class="form-control">Your order has been cancelled by seller!</textarea>
                     </div>
-                    <input type="hidden" name="cancel_order_id" id="cancel_order_id">
-                    <textarea name="message" id="" required>sorry!</textarea>
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>

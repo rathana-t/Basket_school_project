@@ -115,14 +115,11 @@
     /* end side bar */
     /*seller profile */
     .background-color {
-        background: #EDEBFA;
-        margin: auto;
-        border-radius: 10px;
+        background: #f1f1f1ce;
+        border-radius: 5px;
     }
 
     .profile-column img {
-        height: 220px;
-        object-fit: cover;
         border-radius: 5px;
     }
 
@@ -131,9 +128,9 @@
     }
 
     .profile-text-style label {
-        font-size: 20px;
-        color: #0049B6;
-        font-family: monospace;
+        font-size: 16px;
+        color: #006FBF;
+        cursor: pointer;
     }
 
     .seller-info .card {
@@ -142,7 +139,7 @@
 
     .seller-info .card h1 {
         font-size: 22px;
-        color: #0049B6;
+        color: #006FBF;
     }
 
     .seller-info .card .shop-info h1 {
@@ -159,7 +156,7 @@
 
     .seller-address .address h1 {
         font-size: 22px;
-        color: #0049B6;
+        color: #006FBF;
     }
 
     .seller-address .address-info h1 {
@@ -287,6 +284,13 @@
     .category a:hover {
         color: #FFA79B;
         text-decoration: none;
+    }
+
+    div.b {
+        white-space: nowrap;
+        width: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
 </style>

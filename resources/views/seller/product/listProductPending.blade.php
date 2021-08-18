@@ -22,7 +22,6 @@
                     <tr class="product-list">
                         <td>
                             {{ ++$i }}
-                            </a>
                         </td>
                         <td>
                             <?php foreach (json_decode($item->img_product)as $picture) { ?>
@@ -30,24 +29,16 @@
                             <?php break; } ?>
                         </td>
                         <td>
-                            <a href="seller/{{ $item->name }}">
-                                {{ $item->name }}
-                            </a>
+                            {{ $item->name }}
                         </td>
                         <td>
-                            <a href="seller/{{ $item->price }}">
-                                {{ $item->price }}
-                            </a>
+                            {{ $item->price }}
                         </td>
                         <td>
-                            <a href="seller/{{ $item->stock }}">
-                                {{ $item->stock }}
-                            </a>
+                            {{ $item->stock }}
                         </td>
                         <td>
-                            <a href="seller/{{ $item->created_at }}">
-                                {{ $item->created_at }}
-                            </a>
+                            {{ $item->created_at }}
                         </td>
                         <td>
                             <a href="{{ route('edit_product', $item->id) }}">

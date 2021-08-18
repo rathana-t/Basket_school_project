@@ -92,4 +92,12 @@
             alert("Your browser doesn't support to File API")
         }
     });
+    $(document).ready(function() {
+        $(document).on('click', '.Address', function() {
+            var prod_id = $(this).text();
+            // alert(prod_id);
+            $('#Test').modal('show');
+            $('#data').text(prod_id);
+        })
+    });
 </script>

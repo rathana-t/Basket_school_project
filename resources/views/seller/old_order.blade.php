@@ -6,14 +6,13 @@
             <thead>
                 <tr class="text-center">
                     <th scope="col">Image product</th>
+                    <th scope="col">Product</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Stock</th>
-                    <th scope="col">Customer Name</th>
                     <th scope="col">Phone</th>
                     <th scope="col">Address</th>
                     <th scope="col">Quality</th>
-                    <th scope="col">Total price</th>
-                    <th scope="col">OrderDate</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Delivery</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
@@ -31,17 +30,16 @@
                                     <?php break; } ?>
                                 </td>
                                 <td>{{ $item->name }}</td>
-                                <td>{{ $item->stock }}</td>
                                 <td>{{ $item->u_name }}</td>
                                 <td>{{ $item->u_phone }}</td>
                                 <td>
-                                    <a data-toggle="modal" data-target="#address" style="cursor: pointer">
+                                    <div class="b Address" style="cursor: pointer">
                                         {{ $item->u_address }}
-                                    </a>
+                                    </div>
                                 </td>
                                 <td>{{ $item->quantity }}</td>
                                 <td>$ {{ $item->total }}</td>
-                                <td>{{ $item->created_at }}</td>
+                                <td>{{ $item->updated_at }}</td>
                                 <td>
                                     <p>Cancelled</p>
                                     <a href="{{ url('/remove-cancel', $item->order_id) }}">
@@ -64,17 +62,16 @@
                                     <?php break; } ?>
                                 </td>
                                 <td>{{ $item->name }}</td>
-                                <td>{{ $item->stock }}</td>
                                 <td>{{ $item->u_name }}</td>
                                 <td>{{ $item->u_phone }}</td>
                                 <td>
-                                    <a data-toggle="modal" data-target="#address" style="cursor: pointer">
+                                    <div class="b Address" style="cursor: pointer">
                                         {{ $item->u_address }}
-                                    </a>
+                                    </div>
                                 </td>
                                 <td>{{ $item->quantity }}</td>
                                 <td>$ {{ $item->total }}</td>
-                                <td>{{ $item->created_at }}</td>
+                                <td>{{ $item->updated_at }}</td>
                                 <td>
                                     <a href="{{ url('product', $item->id) }}">
                                         <button class="btn btn-primary">
