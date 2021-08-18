@@ -105,7 +105,7 @@ class UserController extends Controller
         $update->update();
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
-            return redirect()->back();
+            return redirect()->back()->with('done', '100%');
         } else {
             return redirect()->back();
         }

@@ -2,7 +2,6 @@
 
 @section('content')
     @include('/home/components/navigation')
-    @include('/home/components/msg')
 
     <div class="container">
         @foreach ($detail_pro as $detail)
@@ -88,27 +87,27 @@
                                                 <input type="hidden" value="{{ $detail->price }}" name="total">
 
                                                 {{-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-                                            <div class="form-group" style="width: 130px">
-                                                <div class="input-group">
-                                                    <span class="input-group-btn">
-                                                        <button style="height: 34px" type="button"
-                                                            class="btn btn-danger btn-number" data-type="minus"
-                                                            data-field="quantity">-
-                                                            <span class="glyphicon glyphicon-minus"></span>
-                                                        </button>
-                                                    </span>
-                                                    <input style="height: 34px" type="text" name="quantity"
-                                                        class="form-control input-number" value="1" min="1"
-                                                        max="{{ $detail->stock }}">
-                                                    <span class="input-group-btn">
-                                                        <button style="height: 34px" type="button"
-                                                            class="btn btn-success btn-number" data-type="plus"
-                                                            data-field="quantity">+
-                                                            <span class="glyphicon glyphicon-plus"></span>
-                                                        </button>
-                                                    </span>
-                                                </div>
-                                            </div> --}}
+                                                    <div class="form-group" style="width: 130px">
+                                                        <div class="input-group">
+                                                            <span class="input-group-btn">
+                                                                <button style="height: 34px" type="button"
+                                                                    class="btn btn-danger btn-number" data-type="minus"
+                                                                    data-field="quantity">-
+                                                                    <span class="glyphicon glyphicon-minus"></span>
+                                                                </button>
+                                                            </span>
+                                                            <input style="height: 34px" type="text" name="quantity"
+                                                                class="form-control input-number" value="1" min="1"
+                                                                max="{{ $detail->stock }}">
+                                                            <span class="input-group-btn">
+                                                                <button style="height: 34px" type="button"
+                                                                    class="btn btn-success btn-number" data-type="plus"
+                                                                    data-field="quantity">+
+                                                                    <span class="glyphicon glyphicon-plus"></span>
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div> --}}
                                                 <input type="number" class="form-control form-control-sm" value="1"
                                                     id="quantity" placeholder="Qty" required name="quantity" min="1"
                                                     max="{{ $detail->stock }}" style="width: 170px">
@@ -123,10 +122,11 @@
                                                     </span>
                                                     Add to cart
                                                 </button>
+                                            </form>
+
                                         @endif
 
 
-                                        </form>
                                         <form action="{{ route('add_to_wishlist') }}" method="POST" class="mt-2">
                                             @csrf
                                             <input type="hidden" name="u_id" value="{{ $data_user->id }}" id="">
@@ -177,7 +177,28 @@
         @endforeach
     </div>
 
-
+    @if (Session::has('add-to-cart-success'))
+        <script>
+            $(document).ready(function() {
+                Swal.fire({
+                    title: 'Add to cart',
+                    showConfirmButton: false,
+                    timer: 400
+                })
+            });
+        </script>
+    @endif
+    @if (Session::has('add-to-wishlist-success'))
+        <script>
+            $(document).ready(function() {
+                Swal.fire({
+                    title: 'Add to wishlist',
+                    showConfirmButton: false,
+                    timer: 400
+                })
+            });
+        </script>
+    @endif
     <script>
         //plugin bootstrap minus and plus
         //http://jsfiddle.net/laelitenetwork/puJ6G/
@@ -251,5 +272,4 @@
             }
         });
     </script>
-
 @stop

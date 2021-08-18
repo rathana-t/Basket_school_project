@@ -3,9 +3,6 @@
 @section('content')
 
     @include('/home/components/navbar_user')
-    @if (Session::has('completed'))
-        
-    @endif
     <div class="container pt-4">
         <div class="row">
             <div class="col-md-8">
@@ -42,4 +39,17 @@
             </div>
         </div>
     </div>
+    @if (Session::has('done'))
+        <script>
+            $(document).ready(function() {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Your profile has been updated',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            });
+        </script>
+    @endif
 @endsection
