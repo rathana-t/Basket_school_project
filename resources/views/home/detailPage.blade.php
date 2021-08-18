@@ -181,9 +181,11 @@
         <script>
             $(document).ready(function() {
                 Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
                     title: 'Add to cart',
                     showConfirmButton: false,
-                    timer: 400
+                    timer: 1000
                 })
             });
         </script>
@@ -192,9 +194,11 @@
         <script>
             $(document).ready(function() {
                 Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
                     title: 'Add to wishlist',
                     showConfirmButton: false,
-                    timer: 400
+                    timer: 1000
                 })
             });
         </script>

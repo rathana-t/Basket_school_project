@@ -26,7 +26,8 @@ use Illuminate\Support\Facades\Session;
 class SellerController extends Controller
 {
 
-    public function delete_user_cancel_order($id){
+    public function delete_user_cancel_order($id)
+    {
         if (session()->has('seller')) {
             $data_seller = sellers::findOrFail(session('seller'));
             $data = orders::find($id);
@@ -36,7 +37,8 @@ class SellerController extends Controller
             return redirect()->back();
         }
     }
-    public function remove_old_order($id){
+    public function remove_old_order($id)
+    {
         if (session()->has('seller')) {
             $data_seller = sellers::findOrFail(session('seller'));
             $data = orders::find($id);
@@ -195,7 +197,7 @@ class SellerController extends Controller
                 ->join('products', 'products.id', '=', 'carts.product_id')
                 ->where('products.seller_id', $data_seller->id)
                 ->where('orders.pending', 1)
-                ->select('products.*', 'carts.total','orders.seller_cancel','orders.pending','orders.user_cancel', 'orders.id as order_id', 'carts.quantity', 'users.username as u_name', 'users.phone as u_phone', 'users.address as u_address')
+                ->select('products.*', 'carts.total', 'orders.seller_cancel', 'orders.pending', 'orders.user_cancel', 'orders.id as order_id', 'carts.quantity', 'users.username as u_name', 'users.phone as u_phone', 'users.address as u_address')
                 ->orderBy('updated_at', 'desc')
                 ->paginate(5);
             return view('seller/new_order', compact('data_seller', 'data'));
@@ -232,9 +234,9 @@ class SellerController extends Controller
                 ->join('products', 'products.id', '=', 'carts.product_id')
                 ->where('products.seller_id', $data_seller->id)
                 ->where('orders.processing', 1)
-                ->select('products.*', 'carts.total','orders.seller_cancel','orders.user_cancel','orders.processing', 'carts.quantity', 'orders.id as order_id', 'users.username as u_name', 'users.phone as u_phone', 'users.address as u_address')
+                ->select('products.*', 'carts.total', 'orders.seller_cancel', 'orders.user_cancel', 'orders.processing', 'carts.quantity', 'orders.id as order_id', 'users.username as u_name', 'users.phone as u_phone', 'users.address as u_address')
                 ->orderBy('updated_at', 'desc')
-                    ->paginate(5);
+                ->paginate(5);
             return view('seller/processing', compact('data_seller', 'data'));
         } else {
             return view('seller/login');
@@ -281,7 +283,7 @@ class SellerController extends Controller
                 ->where('products.seller_id', $data_seller->id)
                 ->where('orders.delivery', 1)
                 ->orwhere('orders.delivery', 0)
-                ->select('products.*', 'carts.total','orders.seller_remove_cancel', 'carts.quantity', 'orders.id as order_id','orders.seller_cancel',  'orders.pending', 'orders.delivery', 'users.username as u_name', 'users.phone as u_phone', 'users.address as u_address')
+                ->select('products.*', 'carts.total', 'orders.seller_remove_cancel', 'carts.quantity', 'orders.id as order_id', 'orders.seller_cancel',  'orders.pending', 'orders.delivery', 'users.username as u_name', 'users.phone as u_phone', 'users.address as u_address')
                 ->orderBy('updated_at', 'desc')
                 ->paginate(5);
 
@@ -387,7 +389,7 @@ class SellerController extends Controller
             $pro->seller_id = $req->session()->get('seller');
         }
         $pro->save();
-        return redirect('/seller/products')->with('product_add', 'Your product has been add successfully!');
+        return redirect('/seller/productPending')->with('product_add', 'Your product has been add successfully!');
     }
 
 
@@ -421,11 +423,11 @@ class SellerController extends Controller
         $message = messages::find($id);
         if ($message->sent == 0) {
             $message->sent = $message->sent;
-            return view('seller/detailMessage', compact('message','data_seller'));
+            return view('seller/detailMessage', compact('message', 'data_seller'));
         } else {
             $message->sent = $message->sent - 1;
             $message->update();
-            return view('seller/detailMessage', compact('message','data_seller'));
+            return view('seller/detailMessage', compact('message', 'data_seller'));
         }
     }
 }

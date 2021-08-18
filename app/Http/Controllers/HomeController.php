@@ -53,8 +53,8 @@ class HomeController extends Controller
             ->limit(6)
             ->inRandomOrder()
             ->get();
-        $cate = DB::table('categories')->limit(6)->get();
-        $brand = DB::table('brands')->get();
+        $cate = DB::table('categories')->limit(4)->get();
+        $brand = DB::table('brands')->limit(6)->get();
         $result = DB::table('products')
             ->select(DB::raw('count(count) as total_pro'), 'brand_id')
             ->groupBy('brand_id')

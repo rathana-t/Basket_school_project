@@ -4,9 +4,6 @@
     @include('/admin/components/modal')
 
     <div class="text-center">
-        <h1>
-            All
-        </h1>
         <a href="{{ url('/admin/add-secondarycategory') }}"> Add New Category </a>
     </div>
     <div style="min-height: 75vh">
