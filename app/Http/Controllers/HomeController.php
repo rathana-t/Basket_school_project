@@ -334,8 +334,9 @@ class HomeController extends Controller
         $smallCateName = se_categories::find($id);
         $products = DB::table('products')
             ->join('se_categories', 'products.s_cat_id', '=', 'se_categories.id')
+            ->join('sellers', 'products.seller_id', '=', 'sellers.id')
             ->where('se_categories.id', $id)
-            ->select('products.*', 'se_categories.id as sec_id')
+            ->select('products.*', 'se_categories.id as sec_id', 'sellers.store_name')
             ->get();
         if (session()->has('user')) {
             $data_user = users::findOrFail(session('user'));
@@ -364,7 +365,8 @@ class HomeController extends Controller
         $second_cate = DB::table('se_categories')->get();
         $product = products::join('brands', 'products.brand_id', '=', 'brands.id')
             ->where('products.brand_id', $id)
-            ->select('products.*', 'brands.name as brand_name')
+            ->join('sellers', 'products.seller_id', '=', 'sellers.id')
+            ->select('products.*', 'brands.name as brand_name', 'sellers.store_name')
             ->get();
         if (session()->has('user')) {
             $data_user = users::findOrFail(session('user'));
@@ -394,8 +396,9 @@ class HomeController extends Controller
         $products = DB::table('products')
             ->join('categories', 'products.category_id', '=', 'categories.id')
             ->join('se_categories', 'se_categories.id', '=', 'products.s_cat_id')
+            ->join('sellers', 'products.seller_id', '=', 'sellers.id')
             ->where('categories.id', $id)
-            ->select('products.*', 'categories.name as cateName', 'se_categories.name as se_cate')
+            ->select('products.*', 'categories.name as cateName', 'se_categories.name as se_cate', 'sellers.store_name')
             ->get();
         if (session()->has('user')) {
             $data_user = users::findOrFail(session('user'));

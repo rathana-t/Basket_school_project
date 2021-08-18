@@ -34,7 +34,9 @@
                                             </a>
                                         </div>
                                         <div class="store_name">
-                                            <a href="" class="text-muted">Store</a>
+                                            <a href="/store/{{ $item->seller_id }}" class="text-muted">
+                                                {{ $item->store_name }}
+                                            </a>
                                         </div>
                                     </div>
                                 </div>

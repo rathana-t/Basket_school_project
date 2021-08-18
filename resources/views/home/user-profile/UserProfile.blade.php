@@ -3,6 +3,9 @@
 @section('content')
 
     @include('/home/components/navbar_user')
+    @if (Session::has('completed'))
+        
+    @endif
     <div class="container pt-4">
         <div class="row">
             <div class="col-md-8">
@@ -26,11 +29,11 @@
                                         </select>
                                     </div>
                                 </div>
-
                             </div>
                             <div class="form-group">
                                 <label for="description">Address</label>
-                                <textarea rows="4" class="form-control" id="" name="description"></textarea>
+                                <textarea rows="4" class="form-control" id=""
+                                    name="address">{{ $data_user->address }}</textarea>
                             </div>
                             <button type="submit" class="btn btn-primary">Update</button>
                         </form>

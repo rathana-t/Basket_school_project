@@ -26,19 +26,19 @@
                                         <div class="border-top">
                                             <div class="pl-4 pr-4 pb-2 pt-2">
                                                 <div class="product_name">
-                                                    <a
-                                                        href="/category/{{ $cate_name->id }}/product/{{ $product->id }}">
+                                                    <a href="/category/{{ $cate_name->id }}/product/{{ $product->id }}">
                                                         {{ $product->name }}
                                                     </a>
                                                 </div>
                                                 <div class="price">
-                                                    <a
-                                                        href="/category/{{ $cate_name->id }}/product/{{ $product->id }}">
+                                                    <a href="/category/{{ $cate_name->id }}/product/{{ $product->id }}">
                                                         ${{ $product->price }}
                                                     </a>
                                                 </div>
                                                 <div class="store_name">
-                                                    <a href="" class="text-muted">Store</a>
+                                                    <a href="/store/{{ $product->seller_id }}" class="text-muted">
+                                                        {{ $product->store_name }}
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
