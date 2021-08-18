@@ -10,6 +10,15 @@
         position: relative;
     }
 
+    .bg-dark {
+        background-color: #313846 !important;
+    }
+
+    #sidebar .header a {
+        color: white;
+        text-decoration: none;
+    }
+
     #sidebar ul li {
         list-style: none;
         padding: 15px;
