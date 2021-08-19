@@ -15,11 +15,20 @@
 @include('/admin/components/style')
 
 <body>
+
     <div class="wrapper d-flex align-items-stretch">
         @include('/admin/components/adminSidebar')
-        <div id="content" class="p-4 p-md-5 pt-5">
-            @include('/admin/components/msg')
-            @yield('sidebar-content')
+        <div id="content">
+            <nav class="navbar navbar-light bg-light shadow-sm">
+                <form class="form-inline ml-auto">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </nav>
+            <div class="p-4 p-md-5 pt-5">
+                @include('/admin/components/msg')
+                @yield('sidebar-content')
+            </div>
         </div>
     </div>
 

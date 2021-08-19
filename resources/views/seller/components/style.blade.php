@@ -10,6 +10,28 @@
         position: relative;
     }
 
+    #sidebar .overflow {
+        overflow-y: auto;
+        height: 100vh;
+    }
+
+    #sidebar ::-webkit-scrollbar {
+        width: 0;
+    }
+
+
+    #sidebar ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    #sidebar ::-webkit-scrollbar-thumb {
+        background: #888;
+    }
+
+    #sidebar ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
     .bg-dark {
         background-color: #313846 !important;
     }
