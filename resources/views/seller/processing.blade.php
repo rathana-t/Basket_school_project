@@ -61,7 +61,7 @@
                     @if ($item->user_cancel == 1 && $item->processing == 1)
                         <tr class="text-center product-list" style="color: red">
                             <td>
-                                <a href="{{ url('product', $item->id) }}" class="btn btn-info text-white">
+                                <a href="{{ url('product', $item->id) }}">
                                     <?php foreach (json_decode($item->img_product)as $picture) { ?>
                                     <img src="{{ asset('images/imgProduct') }}/{{ $picture }}" alt=""
                                         class="img-fluid">
