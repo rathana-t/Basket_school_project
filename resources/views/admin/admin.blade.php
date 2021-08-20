@@ -20,12 +20,22 @@
         @include('/admin/components/adminSidebar')
         <div id="content">
             <nav class="navbar navbar-light bg-light shadow-sm">
-                <form class="form-inline ml-auto">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
+                <ul class="nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Active</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    </li>
+                </ul>
             </nav>
-            <div class="p-4 p-md-5 pt-5">
+            <div class="p-4">
                 @include('/admin/components/msg')
                 @yield('sidebar-content')
             </div>

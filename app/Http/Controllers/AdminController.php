@@ -161,7 +161,12 @@ class AdminController extends Controller
             ->select('products.*', 'categories.name as cat_name', 'brands.name as brand_name')
             ->where('products.completed', '=', '1')
             ->paginate(5);
-        return view('admin/product/product', compact('pro', 'count'));
+        $proReq = products::join('brands', 'products.brand_id', '=',  'brands.id')
+            ->join('categories', 'products.category_id', '=', 'categories.id')
+            ->select('products.*', 'categories.name as cat_name', 'brands.name as brand_name')
+            ->where('products.completed', '=', '0')
+            ->paginate(5);
+        return view('admin/product/product', compact('pro', 'count', 'proReq'));
     }
 
     public function productRequest()

@@ -3,7 +3,24 @@
         background-color: rgb(248, 248, 248) !important;
     }
 
+    .table thead th {
+        font-size: 15px;
+        font-weight: 500;
+        vertical-align: bottom;
+    }
 
+    .bg-color2 {
+        background-color: #e46050;
+
+    }
+
+    .bg-color3 {
+        background-color: #52bcdc !important;
+    }
+
+    .bg-color4 {
+        background-color: #f4ab43;
+    }
 
     @media only screen and (max-width: 1302px) {
         .q {
@@ -12,6 +29,25 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
+    }
+
+    .page-link {
+        font-size: 13px;
+        position: relative;
+        display: block;
+        padding: .5rem .75rem;
+        margin-left: -1px;
+        line-height: 1.25;
+        color: #323b49;
+        background-color: #fff;
+        border: 1px solid #dee2e6;
+    }
+
+    .page-item.active .page-link {
+        z-index: 3;
+        color: #fff;
+        background-color: #323b49;
+        border-color: #323b49;
     }
 
     /* Side bar  */
@@ -254,8 +290,8 @@
 
     .seller-list img {
         width: 100px;
-        height: 100px;
-        object-fit: cover;
+        height: 60px;
+        object-fit: contain;
         border-radius: 5px;
     }
 
