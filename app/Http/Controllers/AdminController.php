@@ -64,8 +64,13 @@ class AdminController extends Controller
     }
     public function brand()
     {
-        $brands = DB::table('brands')->paginate(5);
-        return view('/admin/brand/brand', compact('brands'));
+        $result = DB::table('products')
+            ->select(DB::raw('count(count) as total_pro'), 'brand_id')
+            ->groupBy('brand_id')
+            ->get();
+        $brands = DB::table('brands')->get();
+        // $brands = DB::table('brands')->paginate(5);
+        return view('/admin/brand/brand', compact('brands', 'result'));
     }
 
     public function addBrand()
@@ -95,7 +100,8 @@ class AdminController extends Controller
     public function category()
     {
         $categories = DB::table('categories')->paginate(5);
-        return view('admin/category/category', compact('categories'));
+        $cate = categories::all();
+        return view('admin/category/category', compact('categories', 'cate'));
     }
     public function addCategory()
     {
@@ -123,7 +129,8 @@ class AdminController extends Controller
     public function secondaryCategory()
     {
         $seCategory = DB::table('se_categories')->paginate(5);
-        return view('admin/2ndCategory/secondaryCategory', compact('seCategory'));
+        $second_cate = DB::table('se_categories')->get();
+        return view('admin/2ndCategory/secondaryCategory', compact('seCategory', 'second_cate'));
     }
     public function addSecondaryCategory()
     {

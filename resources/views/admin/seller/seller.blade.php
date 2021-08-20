@@ -87,9 +87,13 @@
                     @foreach ($sellers as $item)
                         <tr class="seller-list">
                             <td>
-                                <a href="seller/{{ $item->id }}">
-                                    <img src="/images/sellerProfile/{{ $item->profile }}" alt="" class="img-fluid">
-                                </a>
+                                @if ($item->profile == '')
+                                    No Image
+                                @else
+                                    <a href="seller/{{ $item->id }}">
+                                        <img src="/images/sellerProfile/{{ $item->profile }}" alt="" class="img-fluid">
+                                    </a>
+                                @endif
                             </td>
                             <td>
                                 {{ $item->id }}

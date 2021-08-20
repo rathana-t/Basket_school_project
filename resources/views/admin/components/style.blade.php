@@ -3,6 +3,78 @@
         background-color: rgb(248, 248, 248) !important;
     }
 
+    .category a {
+        font-size: 12px;
+    }
+
+    .category .category-item img {
+        height: 180px;
+        object-fit: contain;
+    }
+
+    .category .category-item .background-img {
+        height: 250px;
+    }
+
+    .category .category-item a:hover .caption {
+        background-color: rgba(0, 0, 0, 0.65);
+        z-index: 10;
+        padding: 1.25rem;
+        color: #fff;
+    }
+
+    .category .category-item .card-banner {
+        display: flex;
+        position: relative;
+        overflow: hidden;
+        background-color: #fff;
+        background-size: cover;
+        background-position: center center;
+        border-radius: 0.37rem;
+    }
+
+    .category .category-item .card-banner .m-4 {
+        transition: 0.2s;
+        margin: 0 !important;
+    }
+
+    .category .category-item .card-banner .caption {
+        background-color: rgba(0, 0, 0, 0.65);
+        z-index: 10;
+        padding: 1.25rem;
+        color: #fff;
+    }
+
+    .category .category-item a {
+        text-decoration: none;
+        font-size: 14px;
+        color: #323b49;
+    }
+
+    .category .btn-outline-dark {
+        border-color: #dee2e6 !important;
+    }
+
+    .brand .btn-outline-dark {
+        border-color: #dee2e6 !important;
+    }
+
+    .brand a {
+        font-size: 12px;
+    }
+
+    .brand .brand-item a {
+        text-decoration: none;
+        font-size: 14px;
+        color: #323b49;
+    }
+
+    .brand .brand-item img {
+        height: 70px;
+        object-fit: contain;
+        border-radius: 5px;
+    }
+
     .table thead th {
         font-size: 15px;
         font-weight: 500;

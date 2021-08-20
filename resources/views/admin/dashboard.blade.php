@@ -253,6 +253,65 @@
             </div>
         </div>
 
+        <div class="row pt-3">
+            <div class="col-md-3">
+                <div class="card border-0 shadow-sm rounded">
+                    <div class="card-body">
+                        <div>
+                            <h5>
+                                Total Order
+                            </h5>
+                        </div>
+                        <div>
+                            <span><strong>16062$</strong></span> / 123 orders
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card border-0 shadow-sm rounded">
+                    <div class="card-body">
+                        <div>
+                            <h5>
+                                Order In Pending
+                            </h5>
+                        </div>
+                        <div>
+                            <span><strong>5234$</strong></span> / 64 orders
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card border-0 shadow-sm rounded">
+                    <div class="card-body">
+                        <div>
+                            <h5>
+                                Order In Proccessing
+                            </h5>
+                        </div>
+                        <div>
+                            <span><strong>1441$</strong></span> / 48 orders
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card border-0 shadow-sm rounded">
+                    <div class="card-body">
+                        <div>
+                            <h5>
+                                Old Order
+                            </h5>
+                        </div>
+                        <div>
+                            <span><strong>2562$</strong></span> / 81 orders
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <?php
         $no = 1;
         $no2 = 1;
@@ -260,9 +319,11 @@
         <div class="big-card mt-4">
             <div class="row">
                 <div class="col-sm-12 col-md-6">
-                    <div class="card shadow-sm rounded">
+                    <div class="card shadow rounded">
                         <div class="p-3">
-                            Top sale
+                            <h5 class="pl-2">
+                                Best Sale
+                            </h5>
                             <table class="table table-borderless">
                                 <thead>
                                     <tr>
@@ -280,7 +341,7 @@
                                             <td>....</td>
                                             <td>....</td>
                                             <td>
-                                                <button class="btn btn-sm btn-light">
+                                                <button class="btn btn-sm btn-outline-dark">
                                                     View
                                                 </button>
                                             </td>
@@ -310,9 +371,11 @@
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-6">
-                    <div class="card shadow-sm rounded">
+                    <div class="card shadow rounded">
                         <div class="p-3">
-                            Out of stock product
+                            <h5 class="pl-2">
+                                Out Of Stock
+                            </h5>
                             <table class="table table-borderless">
                                 <thead>
                                     <tr>
@@ -329,7 +392,7 @@
                                             <td>....</td>
                                             <td>....</td>
                                             <td>
-                                                <button class="btn btn-sm btn-light">
+                                                <button class="btn btn-sm btn-outline-dark">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                         fill="currentColor" class="bi bi-chat-square-dots"
                                                         viewBox="0 0 16 16">

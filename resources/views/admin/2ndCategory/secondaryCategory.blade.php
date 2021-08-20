@@ -3,10 +3,10 @@
 @section('sidebar-content')
     @include('/admin/components/modal')
 
-    <div class="text-center">
-        <a href="{{ url('/admin/add-secondarycategory') }}"> Add New Category </a>
+    <div class="text-left">
+        <a href="{{ url('/admin/add-secondarycategory') }}" class="btn btn-sm btn-success"> Add New Category </a>
     </div>
-    <div style="min-height: 75vh">
+    {{-- <div style="min-height: 75vh">
 
         <table class="table table-hover">
             <thead>
@@ -54,5 +54,33 @@
             </tbody>
         </table>
     </div>
-    {{ $seCategory->links() }}
+    {{ $seCategory->links() }} --}}
+
+    <div class="category pt-3 ">
+        <div class="category-item">
+            <div class="row mt-3">
+                @foreach ($second_cate as $item)
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="card mb-3">
+                            <div class="m-3">
+                                <p>{{ $item->name }}</p>
+                                {{-- <a href="/smallcate/{{ $item->id }}"> --}}
+                                <div class="text-center">
+                                    <img src="/images/secondCategory/{{ $item->secondarycategory_img }}" alt=""
+                                        class="img-fluid mb-3">
+                                </div>
+                                {{-- </a> --}}
+                                <div class="text-right">
+                                    <button type="button" value="{{ $item->id }}"
+                                        class="delete_se_cate btn btn-sm btn-outline-dark">
+                                        Delete
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
 @stop

@@ -2,10 +2,11 @@
 
 @section('sidebar-content')
     @include('/admin/components/modal')
-    <div class="text-center">
-        <a href="{{ url('/admin/add-category') }}"> Add New Category </a>
+    <div class="text-left">
+        <a href="{{ url('/admin/add-category') }}" class="btn btn-sm btn-success"> Add New Category </a>
     </div>
-    <div style="min-height: 75vh">
+
+    {{-- <div style="min-height: 75vh">
 
         <table class="table table-hover">
             <thead>
@@ -53,6 +54,26 @@
             </tbody>
         </table>
     </div>
-    {{ $categories->links() }}
+    {{ $categories->links() }} --}}
 
+    <div class="category pt-3">
+        <div class="category-item">
+            <div class="row mt-3">
+                @foreach ($cate as $item)
+                    <div class="col-xs-6 col-sm-4">
+                        {{-- <a href="category/{{ $item->id }}"> --}}
+                        <div class="card-banner align-items-end background-img mb-4"
+                            style="background-image: url('/images/categoryImages/{{ $item->category_img }}')">
+                            <div class="caption m-4 w-100">
+                                <h5 class="text-white card-title">
+                                    {{ $item->name }}
+                                </h5>
+                            </div>
+                        </div>
+                        {{-- </a> --}}
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
 @stop

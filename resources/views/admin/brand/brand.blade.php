@@ -3,10 +3,7 @@
 @section('sidebar-content')
     @include('/admin/components/modal')
 
-    <div class="text-center">
-        <a href="{{ url('/admin/add-brand') }}"> Add New Brand </a>
-    </div>
-    <div style="min-height: 75vh">
+    {{-- <div style="min-height: 75vh">
 
         <table class="table table-hover seller-list">
             <thead>
@@ -53,7 +50,40 @@
                 @endforeach
             </tbody>
         </table>
+    </div> --}}
+    <div class="text-left">
+        <a href="{{ url('/admin/add-brand') }}" class="btn btn-sm btn-success"> Add New Brand </a>
     </div>
-    {{ $brands->links() }}
-
+    <div class="brand pt-3">
+        <div class="brand-item">
+            <div class="row">
+                @foreach ($brands as $item)
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="card mb-3">
+                            <div class="p-3 text-center">
+                                {{-- <a href="/brand/{{ $item->id }}"> --}}
+                                <img src="/images/brandImages/{{ $item->brand_img }}" alt="" class="img-fluid">
+                                <div class="border-bottom pb-2 pt-1"></div>
+                                <div class="pt-2">
+                                    @foreach ($result as $a)
+                                        @if ($a->brand_id == $item->id)
+                                            {{ $a->total_pro }}
+                                        @endif
+                                    @endforeach
+                                    <span>Products</span>
+                                </div>
+                                {{-- </a> --}}
+                                <div class="text-right">
+                                    <button type="button" value="{{ $item->id }}"
+                                        class="delete_brand_btn btn btn-sm btn-outline-dark">
+                                        Delete
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
 @stop
