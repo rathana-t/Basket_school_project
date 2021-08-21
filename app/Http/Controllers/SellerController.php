@@ -296,7 +296,6 @@ class SellerController extends Controller
     {
         if (session()->has('seller')) {
             $data_seller = sellers::findOrFail(session('seller'));
-            $data_seller = sellers::findOrFail(session('seller'));
             $data = orders::join('carts', 'carts.id', '=', 'orders.cart_id')
                 ->join('users', 'users.id', '=', 'carts.user_id')
                 ->join('products', 'products.id', '=', 'carts.product_id')
@@ -309,7 +308,7 @@ class SellerController extends Controller
 
             return view('seller/old_order', compact('data_seller', 'data'));
         } else {
-            return view('seller/old_order');
+            return view('seller/login');
         }
     }
 

@@ -106,6 +106,7 @@ class UserController extends Controller
         ]);
         $update->username = $request->username;
         $update->address = $request->address;
+        $update->email = $request->email;
         $update->update();
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));

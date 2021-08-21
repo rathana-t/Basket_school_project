@@ -13,6 +13,11 @@
                             {{ session('fail') }}
                         </div>
                     @endif
+                    @if (session('message'))
+                        <div class="text-success text-center" role="alert">
+                            {{ session('message') }}
+                        </div>
+                    @endif
                     <form action="{{ route('signin') }}" method="POST">
                         @csrf
                         <div class="card shadow-sm">
@@ -23,11 +28,22 @@
                                         name="phone" @if (Cookie::has('userPhone')) value="{{ Cookie::get('userPhone') }}" @endif
                                         required>
                                 </div>
+
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Password</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1" name="password"
-                                        @if (Cookie::has('userPass')) value="{{ Cookie::get('userPass') }}" @endif
-                                        required>
+                                    <div class="input-group">
+                                        <input type="password" class="form-control" id="exampleInputPassword1"
+                                            name="password" @if (Cookie::has('userPass')) value="{{ Cookie::get('userPass') }}" @endif
+                                            required>
+                                        <span class="input-group-btn btn-info" id="eyeSlash">
+                                            <button class="btn btn-outline-secondary" onclick="visibility3()"
+                                                type="button"><i class="fa fa-eye-slash" aria-hidden="true"></i></button>
+                                        </span>
+                                        <span class="input-group-btn  btn-info" id="eyeShow" style="display: none;">
+                                            <button class="btn btn-outline-secondary reveal" onclick="visibility3()"
+                                                type="button"><i class="fa fa-eye" aria-hidden="true"></i></button>
+                                        </span>
+                                    </div>
                                 </div>
                                 <div class="form-group form-check">
                                     <input type="checkbox" class="form-check-input" name="remeberme" id="exampleCheck1">
@@ -35,7 +51,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col">
-                                        <a href="">Forget Password ?</a>
+                                        <a href="{{ url('/user_forget_pass') }}">Forget Password ?</a>
                                     </div>
                                     <div class="col text-right">
                                         <button type="submit" class="btn btn-primary">Login</button>
@@ -48,4 +64,20 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function visibility3() {
+            var x = document.getElementById('exampleInputPassword1');
+            if (x.type === 'password') {
+                x.type = "text";
+                $('#eyeShow').show();
+                $('#eyeSlash').hide();
+            } else {
+                x.type = "password";
+                $('#eyeShow').hide();
+                $('#eyeSlash').show();
+            }
+        }
+    </script>
+
 @stop

@@ -103,3 +103,6 @@
         }
     });
 </script>
+<img alt="Logo" src="{{ URL::asset('mee_tnam.jpg') }}"
+    style="display: block; font-family: &apos;Lato&apos;, Helvetica, Arial, sans-serif; color: #ffffff; font-size: 18px;"
+    border="0">

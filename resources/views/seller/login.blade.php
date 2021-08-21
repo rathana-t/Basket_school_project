@@ -13,6 +13,11 @@
                             {{ session('fail') }}
                         </div>
                     @endif
+                    @if (session('message'))
+                        <div class="text-success text-center" role="alert">
+                            {{ session('message') }}
+                        </div>
+                    @endif
                     <form action="{{ url('sellerLogIn') }}" method="POST">
                         @csrf
                         <div class="card shadow-sm">
@@ -32,7 +37,14 @@
                                     <input type="checkbox" class="form-check-input" name="remeberme" id="exampleCheck1">
                                     <label class="form-check-label" for="exampleCheck1">Remember me</label>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <div class="row">
+                                    <div class="col">
+                                        <a href="{{ url('/forget_pass') }}">Forget Password ?</a>
+                                    </div>
+                                    <div class="col text-right">
+                                        <button type="submit" class="btn btn-primary">Login</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </form>
