@@ -19,17 +19,18 @@
                             <div class="m-4">
                                 <div class="form-group">
                                     <label for="phone">Email or Phone number</label>
-                                    <input type="text" class="form-control" id="exampleInputPhone" name="email_phone"
-                                        required>
+                                    <input type="text" class="form-control" id="exampleInputPhone" name="email_phone" @if (Cookie::has('sellerPhone')) value="{{ Cookie::get('sellerPhone') }}"
+                                    @elseif  (Cookie::has('sellerEmail'))  value="{{ Cookie::get('sellerEmail') }}" @endif required>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Password</label>
                                     <input type="password" class="form-control" id="exampleInputPassword1" name="password"
+                                        @if (Cookie::has('sellerPass')) value="{{ Cookie::get('sellerPass') }}" @endif
                                         required>
                                 </div>
                                 <div class="form-group form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    <label class="form-check-label" for="exampleCheck1">Remember me!</label>
+                                    <input type="checkbox" class="form-check-input" name="remeberme" id="exampleCheck1">
+                                    <label class="form-check-label" for="exampleCheck1">Remember me</label>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
