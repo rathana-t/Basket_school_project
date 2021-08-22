@@ -86,10 +86,14 @@ class SellerController extends Controller
                 $validPassword = Hash::check($data['password'], $seller->password);
                 if ($validPassword) {
                     session()->put('seller', $seller->id);
-                    if($req->has('remeberme')){
-                        Cookie::queue('sellerPhone',$seller->phone,1440);
+                    if ($req->has('remeberme')) {
+                        Cookie::queue('sellerPhone', $seller->phone, 1440);
                         Cookie::queue(Cookie::forget('sellerEmail'));
-                        Cookie::queue('sellerPass',$req->password,1440);
+                        Cookie::queue('sellerPass', $req->password, 1440);
+                    }else{
+                        Cookie::queue(Cookie::forget('sellerEmail'));
+                        Cookie::queue(Cookie::forget('sellerPhone'));
+                        Cookie::queue(Cookie::forget('sellerPass'));
                     }
                     return redirect('/blog')->with('success', "Successfully Login!");
                 }
@@ -109,6 +113,10 @@ class SellerController extends Controller
                         Cookie::queue('sellerEmail',$seller->email,1440);
                         Cookie::queue(Cookie::forget('sellerPhone'));
                         Cookie::queue('sellerPass',$req->password,1440);
+                    }else{
+                        Cookie::queue(Cookie::forget('sellerPhone'));
+                        Cookie::queue(Cookie::forget('sellerEmail'));
+                        Cookie::queue(Cookie::forget('sellerPass'));
                     }
                     return redirect('/blog')->with('success', "Successfully Login!");
                 }

@@ -63,6 +63,9 @@ class UserController extends Controller
                 if($req->has('remeberme')){
                     Cookie::queue('userPhone',$req->phone,1440);
                     Cookie::queue('userPass',$req->password,1440);
+                }else{
+                    Cookie::queue(Cookie::forget('userPhone'));
+                    Cookie::queue(Cookie::forget('userPass'));
                 }
                 return redirect('/')->with('success', "Successfully Login!");
             }

@@ -34,8 +34,8 @@
                                         required>
                                 </div>
                                 <div class="form-group form-check">
-                                    <input type="checkbox" class="form-check-input" name="remeberme" id="exampleCheck1">
-                                    <label class="form-check-label" for="exampleCheck1">Remember me</label>
+                                    <input type="checkbox" class="form-check-input" name="remeberme" id="exampleCheck1" @if (Cookie::has('sellerPass')) checked   @else @endif>
+                                    <label class="form-check-label" for="exampleCheck1">Remember me!</label>
                                 </div>
                                 <div class="row">
                                     <div class="col">
