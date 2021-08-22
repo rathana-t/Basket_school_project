@@ -17,6 +17,16 @@
                                 {!! $errors->first('username', "<span class='text-danger'>username field is required.</span>") !!}
                             </div>
                             <div class="form-group">
+                                <label for="description">Email</label>
+                                <input type="email" name="email" value="{{ $data_user->email }}" class="form-control"
+                                    style="width: 300px" placeholder="Enter email...">
+                                @if ($data_user->email == '')
+                                    <span class='text-danger'>You should fill email, it can help when you forget your
+                                        password!</span>
+                                @endif
+                                {!! $errors->first('email', "<span class='text-danger'>Email field is required.</span>") !!}
+                            </div>
+                            <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label for="inputState">Province</label>

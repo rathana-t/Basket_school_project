@@ -2,23 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\categories;
+use App\Models\cards;
+use App\Models\carts;
+use App\Models\users;
+use App\Models\brands;
 use App\Models\orders;
+use App\Models\sellers;
+use App\Models\messages;
 use App\Models\products;
 use App\Models\receipts;
-use App\Models\sellers;
-use App\Models\users;
-use App\Models\carts;
-use App\Models\cards;
-use App\Models\brands;
-use App\Models\users_has_cards;
-use App\Http\Controllers\Controller;
-use App\Models\messages;
-use App\Models\se_categories;
+use App\Models\categories;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+use App\Models\se_categories;
+use App\Models\users_has_cards;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Session;
 
 // use Symfony\Component\HttpFoundation\Session\Session;
@@ -71,7 +72,7 @@ class SellerController extends Controller
             return view('seller/login');
         }
     }
-    public function login()
+    public function login(Request $req)
     {
         $email_phone = request()->input('email_phone');
 
@@ -81,21 +82,48 @@ class SellerController extends Controller
                 'password' => 'required',
             ]);
             $seller = DB::table('sellers')->where("phone", "=", $data["email_phone"])->first();
+            if ($seller){
+                $validPassword = Hash::check($data['password'], $seller->password);
+                if ($validPassword) {
+                    session()->put('seller', $seller->id);
+                    if ($req->has('remeberme')) {
+                        Cookie::queue('sellerPhone', $seller->phone, 1440);
+                        Cookie::queue(Cookie::forget('sellerEmail'));
+                        Cookie::queue('sellerPass', $req->password, 1440);
+                    }else{
+                        Cookie::queue(Cookie::forget('sellerEmail'));
+                        Cookie::queue(Cookie::forget('sellerPhone'));
+                        Cookie::queue(Cookie::forget('sellerPass'));
+                    }
+                    return redirect('/blog')->with('success', "Successfully Login!");
+                }
+                return redirect()->back()->with("fail", "Incorrect Email/Phone Number or password!")->withInput();
+            }
         } elseif (filter_var($email_phone, FILTER_VALIDATE_EMAIL)) {
             $data = request()->validate([
                 'email_phone' => 'required',
                 'password' => 'required',
             ]);
             $seller = DB::table('sellers')->where("email", "=", $data["email_phone"])->first();
-        }
-        if ($seller) {
-            $validPassword = Hash::check($data['password'], $seller->password);
-            if ($validPassword) {
-                session()->put('seller', $seller->id);
-                return redirect('/blog')->with('success', "Successfully Login!");
+            if ($seller){
+                $validPassword = Hash::check($data['password'], $seller->password);
+                if ($validPassword) {
+                    session()->put('seller', $seller->id);
+                    if($req->has('remeberme')){
+                        Cookie::queue('sellerEmail',$seller->email,1440);
+                        Cookie::queue(Cookie::forget('sellerPhone'));
+                        Cookie::queue('sellerPass',$req->password,1440);
+                    }else{
+                        Cookie::queue(Cookie::forget('sellerPhone'));
+                        Cookie::queue(Cookie::forget('sellerEmail'));
+                        Cookie::queue(Cookie::forget('sellerPass'));
+                    }
+                    return redirect('/blog')->with('success', "Successfully Login!");
+                }
+                return redirect()->back()->with("fail", "Incorrect Email/Phone Number or password!")->withInput();
             }
-            return redirect()->back()->with("fail", "Incorrect Email/Phone Number or password!")->withInput();
         }
+
         return redirect()->back()->with("fail", "Incorrect Email/Phone Number or password!")->withInput();
     }
 
@@ -276,7 +304,6 @@ class SellerController extends Controller
     {
         if (session()->has('seller')) {
             $data_seller = sellers::findOrFail(session('seller'));
-            $data_seller = sellers::findOrFail(session('seller'));
             $data = orders::join('carts', 'carts.id', '=', 'orders.cart_id')
                 ->join('users', 'users.id', '=', 'carts.user_id')
                 ->join('products', 'products.id', '=', 'carts.product_id')
@@ -289,7 +316,7 @@ class SellerController extends Controller
 
             return view('seller/old_order', compact('data_seller', 'data'));
         } else {
-            return view('seller/old_order');
+            return view('seller/login');
         }
     }
 

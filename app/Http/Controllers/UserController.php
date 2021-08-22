@@ -49,7 +49,7 @@ class UserController extends Controller
         }
         return view('home/login', compact('second_cate'));
     }
-    function signin()
+    function signin(Request $req)
     {
         $data = request()->validate([
             'phone' => 'required',
@@ -60,6 +60,13 @@ class UserController extends Controller
             $validPassword = Hash::check($data['password'], $user->password);
             if ($validPassword) {
                 session()->put('user', $user->id);
+                if($req->has('remeberme')){
+                    Cookie::queue('userPhone',$req->phone,1440);
+                    Cookie::queue('userPass',$req->password,1440);
+                }else{
+                    Cookie::queue(Cookie::forget('userPhone'));
+                    Cookie::queue(Cookie::forget('userPass'));
+                }
                 return redirect('/')->with('success', "Successfully Login!");
             }
             return redirect()->back()->with("fail", "Incorrect Phone Number or password!")->withInput();
@@ -102,6 +109,7 @@ class UserController extends Controller
         ]);
         $update->username = $request->username;
         $update->address = $request->address;
+        $update->email = $request->email;
         $update->update();
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));

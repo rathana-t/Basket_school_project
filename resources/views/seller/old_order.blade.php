@@ -1,6 +1,7 @@
 @extends('seller\seller')
 
 @section('sidebar-content')
+
     <div style="min-height: 75vh">
         <table class="table table-hover">
             <thead>
@@ -17,6 +18,7 @@
                 </tr>
             </thead>
             <tbody>
+
                 @foreach ($data as $item)
                     @include('/seller/components/modal')
                     @if ($item->seller_cancel == 1)
@@ -88,11 +90,10 @@
                         @endif
                     @endif
                 @endforeach
-
             </tbody>
         </table>
     </div>
-
     {{ $data->links() }}
+
 
 @stop
