@@ -16,7 +16,7 @@
         <div class="small-card">
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <a href="">
+                    <a href="/admin/user">
                         <div class="color1">
                             <div class="card shadow-sm rounded">
                                 <div class="card-body">
@@ -48,7 +48,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <a href="">
+                    <a href="/admin/seller">
                         <div class="color2">
                             <div class="card shadow-sm rounded">
                                 <div class="card-body">
@@ -77,7 +77,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <a href="">
+                    <a href="/admin/seller">
                         <div class="color2-1">
                             <div class="card shadow-sm rounded">
                                 <div class="card-body">
@@ -106,7 +106,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12 mb-3">
-                    <a href="">
+                    <a href="/admin/product">
                         <div class="color3">
                             <div class="card shadow-sm rounded">
                                 <div class="card-body">
@@ -135,7 +135,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12 ">
-                    <a href="">
+                    <a href="/admin/productRequest">
                         <div class="color4">
                             <div class="card shadow-sm rounded">
                                 <div class="card-body">
@@ -164,7 +164,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <a href="">
+                    <a href="/admin/category">
                         <div class="color5">
                             <div class="card shadow-sm rounded">
                                 <div class="card-body">
@@ -193,7 +193,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <a href="">
+                    <a href="/admin/secondary-category">
                         <div class="color6">
                             <div class="card shadow-sm rounded">
                                 <div class="card-body">
@@ -222,7 +222,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <a href="">
+                    <a href="/admin/brand">
                         <div class="color7">
                             <div class="card shadow-sm rounded">
                                 <div class="card-body">
@@ -263,7 +263,10 @@
                             </h5>
                         </div>
                         <div>
-                            <span><strong>16062$</strong></span> / 123 orders
+                            <span><strong>{{ $sumTotalOrder }}$</strong></span> /{{ $countOrder }} orders
+                        </div>
+                        <div>
+                            {{ $totalProductOrder }} Items
                         </div>
                     </div>
                 </div>
@@ -277,7 +280,10 @@
                             </h5>
                         </div>
                         <div>
-                            <span><strong>5234$</strong></span> / 64 orders
+                            <span><strong>{{ $sumOrderPending }}$</strong></span> / {{ $countOrderPending }} orders
+                        </div>
+                        <div>
+                            {{ $pendingProductOrder }} Items
                         </div>
                     </div>
                 </div>
@@ -291,7 +297,10 @@
                             </h5>
                         </div>
                         <div>
-                            <span><strong>1441$</strong></span> / 48 orders
+                            <span><strong>{{ $sumOrderProccess }}$</strong></span> / {{ $countOrderProccess }} orders
+                        </div>
+                        <div>
+                            {{ $proccessProductOrder }} Items
                         </div>
                     </div>
                 </div>
@@ -305,7 +314,10 @@
                             </h5>
                         </div>
                         <div>
-                            <span><strong>2562$</strong></span> / 81 orders
+                            <span><strong>{{ $sumOrderDelivery }}$</strong></span> / {{ $countOrderDelivery }} orders
+                        </div>
+                        <div>
+                            {{ $deliveryProduct }} Items
                         </div>
                     </div>
                 </div>

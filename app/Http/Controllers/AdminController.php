@@ -38,7 +38,75 @@ class AdminController extends Controller
         $countCate = DB::table('categories')->count();
         $countSmallCate = DB::table('se_categories')->count();
         $countBrand = DB::table('brands')->count();
-        return view('admin/dashboard', compact('countUser', 'countShop', 'countPruduct', 'countPruductPending', 'countCate', 'countSmallCate', 'countBrand'));
+        $countOrder = DB::table('orders')->count();
+        $sumTotalOrder = DB::table('orders')
+            ->join('carts', 'orders.cart_id', 'carts.id')
+            ->select('orders.*', 'carts.total')
+            ->sum('carts.total');
+        $totalProductOrder = DB::table('orders')
+            ->join('carts', 'orders.cart_id', 'carts.id')
+            ->select('orders.*', 'carts.quantity')
+            ->sum('carts.quantity');
+        $countOrderPending = DB::table('orders')
+            ->where('orders.pending', 1)
+            ->count();
+        $sumOrderPending = DB::table('orders')
+            ->join('carts', 'orders.cart_id', 'carts.id')
+            ->where('orders.pending', 1)
+            ->select('orders.*', 'carts.total')
+            ->sum('carts.total');
+        $pendingProductOrder = DB::table('orders')
+            ->join('carts', 'orders.cart_id', 'carts.id')
+            ->where('orders.pending', 1)
+            ->select('orders.*', 'carts.quantity')
+            ->sum('carts.quantity');
+        $countOrderProccess = DB::table('orders')
+            ->where('orders.processing', 1)
+            ->count();
+        $sumOrderProccess = DB::table('orders')
+            ->join('carts', 'orders.cart_id', 'carts.id')
+            ->where('orders.processing', 1)
+            ->select('orders.*', 'carts.total')
+            ->sum('carts.total');
+        $proccessProductOrder = DB::table('orders')
+            ->join('carts', 'orders.cart_id', 'carts.id')
+            ->where('orders.processing', 1)
+            ->select('orders.*', 'carts.quantity')
+            ->sum('carts.quantity');
+        $countOrderDelivery = DB::table('orders')
+            ->where('orders.delivery', 1)
+            ->count();
+        $sumOrderDelivery = DB::table('orders')
+            ->join('carts', 'orders.cart_id', 'carts.id')
+            ->where('orders.delivery', 1)
+            ->select('orders.*', 'carts.total')
+            ->sum('carts.total');
+        $deliveryProduct = DB::table('orders')
+            ->join('carts', 'orders.cart_id', 'carts.id')
+            ->where('orders.delivery', 1)
+            ->select('orders.*', 'carts.quantity')
+            ->sum('carts.quantity');
+        return view('admin/dashboard', compact(
+            'deliveryProduct',
+            'sumOrderDelivery',
+            'countOrderDelivery',
+            'proccessProductOrder',
+            'sumOrderProccess',
+            'countOrderProccess',
+            'pendingProductOrder',
+            'sumOrderPending',
+            'countOrderPending',
+            'totalProductOrder',
+            'sumTotalOrder',
+            'countOrder',
+            'countUser',
+            'countShop',
+            'countPruduct',
+            'countPruductPending',
+            'countCate',
+            'countSmallCate',
+            'countBrand'
+        ));
     }
 
     public function user()

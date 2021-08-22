@@ -25,28 +25,27 @@
                                 <div class="form-group">
                                     <label for="phone">Phone number</label>
                                     <input type="number" {{-- okdfkfdj --}} class="form-control" id="exampleInputPhone"
-                                        name="phone" @if (Cookie::has('userPhone')) value="{{ Cookie::get('userPhone') }}" @endif
-                                        required>
+                                        name="phone" @if (Cookie::has('userPhone')) value="{{ Cookie::get('userPhone') }}" @endif required>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Password</label>
                                     <div class="input-group">
                                         <input type="password" class="form-control" id="exampleInputPassword1"
-                                            name="password" @if (Cookie::has('userPass')) value="{{ Cookie::get('userPass') }}" @endif
-                                            required>
-                                        <span class="input-group-btn btn-info" id="eyeSlash">
-                                            <button class="btn btn-outline-secondary" onclick="visibility3()"
-                                                type="button"><i class="fa fa-eye-slash" aria-hidden="true"></i></button>
+                                            name="password" @if (Cookie::has('userPass')) value="{{ Cookie::get('userPass') }}" @endif required>
+                                        <span class="input-group-btn btn-outline-light" id="eyeSlash">
+                                            <button class="btn btn-dark" onclick="visibility3()" type="button"><i
+                                                    class="fa fa-eye-slash" aria-hidden="true"></i></button>
                                         </span>
-                                        <span class="input-group-btn  btn-info" id="eyeShow" style="display: none;">
-                                            <button class="btn btn-outline-secondary reveal" onclick="visibility3()"
-                                                type="button"><i class="fa fa-eye" aria-hidden="true"></i></button>
+                                        <span class="input-group-btn  btn-outline-dark" id="eyeShow" style="display: none;">
+                                            <button class="btn btn-dark reveal" onclick="visibility3()" type="button"><i
+                                                    class="fa fa-eye" aria-hidden="true"></i></button>
                                         </span>
                                     </div>
                                 </div>
                                 <div class="form-group form-check">
-                                    <input type="checkbox" class="form-check-input" name="remeberme" id="exampleCheck1" @if (Cookie::has('userPass')) checked   @else @endif>
+                                    <input type="checkbox" class="form-check-input" name="remeberme" id="exampleCheck1"
+                                        @if (Cookie::has('userPass')) checked   @else @endif>
                                     <label class="form-check-label" for="exampleCheck1">Remember me!</label>
                                 </div>
                                 <div class="row">
