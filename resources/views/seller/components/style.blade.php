@@ -1,4 +1,126 @@
 <style>
+    .header-card .card {
+        height: 150px !important;
+    }
+
+    .table thead th {
+        font-size: 15px;
+        font-weight: 500;
+        vertical-align: bottom;
+    }
+
+    .card1 .card .card-header {
+        background-color: #72b159 !important;
+    }
+
+    .card2 .card .card-header {
+        background-color: #e46050 !important;
+    }
+
+    .card3 .card .card-header {
+        background-color: #52bcdc !important;
+    }
+
+    .card4 .card .card-header {
+        background-color: #f48443 !important;
+    }
+
+    body {
+        background-color: rgb(248, 248, 248) !important;
+    }
+
+    .dashboard a {
+        text-decoration: none;
+    }
+
+    .dashboard a:hover {
+        text-decoration: none;
+    }
+
+    .dashboard .small-card .card {
+        border: none;
+    }
+
+    .dashboard .small-card .color1 .card {
+        background-color: #72b159;
+        color: white;
+    }
+
+    .dashboard .small-card .color1 .card:hover {
+        background-color: #5D9547;
+        color: white;
+    }
+
+    .dashboard .small-card .color2 .card {
+        background-color: #e46050;
+        color: white;
+    }
+
+    .dashboard .small-card .color2 .card:hover {
+        background-color: #d64230;
+        color: white;
+    }
+
+    .dashboard .small-card .color2-1 .card {
+        background-color: #29af77;
+        color: white;
+    }
+
+    .dashboard .small-card .color2-1 .card:hover {
+        background-color: #0d8a60;
+        color: white;
+    }
+
+    .dashboard .small-card .color3 .card {
+        background-color: #52bcdc;
+        color: white;
+    }
+
+    .dashboard .small-card .color3 .card:hover {
+        background-color: #2cadd4;
+        color: white;
+    }
+
+    .dashboard .small-card .color4 .card {
+        background-color: #f4ab43;
+        color: white;
+    }
+
+    .dashboard .small-card .color4 .card:hover {
+        background-color: #c37c16;
+        color: white;
+    }
+
+    .dashboard .small-card .color5 .card {
+        background-color: #437bf4;
+        color: white;
+    }
+
+    .dashboard .small-card .color5 .card:hover {
+        background-color: #163ec3;
+        color: white;
+    }
+
+    .dashboard .small-card .color6 .card {
+        background-color: #f443a4;
+        color: white;
+    }
+
+    .dashboard .small-card .color6 .card:hover {
+        background-color: #c3169e;
+        color: white;
+    }
+
+    .dashboard .small-card .color7 .card {
+        background-color: #f48443;
+        color: white;
+    }
+
+    .dashboard .small-card .color7 .card:hover {
+        background-color: #c35516;
+        color: white;
+    }
+
     #sidebar {
         min-width: 250px;
         max-width: 250px;

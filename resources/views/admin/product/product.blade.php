@@ -91,7 +91,7 @@
                                     {{ $item->cat_name }}
                                 </td>
                                 <td>
-                                    {{ Carbon\Carbon::parse($item->updated)->format('d M Y') }}
+                                    {{ Carbon\Carbon::parse($item->updated_at)->format('d M Y') }}
                                 </td>
                                 <td>
                                     <a href="product/{{ $item->id }}">

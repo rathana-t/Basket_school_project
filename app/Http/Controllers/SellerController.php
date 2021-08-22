@@ -26,7 +26,15 @@ use Illuminate\Support\Facades\Session;
 
 class SellerController extends Controller
 {
-
+    public function dashboard()
+    {
+        if (session()->has('seller')) {
+            $data_seller = sellers::findOrFail(session('seller'));
+            return view('seller/dashboard', compact('data_seller'));
+        } else {
+            return view('seller/dashboard');
+        }
+    }
     public function delete_user_cancel_order($id)
     {
         if (session()->has('seller')) {
@@ -82,7 +90,7 @@ class SellerController extends Controller
                 'password' => 'required',
             ]);
             $seller = DB::table('sellers')->where("phone", "=", $data["email_phone"])->first();
-            if ($seller){
+            if ($seller) {
                 $validPassword = Hash::check($data['password'], $seller->password);
                 if ($validPassword) {
                     session()->put('seller', $seller->id);
@@ -90,7 +98,7 @@ class SellerController extends Controller
                         Cookie::queue('sellerPhone', $seller->phone, 1440);
                         Cookie::queue(Cookie::forget('sellerEmail'));
                         Cookie::queue('sellerPass', $req->password, 1440);
-                    }else{
+                    } else {
                         Cookie::queue(Cookie::forget('sellerEmail'));
                         Cookie::queue(Cookie::forget('sellerPhone'));
                         Cookie::queue(Cookie::forget('sellerPass'));
@@ -105,15 +113,15 @@ class SellerController extends Controller
                 'password' => 'required',
             ]);
             $seller = DB::table('sellers')->where("email", "=", $data["email_phone"])->first();
-            if ($seller){
+            if ($seller) {
                 $validPassword = Hash::check($data['password'], $seller->password);
                 if ($validPassword) {
                     session()->put('seller', $seller->id);
-                    if($req->has('remeberme')){
-                        Cookie::queue('sellerEmail',$seller->email,1440);
+                    if ($req->has('remeberme')) {
+                        Cookie::queue('sellerEmail', $seller->email, 1440);
                         Cookie::queue(Cookie::forget('sellerPhone'));
-                        Cookie::queue('sellerPass',$req->password,1440);
-                    }else{
+                        Cookie::queue('sellerPass', $req->password, 1440);
+                    } else {
                         Cookie::queue(Cookie::forget('sellerPhone'));
                         Cookie::queue(Cookie::forget('sellerEmail'));
                         Cookie::queue(Cookie::forget('sellerPass'));
@@ -157,15 +165,7 @@ class SellerController extends Controller
     {
         return view('seller/register');
     }
-    public function dashboard()
-    {
-        if (session()->has('seller')) {
-            $data_seller = sellers::findOrFail(session('seller'));
-            return view('seller/dashboard', compact('data_seller'));
-        } else {
-            return view('seller/dashboard');
-        }
-    }
+
 
     public function products()
     {
