@@ -38,7 +38,7 @@
                                                 User
                                             </h5>
                                             <div>
-                                                3456
+                                                {{ $countUser }}
                                             </div>
                                         </div>
                                     </div>
@@ -67,7 +67,7 @@
                                                 Shop
                                             </h5>
                                             <div>
-                                                3456
+                                                {{ $countShop }}
                                             </div>
                                         </div>
                                     </div>
@@ -125,7 +125,7 @@
                                                 Products
                                             </h5>
                                             <div>
-                                                3456
+                                                {{ $countPruduct }}
                                             </div>
                                         </div>
                                     </div>
@@ -154,7 +154,7 @@
                                                 Pending
                                             </h5>
                                             <div>
-                                                3456
+                                                {{ $countPruductPending }}
                                             </div>
                                         </div>
                                     </div>
@@ -183,7 +183,7 @@
                                                 Categories
                                             </h5>
                                             <div>
-                                                3456
+                                                {{ $countCate }}
                                             </div>
                                         </div>
                                     </div>
@@ -212,7 +212,7 @@
                                                 Small
                                             </h5>
                                             <div>
-                                                3456
+                                                {{ $countSmallCate }}
                                             </div>
                                         </div>
                                     </div>
@@ -241,7 +241,7 @@
                                                 Brands
                                             </h5>
                                             <div>
-                                                3456
+                                                {{ $countBrand }}
                                             </div>
                                         </div>
                                     </div>

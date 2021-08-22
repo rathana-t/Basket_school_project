@@ -6,8 +6,8 @@
     </style>
     <div class="container pt-4">
         <div class="row">
-            <div class="col-md-3">
-                <div class="card">
+            <div class="col-md-3 ">
+                <div class="card sticky-top">
                     <form action="{{ route('search-filter') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="search-filter">

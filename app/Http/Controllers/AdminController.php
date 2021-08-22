@@ -27,7 +27,18 @@ class AdminController extends Controller
 {
     public function dashboard()
     {
-        return view('admin/dashboard');
+        $countUser = DB::table('users')->count();
+        $countShop = DB::table('sellers')->count();
+        $countPruduct = DB::table('products')
+            ->where('completed', 1)
+            ->count();
+        $countPruductPending = DB::table('products')
+            ->where('completed', 0)
+            ->count();
+        $countCate = DB::table('categories')->count();
+        $countSmallCate = DB::table('se_categories')->count();
+        $countBrand = DB::table('brands')->count();
+        return view('admin/dashboard', compact('countUser', 'countShop', 'countPruduct', 'countPruductPending', 'countCate', 'countSmallCate', 'countBrand'));
     }
 
     public function user()
