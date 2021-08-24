@@ -30,7 +30,102 @@ class SellerController extends Controller
     {
         if (session()->has('seller')) {
             $data_seller = sellers::findOrFail(session('seller'));
-            return view('seller/dashboard', compact('data_seller'));
+            $sumOrderTotal = DB::table('orders')
+                ->join('carts', 'orders.cart_id', 'carts.id')
+                ->join('products', 'products.id', 'carts.product_id')
+                ->where('products.seller_id', $data_seller->id)
+                ->select('orders.*', 'carts.total')
+                ->sum('carts.total');
+            $countOrderTotal = DB::table('orders')
+                ->join('carts', 'orders.cart_id', 'carts.id')
+                ->join('products', 'products.id', 'carts.product_id')
+                ->where('products.seller_id', $data_seller->id)
+                ->select('orders.*', 'carts.total')
+                ->count();
+            $countItemTotal = DB::table('orders')
+                ->join('carts', 'orders.cart_id', 'carts.id')
+                ->join('products', 'products.id', 'carts.product_id')
+                ->where('products.seller_id', $data_seller->id)
+                ->select('orders.*', 'carts.quantity')
+                ->sum('carts.quantity');
+            $sumOrderPending = DB::table('orders')
+                ->join('carts', 'orders.cart_id', 'carts.id')
+                ->join('products', 'products.id', 'carts.product_id')
+                ->where('orders.pending', 1)
+                ->where('products.seller_id', $data_seller->id)
+                ->select('orders.*', 'carts.total')
+                ->sum('carts.total');
+            $countOrderPending = DB::table('orders')
+                ->join('carts', 'orders.cart_id', 'carts.id')
+                ->join('products', 'products.id', 'carts.product_id')
+                ->where('orders.pending', 1)
+                ->where('products.seller_id', $data_seller->id)
+                ->select('orders.*', 'carts.total')
+                ->count();
+            $countItemPending = DB::table('orders')
+                ->join('carts', 'orders.cart_id', 'carts.id')
+                ->join('products', 'products.id', 'carts.product_id')
+                ->where('orders.pending', 1)
+                ->where('products.seller_id', $data_seller->id)
+                ->select('orders.*', 'carts.quantity')
+                ->sum('carts.quantity');
+            $sumOrderProcess = DB::table('orders')
+                ->join('carts', 'orders.cart_id', 'carts.id')
+                ->join('products', 'products.id', 'carts.product_id')
+                ->where('orders.processing', 1)
+                ->where('products.seller_id', $data_seller->id)
+                ->select('orders.*', 'carts.total')
+                ->sum('carts.total');
+            $countOrderProcess = DB::table('orders')
+                ->join('carts', 'orders.cart_id', 'carts.id')
+                ->join('products', 'products.id', 'carts.product_id')
+                ->where('orders.processing', 1)
+                ->where('products.seller_id', $data_seller->id)
+                ->select('orders.*', 'carts.total')
+                ->count();
+            $countItemProcess = DB::table('orders')
+                ->join('carts', 'orders.cart_id', 'carts.id')
+                ->join('products', 'products.id', 'carts.product_id')
+                ->where('orders.processing', 1)
+                ->where('products.seller_id', $data_seller->id)
+                ->select('orders.*', 'carts.quantity')
+                ->sum('carts.quantity');
+            $sumOrderHistory = DB::table('orders')
+                ->join('carts', 'orders.cart_id', 'carts.id')
+                ->join('products', 'products.id', 'carts.product_id')
+                ->where('orders.delivery', 1)
+                ->where('products.seller_id', $data_seller->id)
+                ->select('orders.*', 'carts.total')
+                ->sum('carts.total');
+            $countOrderHistory = DB::table('orders')
+                ->join('carts', 'orders.cart_id', 'carts.id')
+                ->join('products', 'products.id', 'carts.product_id')
+                ->where('orders.delivery', 1)
+                ->where('products.seller_id', $data_seller->id)
+                ->select('orders.*', 'carts.total')
+                ->count();
+            $countItemHistory = DB::table('orders')
+                ->join('carts', 'orders.cart_id', 'carts.id')
+                ->join('products', 'products.id', 'carts.product_id')
+                ->where('orders.delivery', 1)
+                ->where('products.seller_id', $data_seller->id)
+                ->select('orders.*', 'carts.quantity')
+                ->sum('carts.quantity');
+            return view('seller/dashboard', compact(
+                'data_seller',
+                'sumOrderTotal',
+                'countOrderTotal',
+                'countItemTotal',
+                'sumOrderPending',
+                'countOrderPending',
+                'countItemPending',
+                'sumOrderProcess',
+                'countOrderProcess',
+                'countItemProcess',
+                'sumOrderHistory',
+                'countOrderHistory',
+                'countItemHistory'
+            ));
         } else {
             return view('seller/dashboard');
         }

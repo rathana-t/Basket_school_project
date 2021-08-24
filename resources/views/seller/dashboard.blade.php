@@ -13,11 +13,11 @@
                         <div class="card-body">
                             <p>
                                 <span class="card-title">
-                                    <strong>18956$ </strong>
+                                    <strong>{{ $sumOrderTotal }} $ </strong>
                                 </span>
-                                <span>/ 2346 Orders</span>
+                                <span>/ {{ $countOrderTotal }} Orders</span>
                             </p>
-                            <p>20232 Items</p>
+                            <p>{{ $countItemTotal }} Items</p>
                         </div>
                     </div>
                 </div>
@@ -29,11 +29,11 @@
                         <div class="card-body">
                             <p>
                                 <span class="card-title">
-                                    <strong>18956$ </strong>
+                                    <strong>{{ $sumOrderPending }} $ </strong>
                                 </span>
-                                <span>/ 2346 Orders</span>
+                                <span>/ {{ $countOrderPending }} Orders</span>
                             </p>
-                            <p>20232 Items</p>
+                            <p>{{ $countItemPending }} Items</p>
                         </div>
                     </div>
                 </div>
@@ -45,11 +45,11 @@
                         <div class="card-body">
                             <p>
                                 <span class="card-title">
-                                    <strong>18956$ </strong>
+                                    <strong>{{ $sumOrderProcess }} $ </strong>
                                 </span>
-                                <span>/ 2346 Orders</span>
+                                <span>/ {{ $countOrderProcess }} Orders</span>
                             </p>
-                            <p>20232 Items</p>
+                            <p>{{ $countItemProcess }} Items</p>
                         </div>
                     </div>
                 </div>
@@ -61,11 +61,11 @@
                         <div class="card-body">
                             <p>
                                 <span class="card-title">
-                                    <strong>18956$ </strong>
+                                    <strong>{{ $sumOrderHistory }} $ </strong>
                                 </span>
-                                <span>/ 2346 Orders</span>
+                                <span>/ {{ $countOrderHistory }} Orders</span>
                             </p>
-                            <p>20232 Items</p>
+                            <p>{{ $countItemHistory }} Items</p>
                         </div>
                     </div>
                 </div>
@@ -73,7 +73,7 @@
         </div>
     </div>
 
-    
+
     <div class="row">
         <div class="col-sm-12 col-md-6">
             <div class="card shadow-sm rounded">
