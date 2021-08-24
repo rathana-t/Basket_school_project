@@ -18,6 +18,7 @@ class CreateMessagesTable extends Migration
             $table->string('msg', 2000);
             $table->integer('sent')->default(0);
             $table->integer('seller_id');
+            $table->integer('count')->default(1);
             $table->timestamps();
         });
     }

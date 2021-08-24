@@ -1,5 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
     <div class="container">
+        <a class="navbar-brand" href="{{ url('/') }}">Home</a>
         <a class="navbar-brand" href="{{ url('/blog') }}">Blog</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

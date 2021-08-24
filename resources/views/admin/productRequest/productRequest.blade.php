@@ -61,9 +61,7 @@
                         <tr class="seller-list">
                             <td>
                                 <a href="productRequest/{{ $item->id }}">
-                                    <?php foreach (json_decode($item->img_product)as $picture) { ?>
-                                    <img src="/images/imgProduct/{{ $picture }}" alt="">
-                                    <?php break; } ?>
+                                    <img src="/images/imgProduct/{{ $item->img_product }}" alt="">
                                 </a>
                             </td>
                             <td>

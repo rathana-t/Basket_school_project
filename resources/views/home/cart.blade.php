@@ -31,11 +31,9 @@
                                                     <tr class="mb-3">
                                                         <td colspan="3">
                                                             <a href="{{ url('/product', $item->id) }}">
-                                                                <?php foreach (json_decode($item->img_product)as $picture) { ?>
                                                                 <img style="width: 100px;"
-                                                                    src="/images/imgProduct/{{ $picture }}" alt=""
-                                                                    class="img-fluid">
-                                                                <?php break; } ?>
+                                                                    src="/images/imgProduct/{{ $item->img_product }}"
+                                                                    alt="" class="img-fluid">
                                                                 {{ $item->name }}
                                                             </a>
                                                         </td>

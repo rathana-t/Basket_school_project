@@ -17,10 +17,8 @@
                             <div class="card mb-3">
                                 <div class="m-3">
                                     <a href="/product/product/{{ $item->id }}">
-                                        <?php foreach (json_decode($item->img_product)as $picture) { ?>
-                                        <img src="{{ asset('images/imgProduct') }}/{{ $picture }}" alt=""
+                                        <img src="{{ asset('images/imgProduct') }}/{{ $item->img_product }}" alt=""
                                             class="img-fluid">
-                                        <?php break; } ?>
                                     </a>
                                 </div>
 

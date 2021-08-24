@@ -4,33 +4,98 @@
     @include('/home/components/navigation')
 
     <div class="container">
-        @foreach ($detail_pro as $detail)
+        @foreach ($detail_pro as $item)
             <div class="deatail_page mt-5">
                 <div class="card">
                     <div class="row">
                         <div class="col-md-6 border-right">
-                            <?php foreach (json_decode($detail->img_product)as $picture) { ?>
-                            <img src="{{ asset('images/imgProduct') }}/{{ $picture }}" alt="" class="img-fluid p-4">
-                            <?php break; } ?>
+                            <img src="{{ asset('images/imgProduct') }}/{{ $item->img_product }}" alt=""
+                                class="img-fluid p-4">
                             <div class="p-2">
                                 <div class="wrapper">
-                                    <?php foreach (json_decode($detail->img_product)as $picture) { ?>
-                                    <div class="col-md-4">
-                                        <div class="Item mb-2 card">
-                                            <div class="p-2">
-                                                <img src="{{ asset('images/imgProduct') }}/{{ $picture }}" alt=""
-                                                    class="img-fluid">
+                                    @if ($item->sub_img1)
+                                        <div class="col-md-4">
+                                            <div class="Item mb-2 card">
+                                                <div class="p-2">
+                                                    <img src="{{ asset('images/imgProduct') }}/{{ $item->sub_img1 }}"
+                                                        alt="" class="img-fluid">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <?php } ?>
+                                    @endif
+                                    @if ($item->sub_img2)
+                                        <div class="col-md-4">
+                                            <div class="Item mb-2 card">
+                                                <div class="p-2">
+                                                    <img src="{{ asset('images/imgProduct') }}/{{ $item->sub_img2 }}"
+                                                        alt="" class="img-fluid">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+
+                                    @if ($item->sub_img3)
+                                        <div class="col-md-4">
+                                            <div class="Item mb-2 card">
+                                                <div class="p-2">
+                                                    <img src="{{ asset('images/imgProduct') }}/{{ $item->sub_img3 }}"
+                                                        alt="" class="img-fluid">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+
+                                    @if ($item->sub_img4)
+                                        <div class="col-md-4">
+                                            <div class="Item mb-2 card">
+                                                <div class="p-2">
+                                                    <img src="{{ asset('images/imgProduct') }}/{{ $item->sub_img4 }}"
+                                                        alt="" class="img-fluid">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+
+                                    @if ($item->sub_img5)
+                                        <div class="col-md-4">
+                                            <div class="Item mb-2 card">
+                                                <div class="p-2">
+                                                    <img src="{{ asset('images/imgProduct') }}/{{ $item->sub_img5 }}"
+                                                        alt="" class="img-fluid">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+
+                                    @if ($item->sub_img6)
+                                        <div class="col-md-4">
+                                            <div class="Item mb-2 card">
+                                                <div class="p-2">
+                                                    <img src="{{ asset('images/imgProduct') }}/{{ $item->sub_img6 }}"
+                                                        alt="" class="img-fluid">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+
+                                    @if ($item->sub_img7)
+                                        <div class="col-md-4">
+                                            <div class="Item mb-2 card">
+                                                <div class="p-2">
+                                                    <img src="{{ asset('images/imgProduct') }}/{{ $item->sub_img7 }}"
+                                                        alt="" class="img-fluid">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="p-4">
                                 <h2>
-                                    {{ $detail->name }}
+                                    {{ $item->name }}
                                 </h2>
                                 <div class="order mt-2 mb-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="20" fill="currentColor"
@@ -44,11 +109,11 @@
                                 </div>
                                 <div class="price mb-3">
                                     <h4>
-                                        ${{ $detail->price }}
+                                        ${{ $item->price }}
                                     </h4>
                                 </div>
                                 <p class="des">
-                                    {{ $detail->description }}
+                                    {{ $item->description }}
                                     {{-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem eos minima, quod vel
                                     obcaecati libero corporis consectetur sed! Culpa dolores omnis tenetur eius, facilis
                                     sint magnam est sed animi dicta. --}}
@@ -59,14 +124,14 @@
                                 </p>
                                 <p class="store_name">
                                     <span><strong>Brand</strong></span>
-                                    <span class="pl-4"> {{ $detail->brand_name }} </span>
+                                    <span class="pl-4"> {{ $item->brand_name }} </span>
                                 </p>
                                 <hr>
                                 <div style="margin-top: 10px">
                                     @if (Session::has('user'))
 
 
-                                        @if ($detail->stock <= 0)
+                                        @if ($item->stock <= 0)
                                             <button class="btn btn-warning mt-2" style="width: 170px">
                                                 <span class="p-2">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -83,8 +148,8 @@
                                                 enctype="multipart/form-data">
                                                 @csrf
                                                 <input type="hidden" value="{{ $data_user->id }}" name="user_id">
-                                                <input type="hidden" value="{{ $detail->id }}" name="product_id">
-                                                <input type="hidden" value="{{ $detail->price }}" name="total">
+                                                <input type="hidden" value="{{ $item->id }}" name="product_id">
+                                                <input type="hidden" value="{{ $item->price }}" name="total">
 
                                                 {{-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
                                                     <div class="form-group" style="width: 130px">
@@ -98,7 +163,7 @@
                                                             </span>
                                                             <input style="height: 34px" type="text" name="quantity"
                                                                 class="form-control input-number" value="1" min="1"
-                                                                max="{{ $detail->stock }}">
+                                                                max="{{ $item->stock }}">
                                                             <span class="input-group-btn">
                                                                 <button style="height: 34px" type="button"
                                                                     class="btn btn-success btn-number" data-type="plus"
@@ -110,7 +175,7 @@
                                                     </div> --}}
                                                 <input type="number" class="form-control form-control-sm" value="1"
                                                     id="quantity" placeholder="Qty" required name="quantity" min="1"
-                                                    max="{{ $detail->stock }}" style="width: 170px">
+                                                    max="{{ $item->stock }}" style="width: 170px">
                                                 <button type="submit" class="btn btn-primary mt-2" style="width: 170px">
                                                     <span class="p-2">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -130,7 +195,7 @@
                                         <form action="{{ route('add_to_wishlist') }}" method="POST" class="mt-2">
                                             @csrf
                                             <input type="hidden" name="u_id" value="{{ $data_user->id }}" id="">
-                                            <input type="hidden" name="pro_id" value="{{ $detail->id }}" id="">
+                                            <input type="hidden" name="pro_id" value="{{ $item->id }}" id="">
                                             <button type="submit" class="btn btn-danger" style="width: 170px">
                                                 <span class="p-2">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"

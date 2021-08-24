@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ForgetPassword;
 use Illuminate\Support\Facades\Route;
+use PHPUnit\TextUI\XmlConfiguration\Group;
 
 Route::get('/test', function () {
     // var_dump('time' . new DataTime);
@@ -24,7 +25,7 @@ Route::get('/product', [HomeController::class, 'products'])->name('products');
 Route::get('/product/product/{id}', [HomeController::class, 'detail'])->name('productItem');
 Route::get('/blog', [HomeController::class, 'blog']);
 Route::get('/cart', [HomeController::class, 'cart'])->name('route_cart')->middleware('checker');
-Route::post('/search-filter', [HomeController::class, 'search_filter'])->name('search-filter');
+Route::any('/search-filter', [HomeController::class, 'search_filter'])->name('search-filter');
 Route::get('/search', [HomeController::class, 'search']);
 Route::get('/category', [HomeController::class, 'category'])->name('category');
 Route::get('/category/{id}', [HomeController::class, 'categoryItem'])->name('categoryItem');

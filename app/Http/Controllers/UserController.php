@@ -61,8 +61,11 @@ class UserController extends Controller
             if ($validPassword) {
                 session()->put('user', $user->id);
                 if($req->has('remeberme')){
-                    Cookie::queue('userPhone',$req->phone,1440);
-                    Cookie::queue('userPass',$req->password,1440);
+                    Cookie::queue(cookie()->forever('userPhone', $req->phone));
+                    Cookie::queue(cookie()->forever('userPass', $req->password));
+                    // cookie()->forever('userPass', $req->password);
+                    // Cookie::forev('userPhone',$req->phone,1440);
+                    // Cookie::queue('userPass',$req->password,1440);
                 }else{
                     Cookie::queue(Cookie::forget('userPhone'));
                     Cookie::queue(Cookie::forget('userPass'));

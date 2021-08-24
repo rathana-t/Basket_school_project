@@ -26,10 +26,9 @@
 
                         @else
                             <tr class="product-list text-center" style="color: rgb(223, 89, 12)">
-                                <td><?php foreach (json_decode($item->img_product)as $picture) { ?>
-                                    <img src="{{ asset('images/imgProduct') }}/{{ $picture }}" alt=""
+                                <td>
+                                    <img src="{{ asset('images/imgProduct') }}/{{ $item->img_product }}" alt=""
                                         class="img-fluid">
-                                    <?php break; } ?>
                                 </td>
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->u_name }}</td>
@@ -58,10 +57,9 @@
 
                         @else
                             <tr class="product-list text-center">
-                                <td><?php foreach (json_decode($item->img_product)as $picture) { ?>
-                                    <img src="{{ asset('images/imgProduct') }}/{{ $picture }}" alt=""
+                                <td>
+                                    <img src="{{ asset('images/imgProduct') }}/{{ $item->img_product }}" alt=""
                                         class="img-fluid">
-                                    <?php break; } ?>
                                 </td>
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->u_name }}</td>

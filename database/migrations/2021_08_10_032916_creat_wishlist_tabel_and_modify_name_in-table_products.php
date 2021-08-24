@@ -17,10 +17,8 @@ class CreatWishlistTabelAndModifyNameInTableProducts extends Migration
             $table->id();
             $table->integer('u_id');
             $table->integer('pro_id');
+            $table->integer('count')->default(1);
             $table->timestamps();
-        });
-        Schema::table('products', function (Blueprint $table) {
-            $table->string('name',250)->change();
         });
     }
 

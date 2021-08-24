@@ -30,11 +30,9 @@
                                                 @foreach ($data_pro as $item)
                                                     <tr class="mb-3">
                                                         <td colspan="3">
-                                                            <?php foreach (json_decode($item->img_product)as $picture) { ?>
                                                             <img style="width: 100px;"
-                                                                src="/images/imgProduct/{{ $picture }}" alt=""
+                                                                src="/images/imgProduct/{{ $item->img_product }}" alt=""
                                                                 class="img-fluid">
-                                                            <?php break; } ?>
                                                             {{ $item->name }}
                                                         </td>
                                                         <td>

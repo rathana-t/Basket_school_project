@@ -15,12 +15,15 @@
                                 <label for="exampleInputEmail1">Product</label>
                                 <input type="text" class="form-control" id="exampleInputPhone" placeholder="Product name"
                                     value="{{ $pro_name }}" name="pro_name">
-
-                                <label for="exampleInputEmail1" class="mt-2">Sort</label>
-                                <select class="form-control" id="exampleFormControlSelect1" name="sort">
-                                    <option value="h_l" @if ($sort == 'h_l') selected @endif>High-low</option>
-                                    <option value="l_h" @if ($sort == 'l_h') selected @endif>Low-high</option>
+                                <label for="exampleInputEmail1" class="mt-2">brand</label>
+                                <select class="form-control" id="exampleFormControlSelect1" name="brand_id">
+                                    <option value="{{ $brand_id }}">All brands</option>
+                                    @foreach ($brand as $item)
+                                        <option value="{{ $item->id }}" @if ($item->id == $brandId) selected @endif>
+                                            {{ $item->name }}</option>
+                                    @endforeach
                                 </select>
+
 
                                 <label for="exampleInputEmail1" class="mt-2">Price</label>
                                 <div class="row">
@@ -34,13 +37,10 @@
                                     </div>
                                 </div>
 
-                                <label for="exampleInputEmail1" class="mt-2">brand</label>
-                                <select class="form-control" id="exampleFormControlSelect1" name="brand_id">
-                                    <option value="{{ $brand_id }}">All brands</option>
-                                    @foreach ($brand as $item)
-                                        <option value="{{ $item->id }}" @if ($item->id == $brandId) selected @endif>
-                                            {{ $item->name }}</option>
-                                    @endforeach
+                                <label for="exampleInputEmail1" class="mt-2">Sort</label>
+                                <select class="form-control" id="exampleFormControlSelect1" name="sort">
+                                    <option value="h_l" @if ($sort == 'h_l') selected @endif>High-low</option>
+                                    <option value="l_h" @if ($sort == 'l_h') selected @endif>Low-high</option>
                                 </select>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary mt-3">
@@ -86,7 +86,7 @@
                     @endforeach
                 </div>
             </div>
-            {{ $data->links() }}
         </div>
+        {{ $data->links() }}
     </div>
 @endsection

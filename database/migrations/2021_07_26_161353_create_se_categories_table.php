@@ -18,6 +18,7 @@ class CreateSeCategoriesTable extends Migration
             $table->string('name',30);
             $table->string('secondarycategory_img',1000);
             $table->integer('category_id');
+            $table->integer('count')->default(1);
             $table->timestamps();
         });
     }

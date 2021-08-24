@@ -95,9 +95,11 @@ class SellerController extends Controller
                 if ($validPassword) {
                     session()->put('seller', $seller->id);
                     if ($req->has('remeberme')) {
-                        Cookie::queue('sellerPhone', $seller->phone, 1440);
+                        Cookie::queue(cookie()->forever('sellerPhone', $seller->phone));
+                        Cookie::queue(cookie()->forever('sellerPass', $req->password));
+                        // Cookie::queue('sellerPhone', $seller->phone, 1440);
                         Cookie::queue(Cookie::forget('sellerEmail'));
-                        Cookie::queue('sellerPass', $req->password, 1440);
+                        // Cookie::queue('sellerPass', $req->password, 1440);
                     } else {
                         Cookie::queue(Cookie::forget('sellerEmail'));
                         Cookie::queue(Cookie::forget('sellerPhone'));
@@ -118,9 +120,11 @@ class SellerController extends Controller
                 if ($validPassword) {
                     session()->put('seller', $seller->id);
                     if ($req->has('remeberme')) {
-                        Cookie::queue('sellerEmail', $seller->email, 1440);
+                        Cookie::queue(cookie()->forever('sellerEmail', $seller->email));
+                        Cookie::queue(cookie()->forever('sellerPass', $req->password));
+                        // Cookie::queue('sellerEmail', $seller->email, 1440);
                         Cookie::queue(Cookie::forget('sellerPhone'));
-                        Cookie::queue('sellerPass', $req->password, 1440);
+                        // Cookie::queue('sellerPass', $req->password, 1440);
                     } else {
                         Cookie::queue(Cookie::forget('sellerPhone'));
                         Cookie::queue(Cookie::forget('sellerEmail'));
@@ -392,19 +396,73 @@ class SellerController extends Controller
     }
     public function postProduct(Request $req, $id)
     {
+        $pro = new products();
+
         $req->validate([
-            'imageFile' => 'required',
-            'imageFile.*' => 'mimes:jpeg,webp.jpg,png,gif,csv,txt,pdf|max:2048'
+            'cover_img' => 'mimes:jpeg,webp.jpg,png,gif|max:2048',
+            'sub_img1' => 'mimes:jpeg,webp.jpg,png,gif|max:2048',
+            'sub_img2' => 'mimes:jpeg,webp.jpg,png,gif|max:2048',
+            'sub_img3' => 'mimes:jpeg,webp.jpg,png,gif|max:2048',
+            'sub_img4' => 'mimes:jpeg,webp.jpg,png,gif|max:2048',
+            'sub_img5' => 'mimes:jpeg,webp.jpg,png,gif|max:2048',
+            'sub_img6' => 'mimes:jpeg,webp.jpg,png,gif|max:2048',
+            'sub_img7' => 'mimes:jpeg,webp.jpg,png,gif|max:2048',
         ]);
-        if ($req->hasfile('imageFile')) {
-            foreach ($req->file('imageFile') as $file) {
-                $name = uniqid() . $file->getClientOriginalExtension();
-                $file->move(public_path() . '/images/imgProduct/', $name);
-                $imgData[] = $name;
+        if ($req->hasfile('cover_img')) {
+            $file = $req->file('cover_img');
+            $filename = uniqid() . $file->getClientOriginalExtension();
+            $file->move(public_path() . '/images/imgProduct/', $filename);
+            $pro->img_product = $filename;
+
             }
+        if ($req->hasfile('sub_img1')) {
+            $file1 = $req->file('sub_img1');
+            $filename1 = uniqid() . $file1->getClientOriginalExtension();
+            $file1->move(public_path() . '/images/imgProduct/', $filename1);
+            $pro->sub_img1 = $filename1;
 
-            $pro = new products();
+        }
+        if ($req->hasfile('sub_img2')) {
+            $file2 = $req->file('sub_img2');
+            $filename2 = uniqid() . $file2->getClientOriginalExtension();
+            $file2->move(public_path() . '/images/imgProduct/', $filename2);
+            $pro->sub_img2 = $filename2;
 
+        }
+        if ($req->hasfile('sub_img3')) {
+            $file3 = $req->file('sub_img3');
+            $filename3 = uniqid() . $file3->getClientOriginalExtension();
+            $file3->move(public_path() . '/images/imgProduct/', $filename3);
+            $pro->sub_img3 = $filename3;
+
+        }
+        if ($req->hasfile('sub_img4')) {
+            $file4 = $req->file('sub_img4');
+            $filename4 = uniqid() . $file4->getClientOriginalExtension();
+            $file4->move(public_path() . '/images/imgProduct/', $filename4);
+            $pro->sub_img4 = $filename4;
+
+        }
+        if ($req->hasfile('sub_img5')) {
+            $file5 = $req->file('sub_img5');
+            $filename5 = uniqid() . $file5->getClientOriginalExtension();
+            $file5->move(public_path() . '/images/imgProduct/', $filename5);
+            $pro->sub_img5 = $filename5;
+
+        }
+        if ($req->hasfile('sub_img6')) {
+            $file6 = $req->file('sub_img6');
+            $filename6 = uniqid() . $file6->getClientOriginalExtension();
+            $file6->move(public_path() . '/images/imgProduct/', $filename6);
+            $pro->sub_img6 = $filename6;
+
+        }
+        if ($req->hasfile('sub_img7')) {
+            $file7 = $req->file('sub_img7');
+            $filename7 = uniqid() . $file7->getClientOriginalExtension();
+            $file7->move(public_path() . '/images/imgProduct/', $filename7);
+            $pro->sub_img7 = $filename7;
+        }
             $pro->name = $req->name;
             $pro->price = $req->price;
             $pro->description = $req->description;
@@ -412,9 +470,8 @@ class SellerController extends Controller
             $pro->brand_id = $req->brand_id;
             $pro->s_cat_id = $req->category_id;
             $pro->category_id = $id;
-            $pro->img_product = json_encode($imgData);
             $pro->seller_id = $req->session()->get('seller');
-        }
+
         $pro->save();
         return redirect('/seller/productPending')->with('product_add', 'Your product has been add successfully!');
     }

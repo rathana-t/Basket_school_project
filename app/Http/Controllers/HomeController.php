@@ -300,7 +300,7 @@ class HomeController extends Controller
                 }
             }
         }
-
+        $data->appends($req->all());
         if (session()->has('user')) {
             $data_user = users::findOrFail(session('user'));
             return view('home/search', compact('second_cate', 'data', 'pro_name', 'sort', 'brand', 'data_user', 'brand_id', 'brandId', 'max_price', 'min_price'));

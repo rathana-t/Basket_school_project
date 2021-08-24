@@ -7,21 +7,87 @@
             <div class="card">
                 <div class="row">
                     <div class="col-md-6 border-right">
-                        <?php foreach (json_decode($item->img_product)as $picture) { ?>
-                        <img src="{{ asset('images/imgProduct') }}/{{ $picture }}" alt="" class="img-fluid p-4">
-                        <?php break; } ?>
+                        <img src="{{ asset('images/imgProduct') }}/{{ $item->img_product }}" alt=""
+                            class="img-fluid p-4">
                         <div class="p-2">
                             <div class="wrapper">
-                                <?php foreach (json_decode($item->img_product)as $picture) { ?>
-                                <div class="col-md-4">
-                                    <div class="Item mb-2 card">
-                                        <div class="p-2">
-                                            <img src="{{ asset('images/imgProduct') }}/{{ $picture }}" alt=""
-                                                class="img-fluid">
+                                @if ($item->sub_img1)
+                                    <div class="col-md-4">
+                                        <div class="Item mb-2 card">
+                                            <div class="p-2">
+                                                <img src="{{ asset('images/imgProduct') }}/{{ $item->sub_img1 }}" alt=""
+                                                    class="img-fluid">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <?php } ?>
+                                @endif
+                                @if ($item->sub_img2)
+                                    <div class="col-md-4">
+                                        <div class="Item mb-2 card">
+                                            <div class="p-2">
+                                                <img src="{{ asset('images/imgProduct') }}/{{ $item->sub_img2 }}" alt=""
+                                                    class="img-fluid">
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+
+                                @if ($item->sub_img3)
+                                    <div class="col-md-4">
+                                        <div class="Item mb-2 card">
+                                            <div class="p-2">
+                                                <img src="{{ asset('images/imgProduct') }}/{{ $item->sub_img3 }}" alt=""
+                                                    class="img-fluid">
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+
+                                @if ($item->sub_img4)
+                                    <div class="col-md-4">
+                                        <div class="Item mb-2 card">
+                                            <div class="p-2">
+                                                <img src="{{ asset('images/imgProduct') }}/{{ $item->sub_img4 }}" alt=""
+                                                    class="img-fluid">
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+
+                                @if ($item->sub_img5)
+                                    <div class="col-md-4">
+                                        <div class="Item mb-2 card">
+                                            <div class="p-2">
+                                                <img src="{{ asset('images/imgProduct') }}/{{ $item->sub_img5 }}"
+                                                    alt="" class="img-fluid">
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+
+                                @if ($item->sub_img6)
+                                    <div class="col-md-4">
+                                        <div class="Item mb-2 card">
+                                            <div class="p-2">
+                                                <img src="{{ asset('images/imgProduct') }}/{{ $item->sub_img6 }}"
+                                                    alt="" class="img-fluid">
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+
+                                @if ($item->sub_img7)
+                                    <div class="col-md-4">
+                                        <div class="Item mb-2 card">
+                                            <div class="p-2">
+                                                <img src="{{ asset('images/imgProduct') }}/{{ $item->sub_img7 }}"
+                                                    alt="" class="img-fluid">
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+
+
                             </div>
                         </div>
                     </div>

@@ -16,6 +16,7 @@ class CreateBrandsTable extends Migration
         Schema::create('brands', function (Blueprint $table) {
             $table->id();
             $table->string('name',50);
+            $table->string('brand_img', 1024);
             $table->integer('count')->default(1);
             $table->timestamps();
         });
@@ -27,7 +28,7 @@ class CreateBrandsTable extends Migration
      * @return void
      */
     public function down()
-    { 
+    {
         Schema::dropIfExists('brands');
     }
 }

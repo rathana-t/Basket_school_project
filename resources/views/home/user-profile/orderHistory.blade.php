@@ -35,10 +35,8 @@
                                 </div>
                                 <div class="row d-flex justify-content-between">
                                     <div class="col-md-3 col-sm-5 col">
-                                        <?php foreach (json_decode($item->img_product)as $picture) { ?>
-                                        <img src="{{ asset('images/imgProduct') }}/{{ $picture }}" alt=""
+                                        <img src="{{ asset('images/imgProduct') }}/{{ $item->img_product }}" alt=""
                                             class="img-fluid">
-                                        <?php break; } ?>
                                     </div>
                                     <div class="col-md-9 col-sm-7 col">
                                         <div class="text-left ">

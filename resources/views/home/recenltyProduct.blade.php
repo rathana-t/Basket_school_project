@@ -18,10 +18,8 @@
                         <div class="col-md-3 col-sm-6 col-xs-12">
                             <div class="mb-3">
                                 <a href="/recenltyProduct/product/{{ $item->id }}">
-                                    <?php foreach (json_decode($item->img_product)as $picture) { ?>
-                                    <img src="{{ asset('images/imgProduct') }}/{{ $picture }}" alt=""
+                                    <img src="{{ asset('images/imgProduct') }}/{{ $item->img_product }}" alt=""
                                         class="img-fluid">
-                                    <?php break; } ?>
                                 </a>
                                 <div class="pl-3 pr-3 pb-3">
                                     <div class="product_name">
