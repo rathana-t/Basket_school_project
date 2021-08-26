@@ -1,7 +1,9 @@
 @extends('seller\seller')
 
 @section('sidebar-content')
-    <div class="container">
+    @include('/seller/components/product')
+
+    <div class="container mt-4">
         @foreach ($cat as $item)
             <form action="{{ route('sellerpostProduct', $item->main_cat_id) }}" method="POST"
                 enctype="multipart/form-data">

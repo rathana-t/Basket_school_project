@@ -26,11 +26,16 @@
     }
 
     body {
-        background-color: rgb(248, 248, 248) !important;
+        --bg-opacity: 1;
+        background-color: rgba(247, 250, 252, var(--bg-opacity));
     }
 
     .dashboard a {
         text-decoration: none;
+    }
+
+    .dashboard .bg-light {
+        background-color: #ffffffd2 !important;
     }
 
     .dashboard a:hover {
@@ -364,6 +369,7 @@
     }
 
     .table td {
+        height: 50px !important;
         vertical-align: middle;
     }
 
@@ -420,8 +426,8 @@
 
     .product-list img {
         width: 100px;
-        height: 100px;
-        object-fit: cover;
+        height: 60px;
+        object-fit: contain;
         border-radius: 5px;
     }
 

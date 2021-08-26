@@ -2,6 +2,8 @@
 
 @section('sidebar-content')
     @include('seller\components\msg')
+    @include('/seller/components/product')
+
     <div class="category mt-4">
         <div class="text-center">
             <h5>

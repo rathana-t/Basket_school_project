@@ -3,9 +3,9 @@
 @section('sidebar-content')
     <div class="container">
         <div class="text-center">
-            <h1>
+            <h5 class="mb-3">
                 Update Info
-            </h1>
+            </h5>
         </div>
         @foreach ($pros as $pro)
 
