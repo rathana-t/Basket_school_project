@@ -140,7 +140,11 @@ class HomeController extends Controller
             ->where('products.id', $id)
             ->select('products.*', 'categories.name as cat_name', 'brands.name as brand_name', 'se_categories.name as se_cate')
             ->get();
-        $related_pro = products::where('category_id', $product_id->category_id)->get();
+        $related_pro = products::where('category_id', $product_id->category_id)
+        ->join('sellers', 'products.seller_id', '=', 'sellers.id')
+        ->select('products.*', 'sellers.store_name')
+        ->where('completed', 1)
+        ->get();
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
             return view('home/detailPage', compact('data_user', 'detail_pro', 'related_pro','second_cate', 'product_id'));
@@ -160,7 +164,10 @@ class HomeController extends Controller
             ->where('products.id', $id)
             ->select('products.*', 'categories.name as cat_name', 'brands.name as brand_name', 'se_categories.name as se_cate')
             ->get();
-        $related_pro = products::where('category_id', $product_id->category_id)->get();
+        $related_pro = products::where('category_id', $product_id->category_id)
+        ->join('sellers', 'products.seller_id', '=', 'sellers.id')
+        ->select('products.*', 'sellers.store_name')
+        ->where('completed', 1)->get();
 
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
@@ -181,7 +188,11 @@ class HomeController extends Controller
             ->where('products.id', $id1)
             ->select('products.*', 'categories.name as cat_name', 'brands.name as brand_name', 'se_categories.name as se_cate')
             ->get();
-        $related_pro = products::where('category_id', $product_id->category_id)->get();
+        $related_pro = products::where('category_id', $product_id->category_id)
+        ->join('sellers', 'products.seller_id', '=', 'sellers.id')
+        ->select('products.*', 'sellers.store_name')
+        ->where('completed', 1)
+        ->get();
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
             return view('home/detailPage', compact('data_user','related_pro', 'detail_pro', 'second_cate', 'product_id', 'smallCate'));
@@ -200,7 +211,11 @@ class HomeController extends Controller
             ->where('products.id', $id1)
             ->select('products.*', 'categories.name as cat_name', 'brands.name as brand_name', 'se_categories.name as se_cate')
             ->get();
-        $related_pro = products::where('category_id', $product_id->category_id)->get();
+        $related_pro = products::where('category_id', $product_id->category_id)
+        ->join('sellers', 'products.seller_id', '=', 'sellers.id')
+        ->select('products.*', 'sellers.store_name')
+        ->where('completed', 1)
+        ->get();
 
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
