@@ -60,8 +60,8 @@
                         <div class="form" style="height: 400px">
                             <div class="grid">
                                 <div class="form-element">
-                                    <input type="file" id="file-1" accept="image/*" value="{{ $pro->img_product }}"
-                                        name="cover_img">
+                                    <input type="file" id="file-1" accept="image/*" name="cover_img"
+                                        value="{{ $pro->img_product }}">
                                     <label for="file-1" id="file-1-preview">
                                         @if ($pro->img_product == '')
                                             <img src="{{ asset('img_null.jpg') }}" alt="">
@@ -76,8 +76,8 @@
                                     </label>
                                 </div>
                                 <div class="form-element">
-                                    <input type="file" id="file-2" accept="image/*" value="{{ $pro->sub_img1 }}"
-                                        name="sub_img1">
+                                    <input type="file" id="file-2" accept="image/*" name="sub_img1"
+                                        value="{{ $pro->sub_img1 }}">
                                     <label for="file-2" id="file-2-preview">
                                         @if ($pro->sub_img1 == '')
                                             <img src="{{ asset('img_null.jpg') }}" alt="">
@@ -91,7 +91,8 @@
                                     </label>
                                 </div>
                                 <div class="form-element">
-                                    <input type="file" id="file-3" accept="image/*" name="sub_img2">
+                                    <input type="file" id="file-3" accept="image/*" name="sub_img2"
+                                        value="{{ $pro->sub_img2 }}">
                                     <label for="file-3" id="file-3-preview">
                                         @if ($pro->sub_img2 == '')
                                             <img src="{{ asset('img_null.jpg') }}" alt="">
@@ -106,7 +107,8 @@
                                     </label>
                                 </div>
                                 <div class="form-element">
-                                    <input type="file" id="file-4" accept="image/*" name="sub_img3">
+                                    <input type="file" id="file-4" accept="image/*" name="sub_img3"
+                                        value="{{ $pro->sub_img3 }}">
                                     <label for="file-4" id="file-4-preview">
                                         @if ($pro->sub_img3 == '')
                                             <img src="{{ asset('img_null.jpg') }}" alt="">
@@ -121,7 +123,8 @@
                                     </label>
                                 </div>
                                 <div class="form-element">
-                                    <input type="file" id="file-5" accept="image/*" name="sub_img4">
+                                    <input type="file" id="file-5" accept="image/*" name="sub_img4"
+                                        value="{{ $pro->sub_img4 }}">
                                     <label for="file-5" id="file-5-preview">
                                         @if ($pro->sub_img4 == '')
                                             <img src="{{ asset('img_null.jpg') }}" alt="">
@@ -136,7 +139,8 @@
                                     </label>
                                 </div>
                                 <div class="form-element">
-                                    <input type="file" id="file-6" accept="image/*" name="sub_img5">
+                                    <input type="file" id="file-6" accept="image/*" name="sub_img5"
+                                        value="{{ $pro->sub_img5 }}">
                                     <label for="file-6" id="file-6-preview">
                                         @if ($pro->sub_img5 == '')
                                             <img src="{{ asset('img_null.jpg') }}" alt="">
@@ -151,7 +155,8 @@
                                     </label>
                                 </div>
                                 <div class="form-element">
-                                    <input type="file" id="file-7" accept="image/*" name="sub_img6">
+                                    <input type="file" id="file-7" accept="image/*" name="sub_img6"
+                                        value="{{ $pro->sub_img6 }}">
                                     <label for="file-7" id="file-7-preview">
                                         @if ($pro->sub_img6 == '')
                                             <img src="{{ asset('img_null.jpg') }}" alt="">
@@ -166,7 +171,8 @@
                                     </label>
                                 </div>
                                 <div class="form-element">
-                                    <input type="file" id="file-8" accept="image/*" name="sub_img7">
+                                    <input type="file" id="file-8" accept="image/*" name="sub_img7"
+                                        value="{{ $pro->sub_img7 }}">
                                     <label for="file-8" id="file-8-preview">
                                         @if ($pro->sub_img7 == '')
                                             <img src="{{ asset('img_null.jpg') }}" alt="">

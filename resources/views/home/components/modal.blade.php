@@ -36,14 +36,14 @@
                 <div class="modal-body text-center">
                     {{-- @foreach ($data_pro as $item)
                     @if ($item->cart_id == 1)
-                        <input style="width: 100px" type="number" min="1" class="text-center"
+                        <input style="width: 100px" type="number" min="1" class="text-center" max="10000"
                             value="{{ $item->quantity }}" name="edit_cart_value" id="">
                     @endif
                 @endforeach --}}
                     <div class="row">
                         <div class="col-md-4 offset-md-4">
                             <input type="number" min="1" class="form-control form-control-sm" name="edit_cart_value"
-                                id="" value="1" required>
+                                max="10000" id="" value="1" required>
                             <input type="hidden" name="edit_cart_id" id="edit_cart_id">
                         </div>
                     </div>

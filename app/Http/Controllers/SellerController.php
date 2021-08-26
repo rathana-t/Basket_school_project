@@ -494,14 +494,14 @@ class SellerController extends Controller
         $pro = new products();
 
         $req->validate([
-            'cover_img' => 'mimes:jpeg,webp.jpg,png,gif|max:2048',
-            'sub_img1' => 'mimes:jpeg,webp.jpg,png,gif|max:2048',
-            'sub_img2' => 'mimes:jpeg,webp.jpg,png,gif|max:2048',
-            'sub_img3' => 'mimes:jpeg,webp.jpg,png,gif|max:2048',
-            'sub_img4' => 'mimes:jpeg,webp.jpg,png,gif|max:2048',
-            'sub_img5' => 'mimes:jpeg,webp.jpg,png,gif|max:2048',
-            'sub_img6' => 'mimes:jpeg,webp.jpg,png,gif|max:2048',
-            'sub_img7' => 'mimes:jpeg,webp.jpg,png,gif|max:2048',
+            'cover_img' => 'mimes:jpeg,webp,jpg,png,gif|max:2048',
+            'sub_img1' => 'mimes:jpeg,webp,jpg,png,gif|max:2048',
+            'sub_img2' => 'mimes:jpeg,webp,jpg,png,gif|max:2048',
+            'sub_img3' => 'mimes:jpeg,webp,jpg,png,gif|max:2048',
+            'sub_img4' => 'mimes:jpeg,webp,jpg,png,gif|max:2048',
+            'sub_img5' => 'mimes:jpeg,webp,jpg,png,gif|max:2048',
+            'sub_img6' => 'mimes:jpeg,webp,jpg,png,gif|max:2048',
+            'sub_img7' => 'mimes:jpeg,webp,jpg,png,gif|max:2048',
         ]);
         if ($req->hasfile('cover_img')) {
             $file = $req->file('cover_img');

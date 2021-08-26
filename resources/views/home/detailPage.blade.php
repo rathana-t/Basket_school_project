@@ -9,12 +9,37 @@
                 <div class="card">
                     <div class="row">
                         <div class="col-md-6 border-right">
-                            <img src="{{ asset('images/imgProduct') }}/{{ $item->img_product }}" alt=""
+
+                            <img id="main" src="{{ asset('images/imgProduct') }}/{{ $item->img_product }}" alt=""
                                 class="img-fluid p-4">
+                            <img id="sub_img1_main" src="{{ asset('images/imgProduct') }}/{{ $item->sub_img1 }}" alt=""
+                                class="img-fluid p-4" style="display: none;">
+                            <img id="sub_img2_main" src="{{ asset('images/imgProduct') }}/{{ $item->sub_img2 }}" alt=""
+                                class="img-fluid p-4" style="display: none;">
+                            <img id="sub_img3_main" src="{{ asset('images/imgProduct') }}/{{ $item->sub_img3 }}" alt=""
+                                class="img-fluid p-4" style="display: none;">
+                            <img id="sub_img4_main" src="{{ asset('images/imgProduct') }}/{{ $item->sub_img4 }}" alt=""
+                                class="img-fluid p-4" style="display: none;">
+                            <img id="sub_img5_main" src="{{ asset('images/imgProduct') }}/{{ $item->sub_img5 }}"
+                                alt="" class="img-fluid p-4" style="display: none;">
+                            <img id="sub_img6_main" src="{{ asset('images/imgProduct') }}/{{ $item->sub_img6 }}"
+                                alt="" class="img-fluid p-4" style="display: none;">
+                            <img id="sub_img7_main" src="{{ asset('images/imgProduct') }}/{{ $item->sub_img7 }}"
+                                alt="" class="img-fluid p-4" style="display: none;">
+
+
                             <div class="p-2">
                                 <div class="wrapper">
+                                    <div class="col-md-4" id="main_sub" style="display: none;" onclick="main()">
+                                        <div class="Item mb-2 card">
+                                            <div class="p-2">
+                                                <img src="{{ asset('images/imgProduct') }}/{{ $item->img_product }}"
+                                                    alt="" class="img-fluid">
+                                            </div>
+                                        </div>
+                                    </div>
                                     @if ($item->sub_img1)
-                                        <div class="col-md-4">
+                                        <div class="col-md-4" id="sub_img1" onclick="sub_img1()">
                                             <div class="Item mb-2 card">
                                                 <div class="p-2">
                                                     <img src="{{ asset('images/imgProduct') }}/{{ $item->sub_img1 }}"
@@ -24,7 +49,7 @@
                                         </div>
                                     @endif
                                     @if ($item->sub_img2)
-                                        <div class="col-md-4">
+                                        <div class="col-md-4" id="sub_img2" onclick="sub_img2()">
                                             <div class="Item mb-2 card">
                                                 <div class="p-2">
                                                     <img src="{{ asset('images/imgProduct') }}/{{ $item->sub_img2 }}"
@@ -35,7 +60,7 @@
                                     @endif
 
                                     @if ($item->sub_img3)
-                                        <div class="col-md-4">
+                                        <div class="col-md-4" id="sub_img3" onclick="sub_img3()">
                                             <div class="Item mb-2 card">
                                                 <div class="p-2">
                                                     <img src="{{ asset('images/imgProduct') }}/{{ $item->sub_img3 }}"
@@ -46,7 +71,7 @@
                                     @endif
 
                                     @if ($item->sub_img4)
-                                        <div class="col-md-4">
+                                        <div class="col-md-4" id="sub_img4" onclick="sub_img4()">
                                             <div class="Item mb-2 card">
                                                 <div class="p-2">
                                                     <img src="{{ asset('images/imgProduct') }}/{{ $item->sub_img4 }}"
@@ -57,7 +82,7 @@
                                     @endif
 
                                     @if ($item->sub_img5)
-                                        <div class="col-md-4">
+                                        <div class="col-md-4" id="sub_img5" onclick="sub_img5()">
                                             <div class="Item mb-2 card">
                                                 <div class="p-2">
                                                     <img src="{{ asset('images/imgProduct') }}/{{ $item->sub_img5 }}"
@@ -68,7 +93,7 @@
                                     @endif
 
                                     @if ($item->sub_img6)
-                                        <div class="col-md-4">
+                                        <div class="col-md-4" id="sub_img6" onclick="sub_img6()">
                                             <div class="Item mb-2 card">
                                                 <div class="p-2">
                                                     <img src="{{ asset('images/imgProduct') }}/{{ $item->sub_img6 }}"
@@ -79,7 +104,7 @@
                                     @endif
 
                                     @if ($item->sub_img7)
-                                        <div class="col-md-4">
+                                        <div class="col-md-4" id="sub_img7" onclick="sub_img7()">
                                             <div class="Item mb-2 card">
                                                 <div class="p-2">
                                                     <img src="{{ asset('images/imgProduct') }}/{{ $item->sub_img7 }}"
@@ -150,29 +175,6 @@
                                                 <input type="hidden" value="{{ $data_user->id }}" name="user_id">
                                                 <input type="hidden" value="{{ $item->id }}" name="product_id">
                                                 <input type="hidden" value="{{ $item->price }}" name="total">
-
-                                                {{-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-                                                    <div class="form-group" style="width: 130px">
-                                                        <div class="input-group">
-                                                            <span class="input-group-btn">
-                                                                <button style="height: 34px" type="button"
-                                                                    class="btn btn-danger btn-number" data-type="minus"
-                                                                    data-field="quantity">-
-                                                                    <span class="glyphicon glyphicon-minus"></span>
-                                                                </button>
-                                                            </span>
-                                                            <input style="height: 34px" type="text" name="quantity"
-                                                                class="form-control input-number" value="1" min="1"
-                                                                max="{{ $item->stock }}">
-                                                            <span class="input-group-btn">
-                                                                <button style="height: 34px" type="button"
-                                                                    class="btn btn-success btn-number" data-type="plus"
-                                                                    data-field="quantity">+
-                                                                    <span class="glyphicon glyphicon-plus"></span>
-                                                                </button>
-                                                            </span>
-                                                        </div>
-                                                    </div> --}}
                                                 <input type="number" class="form-control form-control-sm" value="1"
                                                     id="quantity" placeholder="Qty" required name="quantity" min="1"
                                                     max="{{ $item->stock }}" style="width: 170px">
@@ -235,110 +237,185 @@
                         </div>
                     </div>
                 </div>
-                <div class="mt-5 related-product">
-                    <p class="font-weight-light">All related Product</p>
-                </div>
             </div>
         @endforeach
-    </div>
+        <div class="product pt-4 pb-2" id="Product">
+            <div class="mt-5 related-product">
+                <p class="font-weight-light">All related Product</p>
+            </div>
+            <div class="product-item">
+                <div class="row">
+                    @foreach ($related_pro as $item)
+                        @if ($item->s_cat_id == $product_id->s_cat_id)
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="card mb-3">
+                                    <div class="m-3">
+                                        <a href="/product/product/{{ $item->id }}">
+                                            <img src="{{ asset('images/imgProduct') }}/{{ $item->img_product }}"
+                                                alt="" class="img-fluid">
+                                        </a>
+                                    </div>
 
-    @if (Session::has('add-to-cart-success'))
-        <script>
-            $(document).ready(function() {
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Add to cart',
-                    showConfirmButton: false,
-                    timer: 1000
-                })
-            });
-        </script>
-    @endif
-    @if (Session::has('add-to-wishlist-success'))
-        <script>
-            $(document).ready(function() {
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Add to wishlist',
-                    showConfirmButton: false,
-                    timer: 1000
-                })
-            });
-        </script>
-    @endif
-    <script>
-        //plugin bootstrap minus and plus
-        //http://jsfiddle.net/laelitenetwork/puJ6G/
-        $('.btn-number').click(function(e) {
-            e.preventDefault();
+                                    <div class="border-top">
+                                        <div class="pl-4 pr-4 pb-2 pt-2">
+                                            <div class="product_name">
+                                                <a href="/product/product/{{ $item->id }}">
+                                                    <div class="b">
+                                                        {{ $item->name }}
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="price">
+                                                <a href="/product/product/{{ $item->id }}">
+                                                    ${{ $item->price }}
+                                                </a>
+                                            </div>
+                                            <div class="store_name">
+                                                <a href="/store/{{ $item->seller_id }}" class="text-muted">
+                                                    {{ $item->store_name }}
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach
 
-            fieldName = $(this).attr('data-field');
-            type = $(this).attr('data-type');
-            var input = $("input[name='" + fieldName + "']");
-            var currentVal = parseInt(input.val());
-            if (!isNaN(currentVal)) {
-                if (type == 'minus') {
+                    @foreach ($related_pro as $item)
+                        @if ($item->s_cat_id != $product_id->s_cat_id)
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="card mb-3">
+                                    <div class="m-3">
+                                        <a href="/product/product/{{ $item->id }}">
+                                            <img src="{{ asset('images/imgProduct') }}/{{ $item->img_product }}"
+                                                alt="" class="img-fluid">
+                                        </a>
+                                    </div>
 
-                    if (currentVal > input.attr('min')) {
-                        input.val(currentVal - 1).change();
-                    }
-                    if (parseInt(input.val()) == input.attr('min')) {
-                        $(this).attr('disabled', true);
-                    }
+                                    <div class="border-top">
+                                        <div class="pl-4 pr-4 pb-2 pt-2">
+                                            <div class="product_name">
+                                                <a href="/product/product/{{ $item->id }}">
+                                                    <div class="b">
+                                                        {{ $item->name }}
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="price">
+                                                <a href="/product/product/{{ $item->id }}">
+                                                    ${{ $item->price }}
+                                                </a>
+                                            </div>
+                                            <div class="store_name">
+                                                <a href="/store/{{ $item->seller_id }}" class="text-muted">
+                                                    {{ $item->store_name }}
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach
+                </div>
+                @if (Session::has('add-to-cart-success'))
+                    <script>
+                        $(document).ready(function() {
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Add to cart',
+                                showConfirmButton: false,
+                                timer: 1000
+                            })
+                        });
+                    </script>
+                @endif
+                @if (Session::has('add-to-wishlist-success'))
+                    <script>
+                        $(document).ready(function() {
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Add to wishlist',
+                                showConfirmButton: false,
+                                timer: 1000
+                            })
+                        });
+                    </script>
+                @endif
+                <script>
+                    //plugin bootstrap minus and plus
+                    //http://jsfiddle.net/laelitenetwork/puJ6G/
+                    $('.btn-number').click(function(e) {
+                        e.preventDefault();
 
-                } else if (type == 'plus') {
+                        fieldName = $(this).attr('data-field');
+                        type = $(this).attr('data-type');
+                        var input = $("input[name='" + fieldName + "']");
+                        var currentVal = parseInt(input.val());
+                        if (!isNaN(currentVal)) {
+                            if (type == 'minus') {
 
-                    if (currentVal < input.attr('max')) {
-                        input.val(currentVal + 1).change();
-                    }
-                    if (parseInt(input.val()) == input.attr('max')) {
-                        $(this).attr('disabled', true);
-                    }
+                                if (currentVal > input.attr('min')) {
+                                    input.val(currentVal - 1).change();
+                                }
+                                if (parseInt(input.val()) == input.attr('min')) {
+                                    $(this).attr('disabled', true);
+                                }
 
-                }
-            } else {
-                input.val(0);
-            }
-        });
-        $('.input-number').focusin(function() {
-            $(this).data('oldValue', $(this).val());
-        });
-        $('.input-number').change(function() {
+                            } else if (type == 'plus') {
 
-            minValue = parseInt($(this).attr('min'));
-            maxValue = parseInt($(this).attr('max'));
-            valueCurrent = parseInt($(this).val());
+                                if (currentVal < input.attr('max')) {
+                                    input.val(currentVal + 1).change();
+                                }
+                                if (parseInt(input.val()) == input.attr('max')) {
+                                    $(this).attr('disabled', true);
+                                }
 
-            name = $(this).attr('name');
-            if (valueCurrent >= minValue) {
-                $(".btn-number[data-type='minus'][data-field='" + name + "']").removeAttr('disabled')
-            } else {
-                alert('Sorry, the minimum value was reached');
-                $(this).val($(this).data('oldValue'));
-            }
-            if (valueCurrent <= maxValue) {
-                $(".btn-number[data-type='plus'][data-field='" + name + "']").removeAttr('disabled')
-            } else {
-                alert('Sorry, the maximum value was reached');
-                $(this).val($(this).data('oldValue'));
-            }
-        });
-        $(".input-number").keydown(function(e) {
-            // Allow: backspace, delete, tab, escape, enter and .
-            if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 190]) !== -1 ||
-                // Allow: Ctrl+A
-                (e.keyCode == 65 && e.ctrlKey === true) ||
-                // Allow: home, end, left, right
-                (e.keyCode >= 35 && e.keyCode <= 39)) {
-                // let it happen, don't do anything
-                return;
-            }
-            // Ensure that it is a number and stop the keypress
-            if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
-                e.preventDefault();
-            }
-        });
-    </script>
-@stop
+                            }
+                        } else {
+                            input.val(0);
+                        }
+                    });
+                    $('.input-number').focusin(function() {
+                        $(this).data('oldValue', $(this).val());
+                    });
+                    $('.input-number').change(function() {
+
+                        minValue = parseInt($(this).attr('min'));
+                        maxValue = parseInt($(this).attr('max'));
+                        valueCurrent = parseInt($(this).val());
+
+                        name = $(this).attr('name');
+                        if (valueCurrent >= minValue) {
+                            $(".btn-number[data-type='minus'][data-field='" + name + "']").removeAttr('disabled')
+                        } else {
+                            alert('Sorry, the minimum value was reached');
+                            $(this).val($(this).data('oldValue'));
+                        }
+                        if (valueCurrent <= maxValue) {
+                            $(".btn-number[data-type='plus'][data-field='" + name + "']").removeAttr('disabled')
+                        } else {
+                            alert('Sorry, the maximum value was reached');
+                            $(this).val($(this).data('oldValue'));
+                        }
+                    });
+                    $(".input-number").keydown(function(e) {
+                        // Allow: backspace, delete, tab, escape, enter and .
+                        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 190]) !== -1 ||
+                            // Allow: Ctrl+A
+                            (e.keyCode == 65 && e.ctrlKey === true) ||
+                            // Allow: home, end, left, right
+                            (e.keyCode >= 35 && e.keyCode <= 39)) {
+                            // let it happen, don't do anything
+                            return;
+                        }
+                        // Ensure that it is a number and stop the keypress
+                        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                            e.preventDefault();
+                        }
+                    });
+                </script>
+            @stop
