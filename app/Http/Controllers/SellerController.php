@@ -503,61 +503,401 @@ class SellerController extends Controller
             'sub_img6' => 'mimes:jpeg,webp,jpg,png,gif|max:2048',
             'sub_img7' => 'mimes:jpeg,webp,jpg,png,gif|max:2048',
         ]);
+
         if ($req->hasfile('cover_img')) {
             $file = $req->file('cover_img');
             $filename = uniqid() . $file->getClientOriginalExtension();
             $file->move(public_path() . '/images/imgProduct/', $filename);
             $pro->img_product = $filename;
 
+            if ($req->hasfile('sub_img1')) {
+                $file1 = $req->file('sub_img1');
+                $filename1 = uniqid() . $file1->getClientOriginalExtension();
+                $file1->move(public_path() . '/images/imgProduct/', $filename1);
+                $pro->sub_img1 = $filename1;
             }
-        if ($req->hasfile('sub_img1')) {
-            $file1 = $req->file('sub_img1');
-            $filename1 = uniqid() . $file1->getClientOriginalExtension();
-            $file1->move(public_path() . '/images/imgProduct/', $filename1);
-            $pro->sub_img1 = $filename1;
+            if ($req->hasfile('sub_img2')) {
+                $file2 = $req->file('sub_img2');
+                $filename2 = uniqid() . $file2->getClientOriginalExtension();
+                $file2->move(public_path() . '/images/imgProduct/', $filename2);
+                $pro->sub_img2 = $filename2;
 
-        }
-        if ($req->hasfile('sub_img2')) {
-            $file2 = $req->file('sub_img2');
-            $filename2 = uniqid() . $file2->getClientOriginalExtension();
-            $file2->move(public_path() . '/images/imgProduct/', $filename2);
-            $pro->sub_img2 = $filename2;
+            }
+            if ($req->hasfile('sub_img3')) {
+                $file3 = $req->file('sub_img3');
+                $filename3 = uniqid() . $file3->getClientOriginalExtension();
+                $file3->move(public_path() . '/images/imgProduct/', $filename3);
+                $pro->sub_img3 = $filename3;
 
-        }
-        if ($req->hasfile('sub_img3')) {
-            $file3 = $req->file('sub_img3');
-            $filename3 = uniqid() . $file3->getClientOriginalExtension();
-            $file3->move(public_path() . '/images/imgProduct/', $filename3);
-            $pro->sub_img3 = $filename3;
+            }
+            if ($req->hasfile('sub_img4')) {
+                $file4 = $req->file('sub_img4');
+                $filename4 = uniqid() . $file4->getClientOriginalExtension();
+                $file4->move(public_path() . '/images/imgProduct/', $filename4);
+                $pro->sub_img4 = $filename4;
 
-        }
-        if ($req->hasfile('sub_img4')) {
-            $file4 = $req->file('sub_img4');
-            $filename4 = uniqid() . $file4->getClientOriginalExtension();
-            $file4->move(public_path() . '/images/imgProduct/', $filename4);
-            $pro->sub_img4 = $filename4;
+            }
+            if ($req->hasfile('sub_img5')) {
+                $file5 = $req->file('sub_img5');
+                $filename5 = uniqid() . $file5->getClientOriginalExtension();
+                $file5->move(public_path() . '/images/imgProduct/', $filename5);
+                $pro->sub_img5 = $filename5;
 
-        }
-        if ($req->hasfile('sub_img5')) {
-            $file5 = $req->file('sub_img5');
-            $filename5 = uniqid() . $file5->getClientOriginalExtension();
-            $file5->move(public_path() . '/images/imgProduct/', $filename5);
-            $pro->sub_img5 = $filename5;
+            }
+            if ($req->hasfile('sub_img6')) {
+                $file6 = $req->file('sub_img6');
+                $filename6 = uniqid() . $file6->getClientOriginalExtension();
+                $file6->move(public_path() . '/images/imgProduct/', $filename6);
+                $pro->sub_img6 = $filename6;
 
-        }
-        if ($req->hasfile('sub_img6')) {
-            $file6 = $req->file('sub_img6');
-            $filename6 = uniqid() . $file6->getClientOriginalExtension();
-            $file6->move(public_path() . '/images/imgProduct/', $filename6);
-            $pro->sub_img6 = $filename6;
+            }
+            if ($req->hasfile('sub_img7')) {
+                $file7 = $req->file('sub_img7');
+                $filename7 = uniqid() . $file7->getClientOriginalExtension();
+                $file7->move(public_path() . '/images/imgProduct/', $filename7);
+                $pro->sub_img7 = $filename7;
+            }
+            }else{
+                if ($req->hasfile('sub_img1')) {
+                    $file1 = $req->file('sub_img1');
+                    $filename1 = uniqid() . $file1->getClientOriginalExtension();
+                    $file1->move(public_path() . '/images/imgProduct/', $filename1);
+                    $pro->img_product = $filename1;
 
-        }
-        if ($req->hasfile('sub_img7')) {
-            $file7 = $req->file('sub_img7');
-            $filename7 = uniqid() . $file7->getClientOriginalExtension();
-            $file7->move(public_path() . '/images/imgProduct/', $filename7);
-            $pro->sub_img7 = $filename7;
-        }
+                    if ($req->hasfile('sub_img2')) {
+                        $file2 = $req->file('sub_img2');
+                        $filename2 = uniqid() . $file2->getClientOriginalExtension();
+                        $file2->move(public_path() . '/images/imgProduct/', $filename2);
+                        $pro->sub_img2 = $filename2;
+
+                    }
+                    if ($req->hasfile('sub_img3')) {
+                        $file3 = $req->file('sub_img3');
+                        $filename3 = uniqid() . $file3->getClientOriginalExtension();
+                        $file3->move(public_path() . '/images/imgProduct/', $filename3);
+                        $pro->sub_img3 = $filename3;
+
+                    }
+                    if ($req->hasfile('sub_img4')) {
+                        $file4 = $req->file('sub_img4');
+                        $filename4 = uniqid() . $file4->getClientOriginalExtension();
+                        $file4->move(public_path() . '/images/imgProduct/', $filename4);
+                        $pro->sub_img4 = $filename4;
+
+                    }
+                    if ($req->hasfile('sub_img5')) {
+                        $file5 = $req->file('sub_img5');
+                        $filename5 = uniqid() . $file5->getClientOriginalExtension();
+                        $file5->move(public_path() . '/images/imgProduct/', $filename5);
+                        $pro->sub_img5 = $filename5;
+
+                    }
+                    if ($req->hasfile('sub_img6')) {
+                        $file6 = $req->file('sub_img6');
+                        $filename6 = uniqid() . $file6->getClientOriginalExtension();
+                        $file6->move(public_path() . '/images/imgProduct/', $filename6);
+                        $pro->sub_img6 = $filename6;
+
+                    }
+                    if ($req->hasfile('sub_img7')) {
+                        $file7 = $req->file('sub_img7');
+                        $filename7 = uniqid() . $file7->getClientOriginalExtension();
+                        $file7->move(public_path() . '/images/imgProduct/', $filename7);
+                        $pro->sub_img7 = $filename7;
+                    }
+                }
+                elseif ($req->hasfile('sub_img2')) {
+                    $file2 = $req->file('sub_img2');
+                    $filename2 = uniqid() . $file2->getClientOriginalExtension();
+                    $file2->move(public_path() . '/images/imgProduct/', $filename2);
+                    $pro->img_product = $filename2;
+
+                    if ($req->hasfile('sub_img1')) {
+                        $file1 = $req->file('sub_img1');
+                        $filename1 = uniqid() . $file1->getClientOriginalExtension();
+                        $file1->move(public_path() . '/images/imgProduct/', $filename1);
+                        $pro->sub_img1 = $filename1;
+                    }
+
+                    if ($req->hasfile('sub_img3')) {
+                        $file3 = $req->file('sub_img3');
+                        $filename3 = uniqid() . $file3->getClientOriginalExtension();
+                        $file3->move(public_path() . '/images/imgProduct/', $filename3);
+                        $pro->sub_img3 = $filename3;
+
+                    }
+                    if ($req->hasfile('sub_img4')) {
+                        $file4 = $req->file('sub_img4');
+                        $filename4 = uniqid() . $file4->getClientOriginalExtension();
+                        $file4->move(public_path() . '/images/imgProduct/', $filename4);
+                        $pro->sub_img4 = $filename4;
+
+                    }
+                    if ($req->hasfile('sub_img5')) {
+                        $file5 = $req->file('sub_img5');
+                        $filename5 = uniqid() . $file5->getClientOriginalExtension();
+                        $file5->move(public_path() . '/images/imgProduct/', $filename5);
+                        $pro->sub_img5 = $filename5;
+
+                    }
+                    if ($req->hasfile('sub_img6')) {
+                        $file6 = $req->file('sub_img6');
+                        $filename6 = uniqid() . $file6->getClientOriginalExtension();
+                        $file6->move(public_path() . '/images/imgProduct/', $filename6);
+                        $pro->sub_img6 = $filename6;
+
+                    }
+                    if ($req->hasfile('sub_img7')) {
+                        $file7 = $req->file('sub_img7');
+                        $filename7 = uniqid() . $file7->getClientOriginalExtension();
+                        $file7->move(public_path() . '/images/imgProduct/', $filename7);
+                        $pro->sub_img7 = $filename7;
+                    }
+                }
+                elseif ($req->hasfile('sub_img3')) {
+                    $file3 = $req->file('sub_img3');
+                    $filename3 = uniqid() . $file3->getClientOriginalExtension();
+                    $file3->move(public_path() . '/images/imgProduct/', $filename3);
+                    $pro->img_product = $filename3;
+
+                    if ($req->hasfile('sub_img1')) {
+                        $file1 = $req->file('sub_img1');
+                        $filename1 = uniqid() . $file1->getClientOriginalExtension();
+                        $file1->move(public_path() . '/images/imgProduct/', $filename1);
+                        $pro->sub_img1 = $filename1;
+                    }
+                    if ($req->hasfile('sub_img2')) {
+                        $file2 = $req->file('sub_img2');
+                        $filename2 = uniqid() . $file2->getClientOriginalExtension();
+                        $file2->move(public_path() . '/images/imgProduct/', $filename2);
+                        $pro->sub_img2 = $filename2;
+
+                    }
+
+                    if ($req->hasfile('sub_img4')) {
+                        $file4 = $req->file('sub_img4');
+                        $filename4 = uniqid() . $file4->getClientOriginalExtension();
+                        $file4->move(public_path() . '/images/imgProduct/', $filename4);
+                        $pro->sub_img4 = $filename4;
+
+                    }
+                    if ($req->hasfile('sub_img5')) {
+                        $file5 = $req->file('sub_img5');
+                        $filename5 = uniqid() . $file5->getClientOriginalExtension();
+                        $file5->move(public_path() . '/images/imgProduct/', $filename5);
+                        $pro->sub_img5 = $filename5;
+
+                    }
+                    if ($req->hasfile('sub_img6')) {
+                        $file6 = $req->file('sub_img6');
+                        $filename6 = uniqid() . $file6->getClientOriginalExtension();
+                        $file6->move(public_path() . '/images/imgProduct/', $filename6);
+                        $pro->sub_img6 = $filename6;
+
+                    }
+                    if ($req->hasfile('sub_img7')) {
+                        $file7 = $req->file('sub_img7');
+                        $filename7 = uniqid() . $file7->getClientOriginalExtension();
+                        $file7->move(public_path() . '/images/imgProduct/', $filename7);
+                        $pro->sub_img7 = $filename7;
+                    }
+                }
+                elseif ($req->hasfile('sub_img4')) {
+                    $file4 = $req->file('sub_img4');
+                    $filename4 = uniqid() . $file4->getClientOriginalExtension();
+                    $file4->move(public_path() . '/images/imgProduct/', $filename4);
+                    $pro->img_product = $filename4;
+
+                    if ($req->hasfile('sub_img1')) {
+                        $file1 = $req->file('sub_img1');
+                        $filename1 = uniqid() . $file1->getClientOriginalExtension();
+                        $file1->move(public_path() . '/images/imgProduct/', $filename1);
+                        $pro->sub_img1 = $filename1;
+                    }
+                    if ($req->hasfile('sub_img2')) {
+                        $file2 = $req->file('sub_img2');
+                        $filename2 = uniqid() . $file2->getClientOriginalExtension();
+                        $file2->move(public_path() . '/images/imgProduct/', $filename2);
+                        $pro->sub_img2 = $filename2;
+
+                    }
+                    if ($req->hasfile('sub_img3')) {
+                        $file3 = $req->file('sub_img3');
+                        $filename3 = uniqid() . $file3->getClientOriginalExtension();
+                        $file3->move(public_path() . '/images/imgProduct/', $filename3);
+                        $pro->sub_img3 = $filename3;
+
+                    }
+
+                    if ($req->hasfile('sub_img5')) {
+                        $file5 = $req->file('sub_img5');
+                        $filename5 = uniqid() . $file5->getClientOriginalExtension();
+                        $file5->move(public_path() . '/images/imgProduct/', $filename5);
+                        $pro->sub_img5 = $filename5;
+
+                    }
+                    if ($req->hasfile('sub_img6')) {
+                        $file6 = $req->file('sub_img6');
+                        $filename6 = uniqid() . $file6->getClientOriginalExtension();
+                        $file6->move(public_path() . '/images/imgProduct/', $filename6);
+                        $pro->sub_img6 = $filename6;
+
+                    }
+                    if ($req->hasfile('sub_img7')) {
+                        $file7 = $req->file('sub_img7');
+                        $filename7 = uniqid() . $file7->getClientOriginalExtension();
+                        $file7->move(public_path() . '/images/imgProduct/', $filename7);
+                        $pro->sub_img7 = $filename7;
+                    }
+                }
+                elseif ($req->hasfile('sub_img5')) {
+                    $file5 = $req->file('sub_img5');
+                    $filename5 = uniqid() . $file5->getClientOriginalExtension();
+                    $file5->move(public_path() . '/images/imgProduct/', $filename5);
+                    $pro->img_product = $filename5;
+
+                    if ($req->hasfile('sub_img1')) {
+                        $file1 = $req->file('sub_img1');
+                        $filename1 = uniqid() . $file1->getClientOriginalExtension();
+                        $file1->move(public_path() . '/images/imgProduct/', $filename1);
+                        $pro->sub_img1 = $filename1;
+                    }
+                    if ($req->hasfile('sub_img2')) {
+                        $file2 = $req->file('sub_img2');
+                        $filename2 = uniqid() . $file2->getClientOriginalExtension();
+                        $file2->move(public_path() . '/images/imgProduct/', $filename2);
+                        $pro->sub_img2 = $filename2;
+
+                    }
+                    if ($req->hasfile('sub_img3')) {
+                        $file3 = $req->file('sub_img3');
+                        $filename3 = uniqid() . $file3->getClientOriginalExtension();
+                        $file3->move(public_path() . '/images/imgProduct/', $filename3);
+                        $pro->sub_img3 = $filename3;
+
+                    }
+                    if ($req->hasfile('sub_img4')) {
+                        $file4 = $req->file('sub_img4');
+                        $filename4 = uniqid() . $file4->getClientOriginalExtension();
+                        $file4->move(public_path() . '/images/imgProduct/', $filename4);
+                        $pro->sub_img4 = $filename4;
+
+                    }
+
+                    if ($req->hasfile('sub_img6')) {
+                        $file6 = $req->file('sub_img6');
+                        $filename6 = uniqid() . $file6->getClientOriginalExtension();
+                        $file6->move(public_path() . '/images/imgProduct/', $filename6);
+                        $pro->sub_img6 = $filename6;
+
+                    }
+                    if ($req->hasfile('sub_img7')) {
+                        $file7 = $req->file('sub_img7');
+                        $filename7 = uniqid() . $file7->getClientOriginalExtension();
+                        $file7->move(public_path() . '/images/imgProduct/', $filename7);
+                        $pro->sub_img7 = $filename7;
+                    }
+                }
+                elseif ($req->hasfile('sub_img6')) {
+                    $file6 = $req->file('sub_img6');
+                    $filename6 = uniqid() . $file6->getClientOriginalExtension();
+                    $file6->move(public_path() . '/images/imgProduct/', $filename6);
+                    $pro->img_product = $filename6;
+
+                    if ($req->hasfile('sub_img1')) {
+                        $file1 = $req->file('sub_img1');
+                        $filename1 = uniqid() . $file1->getClientOriginalExtension();
+                        $file1->move(public_path() . '/images/imgProduct/', $filename1);
+                        $pro->sub_img1 = $filename1;
+                    }
+                    if ($req->hasfile('sub_img2')) {
+                        $file2 = $req->file('sub_img2');
+                        $filename2 = uniqid() . $file2->getClientOriginalExtension();
+                        $file2->move(public_path() . '/images/imgProduct/', $filename2);
+                        $pro->sub_img2 = $filename2;
+
+                    }
+                    if ($req->hasfile('sub_img3')) {
+                        $file3 = $req->file('sub_img3');
+                        $filename3 = uniqid() . $file3->getClientOriginalExtension();
+                        $file3->move(public_path() . '/images/imgProduct/', $filename3);
+                        $pro->sub_img3 = $filename3;
+
+                    }
+                    if ($req->hasfile('sub_img4')) {
+                        $file4 = $req->file('sub_img4');
+                        $filename4 = uniqid() . $file4->getClientOriginalExtension();
+                        $file4->move(public_path() . '/images/imgProduct/', $filename4);
+                        $pro->sub_img4 = $filename4;
+
+                    }
+                    if ($req->hasfile('sub_img5')) {
+                        $file5 = $req->file('sub_img5');
+                        $filename5 = uniqid() . $file5->getClientOriginalExtension();
+                        $file5->move(public_path() . '/images/imgProduct/', $filename5);
+                        $pro->sub_img5 = $filename5;
+
+                    }
+
+                    if ($req->hasfile('sub_img7')) {
+                        $file7 = $req->file('sub_img7');
+                        $filename7 = uniqid() . $file7->getClientOriginalExtension();
+                        $file7->move(public_path() . '/images/imgProduct/', $filename7);
+                        $pro->sub_img7 = $filename7;
+                    }
+                }
+                elseif ($req->hasfile('sub_img7')) {
+                    $file7 = $req->file('sub_img7');
+                    $filename7 = uniqid() . $file7->getClientOriginalExtension();
+                    $file7->move(public_path() . '/images/imgProduct/', $filename7);
+                    $pro->img_product = $filename7;
+
+                    if ($req->hasfile('sub_img1')) {
+                        $file1 = $req->file('sub_img1');
+                        $filename1 = uniqid() . $file1->getClientOriginalExtension();
+                        $file1->move(public_path() . '/images/imgProduct/', $filename1);
+                        $pro->sub_img1 = $filename1;
+                    }
+                    if ($req->hasfile('sub_img2')) {
+                        $file2 = $req->file('sub_img2');
+                        $filename2 = uniqid() . $file2->getClientOriginalExtension();
+                        $file2->move(public_path() . '/images/imgProduct/', $filename2);
+                        $pro->sub_img2 = $filename2;
+
+                    }
+                    if ($req->hasfile('sub_img3')) {
+                        $file3 = $req->file('sub_img3');
+                        $filename3 = uniqid() . $file3->getClientOriginalExtension();
+                        $file3->move(public_path() . '/images/imgProduct/', $filename3);
+                        $pro->sub_img3 = $filename3;
+
+                    }
+                    if ($req->hasfile('sub_img4')) {
+                        $file4 = $req->file('sub_img4');
+                        $filename4 = uniqid() . $file4->getClientOriginalExtension();
+                        $file4->move(public_path() . '/images/imgProduct/', $filename4);
+                        $pro->sub_img4 = $filename4;
+
+                    }
+                    if ($req->hasfile('sub_img5')) {
+                        $file5 = $req->file('sub_img5');
+                        $filename5 = uniqid() . $file5->getClientOriginalExtension();
+                        $file5->move(public_path() . '/images/imgProduct/', $filename5);
+                        $pro->sub_img5 = $filename5;
+
+                    }
+                    if ($req->hasfile('sub_img6')) {
+                        $file6 = $req->file('sub_img6');
+                        $filename6 = uniqid() . $file6->getClientOriginalExtension();
+                        $file6->move(public_path() . '/images/imgProduct/', $filename6);
+                        $pro->sub_img6 = $filename6;
+
+                    }
+
+                }
+            }
+
+
             $pro->name = $req->name;
             $pro->price = $req->price;
             $pro->description = $req->description;

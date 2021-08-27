@@ -13,7 +13,7 @@
                                         d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
                                 </svg>
                                 <input type="file" class="uploadFile img" value="Upload Photo" accept="image/*"
-                                    name="cover_img" required style="width: 0px;height: 0px;overflow: hidden;">
+                                    name="cover_img" style="width: 0px;height: 0px;overflow: hidden;">
                             </label>
                         </div>
                     </div>

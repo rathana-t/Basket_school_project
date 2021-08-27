@@ -43,7 +43,7 @@
                     <div class="row">
                         <div class="col-md-4 offset-md-4">
                             <input type="number" min="1" class="form-control form-control-sm" name="edit_cart_value"
-                                max="10000" id="" value="1" required>
+                                max="10000" id="" placeholder="new quantity" required>
                             <input type="hidden" name="edit_cart_id" id="edit_cart_id">
                         </div>
                     </div>

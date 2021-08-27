@@ -55,8 +55,9 @@
                                 </div>
                             </div>
                         </div>
-                        <label for="img_product">Image Product</label>
-
+                        <div class="mt-3 mb-3">
+                            Images
+                        </div>
                         <div class="form" style="height: 400px">
                             <div class="grid">
                                 <div class="form-element">
@@ -72,7 +73,6 @@
                                         <div>
                                             <span>+</span>
                                         </div>
-                                        <span>cover image</span>
                                     </label>
                                 </div>
                                 <div class="form-element">
@@ -87,7 +87,6 @@
                                         <div>
                                             <span>+</span>
                                         </div>
-                                        <span>sub image</span>
                                     </label>
                                 </div>
                                 <div class="form-element">
@@ -102,7 +101,6 @@
                                         <div>
                                             <span>+</span>
                                         </div>
-                                        <span>sub image</span>
 
                                     </label>
                                 </div>
@@ -118,7 +116,6 @@
                                         <div>
                                             <span>+</span>
                                         </div>
-                                        <span>sub image</span>
 
                                     </label>
                                 </div>
@@ -134,7 +131,6 @@
                                         <div>
                                             <span>+</span>
                                         </div>
-                                        <span>sub image</span>
 
                                     </label>
                                 </div>
@@ -150,7 +146,6 @@
                                         <div>
                                             <span>+</span>
                                         </div>
-                                        <span>sub image</span>
 
                                     </label>
                                 </div>
@@ -166,7 +161,6 @@
                                         <div>
                                             <span>+</span>
                                         </div>
-                                        <span>sub image</span>
 
                                     </label>
                                 </div>
@@ -182,19 +176,20 @@
                                         <div>
                                             <span>+</span>
                                         </div>
-                                        <span>sub image</span>
-
                                     </label>
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <div class="text-right mt-3">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
                     </div>
                 </div>
             </form>
         @endforeach
-
     </div>
+
+
     <script>
         function previewBeforeUpload(id) {
             document.querySelector("#" + id).addEventListener("change", function(e) {
