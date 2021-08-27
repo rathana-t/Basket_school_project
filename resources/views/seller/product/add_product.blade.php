@@ -58,12 +58,11 @@
                         </div>
                     </div>
                 </div>
-                <label for="img_product" style="width: 800px">Image Product
-                    <div style="margin-left:25%">
-                        !! you must upload at least <span class="text-primary">1 cover with 1 sub image</span> !!
-                    </div>
-                </label>
-                <div class="form" style="height: 400px">
+                <div class="mt-3 mb-3">
+                    Images
+                </div>
+                @include('/seller/components/preViewImg')
+                {{-- <div class="form" style="height: 400px">
                     <div class="grid">
                         <div class="form-element">
                             <input type="file" id="file-1" accept="image/*" name="cover_img" required>
@@ -152,15 +151,15 @@
                             </label>
                         </div>
                     </div>
-                </div>
-                <div class="text-center">
-                    <button type="submit" style="width: 200px" class="btn btn-primary">Submit</button>
+                </div> --}}
+                <div class="text-right mt-3">
+                    <button type="submit" class="btn btn-primary">Post</button>
                 </div>
             </div>
         </div>
         </form>
     </div>
-    <script>
+    {{-- <script>
         function previewBeforeUpload(id) {
             document.querySelector("#" + id).addEventListener("change", function(e) {
                 if (e.target.files.length == 0) {
@@ -168,7 +167,7 @@
                 }
                 let file = e.target.files[0];
                 let url = URL.createObjectURL(file);
-                {{-- document.querySelector("#" + id + "-preview div").innerText = file.name; --}}
+                document.querySelector("#" + id + "-preview div").innerText = file.name;
                 document.querySelector("#" + id + "-preview img").src = url;
             });
         }
@@ -181,8 +180,8 @@
         previewBeforeUpload("file-6");
         previewBeforeUpload("file-7");
         previewBeforeUpload("file-8");
-    </script>
-    <style>
+    </script> --}}
+    {{-- <style>
         .form {
             margin: 0px;
             padding: 0px;
@@ -229,6 +228,6 @@
             font-size: 40px;
         }
 
-    </style>
+    </style> --}}
 
 @stop

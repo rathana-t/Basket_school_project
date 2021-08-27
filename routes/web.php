@@ -94,13 +94,13 @@ Route::post('/seller/postProduct/{id}', [SellerController::class, 'postProduct']
 Route::get('/seller/new-order', [SellerController::class, 'new_order'])->middleware('checker_seller');
 Route::get('/seller/processing', [SellerController::class, 'order_processing'])->middleware('checker_seller');
 Route::get('/seller/old-order', [SellerController::class, 'old_order'])->middleware('checker_seller');
-Route::get('/seller/profile', [SellerController::class, 'profile']);
-Route::get('/seller/editProfile', [SellerController::class, 'edit_profile']);
+Route::get('/seller/profile', [SellerController::class, 'profile'])->middleware('checker_seller');
+Route::get('/seller/editProfile', [SellerController::class, 'edit_profile'])->middleware('checker_seller');
 Route::post('/seller/accept-change', [SellerController::class, 'accept_change'])->name('acceptChange');
-Route::get('/seller/messages', [SellerController::class, 'sellerMessages']);
-Route::get('/seller/messages/{id}', [SellerController::class, 'detailMsg']);
-Route::get('/edit/product/{id}', [AdminController::class, 'edit'])->name('edit_product');
-Route::post('/update/product/{id}', [ProductController::class, 'update'])->name('update_pro');
+Route::get('/seller/messages', [SellerController::class, 'sellerMessages'])->middleware('checker_seller');
+Route::get('/seller/messages/{id}', [SellerController::class, 'detailMsg'])->middleware('checker_seller');
+Route::get('/edit/product/{id}', [AdminController::class, 'edit'])->name('edit_product')->middleware('checker_seller');
+Route::post('/update/product/{id}', [ProductController::class, 'update'])->name('update_pro')->middleware('checker_seller');
 
 Route::prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'dashboard']);

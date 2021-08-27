@@ -342,6 +342,7 @@ class HomeController extends Controller
             ->join('se_categories', 'products.s_cat_id', '=', 'se_categories.id')
             ->join('sellers', 'products.seller_id', '=', 'sellers.id')
             ->where('se_categories.id', $id)
+            ->where('completed', 1)
             ->select('products.*', 'se_categories.id as sec_id', 'sellers.store_name')
             ->get();
         if (session()->has('user')) {
@@ -404,6 +405,7 @@ class HomeController extends Controller
             ->join('se_categories', 'se_categories.id', '=', 'products.s_cat_id')
             ->join('sellers', 'products.seller_id', '=', 'sellers.id')
             ->where('categories.id', $id)
+            ->where('completed', 1)
             ->select('products.*', 'categories.name as cateName', 'se_categories.name as se_cate', 'sellers.store_name')
             ->get();
         if (session()->has('user')) {

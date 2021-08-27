@@ -452,4 +452,40 @@
         text-overflow: ellipsis;
     }
 
+    /* .....  */
+    .previewImage .imagePreview {
+        width: 100%;
+        height: 150px;
+        background-position: center center;
+        background-color: #fff;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        display: inline-block;
+        position: relative;
+        -moz-box-shadow: 0 0 3px #ccc;
+        -webkit-box-shadow: 0 0 3px #ccc;
+        box-shadow: 0 0 3px #ccc;
+    }
+
+    .previewImage .hero-text {
+        text-align: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+    }
+
+    .previewImage .btn-dark {
+        display: block;
+        border-radius: 5px;
+        width: 100%;
+        opacity: 0.5;
+    }
+
+    .previewImage .imgUp {
+        margin-bottom: 15px;
+    }
+
 </style>
