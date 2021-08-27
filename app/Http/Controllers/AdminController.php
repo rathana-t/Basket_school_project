@@ -295,12 +295,12 @@ class AdminController extends Controller
         $brand_id = $req->input('delete_brand_id');
         $brand = brands::find($brand_id);
         $product = products::where('brand_id', $brand_id);
-        foreach ($product as $item) {
-            $imgaes = json_decode($item->img_product);
-            foreach ($imgaes as $file) {
-                unlink(public_path("images/imgProduct/") . $file);
-            }
-        }
+        // foreach ($product as $item) {
+        //     $imgaes = json_decode($item->img_product);
+        //     foreach ($imgaes as $file) {
+        //         unlink(public_path("images/imgProduct/") . $file);
+        //     }
+        // }
         $product->delete();
         $brand->delete();
         return redirect()->back()->with('delete-success', 'Product has been delete successfully');
@@ -309,10 +309,10 @@ class AdminController extends Controller
     {
         $product_id = $req->input('delete_product_id');
         $product = products::find($product_id);
-        $imgaes = json_decode($product->img_product);
-        foreach ($imgaes as $file) {
-            unlink(public_path("images/imgProduct/") . $file);
-        }
+        // $imgaes = json_decode($product->img_product);
+        // foreach ($imgaes as $file) {
+        //     unlink(public_path("images/imgProduct/") . $file);
+        // }
         $product->delete();
         return redirect()->back()->with('delete-success', 'Product has been delete successfully');
     }
@@ -321,12 +321,12 @@ class AdminController extends Controller
         $se_cate_id = $req->input('delete_se_cate_id');
         $se_cate = se_categories::find($se_cate_id);
         $product = products::where('s_cat_id', $se_cate_id);
-        foreach ($product as $item) {
-            $imgaes = json_decode($item->img_product);
-            foreach ($imgaes as $file) {
-                unlink(public_path("images/imgProduct/") . $file);
-            }
-        }
+        // foreach ($product as $item) {
+        //     $imgaes = json_decode($item->img_product);
+        //     foreach ($imgaes as $file) {
+        //         unlink(public_path("images/imgProduct/") . $file);
+        //     }
+        // }
         $se_cate->delete();
         $product->delete();
         return redirect()->back()->with('delete-se-cate', 'secondary category has been delete successfully');
@@ -337,12 +337,12 @@ class AdminController extends Controller
         $cat = categories::find($cat_id);
         $se_cate = se_categories::where('category_id', $cat_id);
         $product = products::where('category_id', $cat_id);
-        foreach ($product as $item) {
-            $imgaes = json_decode($item->img_product);
-            foreach ($imgaes as $file) {
-                unlink(public_path("images/imgProduct/") . $file);
-            }
-        }
+        // foreach ($product as $item) {
+        //     $imgaes = json_decode($item->img_product);
+        //     foreach ($imgaes as $file) {
+        //         unlink(public_path("images/imgProduct/") . $file);
+        //     }
+        // }
         $se_cate->delete();
         $cat->delete();
         $product->delete();
