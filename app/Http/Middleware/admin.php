@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use App\Models\users;
 use Exception;
+
 class admin
 {
     /**
@@ -18,11 +19,9 @@ class admin
     public function handle(Request $request, Closure $next)
     {
         $data_user = Users::findOrFail(session('user'));
-        if($data_user->type == 'admin'){
-            return redirect('/admin');
+        if ($data_user->type != "admin") {
+            abort(404);
         }
-        abort(404, '');
-            // return redirect('/Admin');
         return $next($request);
     }
 }
