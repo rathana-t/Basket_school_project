@@ -30,7 +30,7 @@
 
                             <div class="p-2">
                                 <div class="wrapper">
-                                    <div class="col-md-4" id="main_sub" style="display: none;" onclick="main()">
+                                    <div class="col-md-4" id="main_sub" onclick="main()">
                                         <div class="Item mb-2 card">
                                             <div class="p-2">
                                                 <img src="{{ asset('images/imgProduct') }}/{{ $item->img_product }}"

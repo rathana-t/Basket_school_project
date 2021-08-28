@@ -208,13 +208,9 @@ class UserController extends Controller
     }
     public function accept_switch(Request $req)
     {
-        // if (session()->has('user')) {
-        //     $data_user = Users::findOrFail(session('user'));
-        // } else {
-        //     return view('home/login', compact('second_cate'));
-        // }
-        // $second_cate = DB::table('se_categories')->get();
-        $data=$request()->validate([
+        Session::forget('user');
+        Session::forget('joined');
+        $data=request()->validate([
             'phone'=>'required',
             'password'=>'required',
         ]);
@@ -223,13 +219,12 @@ class UserController extends Controller
             $validPassword = Hash::check($data['password'], $user->password);
             if ($validPassword) {
                 session()->put('user', $user->id);
-                return $data;
-                // return redirect()->back()->with('success', "Successfully Login!");
+                return redirect('profile')->with('success', "Successfully Login!");
             }
-            // return redirect()->back()->with("fail", "Incorrect Phone Number or password!")->withInput();
         return redirect()->back()->with("fail", "Incorrect Phone Number or password!")->withInput();
     }
-        // return view('home/user-profile/switch', compact('data_user', 'second_cate'));
+    return redirect()->back()->with("fail", "Incorrect Phone Number or password!")->withInput();
+
     }
     public function confirm_order_prooduct()
     {

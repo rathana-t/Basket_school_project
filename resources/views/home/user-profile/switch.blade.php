@@ -4,7 +4,6 @@
     <div class="container">
         <div class="login">
             <h1 class="text-center pt-4 mb-4">
-                Login
             </h1>
             <div class="row justify-content-center">
                 <div class="col-md-5">
@@ -13,26 +12,26 @@
                             {{ session('fail') }}
                         </div>
                     @endif
-                    @if (session('message'))
+                    @if (session('success'))
                         <div class="text-success text-center" role="alert">
-                            {{ session('message') }}
+                            {{ session('success') }}
                         </div>
                     @endif
-                    <form action="accept" method="POST">
+                    <form action="{{ route('accept') }}" method="POST">
                         @csrf
                         <div class="card shadow-sm">
                             <div class="m-4">
                                 <div class="form-group">
                                     <label for="phone">Phone number</label>
                                     <input type="number" {{-- okdfkfdj --}} class="form-control" id="exampleInputPhone"
-                                        name="phone" @if (Cookie::has('userPhone')) value="{{ Cookie::get('userPhone') }}" @endif required>
+                                        name="phone" required>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Password</label>
                                     <div class="input-group">
                                         <input type="password" class="form-control" id="exampleInputPassword1"
-                                            name="password" @if (Cookie::has('userPass')) value="{{ Cookie::get('userPass') }}" @endif required>
+                                            name="password" required>
                                         <span class="input-group-btn btn-outline-light" id="eyeSlash">
                                             <button class="btn btn-dark" onclick="visibility3()" type="button"><i
                                                     class="fa fa-eye-slash" aria-hidden="true"></i></button>
@@ -44,9 +43,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col">
-                                        <a href="{{ url('/user_forget_pass') }}">Forget Password ?</a>
-                                    </div>
+
                                     <div class="col text-right">
                                         <button type="submit" class="btn btn-primary">Login</button>
                                     </div>

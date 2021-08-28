@@ -108,6 +108,7 @@
                                     <input type="file" id="file-4" accept="image/*" name="sub_img3"
                                         value="{{ $pro->sub_img3 }}">
                                     <label for="file-4" id="file-4-preview">
+
                                         @if ($pro->sub_img3 == '')
                                             <img src="{{ asset('img_null.jpg') }}" alt="">
                                         @else
@@ -131,7 +132,6 @@
                                         <div>
                                             <span>+</span>
                                         </div>
-
                                     </label>
                                 </div>
                                 <div class="form-element">

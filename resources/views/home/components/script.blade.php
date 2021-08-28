@@ -35,7 +35,7 @@
 
 
     function main() {
-        $('#main_sub').hide();
+        $('#main_sub').show();
         $('#main').show();
 
         $('#sub_img1').show();
@@ -59,7 +59,7 @@
         $('#main_sub').show();
         $('#main').hide();
 
-        $('#sub_img1').hide();
+        $('#sub_img1').show();
         $('#sub_img2').show();
         $('#sub_img3').show();
         $('#sub_img4').show();
@@ -81,7 +81,7 @@
         $('#main').hide();
 
         $('#sub_img1').show();
-        $('#sub_img2').hide();
+        $('#sub_img2').show();
         $('#sub_img3').show();
         $('#sub_img4').show();
         $('#sub_img5').show();
@@ -103,7 +103,7 @@
 
         $('#sub_img1').show();
         $('#sub_img2').show();
-        $('#sub_img3').hide();
+        $('#sub_img3').show();
         $('#sub_img4').show();
         $('#sub_img5').show();
         $('#sub_img6').show();
@@ -125,7 +125,7 @@
         $('#sub_img1').show();
         $('#sub_img2').show();
         $('#sub_img3').show();
-        $('#sub_img4').hide();
+        $('#sub_img4').show();
         $('#sub_img5').show();
         $('#sub_img6').show();
         $('#sub_img7').show();
@@ -147,7 +147,7 @@
         $('#sub_img2').show();
         $('#sub_img3').show();
         $('#sub_img4').show();
-        $('#sub_img5').hide();
+        $('#sub_img5').show();
         $('#sub_img6').show();
         $('#sub_img7').show();
 
@@ -169,7 +169,7 @@
         $('#sub_img3').show();
         $('#sub_img4').show();
         $('#sub_img5').show();
-        $('#sub_img6').hide();
+        $('#sub_img6').show();
         $('#sub_img7').show();
 
         $('#sub_img1_main').hide();
@@ -191,7 +191,7 @@
         $('#sub_img4').show();
         $('#sub_img5').show();
         $('#sub_img6').show();
-        $('#sub_img7').hide();
+        $('#sub_img7').show();
 
         $('#sub_img1_main').hide();
         $('#sub_img2_main').hide();
