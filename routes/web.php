@@ -105,33 +105,33 @@ Route::get('/edit/product/{id}', [AdminController::class, 'edit'])->name('edit_p
 Route::post('/update/product/{id}', [ProductController::class, 'update'])->name('update_pro')->middleware('checker_seller');
 
 Route::prefix('admin')->group(function () {
-    Route::get('/', [AdminController::class, 'dashboard']);
-    Route::get('/brand', [AdminController::class, 'brand']);
-    Route::get('/add-brand', [AdminController::class, 'addBrand']);
-    Route::post('/add-brand', [AdminController::class, 'storeBrand'])->name('brand.store');
-    Route::get('/category', [AdminController::class, 'category']);
-    Route::get('/add-category', [AdminController::class, 'addCategory']);
-    Route::post('/store-category', [AdminController::class, 'storeCategory'])->name('category_store');
+    Route::get('/', [AdminController::class, 'dashboard'])->middleware('admin');
+    Route::get('/brand', [AdminController::class, 'brand'])->middleware('admin');
+    Route::get('/add-brand', [AdminController::class, 'addBrand'])->middleware('admin');
+    Route::post('/add-brand', [AdminController::class, 'storeBrand'])->name('brand.store')->middleware('admin');
+    Route::get('/category', [AdminController::class, 'category'])->middleware('admin');
+    Route::get('/add-category', [AdminController::class, 'addCategory'])->middleware('admin');
+    Route::post('/store-category', [AdminController::class, 'storeCategory'])->name('category_store')->middleware('admin');
 
-    Route::post('/sendMsg', [AdminController::class, 'sendMsg'])->name('sendMsg');
+    Route::post('/sendMsg', [AdminController::class, 'sendMsg'])->name('sendMsg')->middleware('admin');
 
-    Route::get('/secondary-category', [AdminController::class, 'secondaryCategory']);
-    Route::get('/add-secondarycategory', [AdminController::class, 'addSecondaryCategory']);
-    Route::post('/store-Secondcategory', [AdminController::class, 'storeSecondCategory'])->name('secondcategory_store');
+    Route::get('/secondary-category', [AdminController::class, 'secondaryCategory'])->middleware('admin');
+    Route::get('/add-secondarycategory', [AdminController::class, 'addSecondaryCategory'])->middleware('admin');
+    Route::post('/store-Secondcategory', [AdminController::class, 'storeSecondCategory'])->name('secondcategory_store')->middleware('admin');
 
-    Route::get('/seller', [AdminController::class, 'seller']);
-    Route::get('/seller/{id}', [AdminController::class, 'sellerDetail'])->name('sellerHasProduct');
+    Route::get('/seller', [AdminController::class, 'seller'])->middleware('admin');
+    Route::get('/seller/{id}', [AdminController::class, 'sellerDetail'])->name('sellerHasProduct')->middleware('admin');
 
-    Route::get('/product', [AdminController::class, 'product']);
-    Route::get('/productRequest', [AdminController::class, 'productRequest']);
-    Route::get('/productRequest/{id}', [AdminController::class, 'productRequestDetail']);
-    Route::get('/productRequestUpdate/{id}', [AdminController::class, 'productRequestUpdate']);
-    Route::get('/product/{id}', [AdminController::class, 'productDetail']);
-    Route::delete('delete-product', [AdminController::class, 'delete']);
-    Route::delete('category-product', [AdminController::class, 'delete_cat']);
-    Route::delete('delete-brand', [AdminController::class, 'delete_brand']);
-    Route::delete('delete-se_cate_id', [AdminController::class, 'delete_se_cate']);
+    Route::get('/product', [AdminController::class, 'product'])->middleware('admin');
+    Route::get('/productRequest', [AdminController::class, 'productRequest'])->middleware('admin');
+    Route::get('/productRequest/{id}', [AdminController::class, 'productRequestDetail'])->middleware('admin');
+    Route::get('/productRequestUpdate/{id}', [AdminController::class, 'productRequestUpdate'])->middleware('admin');
+    Route::get('/product/{id}', [AdminController::class, 'productDetail'])->middleware('admin');
+    Route::delete('delete-product', [AdminController::class, 'delete'])->middleware('admin');
+    Route::delete('category-product', [AdminController::class, 'delete_cat'])->middleware('admin');
+    Route::delete('delete-brand', [AdminController::class, 'delete_brand'])->middleware('admin');
+    Route::delete('delete-se_cate_id', [AdminController::class, 'delete_se_cate'])->middleware('admin');
 
-    Route::get('/user', [AdminController::class, 'user']);
-    Route::get('/user/{id}', [AdminController::class, 'userDetail']);
+    Route::get('/user', [AdminController::class, 'user'])->middleware('admin');
+    Route::get('/user/{id}', [AdminController::class, 'userDetail'])->middleware('admin');
 });
