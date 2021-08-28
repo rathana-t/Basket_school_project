@@ -96,6 +96,12 @@ class HomeController extends Controller
     }
     public function login()
     {
+        if (session()->has('user')) {
+            $data_user = Users::findOrFail(session('user'));
+            if ($data_user->type == "admin") {
+                return redirect('/admin');
+            }
+        }
         $second_cate = DB::table('se_categories')->get();
         return view('home/login', compact('second_cate'));
     }
@@ -141,15 +147,15 @@ class HomeController extends Controller
             ->select('products.*', 'categories.name as cat_name', 'brands.name as brand_name', 'se_categories.name as se_cate')
             ->get();
         $related_pro = products::where('category_id', $product_id->category_id)
-        ->join('sellers', 'products.seller_id', '=', 'sellers.id')
-        ->select('products.*', 'sellers.store_name')
-        ->where('completed', 1)
-        ->get();
+            ->join('sellers', 'products.seller_id', '=', 'sellers.id')
+            ->select('products.*', 'sellers.store_name')
+            ->where('completed', 1)
+            ->get();
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
-            return view('home/detailPage', compact('data_user', 'detail_pro', 'related_pro','second_cate', 'product_id'));
+            return view('home/detailPage', compact('data_user', 'detail_pro', 'related_pro', 'second_cate', 'product_id'));
         } else {
-            return view('home/detailPage', compact('detail_pro', 'second_cate','related_pro', 'product_id'));
+            return view('home/detailPage', compact('detail_pro', 'second_cate', 'related_pro', 'product_id'));
         }
     }
 
@@ -165,15 +171,15 @@ class HomeController extends Controller
             ->select('products.*', 'categories.name as cat_name', 'brands.name as brand_name', 'se_categories.name as se_cate')
             ->get();
         $related_pro = products::where('category_id', $product_id->category_id)
-        ->join('sellers', 'products.seller_id', '=', 'sellers.id')
-        ->select('products.*', 'sellers.store_name')
-        ->where('completed', 1)->get();
+            ->join('sellers', 'products.seller_id', '=', 'sellers.id')
+            ->select('products.*', 'sellers.store_name')
+            ->where('completed', 1)->get();
 
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
-            return view('home/detailPage', compact('data_user','related_pro', 'detail_pro', 'second_cate', 'product_id', 'categoryId'));
+            return view('home/detailPage', compact('data_user', 'related_pro', 'detail_pro', 'second_cate', 'product_id', 'categoryId'));
         } else {
-            return view('home/detailPage', compact('detail_pro','related_pro', 'second_cate', 'product_id', 'categoryId'));
+            return view('home/detailPage', compact('detail_pro', 'related_pro', 'second_cate', 'product_id', 'categoryId'));
         }
     }
 
@@ -189,15 +195,15 @@ class HomeController extends Controller
             ->select('products.*', 'categories.name as cat_name', 'brands.name as brand_name', 'se_categories.name as se_cate')
             ->get();
         $related_pro = products::where('category_id', $product_id->category_id)
-        ->join('sellers', 'products.seller_id', '=', 'sellers.id')
-        ->select('products.*', 'sellers.store_name')
-        ->where('completed', 1)
-        ->get();
+            ->join('sellers', 'products.seller_id', '=', 'sellers.id')
+            ->select('products.*', 'sellers.store_name')
+            ->where('completed', 1)
+            ->get();
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
-            return view('home/detailPage', compact('data_user','related_pro', 'detail_pro', 'second_cate', 'product_id', 'smallCate'));
+            return view('home/detailPage', compact('data_user', 'related_pro', 'detail_pro', 'second_cate', 'product_id', 'smallCate'));
         } else {
-            return view('home/detailPage', compact('detail_pro', 'related_pro','second_cate', 'product_id', 'smallCate'));
+            return view('home/detailPage', compact('detail_pro', 'related_pro', 'second_cate', 'product_id', 'smallCate'));
         }
     }
     public function detail4($id, $id1)
@@ -212,16 +218,16 @@ class HomeController extends Controller
             ->select('products.*', 'categories.name as cat_name', 'brands.name as brand_name', 'se_categories.name as se_cate')
             ->get();
         $related_pro = products::where('category_id', $product_id->category_id)
-        ->join('sellers', 'products.seller_id', '=', 'sellers.id')
-        ->select('products.*', 'sellers.store_name')
-        ->where('completed', 1)
-        ->get();
+            ->join('sellers', 'products.seller_id', '=', 'sellers.id')
+            ->select('products.*', 'sellers.store_name')
+            ->where('completed', 1)
+            ->get();
 
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
-            return view('home/detailPage', compact('data_user','related_pro', 'detail_pro', 'second_cate', 'product_id', 'brand'));
+            return view('home/detailPage', compact('data_user', 'related_pro', 'detail_pro', 'second_cate', 'product_id', 'brand'));
         } else {
-            return view('home/detailPage', compact('detail_pro','related_pro', 'second_cate', 'product_id', 'brand'));
+            return view('home/detailPage', compact('detail_pro', 'related_pro', 'second_cate', 'product_id', 'brand'));
         }
     }
     public function blog()

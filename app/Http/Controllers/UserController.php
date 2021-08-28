@@ -60,15 +60,18 @@ class UserController extends Controller
             $validPassword = Hash::check($data['password'], $user->password);
             if ($validPassword) {
                 session()->put('user', $user->id);
-                if($req->has('remeberme')){
+                if ($req->has('remeberme')) {
                     Cookie::queue(cookie()->forever('userPhone', $req->phone));
                     Cookie::queue(cookie()->forever('userPass', $req->password));
                     // cookie()->forever('userPass', $req->password);
                     // Cookie::forev('userPhone',$req->phone,1440);
                     // Cookie::queue('userPass',$req->password,1440);
-                }else{
+                } else {
                     Cookie::queue(Cookie::forget('userPhone'));
                     Cookie::queue(Cookie::forget('userPass'));
+                }
+                if ($user->type == "admin") {
+                    return redirect('/admin');
                 }
                 return redirect('/')->with('success', "Successfully Login!");
             }
@@ -210,9 +213,9 @@ class UserController extends Controller
     {
         Session::forget('user');
         Session::forget('joined');
-        $data=request()->validate([
-            'phone'=>'required',
-            'password'=>'required',
+        $data = request()->validate([
+            'phone' => 'required',
+            'password' => 'required',
         ]);
         $user = DB::table('users')->where("phone", "=", $data["phone"])->first();
         if ($user) {
@@ -221,10 +224,9 @@ class UserController extends Controller
                 session()->put('user', $user->id);
                 return redirect('profile')->with('success', "Successfully Login!");
             }
+            return redirect()->back()->with("fail", "Incorrect Phone Number or password!")->withInput();
+        }
         return redirect()->back()->with("fail", "Incorrect Phone Number or password!")->withInput();
-    }
-    return redirect()->back()->with("fail", "Incorrect Phone Number or password!")->withInput();
-
     }
     public function confirm_order_prooduct()
     {
