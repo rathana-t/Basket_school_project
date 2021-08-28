@@ -49,6 +49,8 @@ Route::get('/history-order', [UserController::class, 'history_order'])->name('or
 Route::get('/wishlist', [UserController::class, 'wish_list'])->name('list-wish');
 Route::get('/changepassword', [UserController::class, 'ch_password'])->name('change-password');
 Route::post('/confirmChange/{id}', [UserController::class, 'confirm_ch'])->name('confirm-change');
+Route::get('/switchAccount', [UserController::class, 'switch_acc'])->name('switch-acc');
+Route::post('/acceptSwitch', [UserController::class, 'accept_switch'])->name('accept');
 Route::get('/logout', [UserController::class, 'logout'])->middleware('checker');
 Route::delete('remove-cart', [CartController::class, 'remove_cart']);
 Route::delete('remove-wishlist', [CartController::class, 'remove_wishlist']);

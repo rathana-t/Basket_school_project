@@ -194,6 +194,43 @@ class UserController extends Controller
         $second_cate = DB::table('se_categories')->get();
         return view('home/user-profile/orderHistory', compact('data_user', 'second_cate', 'data'));
     }
+    public function switch_acc()
+    {
+        $second_cate = DB::table('se_categories')->get();
+        if (session()->has('user')) {
+            $data_user = Users::findOrFail(session('user'));
+        } else {
+            return view('home/login');
+        }
+        // , 'second_cate'
+
+        return view('home/user-profile/switch', compact('data_user'));
+    }
+    public function accept_switch(Request $req)
+    {
+        // if (session()->has('user')) {
+        //     $data_user = Users::findOrFail(session('user'));
+        // } else {
+        //     return view('home/login', compact('second_cate'));
+        // }
+        // $second_cate = DB::table('se_categories')->get();
+        $data=$request()->validate([
+            'phone'=>'required',
+            'password'=>'required',
+        ]);
+        $user = DB::table('users')->where("phone", "=", $data["phone"])->first();
+        if ($user) {
+            $validPassword = Hash::check($data['password'], $user->password);
+            if ($validPassword) {
+                session()->put('user', $user->id);
+                return $data;
+                // return redirect()->back()->with('success', "Successfully Login!");
+            }
+            // return redirect()->back()->with("fail", "Incorrect Phone Number or password!")->withInput();
+        return redirect()->back()->with("fail", "Incorrect Phone Number or password!")->withInput();
+    }
+        // return view('home/user-profile/switch', compact('data_user', 'second_cate'));
+    }
     public function confirm_order_prooduct()
     {
         $second_cate = DB::table('se_categories')->get();
