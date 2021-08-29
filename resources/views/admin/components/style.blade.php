@@ -1,4 +1,46 @@
 <style>
+    .product h5 {
+        color: #323b49;
+        font-size: 20px;
+    }
+
+    .product a {
+        font-size: 12px;
+    }
+
+    .product .product-item .card:hover {
+        transition: 0.2s;
+        box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.15) !important;
+    }
+
+    .product .product-item img {
+        object-fit: contain;
+        height: 180px;
+        width: 300px;
+    }
+
+    .product .product-item .product_name a {
+        text-decoration: none;
+        font-size: 14px;
+        color: #323b49;
+    }
+
+    .product .product-item .store_name a {
+        text-decoration: none;
+        font-size: 14px;
+        color: #323b49;
+    }
+
+    .product .product-item .price a {
+        text-decoration: none;
+        font-size: 14px;
+        color: #323b49;
+    }
+
+    .product .product-item a:hover {
+        color: #ff4c34;
+    }
+
     body {
         background-color: rgb(248, 248, 248) !important;
     }

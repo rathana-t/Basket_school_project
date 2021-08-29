@@ -154,8 +154,6 @@
                                 <hr>
                                 <div style="margin-top: 10px">
                                     @if (Session::has('user'))
-
-
                                         @if ($item->stock <= 0)
                                             <button class="btn btn-warning mt-2" style="width: 170px">
                                                 <span class="p-2">

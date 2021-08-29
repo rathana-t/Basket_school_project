@@ -59,28 +59,32 @@
             <div class="row">
                 @foreach ($brands as $item)
                     <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="card mb-3">
-                            <div class="p-3 text-center">
-                                {{-- <a href="/brand/{{ $item->id }}"> --}}
-                                <img src="/images/brandImages/{{ $item->brand_img }}" alt="" class="img-fluid">
-                                <div class="border-bottom pb-2 pt-1"></div>
-                                <div class="pt-2">
-                                    @foreach ($result as $a)
-                                        @if ($a->brand_id == $item->id)
-                                            {{ $a->total_pro }}
-                                        @endif
-                                    @endforeach
-                                    <span>Products</span>
-                                </div>
-                                {{-- </a> --}}
-                                <div class="text-right">
-                                    <button type="button" value="{{ $item->id }}"
-                                        class="delete_brand_btn btn btn-sm btn-outline-dark">
-                                        Delete
-                                    </button>
+                        <a href="/admin/brand/{{ $item->id }}">
+
+                            <div class="card mb-3">
+                                <div class="p-3 text-center">
+                                    {{-- <a href="/brand/{{ $item->id }}"> --}}
+                                    <img src="/images/brandImages/{{ $item->brand_img }}" alt="" class="img-fluid">
+                                    <div class="border-bottom pb-2 pt-1"></div>
+                                    <div class="pt-2">
+                                        @foreach ($result as $a)
+                                            @if ($a->brand_id == $item->id)
+                                                {{ $a->total_pro }}
+                                            @endif
+                                        @endforeach
+                                        <span>Products</span>
+                                    </div>
+                                    {{-- </a> --}}
+                                    <div class="text-right">
+                                        <button type="button" value="{{ $item->id }}"
+                                            class="delete_brand_btn btn btn-sm btn-outline-dark">
+                                            Delete
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
+
                     </div>
                 @endforeach
             </div>
