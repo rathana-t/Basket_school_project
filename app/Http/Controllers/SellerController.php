@@ -317,7 +317,7 @@ class SellerController extends Controller
             ->where('sellers.id', $id)
             ->where('products.completed', '=', '0')
             ->select('products.*', 'sellers.store_name', 'sellers.phone', 'sellers.address')
-            ->orderBy('created_at', 'desc')
+            ->orderBy('updated_at', 'desc')
             ->paginate(5);
         $data_seller = sellers::find($id);
 
@@ -513,16 +513,16 @@ class SellerController extends Controller
     {
         $pro = new products();
 
-        $req->validate([
-            'cover_img' => 'mimes:jpeg,webp,jpg,png,gif|max:2048',
-            'sub_img1' => 'mimes:jpeg,webp,jpg,png,gif|max:2048',
-            'sub_img2' => 'mimes:jpeg,webp,jpg,png,gif|max:2048',
-            'sub_img3' => 'mimes:jpeg,webp,jpg,png,gif|max:2048',
-            'sub_img4' => 'mimes:jpeg,webp,jpg,png,gif|max:2048',
-            'sub_img5' => 'mimes:jpeg,webp,jpg,png,gif|max:2048',
-            'sub_img6' => 'mimes:jpeg,webp,jpg,png,gif|max:2048',
-            'sub_img7' => 'mimes:jpeg,webp,jpg,png,gif|max:2048',
-        ]);
+        // $req->validate([
+        //     'cover_img'=> 'mimes:jpeg,jfif,webp,jpg,png,gif|max:2048',
+        //     'sub_img1' => 'mimes:jpeg,jfif,webp,jpg,png,gif|max:2048',
+        //     'sub_img2' => 'mimes:jpeg,jfif,webp,jpg,png,gif|max:2048',
+        //     'sub_img3' => 'mimes:jpeg,jfif,webp,jpg,png,gif|max:2048',
+        //     'sub_img4' => 'mimes:jpeg,jfif,webp,jpg,png,gif|max:2048',
+        //     'sub_img7' => 'mimes:jpeg,jfif,webp,jpg,png,gif|max:2048',
+        //     'sub_img5' => 'mimes:jpeg,jfif,webp,jpg,png,gif|max:2048',
+        //     'sub_img6' => 'mimes:jpeg,jfif,webp,jpg,png,gif|max:2048',
+        // ]);
 
         if ($req->hasfile('cover_img')) {
             $file = $req->file('cover_img');

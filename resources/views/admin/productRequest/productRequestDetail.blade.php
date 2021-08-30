@@ -155,9 +155,13 @@
                             </div>
                             <hr>
                             <div style="margin-top: 10px">
-                                <button type="button" class="btn btn-success" data-toggle="modal"
-                                    data-target="#confirm_product">
+                                <button type="button" class="btn btn-success" style="margin-right:100px "
+                                    data-toggle="modal" data-target="#confirm_product">
                                     Confirm
+                                </button>
+                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                    data-target="#reject_product">
+                                    Reject
                                 </button>
                             </div>
                         </div>
@@ -166,11 +170,32 @@
             </div>
         </div>
 
-        <div class="modal fade" id="confirm_product" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="reject_product" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-body">
-                        Are you sure?
+                        Reject this product ?
+                    </div>
+                    <form action="{{ url('/admin/productRequestReject', $item->id) }}" method="POST">
+                        @csrf
+                        <input type="text" name="msg" class="text-center" id="" placeholder="message send to store"
+                            required>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Send</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="confirm_product" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        Confirm this product ?
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -178,6 +203,7 @@
                             Confirm
                         </a>
                     </div>
+
                 </div>
             </div>
         </div>

@@ -34,6 +34,11 @@ $listSecondCate = HomeController::secondCat();
 
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item custom-pt">
+                    <a class="btn btn-primary" href="{{ url('/CustomPC/Builder') }}">
+                        Custom PC Builder
+                    </a>
+                </li>
+                <li class="nav-item custom-pt">
                     <a class="nav-link" href="{{ url('wishlist') }}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="25" fill="currentColor"
                             class="bi bi-heart" viewBox="0 0 16 16">
@@ -48,6 +53,7 @@ $listSecondCate = HomeController::secondCat();
 
                     </a>
                 </li>
+
                 <a class="nav-link" href="{{ url('/cart') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="25" fill="currentColor"
                         class="bi bi-bag-check" viewBox="0 0 16 16">
