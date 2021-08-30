@@ -160,7 +160,8 @@
                             <div class="card mb-3">
                                 <div class="p-3 text-center">
                                     <a href="/brand/{{ $item->id }}">
-                                        <img src="/images/brandImages/{{ $item->brand_img }}" alt="" class="img-fluid">
+                                        <img src="/images/brandImages/{{ $item->brand_img }}" alt=""
+                                            class="img-fluid">
                                         <div class="border-bottom pb-2 pt-1"></div>
                                         @foreach ($result as $a)
                                             @if ($a->brand_id == $item->id)

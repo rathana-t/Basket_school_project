@@ -19,15 +19,10 @@
 @include('seller\components\style')
 
 <body>
-    <div class="wrapper d-flex align-items-stretch">
-        @include('seller\components\sidebar')
-        <div id="content" class="p-4 p-md-5 pt-5">
-            @yield('sidebar-content')
-        </div>
-    </div>
+
 
     @include('seller\components\script')
-    @yield('content')
+    @extends('blog/layout')
     <script src="https://kit.fontawesome.com/35caa7975b.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">

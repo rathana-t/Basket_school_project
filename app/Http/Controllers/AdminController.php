@@ -165,7 +165,6 @@ class AdminController extends Controller
     {
         return view('admin/brand/addBrand');
     }
-
     public function storeBrand(Request $req)
     {
         $brand = new brands();
