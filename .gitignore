@@ -14,7 +14,7 @@ yarn-error.log
 /.idea
 /.vscode
 public/images/brandImages
-# public/images/categoryImages
+public/images/categoryImages
 public/images/imgProduct
 public/images/secondCategory
 public/images/sellerProfile
