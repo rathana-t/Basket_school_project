@@ -234,9 +234,8 @@ class SellerController extends Controller
         return redirect()->back()->with("fail", "Incorrect Email/Phone Number or password!")->withInput();
     }
 
-    public function register()
+    public function register(Request $reg)
     {
-        $img = new sellers();
         $data = request()->validate([
             'store_name' => 'required',
             'email' => 'required|email|max:70|unique:sellers,email',
@@ -244,30 +243,30 @@ class SellerController extends Controller
             'address' => 'required',
             'password' => 'required|min:8',
             'con_password' => 'required|min:8|same:password',
-            
+
         ]);
-       
+
         $data['password'] = Hash::make($data['password']);
         unset($data['con_password']);
         $create = sellers::create($data);
         session()->put('seller', $create->id);
-        $image=request()->validate([
-            'img1' => 'mimes:jpeg,webp,jpg,png,gif|max:2048',
-            'img2' => 'mimes:jpeg,webp,jpg,png,gif|max:2048',
-        ]);
-        if ($image->hasfile('img1')) {
-            $file = $image->file('img1');
+
+        $img = sellers::find($create->id);
+
+        if ($reg->hasfile('img1')) {
+            $file = $reg->file('img1');
             $filename = uniqid() . $file->getClientOriginalExtension();
             $file->move(public_path() . '/images/sellerImg1/', $filename);
             $img->img1 = $filename;
         }
-        if($data->hasfile('img2')) {
-            $file = $data->file('img2');
+        if($reg->hasfile('img2')) {
+            $file = $reg->file('img2');
             $filename = uniqid() . $file->getClientOriginalExtension();
             $file->move(public_path() . '/images/sellerImg2/', $filename);
             $img->img2 = $filename;
         }
-        $img->save();
+
+        $img->update();
 
         return redirect()->back();
     }

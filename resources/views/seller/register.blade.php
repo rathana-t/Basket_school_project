@@ -8,7 +8,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-6">
 
-                    <form action="{{ url('sellerRegister') }}" method="POST">
+                    <form action="{{ url('sellerRegister') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="card shadow-sm">
                             <div class="m-4">
