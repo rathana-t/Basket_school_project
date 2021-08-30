@@ -248,27 +248,23 @@ class SellerController extends Controller
 
         $data['password'] = Hash::make($data['password']);
         unset($data['con_password']);
-        $create = sellers::create($data);
-        session()->put('seller', $create->id);
-
-        $img = sellers::find($create->id);
 
         if ($reg->hasfile('img1')) {
             $file = $reg->file('img1');
             $filename = uniqid() . $file->getClientOriginalExtension();
             $file->move(public_path() . '/images/sellerImg1/', $filename);
-            $img->img1 = $filename;
+            $data['img1']= $filename;
         }
         if($reg->hasfile('img2')) {
             $file = $reg->file('img2');
             $filename = uniqid() . $file->getClientOriginalExtension();
             $file->move(public_path() . '/images/sellerImg2/', $filename);
-            $img->img2 = $filename;
+            $data['img2'] = $filename;
         }
 
-        $img->update();
+        sellers::create($data);
 
-        return redirect()->back();
+        return redirect()->back()->with('success_regiter_seller','Request register sller account Successfully');;
     }
     public function forseller()
     {

@@ -7,7 +7,11 @@
             </h1>
             <div class="row justify-content-center">
                 <div class="col-md-6">
-
+                    @if (session('success_regiter_seller'))
+                        <div class="text-success text-center" role="alert">
+                            {{ session('success_regiter_seller') }}
+                        </div>
+                    @endif
                     <form action="{{ url('sellerRegister') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="card shadow-sm">
