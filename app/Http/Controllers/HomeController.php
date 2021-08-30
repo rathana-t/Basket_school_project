@@ -231,6 +231,7 @@ class HomeController extends Controller
             return view('home/detailPage', compact('detail_pro', 'related_pro', 'second_cate', 'product_id', 'brand'));
         }
     }
+
     public function blog()
     {
         if (session()->has('seller')) {
