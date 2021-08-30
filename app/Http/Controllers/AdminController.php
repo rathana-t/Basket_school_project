@@ -207,9 +207,10 @@ class AdminController extends Controller
 
     public function secondaryCategory()
     {
+        $category = categories::all();
         $seCategory = DB::table('se_categories')->paginate(5);
         $second_cate = DB::table('se_categories')->get();
-        return view('admin/2ndCategory/secondaryCategory', compact('seCategory', 'second_cate'));
+        return view('admin/2ndCategory/secondaryCategory', compact('category','seCategory', 'second_cate'));
     }
     public function addSecondaryCategory()
     {

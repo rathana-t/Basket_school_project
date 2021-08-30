@@ -111,6 +111,7 @@ class HomeController extends Controller
         $second_cate = DB::table('se_categories')->get();
         return view('home/reg', compact('second_cate'));
     }
+
     public function cart()
     {
         $second_cate = DB::table('se_categories')->get();
@@ -252,7 +253,7 @@ class HomeController extends Controller
         $min_price = "";
         $max_price = "";
         $pro_name = $req->input('query');
-        $data = products::where('name', 'like', '%' . $req->input('query') . '%')->paginate(5);
+        $data = products::where('name', 'like', '%' . $req->input('query') . '%')->orderByDesc('price')->paginate(5);
         $callinput = $req->input('query');
         if (session()->has('user')) {
             $data_user = users::findOrFail(session('user'));

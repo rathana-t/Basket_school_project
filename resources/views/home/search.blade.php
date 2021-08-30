@@ -1,9 +1,5 @@
 @extends('application')
 @section('content')
-    <style>
-
-
-    </style>
     <div class="container pt-4">
         <div class="row">
             <div class="col-md-3 ">
@@ -23,8 +19,6 @@
                                             {{ $item->name }}</option>
                                     @endforeach
                                 </select>
-
-
                                 <label for="exampleInputEmail1" class="mt-2">Price</label>
                                 <div class="row">
                                     <div class="col">

@@ -119,7 +119,7 @@
                                 </div>
                             @else
                                 <div class="text-center mt-4">
-                                    <a href="{{ url('/') }}" type="button" class="btn btn-info text-white">
+                                    <a href="{{ url('/product') }}" type="button" class="btn btn-info text-white">
                                         Your Cart is Empty! Go Shopping ?
                                     </a>
                                 </div>
@@ -159,10 +159,10 @@
                                                         class="fill_address btn btn-primary text-center text-white">Checkout</a>
                                                 </div>
                                             @else
-                                                <div class="">
-                                                    <a href=""
-                                                        class="fill_address btn btn-primary text-center text-white">No
-                                                        product</a>
+                                                <div class="___class_+?46___">
+                                                    <button class="fill_address btn btn-primary text-center text-white">No
+                                                        product
+                                                    </button>
                                                 </div>
                                             @endif
                                         </li>

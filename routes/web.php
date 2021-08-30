@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SellerController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\BuildPcController;
 use App\Http\Controllers\ForgetPassword;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\TextUI\XmlConfiguration\Group;
@@ -57,7 +58,7 @@ Route::delete('remove-wishlist', [CartController::class, 'remove_wishlist']);
 Route::post('edit-quantity-cart', [CartController::class, 'edit_cart_quantity']);
 Route::get('/confirm-order-product', [UserController::class, 'confirm_order_prooduct']);
 Route::post('/order-product', [OrderController::class, 'order']);
-Route::get('/user_cancel_order/{id}', [OrderController::class, 'user_cancel_order']);
+Route::get('/user_cancel_order/{id}', [OrderController::class, 'user_cancel_order'])->middleware('checker');
 
 Route::get('/user_forget_pass', [ForgetPassword::class, 'user_forget_pass']);
 Route::post('/user_forget-password', [ForgetPassword::class, 'user_postEmail']);
@@ -103,6 +104,17 @@ Route::get('/seller/messages', [SellerController::class, 'sellerMessages'])->mid
 Route::get('/seller/messages/{id}', [SellerController::class, 'detailMsg'])->middleware('checker_seller');
 Route::get('/edit/product/{id}', [AdminController::class, 'edit'])->name('edit_product')->middleware('checker_seller');
 Route::post('/update/product/{id}', [ProductController::class, 'update'])->name('update_pro')->middleware('checker_seller');
+
+Route::prefix('CustomPC')->group(function () {
+    Route::get('product', [BuildPcController::class, 'go_away']);
+    Route::post('product', [BuildPcController::class, 'get_item_by_se_cate']);
+    Route::get('/Builder', [BuildPcController::class, 'build_pc'])->name('build_pc')->middleware('checker');
+    Route::get('/select/{id}/{second}/{A_R}', [BuildPcController::class, 'select_item']);
+    Route::get('/remove/{id}', [BuildPcController::class, 'remove']);
+    Route::get('/add_to_cart', [BuildPcController::class, 'add_to_cart'])->name('add_to_cart_build');
+    Route::post('/search-filter', [BuildPcController::class, 'search']);
+
+});
 
 Route::prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'dashboard'])->middleware('admin');

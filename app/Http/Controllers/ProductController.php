@@ -33,14 +33,14 @@ class ProductController extends Controller
             'stock' => 'required',
             'brand_id' => 'required',
             'category_id' => 'required',
-            'cover_img' => 'mimes:jpeg,webp,jpg,png,gif|max:2048',
-            'sub_img1' => 'mimes:jpeg,webp,jpg,png,gif|max:2048',
-            'sub_img2' => 'mimes:jpeg,webp,jpg,png,gif|max:2048',
-            'sub_img3' => 'mimes:jpeg,webp,jpg,png,gif|max:2048',
-            'sub_img4' => 'mimes:jpeg,webp,jpg,png,gif|max:2048',
-            'sub_img5' => 'mimes:jpeg,webp,jpg,png,gif|max:2048',
-            'sub_img6' => 'mimes:jpeg,webp,jpg,png,gif|max:2048',
-            'sub_img7' => 'mimes:jpeg,webp,jpg,png,gif|max:2048',
+            // 'cover_img' => 'mimes:jpeg,jfif,webp,jpg,png,gif|max:2048',
+            // 'sub_img1' => 'mimes:jpeg,jfif,webp,jpg,png,gif|max:2048',
+            // 'sub_img2' => 'mimes:jpeg,jfif,webp,jpg,png,gif|max:2048',
+            // 'sub_img3' => 'mimes:jpeg,jfif,webp,jpg,png,gif|max:2048',
+            // 'sub_img4' => 'mimes:jpeg,jfif,webp,jpg,png,gif|max:2048',
+            // 'sub_img5' => 'mimes:jpeg,jfif,webp,jpg,png,gif|max:2048',
+            // 'sub_img6' => 'mimes:jpeg,jfif,webp,jpg,png,gif|max:2048',
+            // 'sub_img7' => 'mimes:jpeg,jfif,webp,jpg,png,gif|max:2048',
         ]);
         if ($req->hasfile('cover_img')) {
             $file = $req->file('cover_img');
