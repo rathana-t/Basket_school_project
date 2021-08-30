@@ -119,6 +119,7 @@ Route::prefix('CustomPC')->group(function () {
 Route::prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'dashboard'])->middleware('admin');
     Route::get('/brand', [AdminController::class, 'brand'])->middleware('admin');
+    Route::get('/brand/{id}', [AdminController::class, 'brandItem'])->middleware('admin');
     Route::get('/add-brand', [AdminController::class, 'addBrand'])->middleware('admin');
     Route::post('/add-brand', [AdminController::class, 'storeBrand'])->name('brand.store')->middleware('admin');
     Route::get('/category', [AdminController::class, 'category'])->middleware('admin');

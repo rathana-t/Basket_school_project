@@ -151,7 +151,16 @@ class AdminController extends Controller
         // $brands = DB::table('brands')->paginate(5);
         return view('/admin/brand/brand', compact('brands', 'result'));
     }
-
+    public function brandItem($id)
+    {
+        $brand = brands::find($id);
+        $product = DB::table('products')
+            ->join('brands', 'products.brand_id', 'brands.id')
+            ->join('sellers', 'products.seller_id', 'sellers.id')
+            ->where('brands.id', $id)
+            ->get();
+        return view('/admin/brand/brandListItem', compact('product', 'brand'));
+    }
     public function addBrand()
     {
         return view('admin/brand/addBrand');
