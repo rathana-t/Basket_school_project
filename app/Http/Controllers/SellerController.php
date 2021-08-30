@@ -297,7 +297,7 @@ class SellerController extends Controller
             ->where('sellers.id', $id)
             ->where('products.completed', '=', '0')
             ->select('products.*', 'sellers.store_name', 'sellers.phone', 'sellers.address')
-            ->orderBy('created_at', 'desc')
+            ->orderBy('updated_at', 'desc')
             ->paginate(5);
         $data_seller = sellers::find($id);
 

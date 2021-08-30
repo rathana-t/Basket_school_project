@@ -104,6 +104,8 @@ class ProductController extends Controller
             $pro->stock = $req->stock;
             $pro->brand_id = $req->brand_id;
             $pro->s_cat_id = $req->category_id;
+            $pro->admin_reject = 0;
+            $pro->msg = '';
             $pro->seller_id = $req->session()->get('seller');
 
         $pro->update();

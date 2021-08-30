@@ -139,6 +139,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/productRequest', [AdminController::class, 'productRequest'])->middleware('admin');
     Route::get('/productRequest/{id}', [AdminController::class, 'productRequestDetail'])->middleware('admin');
     Route::get('/productRequestUpdate/{id}', [AdminController::class, 'productRequestUpdate'])->middleware('admin');
+    Route::post('/productRequestReject/{id}', [AdminController::class, 'productRequestReject'])->middleware('admin');
     Route::get('/product/{id}', [AdminController::class, 'productDetail'])->middleware('admin');
     Route::delete('delete-product', [AdminController::class, 'delete'])->middleware('admin');
     Route::delete('category-product', [AdminController::class, 'delete_cat'])->middleware('admin');

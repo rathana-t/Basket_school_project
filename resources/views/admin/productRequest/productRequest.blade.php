@@ -84,13 +84,7 @@
                             </td>
                             <td>
                                 <a href="productRequest/{{ $item->id }}">
-                                    <button type="button" class="btn  btn-outline-dark btn-sm ">View</button>
-                                </a>
-                                <a href="productRequest/{{ $item->id }}">
-                                    <button type="button" class="btn btn-dark btn-sm">Accept</button>
-                                </a>
-                                <a href="productRequest/{{ $item->id }}">
-                                    <button type="button" class="btn btn-dark btn-sm">Reject</button>
+                                    <button type="button" class="btn btn-dark btn-sm">View</button>
                                 </a>
                             </td>
                         </tr>

@@ -8,10 +8,17 @@
                 </button>
             </div>
         @endif
-
         @if (Session::has('delete-success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ Session::get('delete-success') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+        @if (Session::has('reject_request'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ Session::get('reject_request') }}
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -51,4 +58,3 @@
         @endif
     </div>
 </div>
-

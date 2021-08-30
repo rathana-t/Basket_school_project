@@ -25,6 +25,13 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 class AdminController extends Controller
 {
+    public function productRequestReject(Request $req,$id){
+        $product = products::find($id);
+        $product->msg = $req->msg;
+        $product->admin_reject = 1;
+        $product->update();
+        return redirect('/admin/productRequest')->with('reject_request', 'Product was Rejected !');
+    }
     public function dashboard()
     {
         $countUser = DB::table('users')->count();
@@ -267,6 +274,7 @@ class AdminController extends Controller
             ->join('categories', 'products.category_id', '=', 'categories.id')
             ->select('products.*', 'categories.name as cat_name', 'brands.name as brand_name')
             ->where('products.completed', '=', '0')
+            ->where('products.admin_reject', '=', '0')
             ->paginate(5);
         return view('admin/productRequest/productRequest', compact('pro', 'count'));
     }
@@ -387,6 +395,6 @@ class AdminController extends Controller
         $product = products::find($id);
         $product->completed = 1;
         $product->update();
-        return redirect('/admin/productRequest')->with('confirm_request', 'Product Confirm!');
+        return redirect('/admin/productRequest')->with('confirm_request', 'Product Confirm! ');
     }
 }
