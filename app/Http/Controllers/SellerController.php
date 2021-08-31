@@ -351,14 +351,7 @@ class SellerController extends Controller
     {
         if (session()->has('seller')) {
             $data_seller = sellers::findOrFail(session('seller'));
-            $pros = products::join('carts', 'carts.product_id', '=', 'products.id')
-                ->join('orders', 'orders.cart_id', '=', 'carts.id')
-                ->where('orders.id', $req->order_id)
-                ->select('products.*', 'carts.quantity')->get();
-            foreach ($pros as $pro) {
-                $pro->stock = $pro->stock - $pro->quantity;
-                $pro->update();
-            }
+
             $data = orders::find($req->order_id);
             $data->pending = 0;
             $data->processing_message = $req->message;
@@ -395,6 +388,20 @@ class SellerController extends Controller
             $data->delivery = 1;
 
             $data->update();
+
+            $pro = products::join('carts','carts.product_id','=','products.id')
+            ->join('orders','orders.cart_id','=','carts.id')
+            ->where('orders.id',$req->order_id)->select('products.*', 'carts.quantity')->first();
+
+            $pro->stock = $pro->stock - $pro->quantity;
+
+            if($pro->top_buy==''){
+                $pro->top_buy = 1;
+            }else{
+                $pro->top_buy++;
+            }
+
+            $pro->update();
 
             return redirect()->back();
         }

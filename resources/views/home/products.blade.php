@@ -4,7 +4,7 @@
     @include('/home/components/navigation')
 
     <div class="container">
-        <div class="product pt-3">
+        <div class="product pt-3 col">
             <div class="mb-3 d-flex justify-content-between">
                 <h5>
                     Products
@@ -47,6 +47,11 @@
                         </div>
                     @endforeach
                 </div>
+            </div>
+        </div>
+        <div class="d-flex">
+            <div class="mx-auto">
+                {{ $products->links() }}
             </div>
         </div>
     </div>
