@@ -51,7 +51,7 @@ class HomeController extends Controller
             ->join('sellers', 'products.seller_id', '=', 'sellers.id')
             ->where('completed', 1)
             ->select('products.*', 'sellers.store_name')
-            ->limit(4)
+            ->limit(3)
             ->get();
         $second_cate = DB::table('se_categories')
             ->limit(8)
