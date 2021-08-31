@@ -63,6 +63,14 @@
                                                                     </a>
                                                                 </div>
                                                             </div>
+                                                            {{-- <select class="form-control" id="exampleFormControlSelect1"
+                                                                style="width: 70px">
+                                                                <option value="{{ $item->quantity }}">
+                                                                    {{ $item->quantity }}
+                                                                </option>
+                                                                <option value="2">2</option>
+                                                                <option value="3">3</option>
+                                                            </select> --}}
                                                         </td>
                                                         <td>
                                                             <a href="{{ url('/product', $item->id) }}">
