@@ -116,7 +116,6 @@ Route::prefix('CustomPC')->group(function () {
     Route::get('/remove/{id}', [BuildPcController::class, 'remove']);
     Route::get('/add_to_cart', [BuildPcController::class, 'add_to_cart'])->name('add_to_cart_build');
     Route::post('/search-filter', [BuildPcController::class, 'search']);
-
 });
 
 Route::prefix('admin')->group(function () {
