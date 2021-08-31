@@ -13,10 +13,16 @@
 }
 
 .container h5 {
+    text-transform: capitalize;
     color: #323b49;
     font-size: 20px;
 }
-
+.container h5,
+p,
+div,
+a {
+    text-transform: capitalize;
+}
 body {
     min-height: 120vh;
 }
@@ -70,7 +76,9 @@ body {
     color: #323b49;
     text-decoration: none;
 }
-
+.product-height {
+    min-height: 1450px;
+}
 .product h5 {
     color: #323b49;
     font-size: 20px;
@@ -491,7 +499,27 @@ div.b {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+.page-link {
+    font-size: 13px !important;
+    position: relative !important;
+    display: block;
+    padding: 0.5rem 0.75rem !important;
+    margin-left: -1px !important;
+    line-height: 1.25 !important;
+    color: #323b49 !important;
+    background-color: #fff !important;
+    border: 1px solid #dee2e6 !important;
+}
 
+.page-item.active .page-link {
+    z-index: 3 !important;
+    color: #fff !important;
+    background-color: #323b49 !important;
+    border-color: #323b49 !important;
+}
+.search {
+    min-height: 600px;
+}
 .search img {
     object-fit: contain;
     height: 180px;
