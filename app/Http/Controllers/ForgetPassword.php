@@ -30,6 +30,7 @@ class ForgetPassword extends Controller
         DB::table('password_resets')->insert(
             ['email' => $request->email, 'token' => $token, 'created_at' => Carbon::now()]
         );
+        DB::table('password_resets')->where(['email'=> $request->email])->delete();
 
         Mail::send('forget.user_verify',['token' => $token], function($message) use ($request) {
                   $message->from($request->email);
@@ -39,10 +40,6 @@ class ForgetPassword extends Controller
 
         return back()->with('message', 'We have sent reset password link, to your email.');
     }
-    public function user_getPassword($token) {
-
-        return view('forget.user_reset', ['token' => $token]);
-     }
 
      public function user_updatePassword(Request $request)
      {

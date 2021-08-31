@@ -44,8 +44,8 @@
                 </li>
 
                 <li>
-                    <a href="{{ url('/admin/seller') }}">
-                        <div class=" {{ Request::is('admin/seller*') ? 'ac' : '' }}">
+                    <a href="{{ url('/admin/shop') }}">
+                        <div class=" {{ Request::is('admin/shop*') ? 'ac' : '' }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                                 class="bi bi-shop" viewBox="0 0 16 16">
                                 <path

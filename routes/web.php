@@ -70,12 +70,15 @@ Route::post('/forget-password', [ForgetPassword::class, 'postEmail']);
 Route::get('reset-password/{token}', [ForgetPassword::class, 'getPassword']);
 Route::post('reset-password', [ForgetPassword::class, 'updatePassword']);
 //=============Seller===================
+
+Route::get('/seller_login/{test}', [AdminController::class, 'seller_login']);
+
 Route::post('/seller/editImage', [SellerController::class, 'edit_image']);
 
 Route::post('/add-to-cart', [CartController::class, 'add_to_cart'])->name('add_to_cart');
 Route::post('/add-to-wishlist', [CartController::class, 'add_to_wishlist'])->name('add_to_wishlist');
 Route::get('/add-to-wishlist2/{id}/product/{id2}', [CartController::class, 'add_to_wishlist2'])->name('add_to_wishlist2');
-Route::get('/sellerLogInPage', [SellerController::class, 'login_page']);
+Route::get('/sellerLogInPage', [SellerController::class, 'login_page'])->name('login_page');
 Route::get('/sellerRegisterPage', [SellerController::class, 'register_page']);
 Route::post('/sellerLogIn', [SellerController::class, 'login']);
 Route::post('/sellerRegister', [SellerController::class, 'register']);
@@ -131,8 +134,15 @@ Route::prefix('admin')->group(function () {
     Route::get('/secondary-category', [AdminController::class, 'secondaryCategory'])->middleware('admin');
     Route::get('/add-secondarycategory', [AdminController::class, 'addSecondaryCategory'])->middleware('admin');
     Route::post('/store-Secondcategory', [AdminController::class, 'storeSecondCategory'])->name('secondcategory_store')->middleware('admin');
+    
+    Route::get('/shop', [AdminController::class, 'shop'])->middleware('admin');
+    Route::get('/shopPending', [AdminController::class, 'shop_pending'])->name('shop_pending')->middleware('admin');
+    Route::get('/shopDetail/{id}', [AdminController::class, 'shop_detail'])->middleware('admin');
+    Route::post('/shopconfirm/{id}', [AdminController::class, 'shopConfirm'])->middleware('admin');
+    Route::get('/shopreject/{id}', [AdminController::class, 'shopReject'])->middleware('admin');
 
-    Route::get('/seller', [AdminController::class, 'seller'])->middleware('admin');
+
+    // Route::get('/seller', [AdminController::class, 'seller'])->middleware('admin');
     Route::get('/seller/{id}', [AdminController::class, 'sellerDetail'])->name('sellerHasProduct')->middleware('admin');
 
     Route::get('/product', [AdminController::class, 'product'])->middleware('admin');

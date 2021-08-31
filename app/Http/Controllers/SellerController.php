@@ -184,7 +184,7 @@ class SellerController extends Controller
                 'email_phone' => 'required',
                 'password' => 'required',
             ]);
-            $seller = DB::table('sellers')->where("phone", "=", $data["email_phone"])->first();
+            $seller = DB::table('sellers')->where("phone", "=", $data["email_phone"])->where("pending","1")->first();
             if ($seller) {
                 $validPassword = Hash::check($data['password'], $seller->password);
                 if ($validPassword) {
@@ -209,7 +209,7 @@ class SellerController extends Controller
                 'email_phone' => 'required',
                 'password' => 'required',
             ]);
-            $seller = DB::table('sellers')->where("email", "=", $data["email_phone"])->first();
+            $seller = DB::table('sellers')->where("email", "=", $data["email_phone"])->where("pending","1")->first();
             if ($seller) {
                 $validPassword = Hash::check($data['password'], $seller->password);
                 if ($validPassword) {
