@@ -12,15 +12,17 @@
     padding-top: 1px;
 }
 
+.container h5 {
+    text-transform: capitalize;
+    color: #323b49;
+    font-size: 20px;
+}
 .container h5,
 p,
 div,
 a {
     text-transform: capitalize;
-    color: #323b49;
-    font-size: 20px;
 }
-
 body {
     min-height: 120vh;
 }
