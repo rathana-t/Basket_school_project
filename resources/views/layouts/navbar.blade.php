@@ -33,11 +33,7 @@ $listSecondCate = HomeController::secondCat();
             </ul>
 
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item custom-pt">
-                    <a class="btn btn-primary" href="{{ url('/CustomPC/Builder') }}">
-                        Custom PC Builder
-                    </a>
-                </li>
+
                 <li class="nav-item custom-pt">
                     <a class="nav-link" href="{{ url('wishlist') }}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="25" fill="currentColor"
@@ -127,9 +123,14 @@ $listSecondCate = HomeController::secondCat();
                     </div>
                 </div>
             </div>
-            <a class="nav-link active" href="#">Brands</a>
-            <a class="nav-link" href="#">Main Category</a>
-            <a class="nav-link" href="#">Sub Category</a>
+            <a class="nav-link" href="/category">Main Category</a>
+            <a class="nav-link" href="/smallcate">Sub Category</a>
+            <a class="nav-link" href="/brand">Brands</a>
+            <div class="ml-auto mr-3 cs-pc">
+                <a class="nav-link text-white btn btn-sm btn-primary" href="{{ url('/CustomPC/Builder') }}">
+                    Custom PC Builder
+                </a>
+            </div>
         </nav>
     </div>
 </div>
