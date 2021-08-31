@@ -48,7 +48,10 @@ class HomeController extends Controller
         $count = 0;
         $topSale = DB::table('products')
             ->orderByDesc('top_buy')
-            ->limit(1)
+            ->join('sellers', 'products.seller_id', '=', 'sellers.id')
+            ->where('completed', 1)
+            ->select('products.*', 'sellers.store_name')
+            ->limit(4)
             ->get();
         $second_cate = DB::table('se_categories')
             ->limit(8)

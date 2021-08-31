@@ -4,25 +4,6 @@
     @include('/home/components/navigation')
     <div class="container">
 
-        <div class="header pb-2">
-            <div class="row">
-                <div class="col-md-12">
-                    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="https://images.macrumors.com/t/jXqUxBjwyt16A254unbNN51zn9A=/1920x/https://images.macrumors.com/article-new/2019/02/MR-Future-Products-2020-2.png"
-                                    class="d-block w-100" alt="...">
-                                <div class="hero-text ">
-                                    <h1>Top sale product</h1>
-                                    <a href="" class="btn btn-primary text-white">View</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="category pt-4 pb-2" id="Category">
             <div class="d-flex justify-content-between mb-3">
                 <h5>
@@ -49,7 +30,79 @@
                 </div>
             </div>
         </div>
+        <div class="category pt-4 pb-2" id="Subcategory">
+            <div class="d-flex justify-content-between mb-3">
+                <h5>
+                    Subcategory
+                </h5>
+                <a href="/smallcate" class="btn btn-outline-primary">See all</a>
+            </div>
+            <div class="category-item">
+                <div class="row mt-3">
+                    @foreach ($second_cate as $item)
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="card mb-3">
+                                <div class="m-3">
+                                    <p>{{ $item->name }}</p>
+                                    <a href="/smallcate/{{ $item->id }}">
+                                        <div class="text-center">
+                                            <img src="/images/secondCategory/{{ $item->secondarycategory_img }}" alt=""
+                                                class="img-fluid">
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+        <div class="product pt-4 pb-2" id="Product">
+            <div class="mb-3 d-flex justify-content-between">
+                <h5>
+                    Best sale
+                </h5>
+            </div>
+            <div class="product-item">
+                <div class="row">
+                    @foreach ($topSale as $item)
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="card mb-3">
+                                <div class="m-3">
+                                    <a href="/product/product/{{ $item->id }}">
+                                        <img src="{{ asset('images/imgProduct') }}/{{ $item->img_product }}" alt=""
+                                            class="img-fluid">
+                                    </a>
+                                </div>
 
+                                <div class="border-top">
+                                    <div class="pl-4 pr-4 pb-2 pt-2">
+                                        <div class="product_name">
+                                            <a href="/product/product/{{ $item->id }}">
+                                                <div class="b">
+                                                    {{ $item->name }}
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="price">
+                                            <a href="/product/product/{{ $item->id }}">
+                                                ${{ $item->price }}
+                                            </a>
+                                        </div>
+                                        <div class="store_name">
+                                            <a href="/store/{{ $item->seller_id }}" class="text-muted">
+                                                {{ $item->store_name }}
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
         <div class="product pt-4 pb-2" id="Product">
             <div class="mb-3 d-flex justify-content-between">
                 <h5>
@@ -118,33 +171,7 @@
 
 
 
-        <div class="category pt-4 pb-2" id="Subcategory">
-            <div class="d-flex justify-content-between mb-3">
-                <h5>
-                    Subcategory
-                </h5>
-                <a href="/smallcate" class="btn btn-outline-primary">See all</a>
-            </div>
-            <div class="category-item">
-                <div class="row mt-3">
-                    @foreach ($second_cate as $item)
-                        <div class="col-md-3 col-sm-6 col-xs-12">
-                            <div class="card mb-3">
-                                <div class="m-3">
-                                    <p>{{ $item->name }}</p>
-                                    <a href="/smallcate/{{ $item->id }}">
-                                        <div class="text-center">
-                                            <img src="/images/secondCategory/{{ $item->secondarycategory_img }}" alt=""
-                                                class="img-fluid">
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
+
 
         <div class="brand pt-4 pb-4" id="Brand">
             <div class="mb-3 d-flex justify-content-between">
