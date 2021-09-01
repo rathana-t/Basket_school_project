@@ -89,17 +89,25 @@ class HomeController extends Controller
     }
     public function products()
     {
+        $result = DB::table('products')
+            ->select(DB::raw('count(count) as total_pro'), 'brand_id')
+            ->groupBy('brand_id')
+            ->get();
+        $brand = brands::all();
         $products = DB::table('products')
             ->join('sellers', 'products.seller_id', '=', 'sellers.id')
             ->where('completed', 1)
             ->select('products.*', 'sellers.store_name')
             ->inRandomOrder()
-            ->paginate(16);
+            ->paginate(9);
+        $productCount = DB::table('products')
+            ->where('completed', 1)
+            ->count();
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
-            return view('home/products', compact('data_user', 'products'));
+            return view('home/products', compact('data_user', 'products', 'productCount', 'brand', 'result'));
         }
-        return view('home/products', compact('products'));
+        return view('home/products', compact('products', 'productCount', 'brand', 'result'));
     }
     public function login()
     {
@@ -364,7 +372,7 @@ class HomeController extends Controller
         }
         return view('home/secondaryCate', compact('second_cate'));
     }
-    
+
     public function smallcateItem($id)
     {
         $second_cate = DB::table('se_categories')->get();
