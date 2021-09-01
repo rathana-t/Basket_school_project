@@ -11,17 +11,20 @@ use App\Models\sellers;
 use App\Models\messages;
 use App\Models\products;
 use App\Models\receipts;
+use Carbon\Carbon;
 use App\Models\categories;
 use Illuminate\Http\Request;
 use App\Models\se_categories;
 use App\Models\users_has_cards;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\se_categories as s_cat;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
 {
@@ -127,12 +130,46 @@ class AdminController extends Controller
         $user = users::find($id);
         return view('admin/user/userDetail', compact('user'));
     }
-
-    public function seller()
+    public function shop()
     {
-        $sellers = DB::table('sellers')->paginate(5);
-        return view('admin/seller/seller', compact('sellers'));
+        $sellers = sellers::where('pending','1')->paginate(5);
+        $sellersCount = sellers::where('pending','1')->count();
+        $sellerspending = sellers::where('pending','0')->count();
+        return view('admin/seller/shop', compact('sellers','sellersCount','sellerspending'));
     }
+    public function shop_pending(){
+        $sellerReq = sellers::where('pending','0')->get();
+        $sellersCount = sellers::where('pending','1')->count();
+        $sellerspending = sellers::where('pending','0')->count();
+        return view('admin/seller/shopPending',compact('sellerReq','sellerspending','sellersCount'));
+    }
+    public function shop_detail($id)
+    {
+        $seller = sellers::find($id);
+        return view('admin/seller/pendingDetail',compact('seller'));
+    }
+    
+    public function shopConfirm(Request $request,$id)
+    {
+        $sellerCon = sellers::find($id);
+        // $sellerCon = sellers::where('pending','0');
+        $sellerCon->pending=1;
+        $sellerCon->update();
+        $token = Str::random(60);
+        DB::table('password_resets')->insert(
+            ['email' => $request->email, 'token' => $token, 'created_at' => Carbon::now()]
+        );
+        Mail::send('forget.seller_accept_request',['token' => $token], function($message) use ($request) {
+                  $message->from($request->email);
+                  $message->to($request->email);
+                  $message->subject('Request Accepted');
+               });
+        return redirect('admin/shopPending')->with('success','Seller has been confirmed success');
+    }
+    public function seller_login($token) {
+        DB::table('password_resets')->where(['token'=> $token])->delete();
+        return redirect()->route('login_page');
+     }
     public function sellerDetail($id)
     {
         $sellerHasProductCount = DB::table('products')

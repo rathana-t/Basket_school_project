@@ -11,7 +11,7 @@
     <div style="min-height: 75vh">
         <table class="table table-hover">
             <thead>
-                <tr class="">
+                <tr class="___class_+?3___">
                     <th scope="col">Image</th>
                     <th scope="col">ID</th>
                     <th scope="col">Product name</th>
