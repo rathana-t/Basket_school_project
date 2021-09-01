@@ -4,7 +4,6 @@
     @include('/home/components/navigation')
     <div class="container">
 
-
         <div class="header border-1">
             <div class="card border-0 shadow-sm rounded">
                 <div class="card-body">
@@ -49,7 +48,7 @@
             </div>
         </div>
 
-        <div class="top-sale pt-3">
+        <div class="top-sale pt-4">
             <div class="card border-0 shadow-sm rounded">
                 <div class="row">
                     <div class="col-md-3 align-self-center">
