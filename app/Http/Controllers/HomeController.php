@@ -364,6 +364,7 @@ class HomeController extends Controller
         }
         return view('home/secondaryCate', compact('second_cate'));
     }
+    
     public function smallcateItem($id)
     {
         $second_cate = DB::table('se_categories')->get();

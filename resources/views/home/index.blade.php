@@ -6,7 +6,7 @@
 
 
         <div class="header border-1">
-            <div class="card">
+            <div class="card border-0 shadow-sm rounded">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-4">
@@ -50,7 +50,7 @@
         </div>
 
         <div class="top-sale pt-3">
-            <div class="card">
+            <div class="card border-0 shadow-sm rounded">
                 <div class="row">
                     <div class="col-md-3 align-self-center">
                         <div class="card-body text-center">
@@ -82,7 +82,7 @@
         </div>
 
         <div class="category pt-4 pb-2" id="Category">
-            <div class="card">
+            <div class="card border-0 shadow-sm rounded">
                 <div class="card-body">
                     <div class="d-flex justify-content-between mb-3">
                         <h5>
@@ -196,37 +196,38 @@
                 <div class="row">
                     @foreach ($data_pro as $item)
                         <div class="col-md-3 col-sm-6 col-xs-12">
-                            <div class="card mb-3">
-                                <div class="m-3">
-                                    <a href="/product/product/{{ $item->id }}">
-                                        <img src="{{ asset('images/imgProduct') }}/{{ $item->img_product }}" alt=""
-                                            class="img-fluid">
-                                    </a>
-                                </div>
+                            <div class="smallCard">
+                                <div class="card mb-3">
+                                    <div class="m-3">
+                                        <a href="/product/product/{{ $item->id }}">
+                                            <img src="{{ asset('images/imgProduct') }}/{{ $item->img_product }}" alt=""
+                                                class="img-fluid">
+                                        </a>
+                                    </div>
 
-                                <div class="border-top">
-                                    <div class="pl-4 pr-4 pb-2 pt-2">
-                                        <div class="product_name">
-                                            <a href="/product/product/{{ $item->id }}">
-                                                <div class="b">
-                                                    {{ $item->name }}
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div class="price">
-                                            <a href="/product/product/{{ $item->id }}">
-                                                ${{ $item->price }}
-                                            </a>
-                                        </div>
-                                        <div class="store_name">
-                                            <a href="/store/{{ $item->seller_id }}" class="text-muted">
-                                                {{ $item->store_name }}
-                                            </a>
+                                    <div class="border-top">
+                                        <div class="pl-4 pr-4 pb-2 pt-2">
+                                            <div class="product_name">
+                                                <a href="/product/product/{{ $item->id }}">
+                                                    <div class="b">
+                                                        {{ $item->name }}
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="price">
+                                                <a href="/product/product/{{ $item->id }}">
+                                                    ${{ $item->price }}
+                                                </a>
+                                            </div>
+                                            <div class="store_name">
+                                                <a href="/store/{{ $item->seller_id }}" class="text-muted">
+                                                    {{ $item->store_name }}
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                {{-- @if (Session::has('user'))
+                                    {{-- @if (Session::has('user'))
                                     <a href="/add-to-wishlist2/{{ $data_user->id }}/product/{{ $item->id }}"
                                         class="btn-sm btn btn-warning">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -244,6 +245,7 @@
                                         </svg>
                                     </a>
                                 @endif --}}
+                                </div>
                             </div>
                         </div>
                     @endforeach
