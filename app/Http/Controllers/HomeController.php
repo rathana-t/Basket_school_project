@@ -42,50 +42,85 @@ class HomeController extends Controller
         $brand = brands::all();
 
         $brand_name = $req->input('brand_name');
-        $num = 0;
-                    foreach ($brand as $item ) {
-                        $num++;
-                        foreach ($brand_name as $item2) {
-                            if ($item2 == $num) {
-                                $i++;
-                                $resultID[$i] = $item->id;
+        // $num = 0;
+        //             foreach ($brand as $item ) {
+        //                 $num++;
+        //                 foreach ($brand_name as $item2) {
+        //                     if ($item2 == $num) {
+        //                         $resultID[$num] = $item->id;
+        //                     }
+        //                    }
+        //                 }
 
         $sort = $req->sort;
         $min_price = $req->min;
         $max_price = $req->max;
         $brand_id = "";
+
         $i = 0;
         $resultID = [];
-            if ($brand_name){
-                $num = 0;
-                    foreach ($brand as $item ) {
-                        $num++;
-                        foreach ($brand_name as $item2) {
-                            if ($item2 == $num) {
-                                $i++;
-                                $resultID[$i] = $item->id;
-                                if ($min_price == "") {
-                                    if ($max_price == "") {
-                                        $products = products::join('sellers', 'products.seller_id', '=', 'sellers.id')->where('products.brand_id', $item->id )->where('products.completed', 1)->orderby('products.price', $sort)->paginate(9);
+        $products = [];
+
+        if ($brand_name){
+            $num = 0;
+                foreach ($brand as $item ) {
+                    $num++;
+                    foreach ($brand_name as $item2) {
+                        if ($item2 == $num) {
+                            $i++;
+                            $resultID[$i] = $item->id;
+                            if ($min_price == "") {
+                                if ($max_price == "") {
+                                       $products[$i] = products::join('sellers', 'products.seller_id', '=', 'sellers.id')->where('products.brand_id', $item->id )->where('products.completed', 1)->orderby('products.price', $sort)->paginate(9);
+                                       $products[$i]->appends($req->all());
                                     } else {
-                                        $products = products::join('sellers', 'products.seller_id', '=', 'sellers.id')->where('products.brand_id', $item->id )->where('products.completed', 1)->where('products.price', '<=', $max_price)->orderby('products.price', $sort)->paginate(9);
-                                    }
-                                } elseif ($max_price == "") {
-                                    $products = products::join('sellers', 'products.seller_id', '=', 'sellers.id')->where('products.brand_id', $item->id )->where('products.completed', 1)->where('products.price', '>=', $min_price)->orderby('products.price', $sort)->paginate(9);
-                                } else {
-                                    $products = products::join('sellers', 'products.seller_id', '=', 'sellers.id')->where('products.brand_id', $item->id )->where('products.completed', 1)->where('products.price', '<=', $max_price)->where('products.price', '>=', $min_price)->orderby('products.price', $sort)->paginate(9);
+                                    $products[$i] = products::join('sellers', 'products.seller_id', '=', 'sellers.id')->where('products.brand_id', $item->id )->where('products.completed', 1)->where('products.price', '<=', $max_price)->orderby('products.price', $sort)->paginate(9);
+                                    $products[$i]->appends($req->all());
                                 }
+                            } elseif ($max_price == "") {
+                                $products[$i] = products::join('sellers', 'products.seller_id', '=', 'sellers.id')->where('products.brand_id', $item->id )->where('products.completed', 1)->where('products.price', '>=', $min_price)->orderby('products.price', $sort)->paginate(9);
+                                $products[$i]->appends($req->all());
+                            } else {
+                                $products[$i] = products::join('sellers', 'products.seller_id', '=', 'sellers.id')->where('products.brand_id', $item->id )->where('products.completed', 1)->where('products.price', '<=', $max_price)->where('products.price', '>=', $min_price)->orderby('products.price', $sort)->paginate(9);
+                                $products[$i]->appends($req->all());
                             }
+
                         }
                     }
+                }
+            }
+            // if ($brand_name){
+            //     $num = 0;
+            //         foreach ($brand as $item ) {
+            //             $num++;
+            //             foreach ($brand_name as $item2) {
+            //                 if ($item2 == $num) {
+            //                     $i++;
+            //                     $resultID[$i] = $item->id;
 
-                }
-                $products->appends($req->all());
-                if (session()->has('user')) {
-                    $data_user = Users::findOrFail(session('user'));
-                    return view('home/products', compact('data_user','i','resultID','max_price','min_price', 'products', 'productCount', 'brand', 'result'));
-                }
-                return view('home/products', compact('products','max_price','min_price', 'productCount', 'brand', 'result'));
+            //                     if ($min_price == "") {
+            //                         if ($max_price == "") {
+            //                                $products = products::join('sellers', 'products.seller_id', '=', 'sellers.id')->where('products.brand_id', $item->id )->where('products.completed', 1)->orderby('products.price', $sort)->paginate(9);
+            //                         } else {
+            //                             $products = products::join('sellers', 'products.seller_id', '=', 'sellers.id')->where('products.brand_id', $item->id )->where('products.completed', 1)->where('products.price', '<=', $max_price)->orderby('products.price', $sort)->paginate(9);
+            //                         }
+            //                     } elseif ($max_price == "") {
+            //                         $products = products::join('sellers', 'products.seller_id', '=', 'sellers.id')->where('products.brand_id', $item->id )->where('products.completed', 1)->where('products.price', '>=', $min_price)->orderby('products.price', $sort)->paginate(9);
+            //                     } else {
+            //                         $products = products::join('sellers', 'products.seller_id', '=', 'sellers.id')->where('products.brand_id', $item->id )->where('products.completed', 1)->where('products.price', '<=', $max_price)->where('products.price', '>=', $min_price)->orderby('products.price', $sort)->paginate(9);
+            //                     }
+
+            //                 }
+            //             }
+            //         }
+            //     }
+
+
+    if (session()->has('user')) {
+        $data_user = Users::findOrFail(session('user'));
+        return view('home/products', compact('data_user','brand_name','sort','i','resultID','max_price','min_price', 'products', 'productCount', 'brand', 'result'));
+    }
+    return view('home/products', compact('products','brand_name','i','sort','resultID','max_price','min_price', 'productCount', 'brand', 'result'));
 
     }
     static public function countCart()
@@ -159,7 +194,7 @@ class HomeController extends Controller
             ->groupBy('brand_id')
             ->get();
         $brand = brands::all();
-        $products = DB::table('products')
+        $products[] = DB::table('products')
             ->join('sellers', 'products.seller_id', '=', 'sellers.id')
             ->where('completed', 1)
             ->select('products.*', 'sellers.store_name')->orderByDesc('price')
@@ -169,14 +204,16 @@ class HomeController extends Controller
             ->where('completed', 1)
             ->count();
             $min_price ='';
+            $sort ='';
             $max_price ='';
             $i = 0;
-        $resultID = [];
+            $brand_name[] = '';
+            $resultID = [];
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
-            return view('home/products', compact('data_user','resultID','i','min_price','max_price', 'products', 'productCount', 'brand', 'result'));
+            return view('home/products', compact('data_user','sort','brand_name','resultID','i','min_price','max_price', 'products', 'productCount', 'brand', 'result'));
         }
-        return view('home/products', compact('products','min_price','max_price', 'productCount', 'brand', 'result'));
+        return view('home/products', compact('products','sort','resultID','brand_name','i','min_price','max_price', 'productCount', 'brand', 'result'));
     }
     public function login()
     {

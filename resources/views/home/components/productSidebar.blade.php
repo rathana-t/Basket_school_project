@@ -8,8 +8,8 @@
                 </h4>
                 <div class="pt-2">
                     <select class="form-control" id="exampleFormControlSelect1" name="sort">
-                        <option value="desc" min="0">High to Low</option>
-                        <option value="asc" min="0">Low to High</option>
+                        <option {{ $sort == 'desc' ? 'selected' : '' }} value="desc" min="0">High to Low</option>
+                        <option {{ $sort == 'asc' ? 'selected' : '' }} value="asc" min="0">Low to High</option>
                     </select>
                 </div>
             </div>
@@ -21,41 +21,39 @@
                 </h4>
                 <div class="pt-2">
                     <?php
-                    $i = 0;
+                    $ii = 0;
+
                     ?>
                     <div class="brand">
                         @foreach ($brand as $item)
                             <?php
+                            $j = 0;
+
                             $i++;
                             ?>
                             <div class="custom-control custom-checkbox mb-2 pr-3">
                                 <div class="d-flex justify-content-between">
                                     <div>
-                                        <input type="checkbox" class="custom-control-input" name="brand_name[]"
-                                            id="{{ $i }}" value="{{ $item->id }}">
-                                        <label class="custom-control-label" for="{{ $i }}">
-                                            {{ $item->name }}
-                                        </label>
-                                        // {{-- @if ($i == 0)
-                                    //        <input type="checkbox" class="custom-control-input" name="brand_name[]"
-                                    //            id="{{ $i }}" value="{{ $item->id }}">
-                                    //        <label class="custom-control-label" for="{{ $i }}">
-                                     //           {{ $item->name }}
-                                     //       </label>
-                                    //    @else
-                                     //       @for ($a = 1; $a <= $i; $a++)
-                                     //           @if ($item->id == 3)
-                                    //                <input type="checkbox" class="custom-control-input"
-                                   //                     name="brand_name[]" id="{{ $i }}"
-                                    //                    value="{{ $item->id }}" checked>
-                                      //              <label class="custom-control-label" for="{{ $i }}">
-                                     //                   {{ $item->name }}
-                                     //               </label>
-                                     //           @endif
-                                     //       @endfor
-                                   //     @endif --}}
-
-
+                                        {{-- {{ $resultID[] }} --}}
+                                        {{-- @for ($a = 1; $a <= $i; $a++)
+                                            @if ($item->id == $resultID[$i])
+                                                <?php
+                                                $j++;
+                                                ?>
+                                                <input type="checkbox" class="custom-control-input" name="brand_name[]"
+                                                    id="{{ $ii }}" value="{{ $item->id }}" checked>
+                                                <label class="custom-control-label" for="{{ $ii }}">
+                                                    {{ $item->name }}
+                                                </label>
+                                            @endif
+                                        @endfor --}}
+                                        @if ($j == 0)
+                                            <input type="checkbox" class="custom-control-input" name="brand_name[]"
+                                                id="{{ $ii }}" value="{{ $item->id }}">
+                                            <label class="custom-control-label" for="{{ $ii }}">
+                                                {{ $item->name }}
+                                            </label>
+                                        @endif
                                     </div>
                                     <div>
                                         @foreach ($result as $a)
