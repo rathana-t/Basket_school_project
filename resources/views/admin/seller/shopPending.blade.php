@@ -3,7 +3,11 @@
     @if (session('success'))
         <div class="text-success text-center" role="alert">
             {{ session('success') }}
-            {{ session('warning') }}
+        </div>
+    @endif
+    @if (session('danger'))
+        <div class="text-danger text-center" role="alert">
+            {{ session('danger') }}
         </div>
     @endif
     <div class="card border-0 shadow rounded">
@@ -49,7 +53,6 @@
                                 <a href="/admin/shopDetail/{{ $item->id }}">
                                     <button type="button" class="btn btn-sm btn-outline-dark">View</button>
                                 </a>
-                                <button type="button" class="btn btn-sm btn-dark">Delete</button>
                             </td>
                         </tr>
                     @endforeach

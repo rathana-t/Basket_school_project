@@ -77,7 +77,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12">
-                    <a href="/admin/seller">
+                    <a href="/admin/shopPending">
                         <div class="color2-1">
                             <div class="card shadow-sm rounded">
                                 <div class="card-body">
@@ -96,7 +96,7 @@
                                                 Shop Pending
                                             </h5>
                                             <div>
-                                                3456
+                                                {{ $countShopPending }}
                                             </div>
                                         </div>
                                     </div>
