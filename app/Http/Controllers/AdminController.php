@@ -166,6 +166,13 @@ class AdminController extends Controller
                });
         return redirect('admin/shopPending')->with('success','Seller has been confirmed success');
     }
+    public function shopReject($id)
+    {
+        $shopRej = sellers::find($id);
+        $shopRej->pending=2;
+        $shopRej->update();
+        return redirect('admin/shopPending')->with('warning','Seller has been Rejected');
+    }
     public function seller_login($token) {
         DB::table('password_resets')->where(['token'=> $token])->delete();
         return redirect()->route('login_page');

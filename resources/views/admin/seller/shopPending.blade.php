@@ -3,6 +3,7 @@
     @if (session('success'))
         <div class="text-success text-center" role="alert">
             {{ session('success') }}
+            {{ session('warning') }}
         </div>
     @endif
     <div class="card border-0 shadow rounded">

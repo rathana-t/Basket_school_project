@@ -138,7 +138,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/shopPending', [AdminController::class, 'shop_pending'])->name('shop_pending')->middleware('admin');
     Route::get('/shopDetail/{id}', [AdminController::class, 'shop_detail'])->middleware('admin');
     Route::post('/shopconfirm/{id}', [AdminController::class, 'shopConfirm'])->middleware('admin');
-    Route::get('/shopreject/{id}', [AdminController::class, 'shopReject'])->middleware('admin');
+    Route::post('/shopreject/{id}', [AdminController::class, 'shopReject'])->middleware('admin');
 
 
     // Route::get('/seller', [AdminController::class, 'seller'])->middleware('admin');
