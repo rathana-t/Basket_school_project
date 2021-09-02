@@ -23,6 +23,7 @@ Route::get('/login', [HomeController::class, 'login'])->name('login');
 Route::get('/reg', [HomeController::class, 'reg']);
 Route::get('/product/{id}', [HomeController::class, 'detail'])->name('detail');
 Route::get('/product', [HomeController::class, 'products'])->name('products');
+Route::any('/product_search_filter', [HomeController::class, 'product_search_filter'])->name('product_search_filter');
 Route::get('/product/product/{id}', [HomeController::class, 'detail'])->name('productItem');
 Route::get('/blog', [HomeController::class, 'blog']);
 Route::get('/cart', [HomeController::class, 'cart'])->name('route_cart')->middleware('checker');
@@ -133,7 +134,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/secondary-category', [AdminController::class, 'secondaryCategory'])->middleware('admin');
     Route::get('/add-secondarycategory', [AdminController::class, 'addSecondaryCategory'])->middleware('admin');
     Route::post('/store-Secondcategory', [AdminController::class, 'storeSecondCategory'])->name('secondcategory_store')->middleware('admin');
-    
+
     Route::get('/shop', [AdminController::class, 'shop'])->middleware('admin');
     Route::get('/shopPending', [AdminController::class, 'shop_pending'])->name('shop_pending')->middleware('admin');
     Route::get('/shopDetail/{id}', [AdminController::class, 'shop_detail'])->middleware('admin');

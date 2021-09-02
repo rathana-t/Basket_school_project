@@ -116,8 +116,8 @@
         }
 
     </style>
-
     <div class="container">
+
         <div class="duct">
             <div class="row">
                 <div class="col-3">
@@ -131,29 +131,33 @@
                         <div class="border-bottom"></div>
                         <div class="row pt-3">
                             @foreach ($products as $item)
-                                <div class="col-md-4">
-                                    <div class="card mb-3 shadow-sm rounded">
-                                        <div class="p-3">
-                                            <img src="{{ asset('images/imgProduct') }}/{{ $item->img_product }}" alt=""
-                                                class="img-fluid">
-                                            <div class="pt-2 pb-2">
-                                                <div class="b">
-                                                    {{ $item->name }}
+                                @for ($a = 1; $a <= $i; $a++)
+                                    @if ($item->brand_id == $resultID[$a])
+                                        <div class="col-md-4">
+                                            <div class="card mb-3 shadow-sm rounded">
+                                                <div class="p-3">
+                                                    <img src="{{ asset('images/imgProduct') }}/{{ $item->img_product }}"
+                                                        alt="" class="img-fluid">
+                                                    <div class="pt-2 pb-2">
+                                                        <div class="b">
+                                                            {{ $item->name }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card-footer text-right">
+                                                    <div class="d-flex justify-content-between">
+                                                        <div>
+                                                            ${{ $item->price }}
+                                                        </div>
+                                                        <button class="btn btn-sm btn-primary">
+                                                            Order Now
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="card-footer text-right">
-                                            <div class="d-flex justify-content-between">
-                                                <div>
-                                                    ${{ $item->price }}
-                                                </div>
-                                                <button class="btn btn-sm btn-primary">
-                                                    Order Now
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                    @endif
+                                @endfor
                             @endforeach
                         </div>
                     </div>

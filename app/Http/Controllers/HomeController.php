@@ -23,6 +23,71 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 class HomeController extends Controller
 {
+    public function product_search_filter(Request $req){
+
+    $result = DB::table('products')->where('completed', 1)
+        ->select(DB::raw('count(count) as total_pro'), 'brand_id')
+        ->groupBy('brand_id')
+        ->get();
+    $brand = brands::all();
+    $products = DB::table('products')
+        ->join('sellers', 'products.seller_id', '=', 'sellers.id')
+        ->where('completed', 1)
+        ->select('products.*', 'sellers.store_name')->orderByDesc('price')
+        ->inRandomOrder()
+        ->paginate(9);
+    $productCount = DB::table('products')
+        ->where('completed', 1)
+        ->count();
+        $brand = brands::all();
+
+        $brand_name = $req->input('brand_name');
+        $num = 0;
+                    foreach ($brand as $item ) {
+                        $num++;
+                        foreach ($brand_name as $item2) {
+                            if ($item2 == $num) {
+                                $i++;
+                                $resultID[$i] = $item->id;
+
+        $sort = $req->sort;
+        $min_price = $req->min;
+        $max_price = $req->max;
+        $brand_id = "";
+        $i = 0;
+        $resultID = [];
+            if ($brand_name){
+                $num = 0;
+                    foreach ($brand as $item ) {
+                        $num++;
+                        foreach ($brand_name as $item2) {
+                            if ($item2 == $num) {
+                                $i++;
+                                $resultID[$i] = $item->id;
+                                if ($min_price == "") {
+                                    if ($max_price == "") {
+                                        $products = products::join('sellers', 'products.seller_id', '=', 'sellers.id')->where('products.brand_id', $item->id )->where('products.completed', 1)->orderby('products.price', $sort)->paginate(9);
+                                    } else {
+                                        $products = products::join('sellers', 'products.seller_id', '=', 'sellers.id')->where('products.brand_id', $item->id )->where('products.completed', 1)->where('products.price', '<=', $max_price)->orderby('products.price', $sort)->paginate(9);
+                                    }
+                                } elseif ($max_price == "") {
+                                    $products = products::join('sellers', 'products.seller_id', '=', 'sellers.id')->where('products.brand_id', $item->id )->where('products.completed', 1)->where('products.price', '>=', $min_price)->orderby('products.price', $sort)->paginate(9);
+                                } else {
+                                    $products = products::join('sellers', 'products.seller_id', '=', 'sellers.id')->where('products.brand_id', $item->id )->where('products.completed', 1)->where('products.price', '<=', $max_price)->where('products.price', '>=', $min_price)->orderby('products.price', $sort)->paginate(9);
+                                }
+                            }
+                        }
+                    }
+
+                }
+                $products->appends($req->all());
+                if (session()->has('user')) {
+                    $data_user = Users::findOrFail(session('user'));
+                    return view('home/products', compact('data_user','i','resultID','max_price','min_price', 'products', 'productCount', 'brand', 'result'));
+                }
+                return view('home/products', compact('products','max_price','min_price', 'productCount', 'brand', 'result'));
+
+    }
     static public function countCart()
     {
         $data_user = Users::findOrFail(session('user'));
@@ -89,7 +154,7 @@ class HomeController extends Controller
     }
     public function products()
     {
-        $result = DB::table('products')
+        $result = DB::table('products')->where('completed', 1)
             ->select(DB::raw('count(count) as total_pro'), 'brand_id')
             ->groupBy('brand_id')
             ->get();
@@ -97,17 +162,21 @@ class HomeController extends Controller
         $products = DB::table('products')
             ->join('sellers', 'products.seller_id', '=', 'sellers.id')
             ->where('completed', 1)
-            ->select('products.*', 'sellers.store_name')
+            ->select('products.*', 'sellers.store_name')->orderByDesc('price')
             ->inRandomOrder()
             ->paginate(9);
         $productCount = DB::table('products')
             ->where('completed', 1)
             ->count();
+            $min_price ='';
+            $max_price ='';
+            $i = 0;
+        $resultID = [];
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
-            return view('home/products', compact('data_user', 'products', 'productCount', 'brand', 'result'));
+            return view('home/products', compact('data_user','resultID','i','min_price','max_price', 'products', 'productCount', 'brand', 'result'));
         }
-        return view('home/products', compact('products', 'productCount', 'brand', 'result'));
+        return view('home/products', compact('products','min_price','max_price', 'productCount', 'brand', 'result'));
     }
     public function login()
     {
