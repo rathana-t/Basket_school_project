@@ -194,7 +194,7 @@ class HomeController extends Controller
             ->groupBy('brand_id')
             ->get();
         $brand = brands::all();
-        $products = DB::table('products')
+        $products[] = DB::table('products')
             ->join('sellers', 'products.seller_id', '=', 'sellers.id')
             ->where('completed', 1)
             ->select('products.*', 'sellers.store_name')->orderByDesc('price')
@@ -204,14 +204,16 @@ class HomeController extends Controller
             ->where('completed', 1)
             ->count();
             $min_price ='';
+            $sort ='';
             $max_price ='';
             $i = 0;
-        $resultID = [];
+            $brand_name[] = '';
+            $resultID = [];
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
-            return view('home/products', compact('data_user','resultID','i','min_price','max_price', 'products', 'productCount', 'brand', 'result'));
+            return view('home/products', compact('data_user','sort','brand_name','resultID','i','min_price','max_price', 'products', 'productCount', 'brand', 'result'));
         }
-        return view('home/products', compact('products','min_price','max_price', 'productCount', 'brand', 'result'));
+        return view('home/products', compact('products','sort','resultID','brand_name','i','min_price','max_price', 'productCount', 'brand', 'result'));
     }
     public function login()
     {
