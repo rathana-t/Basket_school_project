@@ -278,6 +278,9 @@
     }
 
     .profile-column img {
+        max-height: 250px;
+        width: 350px;
+        object-fit: contain;
         border-radius: 5px;
     }
 

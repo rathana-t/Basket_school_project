@@ -102,9 +102,9 @@
                 <div class="modal-body">
                     Reject this shop ?
                 </div>
-                <form action="{{ url('/admin/productRequestReject', $seller->id) }}" method="POST">
+                <form action="/admin/shopreject/{{ $seller->id }}" method="POST">
                     @csrf
-                    <input type="text" name="msg" class="text-center" id="" placeholder="message send to store" required>
+                    {{-- <input type="text" name="msg" class="text-center" id="" placeholder="message send to store" required> --}}
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                         <button type="submit" class="btn btn-primary">Send</button>

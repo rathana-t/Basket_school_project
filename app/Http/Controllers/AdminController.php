@@ -49,6 +49,7 @@ class AdminController extends Controller
         $countSmallCate = DB::table('se_categories')->count();
         $countBrand = DB::table('brands')->count();
         $countOrder = DB::table('orders')->count();
+        $countShopPending = sellers::where('pending','0')->count();
         $sumTotalOrder = DB::table('orders')
             ->join('carts', 'orders.cart_id', 'carts.id')
             ->select('orders.*', 'carts.total')
@@ -115,7 +116,8 @@ class AdminController extends Controller
             'countPruductPending',
             'countCate',
             'countSmallCate',
-            'countBrand'
+            'countBrand',
+            'countShopPending'
         ));
     }
 
@@ -165,6 +167,13 @@ class AdminController extends Controller
                   $message->subject('Request Accepted');
                });
         return redirect('admin/shopPending')->with('success','Seller has been confirmed success');
+    }
+    public function shopReject($id)
+    {
+        $shopRej = sellers::find($id);
+        $shopRej->pending=2;
+        $shopRej->update();
+        return redirect('admin/shopPending')->with('danger','Seller has been Rejected');
     }
     public function seller_login($token) {
         DB::table('password_resets')->where(['token'=> $token])->delete();

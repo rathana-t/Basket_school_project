@@ -5,6 +5,11 @@
             {{ session('success') }}
         </div>
     @endif
+    @if (session('danger'))
+        <div class="text-danger text-center" role="alert">
+            {{ session('danger') }}
+        </div>
+    @endif
     <div class="card border-0 shadow rounded">
         <div style="min-height: 500px">
             <table class="table table-hover table-borderless">
@@ -48,7 +53,6 @@
                                 <a href="/admin/shopDetail/{{ $item->id }}">
                                     <button type="button" class="btn btn-sm btn-outline-dark">View</button>
                                 </a>
-                                <button type="button" class="btn btn-sm btn-dark">Delete</button>
                             </td>
                         </tr>
                     @endforeach
