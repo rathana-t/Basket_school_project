@@ -314,6 +314,9 @@
                         @endif
                     @endforeach
                 </div>
+                <div class="mt-4">
+                    {{ $related_pro->links() }}
+                </div>
                 @if (Session::has('add-to-cart-success'))
                     <script>
                         $(document).ready(function() {

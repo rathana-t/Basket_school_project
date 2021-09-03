@@ -22,21 +22,18 @@
                 <div class="pt-2">
                     <?php
                     $ii = 0;
-
                     ?>
                     <div class="brand">
                         @foreach ($brand as $item)
                             <?php
                             $j = 0;
-
-                            $i++;
+                            $ii++;
                             ?>
                             <div class="custom-control custom-checkbox mb-2 pr-3">
                                 <div class="d-flex justify-content-between">
                                     <div>
-                                        {{-- {{ $resultID[] }} --}}
-                                        {{-- @for ($a = 1; $a <= $i; $a++)
-                                            @if ($item->id == $resultID[$i])
+                                        @for ($a = 1; $a <= $i; $a++)
+                                            @if ($item->id == $resultID[$a])
                                                 <?php
                                                 $j++;
                                                 ?>
@@ -46,7 +43,7 @@
                                                     {{ $item->name }}
                                                 </label>
                                             @endif
-                                        @endfor --}}
+                                        @endfor
                                         @if ($j == 0)
                                             <input type="checkbox" class="custom-control-input" name="brand_name[]"
                                                 id="{{ $ii }}" value="{{ $item->id }}">

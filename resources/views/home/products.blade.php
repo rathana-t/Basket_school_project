@@ -130,38 +130,42 @@
                         </p>
                         <div class="border-bottom"></div>
                         <div class="row pt-3">
-                            @for ($a = 1; $a <= $i; $a++)
-                                @foreach ($products[$a] as $item)
-                                    <div class="col-md-4">
-                                        <div class="card mb-3 shadow-sm rounded">
-                                            <div class="p-3">
-                                                <img src="{{ asset('images/imgProduct') }}/{{ $item->img_product }}"
-                                                    alt="" class="img-fluid">
-                                                <div class="pt-2 pb-2">
-                                                    <div class="b">
-                                                        {{ $item->name }}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="card-footer text-right">
-                                                <div class="d-flex justify-content-between">
-                                                    <div>
-                                                        ${{ $item->price }}
-                                                    </div>
-                                                    <button class="btn btn-sm btn-primary">
-                                                        Order Now
-                                                    </button>
+                            {{-- @for ($no = 1; $no <= $index; $no++)
+                                @for ($a = 1; $a <= $i; $a++) --}}
+                            @foreach ($products as $item)
+                                {{-- @if ($item->id == $my_sort_data[$no]) --}}
+                                <div class="col-md-4">
+                                    <div class="card mb-3 shadow-sm rounded">
+                                        <div class="p-3">
+                                            <img src="{{ asset('images/imgProduct') }}/{{ $item->img_product }}" alt=""
+                                                class="img-fluid">
+                                            <div class="pt-2 pb-2">
+                                                <div class="b">
+                                                    {{ $item->name }}
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="card-footer text-right">
+                                            <div class="d-flex justify-content-between">
+                                                <div>
+                                                    ${{ $item->price }}
+                                                </div>
+                                                <button class="btn btn-sm btn-primary">
+                                                    Order Now
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
-                                @endforeach
-                            @endfor
+                                </div>
+                                {{-- @endif --}}
+                            @endforeach
+                            {{-- @endfor
+                            @endfor --}}
 
                         </div>
                     </div>
                     <div class="mt-4">
-                        {{ $products[$i]->links() }}
+                        {{ $products->links() }}
                     </div>
                 </div>
             </div>
