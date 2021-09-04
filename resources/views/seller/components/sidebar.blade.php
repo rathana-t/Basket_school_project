@@ -150,7 +150,13 @@
                         </div>
                     </a>
                 </li>
-
+                <li>
+                    <a href="/seller/test">
+                        <div>
+                            <span class="pl-3">Test</span>
+                        </div>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

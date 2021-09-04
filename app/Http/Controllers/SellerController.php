@@ -27,11 +27,25 @@ use Illuminate\Support\Facades\Session;
 
 class SellerController extends Controller
 {
+    public function test()
+    {
+        $data_seller = sellers::findOrFail(session('seller'));
+        // dd($data_seller);
+        $product = DB::table('orders')
+            ->join('carts', 'orders.cart_id', 'carts.id')
+            ->join('products', 'products.id', 'carts.product_id')
+            ->where('products.seller_id', $data_seller->id)
+            ->where('orders.delivery', 1)
+            ->select('products.*', 'carts.quantity')
+            ->get();
+        // dd($product);
+        return view('/seller/test', compact('data_seller', 'product'));
+    }
     public function dashboard()
     {
         if (session()->has('seller')) {
             $data_seller = sellers::findOrFail(session('seller'));
-            $sumOrderTotal = DB::table('orders')
+            $sumOrderTotal = $sumOrderTotal = DB::table('orders')
                 ->join('carts', 'orders.cart_id', 'carts.id')
                 ->join('products', 'products.id', 'carts.product_id')
                 ->where('products.seller_id', $data_seller->id)

@@ -109,6 +109,8 @@ Route::get('/seller/messages/{id}', [SellerController::class, 'detailMsg'])->mid
 Route::get('/edit/product/{id}', [AdminController::class, 'edit'])->name('edit_product')->middleware('checker_seller');
 Route::post('/update/product/{id}', [ProductController::class, 'update'])->name('update_pro')->middleware('checker_seller');
 
+Route::get('/seller/test', [SellerController::class, 'test'])->middleware('checker_seller');
+
 Route::prefix('CustomPC')->group(function () {
     Route::get('product', [BuildPcController::class, 'go_away']);
     Route::post('product', [BuildPcController::class, 'get_item_by_se_cate']);
