@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersHasCardsTable extends Migration
+class CreateHomeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateUsersHasCardsTable extends Migration
      */
     public function up()
     {
-        Schema::create('users_has_cards', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('card_id');
-            $table->integer('count')->default(1);
+        Schema::create('home', function (Blueprint $table) {
+            $table->id();
+            $table->string('img1', 1024)->nullable();
+            $table->string('img2', 1024)->nullable();
+            $table->string('img3', 1024)->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateUsersHasCardsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users_has_cards');
+        Schema::dropIfExists('home');
     }
 }

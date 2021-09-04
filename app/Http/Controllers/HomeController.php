@@ -13,6 +13,7 @@ use App\Models\cards;
 use App\Models\brands;
 use App\Models\users_has_cards;
 use App\Http\Controllers\Controller;
+use App\Models\Home;
 use App\Models\se_categories;
 use Doctrine\DBAL\Schema\Index;
 use Illuminate\Http\Request;
@@ -123,6 +124,8 @@ class HomeController extends Controller
     }
     public function index()
     {
+        $img = DB::table('home')->get();
+        // dd($img);
         $count = 0;
         $topSale = DB::table('products')
             ->orderByDesc('top_buy')
@@ -160,9 +163,9 @@ class HomeController extends Controller
             ->get();
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
-            return view('home/index', compact('data_user', 'data_pro', 'result', 'cate', 'brand', 'second_cate', 'count', 'recently_product', 'randSecond_cate', 'topSale'));
+            return view('home/index', compact('img', 'data_user', 'data_pro', 'result', 'cate', 'brand', 'second_cate', 'count', 'recently_product', 'randSecond_cate', 'topSale'));
         } else {
-            return view('home/index', compact('data_pro', 'result', 'cate', 'brand', 'second_cate', 'count', 'recently_product', 'randSecond_cate', 'topSale'));
+            return view('home/index', compact('img', 'data_pro', 'result', 'cate', 'brand', 'second_cate', 'count', 'recently_product', 'randSecond_cate', 'topSale'));
         }
     }
     public function products(Request $req)

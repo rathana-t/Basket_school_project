@@ -22,18 +22,18 @@
                         <div class="col-md-8">
                             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                                 <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <img src="https://thegadgetflow.com/wp-content/uploads/2021/07/back-to-school-gadgets-06-1024x576.jpeg"
-                                            class="d-block w-100 " alt="...">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="https://thegadgetflow.com/wp-content/uploads/2021/07/back-to-school-gadgets-09-1024x576.jpeg"
-                                            class="d-block w-100 " alt="...">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="https://thegadgetflow.com/wp-content/uploads/2021/04/Anker-PowerConf-C300-Webcam-01-1200x900.jpeg"
-                                            class="d-block w-100 " alt="...">
-                                    </div>
+                                    @foreach ($img as $item)
+                                        <div class="carousel-item active">
+                                            <img src="images/home/{{ $item->img1 }}" class="d-block w-100 " alt="...">
+                                        </div>
+                                        <div class="carousel-item">
+                                            <img src="images/home/{{ $item->img2 }}" class="d-block w-100 " alt="...">
+                                        </div>
+                                        <div class="carousel-item">
+                                            <img src="images/home/{{ $item->img3 }}" class="d-block w-100 " alt="...">
+                                        </div>
+                                    @endforeach
+
                                 </div>
                                 <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
                                     data-slide="prev">
