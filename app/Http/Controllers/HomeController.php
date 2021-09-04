@@ -63,17 +63,17 @@ class HomeController extends Controller
             }
             if ($min_price == "") {
                 if ($max_price == "") {
-                    $products= products::join('sellers', 'products.seller_id', '=', 'sellers.id')->whereIn('products.brand_id', $resultID )->where('products.completed', 1)->select('products.*','sellers.id as seller_id')->orderby('products.price', $sort)->paginate(9);
+                    $products= products::join('sellers', 'products.seller_id', '=', 'sellers.id')->whereIn('products.brand_id', $resultID )->where('products.completed', 1)->select('products.*','sellers.id as seller_id','sellers.store_name')->orderby('products.price', $sort)->paginate(9);
                     $productCount= products::join('sellers', 'products.seller_id', '=', 'sellers.id')->whereIn('products.brand_id', $resultID )->where('products.completed', 1)->count();
                     } else {
-                    $products = products::join('sellers', 'products.seller_id', '=', 'sellers.id')->whereIn('products.brand_id', $resultID )->where('products.completed', 1)->where('products.price', '<=', $max_price)->select('products.*','sellers.id as seller_id')->orderby('products.price', $sort)->paginate(9);
+                    $products = products::join('sellers', 'products.seller_id', '=', 'sellers.id')->whereIn('products.brand_id', $resultID )->where('products.completed', 1)->where('products.price', '<=', $max_price)->select('products.*','sellers.id as seller_id','sellers.store_name')->orderby('products.price', $sort)->paginate(9);
                     $productCount = products::join('sellers', 'products.seller_id', '=', 'sellers.id')->whereIn('products.brand_id', $resultID )->where('products.completed', 1)->where('products.price', '<=', $max_price)->count();
                 }
             } elseif ($max_price == "") {
-                $products = products::join('sellers', 'products.seller_id', '=', 'sellers.id')->whereIn('products.brand_id', $resultID )->where('products.completed', 1)->where('products.price', '>=', $min_price)->select('products.*','sellers.id as seller_id')->orderby('products.price', $sort)->paginate(9);
+                $products = products::join('sellers', 'products.seller_id', '=', 'sellers.id')->whereIn('products.brand_id', $resultID )->where('products.completed', 1)->where('products.price', '>=', $min_price)->select('products.*','sellers.id as seller_id','sellers.store_name')->orderby('products.price', $sort)->paginate(9);
                 $productCount = products::join('sellers', 'products.seller_id', '=', 'sellers.id')->whereIn('products.brand_id', $resultID )->where('products.completed', 1)->where('products.price', '>=', $min_price)->count();
             } else {
-                $products = products::join('sellers', 'products.seller_id', '=', 'sellers.id')->whereIn('products.brand_id', $resultID )->where('products.completed', 1)->where('products.price', '<=', $max_price)->where('products.price', '>=', $min_price)->select('products.*','sellers.id as seller_id')->orderby('products.price', $sort)->paginate(9);
+                $products = products::join('sellers', 'products.seller_id', '=', 'sellers.id')->whereIn('products.brand_id', $resultID )->where('products.completed', 1)->where('products.price', '<=', $max_price)->where('products.price', '>=', $min_price)->select('products.*','sellers.id as seller_id','sellers.store_name')->orderby('products.price', $sort)->paginate(9);
                 $productCount = products::join('sellers', 'products.seller_id', '=', 'sellers.id')->whereIn('products.brand_id', $resultID )->where('products.completed', 1)->where('products.price', '<=', $max_price)->where('products.price', '>=', $min_price)->count();
             }
 

@@ -150,6 +150,11 @@
                                                 <div>
                                                     ${{ $item->price }}
                                                 </div>
+                                                <div class="store_name">
+                                                    <a href="/store/{{ $item->seller_id }}" class="text-muted">
+                                                        {{ $item->store_name }}
+                                                    </a>
+                                                </div>
                                                 <button class="btn btn-sm btn-primary">
                                                     Order Now
                                                 </button>
