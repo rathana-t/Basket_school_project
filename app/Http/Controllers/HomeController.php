@@ -361,7 +361,7 @@ class HomeController extends Controller
         $min_price = "";
         $max_price = "";
         $pro_name = $req->input('query');
-        $data = products::where('name', 'like', '%' . $req->input('query') . '%')->where('completed', 1)->orderByDesc('price')->paginate(6);
+        $data = products::where('name', 'like', '%' . $req->input('query') . '%')->orderByDesc('price')->paginate(6);
         $callinput = $req->input('query');
         if (session()->has('user')) {
             $data_user = users::findOrFail(session('user'));

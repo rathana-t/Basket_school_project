@@ -16,7 +16,7 @@
                     </div>
                 </a>
             </div>
-            <div class="col-md-3">
+            {{-- <div class="col-md-3">
                 <a href="/seller/productPending">
                     <div
                         class="card shadow-sm rounded {{ Request::is('seller/productPending') ? 'bg-dark border-0' : 'bg-light' }}">
@@ -31,7 +31,7 @@
                         </div>
                     </div>
                 </a>
-            </div>
+            </div> --}}
             <div class="col-md-3">
                 <a href="/seller/choose-category">
                     <div

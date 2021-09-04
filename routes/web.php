@@ -94,7 +94,7 @@ Route::get('/delete_user_cancel_order/{id}', [SellerController::class, 'delete_u
 
 Route::get('/seller/dashboard', [SellerController::class, 'dashboard'])->middleware('checker_seller');
 Route::get('/seller/products', [SellerController::class, 'products'])->middleware('checker_seller');
-Route::get('/seller/productPending', [SellerController::class, 'productPending'])->middleware('checker_seller');
+// Route::get('/seller/productPending', [SellerController::class, 'productPending'])->middleware('checker_seller');
 Route::get('/seller/choose-category', [SellerController::class, 'choose_main_cate'])->middleware('checker_seller');
 Route::get('/seller/add-product/{id}', [SellerController::class, 'add_product'])->middleware('checker_seller');
 Route::post('/seller/postProduct/{id}', [SellerController::class, 'postProduct'])->name('sellerpostProduct');
