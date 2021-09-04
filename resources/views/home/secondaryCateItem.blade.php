@@ -46,3 +46,62 @@
         </div>
     </div>
 @stop
+{{-- @if (\Route::current()->getName() == 'smallcateItem1')
+    <div class="card mb-3">
+        <div class="m-3">
+            <a href="/category/{{ $cate->id }}/smallcate/{{ $smallCateName->id }}/product/{{ $item->id }}">
+                <img src="{{ asset('images/imgProduct') }}/{{ $item->img_product }}" alt=""
+                    class="img-fluid">
+            </a>
+        </div>
+        <div class="border-top">
+            <div class="pl-4 pr-4 pb-2 pt-2">
+                <div class="product_name">
+                    <a
+                        href="/category/{{ $cate->id }}/smallcate/{{ $smallCateName->id }}/product/{{ $item->id }}">
+                        {{ $item->name }}
+                    </a>
+                </div>
+                <div class="price">
+                    <a
+                        href="/category/{{ $cate->id }}/smallcate/{{ $smallCateName->id }}/product/{{ $item->id }}">
+                        ${{ $item->price }}
+                    </a>
+                </div>
+                <div class="store_name">
+                    <a href="/category/{{ $cate->id }}/store/{{ $item->seller_id }}" class="text-muted">
+                        {{ $item->store_name }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+@else
+    <div class="card mb-3">
+        <div class="m-3">
+            <a href="/smallcate/{{ $smallCateName->id }}/product/{{ $item->id }}">
+                <img src="{{ asset('images/imgProduct') }}/{{ $item->img_product }}" alt=""
+                    class="img-fluid">
+            </a>
+        </div>
+        <div class="border-top">
+            <div class="pl-4 pr-4 pb-2 pt-2">
+                <div class="product_name">
+                    <a href="/smallcate/{{ $smallCateName->id }}/product/{{ $item->id }}">
+                        {{ $item->name }}
+                    </a>
+                </div>
+                <div class="price">
+                    <a href="/smallcate/{{ $smallCateName->id }}/product/{{ $item->id }}">
+                        ${{ $item->price }}
+                    </a>
+                </div>
+                <div class="store_name">
+                    <a href="/store/{{ $item->seller_id }}" class="text-muted">
+                        {{ $item->store_name }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif --}}

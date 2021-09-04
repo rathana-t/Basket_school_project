@@ -11,7 +11,11 @@
                         <div class="col-md-4">
                             <ul class="list-group list-group-flush cs-list-group">
                                 @foreach ($second_cate as $item)
-                                    <li class="list-group-item">{{ $item->name }}</li>
+                                    <li class="list-group-item">
+                                        <a href="/smallcate/{{ $item->id }}">
+                                            {{ $item->name }}
+                                        </a>
+                                    </li>
                                 @endforeach
                             </ul>
                         </div>
@@ -184,19 +188,18 @@
                 </div>
             </div>
         </div> --}}
-        <div class="product pt-4 pb-2" id="Product">
+        <div class="pt-4 pb-2" id="Product">
             <div class="mb-3 d-flex justify-content-between">
                 <h5>
                     Products
                 </h5>
                 <a href="/product" class="btn btn-outline-primary">See all</a>
             </div>
-            <div class="product-item">
+            <div class="duct">
                 <div class="row">
                     @foreach ($data_pro as $item)
                         <div class="col-md-3 col-sm-6 col-xs-12">
-                            <div class="smallCard">
-                                <div class="card mb-3">
+                            {{-- <div class="card mb-3">
                                     <div class="m-3">
                                         <a href="/product/product/{{ $item->id }}">
                                             <img src="{{ asset('images/imgProduct') }}/{{ $item->img_product }}" alt=""
@@ -226,24 +229,34 @@
                                         </div>
                                     </div>
 
-                                    {{-- @if (Session::has('user'))
-                                    <a href="/add-to-wishlist2/{{ $data_user->id }}/product/{{ $item->id }}"
-                                        class="btn-sm btn btn-warning">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                            class="bi bi-heart" viewBox="0 0 16 16">
-                                            <path
-                                                d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                                        </svg>
+                                    
+                                </div> --}}
+                            <div class="card mb-3 shadow-sm rounded">
+                                <div class="p-3">
+                                    <a href="/product/product/{{ $item->id }}">
+                                        <img src="{{ asset('images/imgProduct') }}/{{ $item->img_product }}" alt=""
+                                            class="img-fluid">
+                                        <div class="pt-2 pb-2">
+                                            <div class="b">
+                                                {{ $item->name }}
+                                            </div>
+                                            {{-- <div class="text-mute">
+                                                {{ $item->store_name }}
+                                            </div> --}}
+                                        </div>
                                     </a>
-                                @else
-                                    <a href="/login" class="btn-sm btn btn-warning">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                            class="bi bi-heart" viewBox="0 0 16 16">
-                                            <path
-                                                d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                                        </svg>
-                                    </a>
-                                @endif --}}
+                                </div>
+                                <div class="card-footer text-right">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <a href="/product/product/{{ $item->id }}">
+                                                ${{ $item->price }}
+                                            </a>
+                                        </div>
+                                        <button class="btn btn-sm btn-primary">
+                                            Order Now
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

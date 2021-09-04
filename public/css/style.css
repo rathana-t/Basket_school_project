@@ -3,6 +3,76 @@
 * {
     font-family: "Poppins", sans-serif;
 }
+
+.duct .card-footer {
+    background-color: white !important;
+}
+
+.duct .card-body {
+    padding-bottom: 0px !important;
+}
+
+.duct .btn-primary {
+    color: #fff;
+    width: 100px;
+}
+
+.duct h4 {
+    font-size: 16px;
+    color: #035ebe;
+}
+
+.duct .brand {
+    padding-left: 3px;
+    height: 200px;
+    overflow-y: auto;
+}
+
+.duct .brand::-webkit-scrollbar {
+    height: 5px;
+    width: 7px;
+}
+
+.duct .brand::-webkit-scrollbar-thumb {
+    background: #afb3b6;
+    border-radius: 5px;
+}
+
+.duct .form-control:focus {
+    border-color: #a7a7a7;
+    box-shadow: inset 0 1px 1px rgba(185, 185, 185, 0.075),
+        0 0 8px rgba(167, 167, 167, 0.6);
+}
+
+.duct .price label {
+    font-size: 14px;
+    padding-left: 5px;
+}
+
+.duct .apply button {
+    width: 200px !important;
+}
+
+.duct img {
+    height: 180px;
+    width: 300px;
+    object-fit: contain;
+    border-radius: 5px;
+}
+
+.duct a {
+    color: #323b49;
+    text-decoration: none;
+}
+
+.duct a:hover {
+    color: #035ebe;
+    text-decoration: none;
+}
+
+.duct-height {
+    min-height: 1000px;
+}
 .btn-primary {
     background-color: #3167eb !important;
     border-color: #3167eb !important;
@@ -48,6 +118,13 @@ body {
 }
 .header .card {
     height: 400px;
+}
+.header a {
+    color: #323b49;
+    text-decoration: none;
+}
+.header a:hover {
+    text-decoration: none;
 }
 .header img {
     height: 360px;
@@ -334,6 +411,7 @@ footer ul li {
 }
 .deatail_page img {
     height: 500px;
+    width: 700px;
     object-fit: contain;
     border-radius: 5px;
 }

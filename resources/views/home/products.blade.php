@@ -76,6 +76,7 @@
         }
 
         .duct .brand {
+            padding-left: 3px;
             height: 200px;
             overflow-y: auto;
         }
@@ -111,6 +112,16 @@
             border-radius: 5px;
         }
 
+        .duct a {
+            color: #323b49;
+            text-decoration: none;
+        }
+
+        .duct a:hover {
+            color: #035ebe;
+            text-decoration: none;
+        }
+
         .duct-height {
             min-height: 1000px;
         }
@@ -137,18 +148,22 @@
                                 <div class="col-md-4">
                                     <div class="card mb-3 shadow-sm rounded">
                                         <div class="p-3">
-                                            <img src="{{ asset('images/imgProduct') }}/{{ $item->img_product }}" alt=""
-                                                class="img-fluid">
-                                            <div class="pt-2 pb-2">
-                                                <div class="b">
-                                                    {{ $item->name }}
+                                            <a href="/product/product/{{ $item->id }}">
+                                                <img src="{{ asset('images/imgProduct') }}/{{ $item->img_product }}"
+                                                    alt="" class="img-fluid">
+                                                <div class="pt-2 pb-2">
+                                                    <div class="b">
+                                                        {{ $item->name }}
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            </a>
                                         </div>
                                         <div class="card-footer text-right">
                                             <div class="d-flex justify-content-between">
                                                 <div>
-                                                    ${{ $item->price }}
+                                                    <a href="/product/product/{{ $item->id }}">
+                                                        ${{ $item->price }}
+                                                    </a>
                                                 </div>
                                                 <div class="store_name">
                                                     <a href="/store/{{ $item->seller_id }}" class="text-muted">

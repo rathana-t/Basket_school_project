@@ -17,6 +17,7 @@ use App\Models\se_categories;
 use App\Models\users_has_cards;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Report;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Cookie;
@@ -184,7 +185,7 @@ class SellerController extends Controller
                 'email_phone' => 'required',
                 'password' => 'required',
             ]);
-            $seller = DB::table('sellers')->where("phone", "=", $data["email_phone"])->where("pending","1")->first();
+            $seller = DB::table('sellers')->where("phone", "=", $data["email_phone"])->where("pending", "1")->first();
             if ($seller) {
                 $validPassword = Hash::check($data['password'], $seller->password);
                 if ($validPassword) {
@@ -209,7 +210,7 @@ class SellerController extends Controller
                 'email_phone' => 'required',
                 'password' => 'required',
             ]);
-            $seller = DB::table('sellers')->where("email", "=", $data["email_phone"])->where("pending","1")->first();
+            $seller = DB::table('sellers')->where("email", "=", $data["email_phone"])->where("pending", "1")->first();
             if ($seller) {
                 $validPassword = Hash::check($data['password'], $seller->password);
                 if ($validPassword) {
@@ -291,7 +292,7 @@ class SellerController extends Controller
         $sellerHasProduct = DB::table('products')
             ->join('sellers', 'products.seller_id', '=', 'sellers.id')
             ->where('sellers.id', $id)
-            ->where('products.completed', '=', '1')
+            // ->where('products.completed', '=', '1')
             ->select('products.*', 'sellers.store_name', 'sellers.phone', 'sellers.address')
             ->orderBy('created_at', 'desc')
             ->paginate(5);
@@ -300,25 +301,25 @@ class SellerController extends Controller
         $i = 0;
         return view('seller/product/listProduct', compact('i', 'data_seller', 'sellerHasProduct', 'main_cate'));
     }
-    public function productPending()
-    {
-        if (session()->has('seller')) {
-            $data_seller = sellers::findOrFail(session('seller'));
-        }
-        $id = $data_seller->id;
-        $main_cate = categories::get();
-        $sellerHasProduct = DB::table('products')
-            ->join('sellers', 'products.seller_id', '=', 'sellers.id')
-            ->where('sellers.id', $id)
-            ->where('products.completed', '=', '0')
-            ->select('products.*', 'sellers.store_name', 'sellers.phone', 'sellers.address')
-            ->orderBy('updated_at', 'desc')
-            ->paginate(5);
-        $data_seller = sellers::find($id);
+    // public function productPending()
+    // {
+    //     if (session()->has('seller')) {
+    //         $data_seller = sellers::findOrFail(session('seller'));
+    //     }
+    //     $id = $data_seller->id;
+    //     $main_cate = categories::get();
+    //     $sellerHasProduct = DB::table('products')
+    //         ->join('sellers', 'products.seller_id', '=', 'sellers.id')
+    //         ->where('sellers.id', $id)
+    //         ->where('products.completed', '=', '0')
+    //         ->select('products.*', 'sellers.store_name', 'sellers.phone', 'sellers.address')
+    //         ->orderBy('updated_at', 'desc')
+    //         ->paginate(5);
+    //     $data_seller = sellers::find($id);
 
-        $i = 0;
-        return view('seller/product/listProductPending', compact('i', 'data_seller', 'sellerHasProduct', 'main_cate'));
-    }
+    //     $i = 0;
+    //     return view('seller/product/listProductPending', compact('i', 'data_seller', 'sellerHasProduct', 'main_cate'));
+    // }
     public function choose_main_cate()
     {
         $main_cate = categories::get();
@@ -888,7 +889,7 @@ class SellerController extends Controller
         $pro->seller_id = $req->session()->get('seller');
 
         $pro->save();
-        return redirect('/seller/productPending')->with('product_add', 'Your product has been add successfully!');
+        return redirect('/seller/products')->with('product_add', 'Your product has been add successfully!');
     }
 
 

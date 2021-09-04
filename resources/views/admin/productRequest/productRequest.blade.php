@@ -27,7 +27,7 @@
                             <div class="card shadow-sm rounded">
                                 <div class="card-body">
                                     <h5 class="q">
-                                        Pending
+                                        Incomplete
                                     </h5>
                                     <div>
                                         3456

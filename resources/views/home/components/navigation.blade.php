@@ -47,6 +47,11 @@
             >
             <a href="/product" class="ac">Products</a>
 
+        @elseif (\Route::current()->getName() == 'product_search_filter')
+            <a href="/#Product">Home</a>
+            >
+            <a href="/product" class="ac">Products</a>
+
         @elseif (\Route::current()->getName() == 'productItem')
             <a href="/#Product">Home</a>
             >
@@ -57,10 +62,14 @@
         @elseif (\Route::current()->getName() == 'smallcate')
             <a href="/#Subcategory">Home</a>
             >
+            <a href="/category">Category</a>
+            >
             <a href="/smallcate" class="ac">Subcategory</a>
 
         @elseif (\Route::current()->getName() == 'smallcateItem')
             <a href="/#Subcategory">Home</a>
+            >
+            <a href="/category">Category</a>
             >
             <a href="/smallcate">Subcategory</a>
             >
@@ -68,6 +77,8 @@
 
         @elseif (\Route::current()->getName() == 'smallcateProductItem')
             <a href="/#Subcategory">Home</a>
+            >
+            <a href="/category">Category</a>
             >
             <a href="/smallcate">Subcategory</a>
             >
