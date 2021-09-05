@@ -196,16 +196,33 @@ class AdminController extends Controller
                });
         return redirect('admin/shopPending')->with('success','Seller has been confirmed success');
     }
-    public function shopReject($id)
-    {
-        $shopRej = sellers::find($id);
-        $shopRej->pending=2;
-        $shopRej->update();
-        return redirect('admin/shopPending')->with('danger','Seller has been Rejected');
-    }
     public function seller_login($token) {
         DB::table('password_resets')->where(['token'=> $token])->delete();
         return redirect()->route('login_page');
+     }
+    public function shopReject(Request $request,$id)
+    {
+        $shopRej = sellers::find($id);
+        $shopRej->pending=2;
+        $shopRej->message = $request->message;
+        $shopRej->update();
+        // $message = request()->validate([
+        //     'message'=>'required',
+        // ]);
+        $token = Str::random(60);
+        DB::table('password_resets')->insert(
+            ['email' => $request->email, 'token' => $token, 'created_at' => Carbon::now()]
+        );
+        Mail::send('forget.sellerRejectmsg',['token' => $token], function($message) use ($request) {
+                  $message->from($request->email);
+                  $message->to($request->email);
+                  $message->subject('Request Rejected');
+               });
+        return redirect('admin/shopPending',compact('shopRej'))->with('danger','Seller has been Rejected');
+    }
+    public function edit_register($token) {
+        return view('admin/seller/editRegister', ['token' => $token]);
+
      }
     public function sellerDetail($id)
     {
