@@ -19,6 +19,7 @@ Route::get('/test', function () {
     // var_dump('time' . date("Y m d H:i:s"));
 
 });
+
 Route::get('/', [HomeController::class, 'index']);
 // Route::get('/ssss', [HomeController::class, 'ssss']);
 
@@ -112,6 +113,11 @@ Route::get('/seller/messages', [SellerController::class, 'sellerMessages'])->mid
 Route::get('/seller/messages/{id}', [SellerController::class, 'detailMsg'])->middleware('checker_seller');
 Route::get('/edit/product/{id}', [AdminController::class, 'edit'])->name('edit_product')->middleware('checker_seller');
 Route::post('/update/product/{id}', [ProductController::class, 'update'])->name('update_pro')->middleware('checker_seller');
+
+
+Route::get('/q', [HomeController::class, 'test']);
+Route::post('/qq', [HomeController::class, 'testPost'])->name('qqq');
+
 
 Route::get('/seller/test', [SellerController::class, 'test'])->middleware('checker_seller');
 Route::get('/seller/export/commission/{id}', [ReportController::class, 'export_excel'])->middleware('checker_seller');

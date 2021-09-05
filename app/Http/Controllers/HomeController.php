@@ -379,11 +379,11 @@ class HomeController extends Controller
         $min_price = "";
         $max_price = "";
         $pro_name = $req->input('query');
-        $fill_searcch=$req->search_fill;
+        $fill_searcch = $req->search_fill;
 
-        if($fill_searcch=='name'){
+        if ($fill_searcch == 'name') {
             $data = products::where('name', 'like', '%' . $req->input('query') . '%')->orderByDesc('price')->paginate(6);
-        }else{
+        } else {
             $data = products::where('code_product', 'like', '%' . $req->input('query') . '%')->orderByDesc('price')->paginate(6);
         }
 
@@ -392,9 +392,9 @@ class HomeController extends Controller
 
         if (session()->has('user')) {
             $data_user = users::findOrFail(session('user'));
-            return view('home/search', compact('second_cate', 'fill_searcch','data', 'sort', 'max_price', 'min_price', 'pro_name', 'brand', 'data_user', 'brand_id', 'brandId'));
+            return view('home/search', compact('second_cate', 'fill_searcch', 'data', 'sort', 'max_price', 'min_price', 'pro_name', 'brand', 'data_user', 'brand_id', 'brandId'));
         }
-        return view('home/search', compact('second_cate', 'fill_searcch','data', 'sort', 'max_price', 'min_price', 'pro_name', 'brand', 'brand_id', 'brandId'));
+        return view('home/search', compact('second_cate', 'fill_searcch', 'data', 'sort', 'max_price', 'min_price', 'pro_name', 'brand', 'brand_id', 'brandId'));
     }
 
     public function search_filter(Request $req)
@@ -410,8 +410,8 @@ class HomeController extends Controller
         $brand_id = "";
         $brandId = $req->brand_id;
 
-        $fill_searcch=$req->search_fill;
-        if($fill_searcch=='name'){
+        $fill_searcch = $req->search_fill;
+        if ($fill_searcch == 'name') {
             if ($sort == 'l_h') {
                 if ($brandId == "") {
                     if ($min_price == "") {
@@ -465,7 +465,7 @@ class HomeController extends Controller
                     }
                 }
             }
-        }else{
+        } else {
             if ($sort == 'l_h') {
                 if ($brandId == "") {
                     if ($min_price == "") {
@@ -524,9 +524,9 @@ class HomeController extends Controller
         $data->appends($req->all());
         if (session()->has('user')) {
             $data_user = users::findOrFail(session('user'));
-            return view('home/search', compact('second_cate','fill_searcch', 'data', 'pro_name', 'sort', 'brand', 'data_user', 'brand_id', 'brandId', 'max_price', 'min_price'));
+            return view('home/search', compact('second_cate', 'fill_searcch', 'data', 'pro_name', 'sort', 'brand', 'data_user', 'brand_id', 'brandId', 'max_price', 'min_price'));
         }
-        return view('home/search', compact('second_cate','fill_searcch', 'data', 'pro_name', 'sort', 'brand', 'brandId', 'max_price', 'brand_id', 'min_price'));
+        return view('home/search', compact('second_cate', 'fill_searcch', 'data', 'pro_name', 'sort', 'brand', 'brandId', 'max_price', 'brand_id', 'min_price'));
     }
 
     public function category()
@@ -629,5 +629,42 @@ class HomeController extends Controller
             return view('/home/categoryItem', compact('data_user', 'products', 'second_cateItem', 'cate_name', 'second_cate'));
         }
         return view('/home/categoryItem', compact('products', 'second_cateItem', 'cate_name', 'second_cate'));
+    }
+    public function test()
+    {
+        $homeImg = Home::find(1);
+        // dd($homeImg);
+        return view('/home/test', compact('homeImg'));
+    }
+
+    public function testPost(Request $request)
+    {
+        $homeImg = Home::find(1);
+        // $img = $homeImg->img1;
+        // dd($img);
+        if ($request->hasfile('img1')) {
+            $file1 = $request->file('img1');
+            $ext1 = $file1->getClientOriginalExtension();
+            $filename1 = time() . '.' . $ext1;
+            $file1->move('images/home', $filename1);
+            $homeImg->img1 = $filename1;
+        }
+        if ($request->hasfile('img2')) {
+            $file2 = $request->file('img2');
+            $ext2 = $file2->getClientOriginalExtension();
+            $filename2 = time() . '.' . $ext2;
+            $file2->move('images/home', $filename2);
+            $homeImg->img2 = $filename2;
+        }
+        if ($request->hasfile('img3')) {
+            $file3 = $request->file('img3');
+            $ext3 = $file3->getClientOriginalExtension();
+            $filename3 = time() . '.' . $ext3;
+            $file3->move('images/home', $filename3);
+            $homeImg->img3 = $filename3;
+        }
+        // dd($homeImg);
+        $homeImg->update();
+        return redirect()->back();
     }
 }
