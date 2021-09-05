@@ -128,10 +128,10 @@ class AdminController extends Controller
         $comm = Commission::all()->first();
         if($comm==''){
             $comm = new Commission();
-            $comm->commission = ($req->commission / 100);
+            $comm->commission = $req->commission;
             $comm->save();
         }else{
-            $comm->commission = ($req->commission / 100);
+            $comm->commission = $req->commission;
             $comm->update();
         }
         return redirect()->route('admin_commission');
@@ -142,8 +142,9 @@ class AdminController extends Controller
         $seller = sellers::all();
         if($comm==''){
             $commission='';
+
         }else{
-            $commission=($comm->commission * 100);
+            $commission=$comm->commission;
 
         }
             return view('admin/product/commission', compact('commission','seller','report'));
