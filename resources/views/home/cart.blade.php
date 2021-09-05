@@ -133,10 +133,12 @@
                                 </div>
                             @endif
                         </div>
-                        <form action="">
-                            <div class="col-lg-3">
-                                <div class="payment">
-                                    <div class="card">
+                        <div class="col-lg-3">
+                            <div class="payment">
+                                <div class="card">
+                                    <form action="{{ url('/confirm-order-product') }}">
+                                        @csrf
+
                                         <div class="card-header text-center" style="background-color:white">
                                             Choose payment
                                         </div>
@@ -164,23 +166,22 @@
                                             <li class="list-group-item">
                                                 @if ($counter > 0)
                                                     <div class="text-center">
-                                                        <a href="{{ url('/confirm-order-product') }}"
-                                                            class="fill_address btn btn-primary text-center text-white">Checkout</a>
+                                                        <button type="submit"
+                                                            class="fill_address btn btn-primary text-center text-white">Checkout</button>
                                                     </div>
                                                 @else
                                                     <div class="___class_+?46___">
-                                                        <button
-                                                            class="fill_address btn btn-primary text-center text-white">No
+                                                        <a class="fill_address btn btn-primary text-center text-white">No
                                                             product
-                                                        </button>
+                                                        </a>
                                                     </div>
                                                 @endif
                                             </li>
                                         </ul>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>

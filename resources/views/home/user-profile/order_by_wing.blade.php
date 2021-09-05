@@ -14,8 +14,10 @@
                             <h2>
                                 Payment
                             </h2>
-                            <form action="{{ url('order/use_payment_method') }}" method="POST">
+                            <form action="{{ url('order-product') }}" method="POST">
                                 @csrf
+                                <input type="hidden" name="payment" value="{{ $payment }}" id="">
+                                <input type="hidden" name="address" value="{{ $address }}" id="">
                                 <div class="card">
                                     <div class="p-3 price">
                                         <label for="exampleInputEmail1" class="mt-2">wing Account</label>
