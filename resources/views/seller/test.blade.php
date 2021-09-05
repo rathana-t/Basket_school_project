@@ -2,81 +2,74 @@
 
 
 @section('sidebar-content')
-
+    <a href="{{ url('seller/export/commission', $data_seller->id) }}">
+        <button class="btn btn-primary">
+            Export Excel
+        </button>
+    </a>
     <div>
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-1 text-center">
                 <strong>
                     No
                 </strong>
             </div>
-            <div class="col-md-2">
-                <strong>
-                    Seller name
-                </strong>
-            </div>
-            <div class="col-md-2">
+            <div class="col-md-2 text-center">
                 <strong>
                     Product
                 </strong>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-1 text-center">
                 <strong>
                     Price
                 </strong>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-2 text-center">
                 <strong>
-                    Qauntity
+                    Qauntity Order
                 </strong>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-2 text-center">
                 <strong>
-                    Total
+                    Total Price
+                </strong>
+            </div>
+            <div class="col-md-2 text-center">
+                <strong>
+                    Commission
+                </strong>
+            </div>
+            <div class="col-md-2 text-center">
+                <strong>
+                    Commission Price
                 </strong>
             </div>
         </div>
-        {{-- @for ($i = 0; $i < 10; $i++)
-            <div class="row">
-                <div class="col-md-2">
-                    {{ $data_seller->store_name }}
-                </div>
-                <div class="col-md-2">
-                    Product
-                </div>
-                <div class="col-md-2">
-                    Price
-                </div>
-                <div class="col-md-2">
-                    Qauntity
-                </div>
-                <div class="col-md-2">
-                    Total
-                </div>
-            </div>
-        @endfor --}}
         <?php
         $no = 1;
         ?>
-        @foreach ($product as $item)
+        @foreach ($report as $item)
             <div class="row">
-                <div class="col-md-2">
+                <div class="col-md-1 text-center">
                     {{ $no++ }}
                 </div>
-                <div class="col-md-2">
-                    {{ $data_seller->store_name }}
+                <div class="col-md-2 text-center">
+                    {{ $item->pro_name }}
                 </div>
-                <div class="col-md-2">
-                    {{ $item->name }}
+                <div class="col-md-1 text-center">
+                    {{ $item->pro_price }}
                 </div>
-                <div class="col-md-2">
-                    {{ $item->price }}
+                <div class="col-md-2 text-center">
+                    {{ $item->quantity_order }}
                 </div>
-                <div class="col-md-2">
-                    {{ $item->quantity }}
+                <div class="col-md-2 text-center">
+                    {{ $item->total_price }}
                 </div>
-                <div class="col-md-2">
-                    {{ $item->quantity * $item->price }}
+                <div class="col-md-2 text-center">
+                    {{ $item->commission }}
+                </div>
+                <div class="col-md-2 text-center">
+                    {{ $item->commission_price }}
                 </div>
             </div>
         @endforeach

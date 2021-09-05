@@ -8,6 +8,7 @@ use App\Http\Controllers\SellerController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BuildPcController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ForgetPassword;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\TextUI\XmlConfiguration\Group;
@@ -19,6 +20,7 @@ Route::get('/test', function () {
 
 });
 Route::get('/', [HomeController::class, 'index']);
+// Route::get('/ssss', [HomeController::class, 'ssss']);
 Route::get('/login', [HomeController::class, 'login'])->name('login');
 Route::get('/reg', [HomeController::class, 'reg']);
 Route::get('/product/{id}', [HomeController::class, 'detail'])->name('detail');
@@ -110,6 +112,7 @@ Route::get('/edit/product/{id}', [AdminController::class, 'edit'])->name('edit_p
 Route::post('/update/product/{id}', [ProductController::class, 'update'])->name('update_pro')->middleware('checker_seller');
 
 Route::get('/seller/test', [SellerController::class, 'test'])->middleware('checker_seller');
+Route::get('/seller/export/commission/{id}', [ReportController::class, 'export_excel'])->middleware('checker_seller');
 
 Route::prefix('CustomPC')->group(function () {
     Route::get('product', [BuildPcController::class, 'go_away']);
@@ -124,6 +127,10 @@ Route::prefix('CustomPC')->group(function () {
 Route::prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'dashboard'])->middleware('admin');
     Route::get('/brand', [AdminController::class, 'brand'])->middleware('admin');
+    Route::get('/Commisssion', [AdminController::class, 'commisssion'])->name('admin_commission')->middleware('admin');
+    Route::post('/update/commission', [AdminController::class, 'update_commisssion'])->middleware('admin');
+    Route::get('/export/allcommission', [ReportController::class, 'export_commission_allsellers'])->middleware('admin');
+    Route::get('/export/single/commission/{id}', [ReportController::class, 'export_commission_one_seller'])->middleware('admin');
     Route::get('/brand/{id}', [AdminController::class, 'brandItem'])->middleware('admin');
     Route::get('/add-brand', [AdminController::class, 'addBrand'])->middleware('admin');
     Route::post('/add-brand', [AdminController::class, 'storeBrand'])->name('brand.store')->middleware('admin');

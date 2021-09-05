@@ -11,8 +11,16 @@
                             <div class="search-filter">
                                 <div class="m-3">
                                     <label for="exampleInputEmail1">Product</label>
-                                    <input type="text" class="form-control" id="exampleInputPhone"
-                                        placeholder="Product name" value="{{ $pro_name }}" name="pro_name">
+                                    <label class="styled-select">
+                                        <select name="search_fill">
+                                            <option value="name" {{ $fill_searcch == 'name' ? 'selected' : '' }}>Name
+                                                Product</option>
+                                            <option value="code" {{ $fill_searcch == 'code' ? 'selected' : '' }}>Code
+                                                Product</option>
+                                        </select>
+                                    </label>
+                                    <input type="text" class="form-control" id="exampleInputPhone" placeholder="Search..."
+                                        value="{{ $pro_name }}" name="pro_name">
                                     <label for="exampleInputEmail1" class="mt-2">brand</label>
                                     <select class="form-control" id="exampleFormControlSelect1" name="brand_id">
                                         <option value="{{ $brand_id }}">All brands</option>
@@ -55,8 +63,8 @@
                                 <div class="card mb-3">
                                     <div class="m-3">
                                         <a href="/product/product/{{ $item->id }}">
-                                            <img src="{{ asset('images/imgProduct') }}/{{ $item->img_product }}" alt=""
-                                                class="img-fluid">
+                                            <img src="{{ asset('images/imgProduct') }}/{{ $item->img_product }}"
+                                                alt="" class="img-fluid">
                                         </a>
                                     </div>
                                     <div class="border-top">

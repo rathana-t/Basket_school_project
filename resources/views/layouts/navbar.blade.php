@@ -18,6 +18,12 @@ $listSecondCate = HomeController::secondCat();
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
                 <form class="input-group" action="{{ url('/search') }}">
+                    <label class="styled-select">
+                        <select name="search_fill">
+                            <option value="name">Name Product</option>
+                            <option value="code">Code Product</option>
+                        </select>
+                    </label>
                     <input type="text" name="query" class="form-control"
                         aria-label="Dollar amount (with dot and two decimal places)" placeholder="Search....">
                     <div class="input-group-append">

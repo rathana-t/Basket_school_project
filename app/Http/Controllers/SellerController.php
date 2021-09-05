@@ -7,17 +7,19 @@ use App\Models\carts;
 use App\Models\users;
 use App\Models\brands;
 use App\Models\orders;
+use App\Models\Report;
+use App\Helpers\Helper;
 use App\Models\sellers;
 use App\Models\messages;
 use App\Models\products;
 use App\Models\receipts;
 use App\Models\categories;
+use App\Models\Commission;
 use Illuminate\Http\Request;
 use App\Models\se_categories;
 use App\Models\users_has_cards;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\Report;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Cookie;
@@ -29,17 +31,18 @@ class SellerController extends Controller
 {
     public function test()
     {
+
         $data_seller = sellers::findOrFail(session('seller'));
-        // dd($data_seller);
-        $product = DB::table('orders')
-            ->join('carts', 'orders.cart_id', 'carts.id')
-            ->join('products', 'products.id', 'carts.product_id')
-            ->where('products.seller_id', $data_seller->id)
-            ->where('orders.delivery', 1)
-            ->select('products.*', 'carts.quantity')
-            ->get();
+        $report = Report::where('seller_id',$data_seller->id)->get();
+        // $product = DB::table('orders')
+        //     ->join('carts', 'orders.cart_id', 'carts.id')
+        //     ->join('products', 'products.id', 'carts.product_id')
+        //     ->where('products.seller_id', $data_seller->id)
+        //     ->where('orders.delivery', 1)
+        //     ->select('products.*', 'carts.quantity')
+        //     ->get();
         // dd($product);
-        return view('/seller/test', compact('data_seller', 'product'));
+        return view('/seller/test', compact('data_seller', 'report'));
     }
     public function dashboard()
     {
@@ -401,23 +404,62 @@ class SellerController extends Controller
             $data->message = $req->message;
             $data->processing = 0;
             $data->delivery = 1;
-
             $data->update();
 
             $pro = products::join('carts', 'carts.product_id', '=', 'products.id')
                 ->join('orders', 'orders.cart_id', '=', 'carts.id')
                 ->where('orders.id', $req->order_id)->select('products.*', 'carts.quantity')->first();
-
             $pro->stock = $pro->stock - $pro->quantity;
-
             if ($pro->top_buy == '') {
                 $pro->top_buy = $pro->quantity;
             } else {
                 $pro->top_buy = $pro->top_buy + $pro->quantity;
             }
-
             $pro->update();
 
+            $all_data_report = Report::all();
+
+            $result = 0;
+            $quantity_order = carts::where('product_id',$pro->id)->sum('quantity');
+            $commission_pro = Commission::all()->first();
+
+            foreach($all_data_report as $item){
+                if($item->seller_id == $data_seller->id && $item->pro_id == $pro->id)
+                {
+                $result++;
+                $report = Report::find($item->id);
+                $report->seller_id = $data_seller->id;
+                $report->pro_id = $pro->id;
+                $report->code_product = $pro->code_product;
+                $report->pro_name = $pro->name;
+                $report->pro_price = "$pro->price $";
+                $report->quantity_order = $quantity_order;
+                $total_price = $report->quantity_order * $pro->price;
+                $report->total_price ="$total_price $";
+                $total_price_comm = $report->quantity_order * $pro->price * $commission_pro->commission;
+                $total_price_formate = sprintf("%.2f", $total_price_comm);
+                $report->commission = "$commission_pro->commission %";
+                $report->commission_price = "$total_price_formate $";
+                $report->update();
+
+                }
+            }
+            if($result==0){
+                $report = new Report();
+                $report->seller_id = $data_seller->id;
+                $report->pro_id = $pro->id;
+                $report->code_product = $pro->code_product;
+                $report->pro_name = $pro->name;
+                $report->pro_price = "$pro->price $";
+                $report->quantity_order = $quantity_order;
+                $total_price = $report->quantity_order * $pro->price;
+                $report->total_price ="$total_price $";
+                $total_price_comm = $report->quantity_order * $pro->price * $commission_pro->commission;
+                $total_price_formate = sprintf("%.2f", $total_price_comm);
+                $report->commission = "$commission_pro->commission %";
+                $report->commission_price = "$total_price_formate $";
+                $report->save();
+            }
             return redirect()->back();
         }
     }
@@ -892,7 +934,9 @@ class SellerController extends Controller
             }
         }
 
+        $generator = uniqid();
 
+        $pro->code_product = $generator;
         $pro->name = $req->name;
         $pro->price = $req->price;
         $pro->description = $req->description;

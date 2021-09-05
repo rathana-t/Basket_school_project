@@ -19,9 +19,13 @@ use App\Models\users_has_cards;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
+use App\Models\Commission;
+use App\Models\commissions;
+use App\Models\Report;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\se_categories as s_cat;
+use CreateCommisssionTable;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Illuminate\Support\Facades\Mail;
@@ -120,7 +124,25 @@ class AdminController extends Controller
             'countShopPending'
         ));
     }
-
+    public function update_commisssion(Request $req){
+        $comm = Commission::all()->first();
+        if($comm==''){
+            $comm = new Commission();
+            $comm->commission = $req->commission;
+            $comm->save();
+        }else{
+            $comm->commission = $req->commission;
+            $comm->update();
+        }
+        return redirect()->route('admin_commission');
+    }
+    public function commisssion(){
+        $comm = Commission::all()->first();
+        $report = Report::all();
+        $seller = sellers::all();
+        $commission=$comm->commission;
+            return view('admin/product/commission', compact('commission','seller','report'));
+    }
     public function user()
     {
         $users = DB::table('users')->paginate(5);
@@ -150,7 +172,7 @@ class AdminController extends Controller
         $seller = sellers::find($id);
         return view('admin/seller/pendingDetail',compact('seller'));
     }
-    
+
     public function shopConfirm(Request $request,$id)
     {
         $sellerCon = sellers::find($id);
