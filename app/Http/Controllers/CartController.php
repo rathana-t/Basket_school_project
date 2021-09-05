@@ -32,6 +32,9 @@ class CartController extends Controller
                 $cart->quantity = $cart->quantity +  $request->quantity;
                 $cart->total = $cart->quantity * $request->total;
                 $cart->update();
+                if($request->has('redirect')){
+                    return redirect()->route('route_cart');
+                    }
                 return redirect()->back()->with('add-to-cart-success', 'Added to cart');
             }
         }
@@ -43,6 +46,9 @@ class CartController extends Controller
         $newcart->product_id = $request->product_id;
 
         $newcart->save();
+        if($request->has('redirect')){
+            return redirect()->route('route_cart');
+            }
         return redirect()->back()->with('add-to-cart-success', 'Added to cart');
     }
     public function remove_cart(Request $req)

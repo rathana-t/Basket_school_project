@@ -2,10 +2,6 @@
 
 @section('content')
     <div class="container">
-
-
-
-
         <div class="shopping-cart">
             <div class="container">
                 <div class="pt-3">
@@ -82,19 +78,39 @@
                                         </div>
                                     </div>
                                 </div>
-                                <form action="{{ url('/order-product') }}" method="POST">
-                                    @csrf
-                                    <div class="pb-3">
-                                        <label for="">Address</label>
-                                        <textarea rows="4" class="form-control" id="" name="address" name="description"
-                                            required style="width: 300px">{{ $data_user->address }}</textarea>
-                                    </div>
+                                @if ($payment == 'wing')
+                                    <form action="{{ url('/order/use_payment_method') }}" method="POST">
+                                        @csrf
+                                        <div class="pb-3">
+                                            <label for="">Address</label>
+                                            <input type="hidden" name="payment" value="{{ $payment }}" id="">
+                                            <textarea rows="4" class="form-control" id="" name="address"
+                                                name="description" required
+                                                style="width: 300px">{{ $data_user->address }}</textarea>
+                                        </div>
 
-                                    <div class="modal-footer">
-                                        <a href="/cart" class="btn btn-secondary text-white">Cancel</a>
-                                        <button type="submit" class="btn btn-primary">Order</button>
-                                    </div>
-                                </form>
+                                        <div class="modal-footer">
+                                            <a href="/cart" class="btn btn-secondary text-white">Cancel</a>
+                                            <button type="submit" class="btn btn-primary">Order</button>
+                                        </div>
+                                    </form>
+                                @elseif($payment=='cash_on_delivery')
+                                    <form action="{{ url('/order-product') }}" method="POST">
+                                        @csrf
+                                        <div class="pb-3">
+                                            <label for="">Address</label>
+                                            <input type="hidden" name="payment" value="{{ $payment }}" id="">
+                                            <textarea rows="4" class="form-control" id="" name="address"
+                                                name="description" required
+                                                style="width: 300px">{{ $data_user->address }}</textarea>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <a href="/cart" class="btn btn-secondary text-white">Cancel</a>
+                                            <button type="submit" class="btn btn-primary">Order</button>
+                                        </div>
+                                    </form>
+                                @endif
                             </div>
                         </div>
 

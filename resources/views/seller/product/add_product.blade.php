@@ -5,7 +5,7 @@
 
     <div class="container mt-4">
         @foreach ($cat as $item)
-            <form action="{{ route('sellerpostProduct', $item->main_cat_id) }}" method="POST"
+            <form action="{{ route('sellerpostProduct', $item->main_cat_id) }}" name="frm" method="POST"
                 enctype="multipart/form-data">
 
         @endforeach
@@ -153,12 +153,30 @@
                     </div>
                 </div> --}}
                 <div class="text-right mt-3">
-                    <button type="submit" class="btn btn-primary">Post</button>
+                    <button onclick="return IsEmpty();" type="submit" class="btn btn-primary">Post</button>
                 </div>
             </div>
         </div>
         </form>
     </div>
+    <script>
+        function IsEmpty() {
+            var cover_img = document.forms['frm'].cover_img.value;
+            var sub_img1 = document.forms['frm'].sub_img1.value;
+            var sub_img2 = document.forms['frm'].sub_img2.value;
+            var sub_img3 = document.forms['frm'].sub_img3.value;
+            var sub_img4 = document.forms['frm'].sub_img4.value;
+            var sub_img5 = document.forms['frm'].sub_img5.value;
+            var sub_img6 = document.forms['frm'].sub_img6.value;
+            var sub_img7 = document.forms['frm'].sub_img7.value;
+            if (cover_img === "" && sub_img1 === "" && sub_img2 === "" && sub_img3 === "" && sub_img4 === "" && sub_img5 ===
+                "" && sub_img6 === "" && sub_img7 === "") {
+                alert("Please add picture for your product!");
+                return false;
+            }
+            return true;
+        }
+    </script>
     {{-- <script>
         function previewBeforeUpload(id) {
             document.querySelector("#" + id).addEventListener("change", function(e) {

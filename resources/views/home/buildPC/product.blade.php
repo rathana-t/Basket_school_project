@@ -123,20 +123,19 @@
                                                         No Stock
                                                     </button>
                                                 @else
-                                                    {{-- <form action="{{ url('CustomPC/select') }}"></form> --}}
-                                                    <a
-                                                        href="{{ url('CustomPC/select', [$item->id, $item->s_cat_id, $A_U]) }}">
-                                                        <button class="btn btn-primary" style="width: 170px">
+                                                    <form action="{{ url('CustomPC/select') }}" method="POST">
+                                                        @csrf
+                                                        <input hidden type="text" value="{{ $item->id }}" name="id"
+                                                            id="">
+                                                        <input hidden type="text" value="{{ $item->s_cat_id }}"
+                                                            name="se_cate_id" id="">
+                                                        <input hidden type="text" value="{{ $A_U }}"
+                                                            name="A_U" id="">
+                                                        <button type="submit" class="btn btn-primary"
+                                                            style="width: 170px">
                                                             select
                                                         </button>
-                                                    </a>
-                                                    {{-- <input type="text" value="{{ $item->id }}" name="" id="">
-                                                    <input type="text" value="{{ $item->s_cat_id }}" name="" id="">
-                                                    <input type="text" value="{{ $A_U }}" name="" id="">
-
-                                                    <button type="submit" class="btn btn-primary" style="width: 170px">
-                                                        select
-                                                    </button> --}}
+                                                    </form>
                                                 @endif
                                             </div>
                                         </div>

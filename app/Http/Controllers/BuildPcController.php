@@ -128,14 +128,23 @@ class BuildPcController extends Controller
         $Buildpc->delete();
         return redirect()->back();
     }
-    public function select_item($id,$seond,$A_U){
+    public function select_item(Request $req){
         $data_user = users::findOrFail(session('user'));
+        $id=$req->id;
+        $seond=$req->se_cate_id;
+        $A_U=$req->A_U;
         if($A_U==0){
-            $Buildpc = new BuildPC();
-            $Buildpc->user_id = $data_user->id;
-            $Buildpc->s_cate_id = $seond;
+            $Buildpc = BuildPC::where('s_cate_id',$seond)->where('user_id',$data_user->id)->first();
+            if($Buildpc){
             $Buildpc->product_id = $id;
-            $Buildpc->save();
+            $Buildpc->update();
+            }else{
+                $Buildpc = new BuildPC();
+                $Buildpc->user_id = $data_user->id;
+                $Buildpc->s_cate_id = $seond;
+                $Buildpc->product_id = $id;
+                $Buildpc->save();
+            }
         }elseif($A_U==1){
             $Buildpc = BuildPC::where('s_cate_id',$seond)->where('user_id',$data_user->id)->first();
             $Buildpc->product_id = $id;

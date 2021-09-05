@@ -19,6 +19,34 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach ($pro_alread_paid as $item)
+                    <tr class="text-center product-list">
+                        <td>
+                            <a href="{{ url('product', $item->id) }}">
+                                <img src="{{ asset('images/imgProduct') }}/{{ $item->img_product }}" alt=""
+                                    class="img-fluid">
+                            </a>
+                        </td>
+                        <td>{{ $item->name }}</td>
+                        <td>{{ $item->stock }}</td>
+                        <td>{{ $item->u_name }}</td>
+                        <td>{{ $item->u_phone }}</td>
+                        <td>
+                            <div class="b Address" style="cursor: pointer">
+                                {{ $item->u_address }}
+                            </div>
+                        </td>
+                        <td>{{ $item->quantity }}</td>
+                        <td>$ {{ $item->total }}</td>
+                        <td>{{ $item->updated_at }}</td>
+                        <td>
+                            <button type="button" value="{{ $item->order_id }}"
+                                class="open_delivery_modal btn btn-primary">
+                                Delivery
+                            </button>
+                        </td>
+                    </tr>
+                @endforeach
                 @foreach ($data as $item)
                     @include('/seller/components/modal')
 

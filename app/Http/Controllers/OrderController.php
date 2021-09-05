@@ -39,11 +39,20 @@ class OrderController extends Controller
             return redirect()->back();
         }
     }
+    public function order_use_payment_method(Request $req){
+        $data_user = Users::findOrFail(session('user'));
+        $second_cate = DB::table('se_categories')->get();
+        $payment = $req->payment;
+
+        $address = $req->address;
+
+        return view('home/user-profile/order_by_wing',compact('data_user','address','payment'));
+    }
     public function order(Request $req)
     {
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
-
+            $payment = $req->payment;
             $data_user->address = $req->address;
             $data_user->update();
 
@@ -52,17 +61,28 @@ class OrderController extends Controller
                 ->where('carts.in_order', 0)
                 ->select('products.*', 'carts.id as cart_id')->get();
 
-            foreach ($cart as $item) {
-                $order = new orders();
-                $order->cart_id = $item->cart_id;
-                $order->pending = 1;
-                $order->save();
-            }
+
             foreach ($cart as $item) {
                 $set_cart = carts::find($item->cart_id);
                 $set_cart->in_order = 1;
                 $set_cart->update();
             }
+            if($payment=='wing'){
+                foreach ($cart as $item) {
+                    $order = new orders();
+                    $order->cart_id = $item->cart_id;
+                    $order->use_payment_method = 1;
+                    $order->save();
+                }
+            }elseif($payment=='cash_on_delivery'){
+                foreach ($cart as $item) {
+                    $order = new orders();
+                    $order->cart_id = $item->cart_id;
+                    $order->pending = 1;
+                    $order->save();
+                }
+            }
+
             return redirect("/order");
         }
     }

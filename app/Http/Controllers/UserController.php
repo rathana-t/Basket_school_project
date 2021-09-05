@@ -41,9 +41,8 @@ class UserController extends Controller
                 ->where('carts.in_order', 1)
                 ->select('products.*', 'orders.*', 'orders.id as order_id', 'carts.quantity', 'carts.total')->orderByDesc('orders.updated_at')->get();
             $count = 0;
-            foreach ($data as $d) {
+            if($data){
                 $count = 1;
-                break;
             }
             return view('home/user-profile/order', compact('second_cate', 'count', 'data', 'data_user'));
         }
@@ -228,10 +227,10 @@ class UserController extends Controller
         }
         return redirect()->back()->with("fail", "Incorrect Phone Number or password!")->withInput();
     }
-    public function confirm_order_prooduct()
+    public function confirm_order_prooduct(Request $req)
     {
         $second_cate = DB::table('se_categories')->get();
-
+        $payment = $req->payment;
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
             $uid = $data_user->id;
@@ -248,7 +247,7 @@ class UserController extends Controller
                 $quantity =  $quantity + $item->quantity;
                 $counter++;
             }
-            return view('home/user-profile/confirm_order', compact('second_cate', 'quantity', 'data_user',  'data_pro', 'counter', 'total_price_all_quantity'));
+            return view('home/user-profile/confirm_order', compact('second_cate','payment', 'quantity', 'data_user',  'data_pro', 'counter', 'total_price_all_quantity'));
         } else {
             return view('home/login');
         }

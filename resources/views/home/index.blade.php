@@ -229,7 +229,7 @@
                                         </div>
                                     </div>
 
-                                    
+
                                 </div> --}}
                             <div class="card mb-3 shadow-sm rounded">
                                 <div class="p-3">
@@ -253,9 +253,29 @@
                                                 ${{ $item->price }}
                                             </a>
                                         </div>
-                                        <button class="btn btn-sm btn-primary">
-                                            Order Now
-                                        </button>
+                                        @if (Session::has('user'))
+
+                                            <form action="{{ route('add_to_cart') }}" method="POST"
+                                                enctype="multipart/form-data">
+                                                @csrf
+                                                <input type="hidden" value="{{ $data_user->id }}" name="user_id">
+                                                <input type="hidden" value="{{ $item->id }}" name="product_id">
+                                                <input type="hidden" value="{{ $item->price }}" name="total">
+                                                <input type="hidden" class="form-control form-control-sm" value="1"
+                                                    id="quantity" hidden placeholder="Qty" required name="quantity" min="1"
+                                                    max="{{ $item->stock }}" style="width: 170px">
+                                                <input hidden type="checkbox" checked name="redirect" id="">
+                                                <button class="btn btn-sm btn-primary">
+                                                    Order Now
+                                                </button>
+                                            </form>
+                                        @else
+                                            <a href="{{ url('login') }}">
+                                                <button class="btn btn-sm btn-primary">
+                                                    Order Now
+                                                </button>
+                                            </a>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

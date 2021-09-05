@@ -172,7 +172,7 @@
                                                 <input type="hidden" value="{{ $data_user->id }}" name="user_id">
                                                 <input type="hidden" value="{{ $item->id }}" name="product_id">
                                                 <input type="hidden" value="{{ $item->price }}" name="total">
-                                                <input type="number" class="form-control form-control-sm" value="1"
+                                                <input type="hidden" class="form-control form-control-sm" value="1"
                                                     id="quantity" hidden placeholder="Qty" required name="quantity" min="1"
                                                     max="{{ $item->stock }}" style="width: 170px">
                                                 <button type="submit" class="btn btn-primary mt-2" style="width: 170px">
