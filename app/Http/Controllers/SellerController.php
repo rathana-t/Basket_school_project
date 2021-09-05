@@ -436,7 +436,7 @@ class SellerController extends Controller
                 $report->quantity_order = $quantity_order;
                 $total_price = $report->quantity_order * $pro->price;
                 $report->total_price ="$total_price $";
-                $total_price_comm = $report->quantity_order * $pro->price * $commission_pro->commission;
+                $total_price_comm = $report->quantity_order * $pro->price * ($commission_pro->commission / 100);
                 $total_price_formate = sprintf("%.2f", $total_price_comm);
                 $report->commission = "$commission_pro->commission %";
                 $report->commission_price = "$total_price_formate $";
@@ -454,7 +454,7 @@ class SellerController extends Controller
                 $report->quantity_order = $quantity_order;
                 $total_price = $report->quantity_order * $pro->price;
                 $report->total_price ="$total_price $";
-                $total_price_comm = $report->quantity_order * $pro->price * $commission_pro->commission;
+                $total_price_comm = $report->quantity_order * $pro->price * ($commission_pro->commission / 100);
                 $total_price_formate = sprintf("%.2f", $total_price_comm);
                 $report->commission = "$commission_pro->commission %";
                 $report->commission_price = "$total_price_formate $";
