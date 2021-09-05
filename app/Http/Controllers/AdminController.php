@@ -140,7 +140,13 @@ class AdminController extends Controller
         $comm = Commission::all()->first();
         $report = Report::all();
         $seller = sellers::all();
-        $commission=$comm->commission;
+        if($comm==''){
+            $commission='';
+
+        }else{
+            $commission=$comm->commission;
+
+        }
             return view('admin/product/commission', compact('commission','seller','report'));
     }
     public function user()
