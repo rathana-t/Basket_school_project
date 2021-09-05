@@ -644,26 +644,25 @@ class HomeController extends Controller
         // dd($img);
         if ($request->hasfile('img1')) {
             $file1 = $request->file('img1');
-            $ext1 = $file1->getClientOriginalExtension();
+            $ext1 =  uniqid() . $file1->getClientOriginalExtension();
             $filename1 = time() . '.' . $ext1;
             $file1->move('images/home', $filename1);
             $homeImg->img1 = $filename1;
         }
         if ($request->hasfile('img2')) {
             $file2 = $request->file('img2');
-            $ext2 = $file2->getClientOriginalExtension();
+            $ext2 =uniqid() . $file2->getClientOriginalExtension();
             $filename2 = time() . '.' . $ext2;
             $file2->move('images/home', $filename2);
             $homeImg->img2 = $filename2;
         }
         if ($request->hasfile('img3')) {
             $file3 = $request->file('img3');
-            $ext3 = $file3->getClientOriginalExtension();
+            $ext3 =uniqid() . $file3->getClientOriginalExtension();
             $filename3 = time() . '.' . $ext3;
             $file3->move('images/home', $filename3);
             $homeImg->img3 = $filename3;
         }
-        // dd($homeImg);
         $homeImg->update();
         return redirect()->back();
     }
