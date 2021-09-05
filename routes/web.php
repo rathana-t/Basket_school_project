@@ -157,7 +157,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/shopDetail/{id}', [AdminController::class, 'shop_detail'])->middleware('admin');
     Route::post('/shopconfirm/{id}', [AdminController::class, 'shopConfirm'])->middleware('admin');
     Route::post('/shopreject/{id}', [AdminController::class, 'shopReject'])->middleware('admin');
-    Route::get('/editRegister/{token}', [AdminController::class, 'edit_register']);
+    Route::get('/editRegister/{test}', [AdminController::class, 'seller_edit_register']);
 
 
 
