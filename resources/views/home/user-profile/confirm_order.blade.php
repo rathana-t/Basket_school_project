@@ -2,10 +2,6 @@
 
 @section('content')
     <div class="container">
-
-
-
-
         <div class="shopping-cart">
             <div class="container">
                 <div class="pt-3">

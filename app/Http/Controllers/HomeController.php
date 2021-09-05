@@ -138,8 +138,6 @@ class HomeController extends Controller
     }
     public function index()
     {
-
-
         $img = DB::table('home')->get();
         // dd($img);
         $count = 0;
@@ -174,6 +172,7 @@ class HomeController extends Controller
             ->join('sellers', 'products.seller_id', '=', 'sellers.id')
             ->select('products.*', 'sellers.store_name')
             ->where('completed', 1)
+            ->where('stock' ,'>' , 0)
             ->inRandomOrder()
             ->limit(8)
             ->get();

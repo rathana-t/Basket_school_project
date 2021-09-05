@@ -133,57 +133,77 @@
                                 </div>
                             @endif
                         </div>
-                        <div class="col-lg-3">
-                            <div class="payment">
-                                <div class="card">
-                                    <div class="card-header text-center" style="background-color:white">
-                                        Choose payment
+                        <form action="">
+                            <div class="col-lg-3">
+                                <div class="payment">
+                                    <div class="card">
+                                        <div class="card-header text-center" style="background-color:white">
+                                            Choose payment
+                                        </div>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="payment"
+                                                        id="exampleRadios1" value="cash_on_delivery" checked>
+                                                    <label class="form-check-label" for="exampleRadios1">
+                                                        Cash on Delivery
+                                                        <p class="new-table">$ {{ $total_price_all_quantity }}</p>
+                                                    </label>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="payment"
+                                                        id="exampleRadios2" value="wing">
+                                                    <label class="form-check-label" for="exampleRadios2">
+                                                        Wing Account
+                                                        <p class="new-table">$ {{ $total_price_all_quantity }}</p>
+                                                    </label>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                @if ($counter > 0)
+                                                    <div class="text-center">
+                                                        <a href="{{ url('/confirm-order-product') }}"
+                                                            class="fill_address btn btn-primary text-center text-white">Checkout</a>
+                                                    </div>
+                                                @else
+                                                    <div class="___class_+?46___">
+                                                        <button
+                                                            class="fill_address btn btn-primary text-center text-white">No
+                                                            product
+                                                        </button>
+                                                    </div>
+                                                @endif
+                                            </li>
+                                        </ul>
                                     </div>
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="exampleRadios"
-                                                    id="exampleRadios1" value="option1" checked>
-                                                <label class="form-check-label" for="exampleRadios1">
-                                                    Cash on Delivery
-                                                    <p class="new-table">$ {{ $total_price_all_quantity }}</p>
-                                                </label>
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="exampleRadios"
-                                                    id="exampleRadios2" value="option1" checked>
-                                                <label class="form-check-label" for="exampleRadios2">
-                                                    Credit card
-                                                    <p class="new-table">$ {{ $total_price_all_quantity }}</p>
-                                                </label>
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item">
-                                            @if ($counter > 0)
-                                                <div class="text-center">
-                                                    <a href="{{ url('/confirm-order-product') }}"
-                                                        class="fill_address btn btn-primary text-center text-white">Checkout</a>
-                                                </div>
-                                            @else
-                                                <div class="___class_+?46___">
-                                                    <button class="fill_address btn btn-primary text-center text-white">No
-                                                        product
-                                                    </button>
-                                                </div>
-                                            @endif
-                                        </li>
-                                    </ul>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-
+    <script>
+        function IsEmpty() {
+            var cover_img = document.forms['frm'].cover_img.value;
+            var sub_img1 = document.forms['frm'].sub_img1.value;
+            var sub_img2 = document.forms['frm'].sub_img2.value;
+            var sub_img3 = document.forms['frm'].sub_img3.value;
+            var sub_img4 = document.forms['frm'].sub_img4.value;
+            var sub_img5 = document.forms['frm'].sub_img5.value;
+            var sub_img6 = document.forms['frm'].sub_img6.value;
+            var sub_img7 = document.forms['frm'].sub_img7.value;
+            if (cover_img === "" && sub_img1 === "" && sub_img2 === "" && sub_img3 === "" && sub_img4 === "" && sub_img5 ===
+                "" && sub_img6 === "" && sub_img7 === "") {
+                alert("Please add picture for your product!");
+                return false;
+            }
+            return true;
+        }
+    </script>
 
 @stop

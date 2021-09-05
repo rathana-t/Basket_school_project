@@ -15,12 +15,13 @@ use PHPUnit\TextUI\XmlConfiguration\Group;
 
 Route::get('/test', function () {
     // var_dump('time' . new DataTime);
-    return view('test');
+    return view('home/user-profile/order_by_wing');
     // var_dump('time' . date("Y m d H:i:s"));
 
 });
 Route::get('/', [HomeController::class, 'index']);
 // Route::get('/ssss', [HomeController::class, 'ssss']);
+
 Route::get('/login', [HomeController::class, 'login'])->name('login');
 Route::get('/reg', [HomeController::class, 'reg']);
 Route::get('/product/{id}', [HomeController::class, 'detail'])->name('detail');
@@ -61,6 +62,7 @@ Route::delete('remove-wishlist', [CartController::class, 'remove_wishlist']);
 Route::post('edit-quantity-cart', [CartController::class, 'edit_cart_quantity']);
 Route::get('/confirm-order-product', [UserController::class, 'confirm_order_prooduct']);
 Route::post('/order-product', [OrderController::class, 'order']);
+Route::post('/order/use_payment_method', [OrderController::class, 'order_use_payment_method']);
 Route::get('/user_cancel_order/{id}', [OrderController::class, 'user_cancel_order'])->middleware('checker');
 
 Route::get('/user_forget_pass', [ForgetPassword::class, 'user_forget_pass']);
@@ -118,7 +120,7 @@ Route::prefix('CustomPC')->group(function () {
     Route::get('product', [BuildPcController::class, 'go_away']);
     Route::post('product', [BuildPcController::class, 'get_item_by_se_cate']);
     Route::get('/Builder', [BuildPcController::class, 'build_pc'])->name('build_pc')->middleware('checker');
-    Route::get('/select/{id}/{second}/{A_R}', [BuildPcController::class, 'select_item']);
+    Route::post('/select', [BuildPcController::class, 'select_item']);
     Route::get('/remove/{id}', [BuildPcController::class, 'remove']);
     Route::get('/add_to_cart', [BuildPcController::class, 'add_to_cart'])->name('add_to_cart_build');
     Route::post('/search-filter', [BuildPcController::class, 'search']);

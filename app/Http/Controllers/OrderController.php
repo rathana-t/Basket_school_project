@@ -39,6 +39,30 @@ class OrderController extends Controller
             return redirect()->back();
         }
     }
+    public function order_use_payment_method(Request $req){
+        $data_user = Users::findOrFail(session('user'));
+
+        $data_user->address = $req->address;
+        $data_user->update();
+
+        $cart = carts::join('products', 'products.id', '=', 'carts.product_id')
+            ->where('carts.user_id', '=', $data_user->id)
+            ->where('carts.in_order', 0)
+            ->select('products.*', 'carts.id as cart_id')->get();
+
+        foreach ($cart as $item) {
+            $order = new orders();
+            $order->cart_id = $item->cart_id;
+            $order->use_payment_method = 1;
+            $order->save();
+        }
+        foreach ($cart as $item) {
+            $set_cart = carts::find($item->cart_id);
+            $set_cart->in_order = 1;
+            $set_cart->update();
+        }
+        return redirect("/order");
+    }
     public function order(Request $req)
     {
         if (session()->has('user')) {
