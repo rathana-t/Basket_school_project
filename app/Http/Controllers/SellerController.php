@@ -378,6 +378,20 @@ class SellerController extends Controller
             return redirect()->back();
         }
     }
+    public function order_paid(){
+        $data_seller = sellers::findOrFail(session('seller'));
+        $pro_alread_paid = orders::join('carts', 'carts.id', '=', 'orders.cart_id')
+        ->join('users', 'users.id', '=', 'carts.user_id')
+        ->join('products', 'products.id', '=', 'carts.product_id')
+        ->where('products.seller_id', $data_seller->id)
+        ->where('orders.use_payment_method', 1)
+        ->select('products.*', 'carts.total', 'orders.seller_cancel', 'orders.user_cancel', 'orders.processing', 'carts.quantity', 'orders.id as order_id', 'users.username as u_name', 'users.phone as u_phone', 'users.address as u_address')
+        ->orderBy('updated_at', 'desc')
+        ->paginate(5);
+
+            return view('seller/order_paid', compact('data_seller','pro_alread_paid'));
+
+    }
     public function order_processing()
     {
         if (session()->has('seller')) {
@@ -390,15 +404,8 @@ class SellerController extends Controller
                 ->select('products.*', 'carts.total', 'orders.seller_cancel', 'orders.user_cancel', 'orders.processing', 'carts.quantity', 'orders.id as order_id', 'users.username as u_name', 'users.phone as u_phone', 'users.address as u_address')
                 ->orderBy('updated_at', 'desc')
                 ->paginate(5);
-            $pro_alread_paid = orders::join('carts', 'carts.id', '=', 'orders.cart_id')
-            ->join('users', 'users.id', '=', 'carts.user_id')
-            ->join('products', 'products.id', '=', 'carts.product_id')
-            ->where('products.seller_id', $data_seller->id)
-            ->where('orders.use_payment_method', 1)
-            ->select('products.*', 'carts.total', 'orders.seller_cancel', 'orders.user_cancel', 'orders.processing', 'carts.quantity', 'orders.id as order_id', 'users.username as u_name', 'users.phone as u_phone', 'users.address as u_address')
-            ->orderBy('updated_at', 'desc')
-            ->paginate(5);
-            return view('seller/processing', compact('data_seller', 'data','pro_alread_paid'));
+
+            return view('seller/processing', compact('data_seller', 'data'));
         } else {
             return view('seller/login');
         }

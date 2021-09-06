@@ -105,6 +105,7 @@ Route::get('/seller/add-product/{id}', [SellerController::class, 'add_product'])
 Route::post('/seller/postProduct/{id}', [SellerController::class, 'postProduct'])->name('sellerpostProduct');
 Route::get('/seller/new-order', [SellerController::class, 'new_order'])->middleware('checker_seller');
 Route::get('/seller/processing', [SellerController::class, 'order_processing'])->middleware('checker_seller');
+Route::get('/seller/order_paid', [SellerController::class, 'order_paid'])->middleware('checker_seller');
 Route::get('/seller/old-order', [SellerController::class, 'old_order'])->middleware('checker_seller');
 Route::get('/seller/profile', [SellerController::class, 'profile'])->middleware('checker_seller');
 Route::get('/seller/editProfile', [SellerController::class, 'edit_profile'])->middleware('checker_seller');
