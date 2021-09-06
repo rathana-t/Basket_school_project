@@ -202,18 +202,9 @@ class AdminController extends Controller
      }
 
      public function seller_edit_register($token) {
-         $seller = sellers::find($id);
-         $updatePassword = DB::table('password_resets')
-                                  ->where(['email' => $request->email, 'token' => $request->token])
-                                  ->first();
-     
-              if(!$updatePassword)
-                  return back()->withInput()->with('error', 'Invalid token!');
-     
-                $seller = sellers::where('email', $request->email)
-                            ->update($register);
-     
-        return view('admin/seller/editRegister', ['token' => $token]);
+        $emails = DB::table('password_resets')->where('token',$token)->first();
+        $seller = sellers::where('email', $emails->email)->first();
+        return view('admin/seller/editRegister',compact('seller'), ['token' => $token]);
      }
 
      public function seller_update_register(Request $reg,$token)
