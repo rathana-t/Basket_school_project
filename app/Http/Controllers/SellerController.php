@@ -282,7 +282,7 @@ class SellerController extends Controller
 
         sellers::create($data);
 
-        return redirect()->back()->with('success_regiter_seller', 'Request register sller account Successfully');;
+        return redirect()->back()->with('success_regiter_seller', 'Request register seller account Successfully, please wait until we send message to you by email');
     }
     public function forseller()
     {

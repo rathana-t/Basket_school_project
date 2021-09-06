@@ -27,7 +27,8 @@
                             {{ session('success_regiter_seller') }}
                         </div>
                     @endif
-                    <form action="{{ url('sellerRegister') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ url('admin/sellerEditRegister/' . $token) }}" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="card shadow-sm">
                             <div class="m-4">
@@ -35,13 +36,13 @@
                                     <div class="form-group">
                                         <label for="email">Email</label>
                                         <input type="email" class="form-control" id="exampleInputPhone" name="email"
-                                            value="{{ old('email') }}">
+                                            value="{{ $seller->email }}" readonly>
                                         {!! $errors->first('email', "<span class='text-danger'>:message</span>") !!}
                                     </div>
                                     <div class="form-group">
                                         <label for="phone">Phone number</label>
                                         <input type="number" class="form-control" id="exampleInputPhone" name="phone"
-                                            value="{{ old('phone') }}">
+                                            value="{{ $seller->phone }}" readonly>
                                         {!! $errors->first('phone', "<span class='text-danger'>:message</span>") !!}
                                     </div>
                                     <div class="form-group">
@@ -61,21 +62,22 @@
                                     <div class="form-group">
                                         <label for="text">Store name</label>
                                         <input type="text" class="form-control" id="exampleInputEmail1" name="store_name"
-                                            value="{{ old('store_name') }}">
+                                            value="{{ $seller->store_name }}">
                                         {!! $errors->first('store_name', "<span class='text-danger'>:message</span>") !!}
                                     </div>
 
                                     <div class="form-group">
                                         <label for="address">Address or Location</label>
                                         <input type="text" class="form-control" id="exampleInputPhone" name="address"
-                                            value="{{ old('address') }}">
+                                            value="{{ $seller->address }}">
                                         {!! $errors->first('address', "<span class='text-danger'>:message</span>") !!}
                                     </div>
                                     <div class="previewImage">
                                         <div class="row">
                                             <div class="col-md-4 imgUp">
                                                 <div class="card border-0 shadow-sm rounded">
-                                                    <div class="imagePreview">
+                                                    <div class="imagePreview" {{-- ('{{ asset('images/imgProduct') }}/{{ $pro->img_product }}')" --}}
+                                                        style="background-image: url('{{ asset('images/sellerImg1') }}/{{ $seller->img1 }}')">
                                                         <div class="hero-text">
                                                             <div class="d-flex justify-content-center">
                                                                 <label class="btn btn-dark btn-sm">
@@ -98,7 +100,8 @@
                                             </div>
                                             <div class="col-md-4 imgUp">
                                                 <div class="card border-0 shadow-sm rounded">
-                                                    <div class="imagePreview">
+                                                    <div class="imagePreview"
+                                                        style="background-image: url('{{ asset('images/sellerImg2') }}/{{ $seller->img2 }}')">
                                                         <div class="hero-text">
                                                             <div class="d-flex justify-content-center">
                                                                 <label class="btn btn-dark btn-sm">

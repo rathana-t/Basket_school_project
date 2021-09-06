@@ -23,7 +23,6 @@ class ProductController extends Controller
 {
     public function update(Request $req, $id)
     {
-        $pro = new products();
 
         $pro = products::find($id);
         $this->validate($req, [

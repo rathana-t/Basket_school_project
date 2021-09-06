@@ -6,10 +6,10 @@
         <div class="order">
             <div class="row">
                 <div class="col-md-12">
+                    <?php
+                    $no_pro = 0;
+                    ?>
                     @if ($count == 1)
-                        <?php
-                        $no_pro = 0;
-                        ?>
                         @foreach ($data as $item)
                             @if ($item->use_payment_method)
                                 <?php
@@ -69,6 +69,7 @@
                                 <?php
                                 $no_pro = 1;
                                 ?>
+
                                 <div class="card mb-3" style="border-color: rgba(255, 0, 0, 0.829)">
                                     <div class="card-header">
                                         <div class="d-flex justify-content-around">
@@ -120,6 +121,7 @@
                                     <?php
                                     $no_pro = 1;
                                     ?>
+
                                     <div class="card mb-4">
                                         <div class="card-header">
                                             <div class="d-flex justify-content-around">
@@ -180,7 +182,9 @@
                                 @endif
                             @endif
                         @endforeach
-                    @elseif($count==0 || $no_pro==0)
+                    @endif
+
+                    @if ($count == 0 || $no_pro == 0)
                         <div class="tekxt-center mt-4">
                             <a href="{{ url('/product') }}" type="button" class="btn btn-info text-white">
                                 Your Order is Empty! Go Shopping ?

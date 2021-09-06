@@ -70,6 +70,7 @@ Route::get('/user_forget_pass', [ForgetPassword::class, 'user_forget_pass']);
 Route::post('/user_forget-password', [ForgetPassword::class, 'user_postEmail']);
 Route::get('user_reset-password/{token}', [ForgetPassword::class, 'user_getPassword']);
 Route::post('user_reset-password', [ForgetPassword::class, 'user_updatePassword']);
+// Route::get('login_inforget/{token}', [ForgetPassword::class, 'login_inforget']);
 
 Route::get('/forget_pass', [ForgetPassword::class, 'forget_pass']);
 Route::post('/forget-password', [ForgetPassword::class, 'postEmail']);
@@ -159,8 +160,7 @@ Route::prefix('admin')->group(function () {
     Route::post('/shopconfirm/{id}', [AdminController::class, 'shopConfirm'])->middleware('admin');
     Route::post('/shopreject/{id}', [AdminController::class, 'shopReject'])->middleware('admin');
     Route::get('/editRegister/{test}', [AdminController::class, 'seller_edit_register']);
-
-
+    Route::post('/sellerEditRegister/{test}', [AdminController::class, 'seller_update_register']);
 
     // Route::get('/seller', [AdminController::class, 'seller'])->middleware('admin');
     Route::get('/seller/{id}', [AdminController::class, 'sellerDetail'])->name('sellerHasProduct')->middleware('admin');

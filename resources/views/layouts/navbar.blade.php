@@ -138,8 +138,10 @@ $listSecondCate = HomeController::secondCat();
             <a class="nav-link" href="/smallcate">Sub Category</a>
             <a class="nav-link" href="/brand">Brands</a>
             <div class="ml-auto mr-3 cs-pc">
-                <a class="nav-link text-white btn btn-sm btn-primary" href="{{ url('/CustomPC/Builder') }}">
-                    Custom PC Builder
+                <a href="{{ url('/CustomPC/Builder') }}" style="text-decoration: none">
+                    <button class="nav-link text-white btn btn-sm btn-primary">
+                        Custom PC Builder
+                    </button>
                 </a>
             </div>
         </nav>
