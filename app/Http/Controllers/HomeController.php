@@ -138,6 +138,7 @@ class HomeController extends Controller
     }
     public function index()
     {
+        $homeImg = Home::find(1);
         $img = DB::table('home')->get();
         // dd($img);
         $count = 0;
@@ -172,15 +173,15 @@ class HomeController extends Controller
             ->join('sellers', 'products.seller_id', '=', 'sellers.id')
             ->select('products.*', 'sellers.store_name')
             ->where('completed', 1)
-            ->where('stock' ,'>' , 0)
+            ->where('stock', '>', 0)
             ->inRandomOrder()
             ->limit(8)
             ->get();
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
-            return view('home/index', compact('img', 'data_user', 'data_pro', 'result', 'cate', 'brand', 'second_cate', 'count', 'recently_product', 'randSecond_cate', 'topSale'));
+            return view('home/index', compact('homeImg', 'img', 'data_user', 'data_pro', 'result', 'cate', 'brand', 'second_cate', 'count', 'recently_product', 'randSecond_cate', 'topSale'));
         } else {
-            return view('home/index', compact('img', 'data_pro', 'result', 'cate', 'brand', 'second_cate', 'count', 'recently_product', 'randSecond_cate', 'topSale'));
+            return view('home/index', compact('homeImg', 'img', 'data_pro', 'result', 'cate', 'brand', 'second_cate', 'count', 'recently_product', 'randSecond_cate', 'topSale'));
         }
     }
     public function products(Request $req)
@@ -651,14 +652,14 @@ class HomeController extends Controller
         }
         if ($request->hasfile('img2')) {
             $file2 = $request->file('img2');
-            $ext2 =uniqid() . $file2->getClientOriginalExtension();
+            $ext2 = uniqid() . $file2->getClientOriginalExtension();
             $filename2 = time() . '.' . $ext2;
             $file2->move('images/home', $filename2);
             $homeImg->img2 = $filename2;
         }
         if ($request->hasfile('img3')) {
             $file3 = $request->file('img3');
-            $ext3 =uniqid() . $file3->getClientOriginalExtension();
+            $ext3 = uniqid() . $file3->getClientOriginalExtension();
             $filename3 = time() . '.' . $ext3;
             $file3->move('images/home', $filename3);
             $homeImg->img3 = $filename3;

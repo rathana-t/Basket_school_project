@@ -22,18 +22,66 @@
                         <div class="col-md-8">
                             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                                 <div class="carousel-inner">
-                                    @foreach ($img as $item)
-                                        <div class="carousel-item active">
-                                            <img src="images/home/{{ $item->img1 }}" class="d-block w-100 " alt="...">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="images/home/{{ $item->img2 }}" class="d-block w-100 " alt="...">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="images/home/{{ $item->img3 }}" class="d-block w-100 " alt="...">
-                                        </div>
-                                    @endforeach
-
+                                    @if (Session::has('user'))
+                                        @if ($data_user->type == 'admin')
+                                            <form action="{{ route('qqq') }}" method="POST" enctype="multipart/form-data">
+                                                @csrf
+                                                <div class="carousel-item active">
+                                                    <img src="images/home/{{ $homeImg->img1 }}" class="d-block w-100 "
+                                                        alt="...">
+                                                    <div class="carousel-caption d-none d-md-block">
+                                                        <input class="form-control-file" type="file" name="img1"
+                                                            onchange="javascript:this.form.submit();">
+                                                    </div>
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <img src="images/home/{{ $homeImg->img2 }}" class="d-block w-100 "
+                                                        alt="...">
+                                                    <div class="carousel-caption d-none d-md-block">
+                                                        <input class="form-control-file" type="file" name="img2"
+                                                            onchange="javascript:this.form.submit();">
+                                                    </div>
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <img src="images/home/{{ $homeImg->img3 }}" class="d-block w-100 "
+                                                        alt="...">
+                                                    <div class="carousel-caption d-none d-md-block">
+                                                        <input class="form-control-file" type="file" name="img3"
+                                                            onchange="javascript:this.form.submit();">
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        @else
+                                            @foreach ($img as $item)
+                                                <div class="carousel-item active">
+                                                    <img src="images/home/{{ $item->img1 }}" class="d-block w-100 "
+                                                        alt="...">
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <img src="images/home/{{ $item->img2 }}" class="d-block w-100 "
+                                                        alt="...">
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <img src="images/home/{{ $item->img3 }}" class="d-block w-100 "
+                                                        alt="...">
+                                                </div>
+                                            @endforeach
+                                        @endif
+                                    @else
+                                        @foreach ($img as $item)
+                                            <div class="carousel-item active">
+                                                <img src="images/home/{{ $item->img1 }}" class="d-block w-100 " alt="...">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img src="images/home/{{ $item->img2 }}" class="d-block w-100 "
+                                                    alt="...">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img src="images/home/{{ $item->img3 }}" class="d-block w-100 "
+                                                    alt="...">
+                                            </div>
+                                        @endforeach
+                                    @endif
                                 </div>
                                 <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
                                     data-slide="prev">

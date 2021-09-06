@@ -7,6 +7,13 @@ if (Session::has('user')) {
 $listSecondCate = HomeController::secondCat();
 ?>
 
+<style>
+    .navbar .select select {
+        width: 140px;
+    }
+
+</style>
+
 <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container mt-2 mb-2">
         <a class="navbar-brand" href="/">Navbar</a>
@@ -17,13 +24,11 @@ $listSecondCate = HomeController::secondCat();
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
-                <form class="input-group" action="{{ url('/search') }}">
-                    <label class="styled-select">
-                        <select name="search_fill">
-                            <option value="name">Name Product</option>
-                            <option value="code">Code Product</option>
-                        </select>
-                    </label>
+                <form class="input-group select" action="{{ url('/search') }}">
+                    <select name="search_fill" class="form-control">
+                        <option value="name">Name Product</option>
+                        <option value="code">Code Product</option>
+                    </select>
                     <input type="text" name="query" class="form-control"
                         aria-label="Dollar amount (with dot and two decimal places)" placeholder="Search....">
                     <div class="input-group-append">
