@@ -20,10 +20,16 @@
                             </ul>
                         </div>
                         <div class="col-md-8">
-                            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                                <div class="carousel-inner">
-                                    @if (Session::has('user'))
-                                        @if ($data_user->type == 'admin')
+                            @if (Session::has('user'))
+                                @if ($data_user->type == 'admin')
+                                    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+                                        <ol class="carousel-indicators">
+                                            <li data-target="#carouselExampleCaptions" data-slide-to="0"
+                                                class="active"></li>
+                                            <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+                                            <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+                                        </ol>
+                                        <div class="carousel-inner">
                                             <form action="{{ route('qqq') }}" method="POST" enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="carousel-item active">
@@ -51,49 +57,44 @@
                                                     </div>
                                                 </div>
                                             </form>
-                                        @else
-                                            @foreach ($img as $item)
-                                                <div class="carousel-item active">
-                                                    <img src="images/home/{{ $item->img1 }}" class="d-block w-100 "
-                                                        alt="...">
-                                                </div>
-                                                <div class="carousel-item">
-                                                    <img src="images/home/{{ $item->img2 }}" class="d-block w-100 "
-                                                        alt="...">
-                                                </div>
-                                                <div class="carousel-item">
-                                                    <img src="images/home/{{ $item->img3 }}" class="d-block w-100 "
-                                                        alt="...">
-                                                </div>
-                                            @endforeach
-                                        @endif
-                                    @else
-                                        @foreach ($img as $item)
-                                            <div class="carousel-item active">
-                                                <img src="images/home/{{ $item->img1 }}" class="d-block w-100 " alt="...">
-                                            </div>
-                                            <div class="carousel-item">
-                                                <img src="images/home/{{ $item->img2 }}" class="d-block w-100 "
-                                                    alt="...">
-                                            </div>
-                                            <div class="carousel-item">
-                                                <img src="images/home/{{ $item->img3 }}" class="d-block w-100 "
-                                                    alt="...">
-                                            </div>
-                                        @endforeach
-                                    @endif
+                                            <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button"
+                                                data-slide="prev">
+                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                <span class="sr-only">Previous</span>
+                                            </a>
+                                            <a class="carousel-control-next" href="#carouselExampleCaptions" role="button"
+                                                data-slide="next">
+                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                <span class="sr-only">Next</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                @endif
+                            @else
+                                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active">
+                                            <img src="images/home/{{ $homeImg->img1 }}" class="d-block w-100 " alt="...">
+                                        </div>
+                                        <div class="carousel-item">
+                                            <img src="images/home/{{ $homeImg->img2 }}" class="d-block w-100 " alt="...">
+                                        </div>
+                                        <div class="carousel-item">
+                                            <img src="images/home/{{ $homeImg->img3 }}" class="d-block w-100 " alt="...">
+                                        </div>
+                                    </div>
+                                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
+                                        data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#carouselExampleControls" role="button"
+                                        data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
                                 </div>
-                                <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
-                                    data-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                                <a class="carousel-control-next" href="#carouselExampleControls" role="button"
-                                    data-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </div>
+                            @endif
                         </div>
                     </div>
                 </div>
