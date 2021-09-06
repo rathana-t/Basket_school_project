@@ -202,10 +202,66 @@ class AdminController extends Controller
      }
 
      public function seller_edit_register($token) {
+        //  $seller = sellers::find($id);
+        //  $updatePassword = DB::table('password_resets')
+        //                           ->where(['email' => $request->email, 'token' => $request->token])
+        //                           ->first();
+     
+        //       if(!$updatePassword)
+        //           return back()->withInput()->with('error', 'Invalid token!');
+     
+        //         $seller = sellers::where('email', $request->email)
+        //                     ->get();
         return view('admin/seller/editRegister', ['token' => $token]);
-
      }
+    //  public function submitEditRegister(Request $req)
+    //  {
+    //     $register = new sellers();
 
+    //     $register = sellers::find($id);
+    //      $this->validate($req,[
+    //         'store_name' => 'required',
+    //         'email' => 'required|email|max:70|unique:sellers,email',
+    //         'phone' => 'required|min:9|unique:sellers,phone',
+    //         'address' => 'required',
+    //         'password' => 'required|min:8',
+    //         'con_password' => 'required|min:8|same:password',
+    //      ]);
+    //      $data['password'] = Hash::make($data['password']);
+    //      unset($data['con_password']);
+ 
+    //      if ($reg->hasfile('img1')) {
+    //          $file = $reg->file('img1');
+    //          $filename = uniqid() . $file->getClientOriginalExtension();
+    //          $file->move(public_path() . '/images/sellerImg1/', $filename);
+    //          $data['img1'] = $filename;
+    //      }
+    //      if ($reg->hasfile('img2')) {
+    //          $file = $reg->file('img2');
+    //          $filename = uniqid() . $file->getClientOriginalExtension();
+    //          $file->move(public_path() . '/images/sellerImg2/', $filename);
+    //          $data['img2'] = $filename;
+    //      }
+    // $register->storename = $register->;
+    // $register->email = $register->;
+    // $register->phone = $register->;
+    // $register->address = $register->;
+    // $register->password = $register->;
+    // $register->con_password = $register->;
+    // $register->pending = 0;
+
+    //      $updatePassword = DB::table('password_resets')
+    //                          ->where(['email' => $request->email, 'token' => $request->token])
+    //                          ->first();
+
+    //      if(!$updatePassword)
+    //          return back()->withInput()->with('error', 'Invalid token!');
+
+    //        $seller = sellers::where('email', $request->email)
+    //                    ->update($register);
+
+    //        DB::table('password_resets')->where(['email'=> $request->email])->delete();
+    //  }
     public function shopReject(Request $request,$id)
     {
         $shopRej = sellers::find($id);
