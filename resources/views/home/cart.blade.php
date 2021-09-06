@@ -93,6 +93,7 @@
                                                             </button>
                                                         </td>
                                                     </tr>
+
                                                 @endforeach
                                             </tbody>
                                         </table>
@@ -158,7 +159,7 @@
                                                     <input class="form-check-input" type="radio" name="payment"
                                                         id="exampleRadios2" value="wing">
                                                     <label class="form-check-label" for="exampleRadios2">
-                                                        Wing Account
+                                                        Wing Payment
                                                         <p class="new-table">$ {{ $total_price_all_quantity }}</p>
                                                     </label>
                                                 </div>

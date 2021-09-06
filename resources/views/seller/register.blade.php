@@ -27,6 +27,11 @@
                             {{ session('success_regiter_seller') }}
                         </div>
                     @endif
+                    @if (!empty($successMsg))
+                        <div class="text-success text-center" role="alert">
+                            {{ $successMsg }}
+                        </div>
+                    @endif
                     <form action="{{ url('sellerRegister') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         {{-- <div class="card shadow-sm">
@@ -117,7 +122,7 @@
                                         name="con_password">
                                     {!! $errors->first('con_password', "<span class='text-danger'>:message</span>") !!}
                                 </div>
-                              
+
 
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </div>

@@ -20,7 +20,12 @@ class ForgetPassword extends Controller
     }
     public function user_getPassword ($token) {
         return view('forget.user_reset', ['token' => $token]);
-     }
+    }
+    //  public function login_inforget($token){
+
+    //     DB::table('password_resets')->where(['token'=> $token])->delete();
+    //     return redirect()->route('login');
+    //  }
     public function user_postEmail(Request $request)
     {
         $request->validate([
@@ -46,6 +51,7 @@ class ForgetPassword extends Controller
      public function user_updatePassword(Request $request)
      {
          $request->validate([
+             'email' => 'required|email|exists:password_resets',
              'email' => 'required|email|exists:users',
              'password' => 'required|string|min:6|confirmed',
              'password_confirmation' => 'required',
@@ -56,15 +62,17 @@ class ForgetPassword extends Controller
                              ->where(['email' => $request->email, 'token' => $request->token])
                              ->first();
 
-         if(!$updatePassword)
-             return back()->withInput()->with('error', 'Invalid token!');
-
-           $user = users::where('email', $request->email)
+         if ($updatePassword) {
+            $user = users::where('email', $request->email)
                        ->update(['password' => Hash::make($request->password)]);
 
            DB::table('password_resets')->where(['email'=> $request->email])->delete();
 
            return redirect('/login')->with('message', 'Your password has been changed!');
+         }else{
+            return back()->withInput()->with('error', 'Invalid token!');
+         }
+
      }
 
 

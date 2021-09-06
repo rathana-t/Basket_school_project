@@ -21,13 +21,13 @@
                                 <div class="card">
                                     <div class="p-3 price">
                                         <label for="exampleInputEmail1" class="mt-2">wing Account</label>
-                                        <input type="number" class="form-control text-center" name="wing_account" id=""
-                                            placeholder="##########">
+                                        <input type="number" required class="form-control text-center" name="wing_account"
+                                            id="" placeholder="##########">
                                         <label for="exampleInputEmail1" class="mt-2">Year Of Birth</label>
-                                        <input type="number" class="form-control text-center" name="year_birth" id=""
-                                            placeholder="YYYY">
+                                        <input type="number" required class="form-control text-center" name="year_birth"
+                                            id="" placeholder="YYYY">
                                         <label for="exampleInputEmail1" class="mt-2">PIN</label>
-                                        <input type="number" class="form-control text-center" name="pin" id=""
+                                        <input type="number" required class="form-control text-center" name="pin" id=""
                                             placeholder="PIN...">
                                         <div class="text-center">
                                             <button type="submit" class="btn btn-primary mt-3">
