@@ -677,14 +677,12 @@ class HomeController extends Controller
             $data_user = users::findOrFail(session('user'));
             $data = orders::join('carts', 'carts.id', '=', 'orders.cart_id')
                 ->join('products', 'products.id', '=', 'carts.product_id')
+                ->join('sellers', 'products.seller_id', 'sellers.id')
                 ->where('carts.user_id', $data_user->id)
                 ->where('orders.seller_cancel', 1)
                 ->where('carts.in_order', 1)
-                ->select('products.*', 'orders.*', 'orders.id as order_id', 'carts.quantity', 'carts.total')
-                ->orderByDesc('orders.updated_at')
+                ->select('products.*', 'orders.*', 'orders.id as order_id', 'carts.quantity', 'carts.total', 'sellers.store_name')
                 ->get();
-
-            // dd($data);
             $countCancel =  orders::join('carts', 'carts.id', '=', 'orders.cart_id')
                 ->join('products', 'products.id', '=', 'carts.product_id')
                 ->where('carts.user_id', $data_user->id)
