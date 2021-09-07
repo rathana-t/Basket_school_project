@@ -65,58 +65,8 @@
                                     </div>
                                 </div>
                             @endif
-                            @if ($item->seller_cancel == 1)
-                                <?php
-                                $no_pro = 1;
-                                ?>
 
-                                <div class="card mb-3" style="border-color: rgba(255, 0, 0, 0.829)">
-                                    <div class="card-header">
-                                        <div class="d-flex justify-content-around">
-                                            <div class="{{ $item->pending == 1 ? 'active' : 'text-mute' }} ">
-                                                Pending
-                                            </div>
-                                            ---->
-                                            <div class="{{ $item->processing == 1 ? 'active' : 'text-mute' }} ">
-                                                Processing
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-md-6 text-center border-right">
-                                                <img src="/images/imgProduct/{{ $item->img_product }}" alt=""
-                                                    class="img-fluid">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <h5 class="card-title">{{ $item->name }}</h5>
-                                                <p class="card-text">Quantity: {{ $item->quantity }} item</p>
-                                                <p class="card-text">Total: $ {{ $item->total }}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer ">
-                                        <div class="row">
-                                            <div class="col">
-                                                <div class="text-left">
-                                                    <div style="color: red">
-                                                        Order was canceled message "
-                                                        <span style="color: #323b49">{{ $item->message }}</span> "
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="text-right">
-                                                    <a href="{{ url('/delete-order', $item->order_id) }}"
-                                                        class="btn btn-danger">
-                                                        Remove
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            @elseif($item->pending == 1 || $item->processing == 1 )
+                            @if ($item->pending == 1 || $item->processing == 1)
                                 @if ($item->user_cancel == 0)
                                     <?php
                                     $no_pro = 1;

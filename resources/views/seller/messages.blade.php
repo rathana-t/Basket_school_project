@@ -9,7 +9,6 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
-
     </style>
     <div class="container">
         <h5>

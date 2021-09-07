@@ -43,7 +43,9 @@ Route::get('/brand/{id}', [HomeController::class, 'brand'])->name('brandItem');
 Route::get('/brand/{id}/product/{id1}', [HomeController::class, 'detail4'])->name('brandProductItem');
 Route::get('/brand', [HomeController::class, 'allBrand'])->name('brands');
 Route::get('/store/{id}', [HomeController::class, 'store']);
-Route::get('/delete-order/{id}', [OrderController::class, 'delete_card']);
+Route::get('/delete-order/{id}', [OrderController::class, 'delete_card'])->middleware('checker');
+Route::get('/message', [HomeController::class, 'message'])->name('message')->middleware('checker');
+Route::get('/message/{id}', [HomeController::class, 'messageDetail'])->name('messageDetail')->middleware('checker');
 
 Route::post('/signin', [UserController::class, 'signin'])->name("signin");
 Route::post('/register', [UserController::class, 'register'])->name("register");

@@ -171,7 +171,7 @@ class HomeController extends Controller
             ->get();
         $data_pro = DB::table('products')
             ->join('sellers', 'products.seller_id', '=', 'sellers.id')
-            ->select('products.*', 'sellers.store_name')
+            ->select('products.*', 'sellers.store_name', 'sellers.id as sId')
             ->where('completed', 1)
             ->where('stock', '>', 0)
             ->inRandomOrder()
@@ -275,7 +275,7 @@ class HomeController extends Controller
             ->join('sellers', 'products.seller_id', '=', 'sellers.id')
             ->select('products.*', 'sellers.store_name')
             ->where('completed', 1)
-            ->where('products.id','!=',$id)
+            ->where('products.id', '!=', $id)
             ->paginate(20);
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
@@ -299,7 +299,7 @@ class HomeController extends Controller
         $related_pro = products::where('category_id', $product_id->category_id)
             ->join('sellers', 'products.seller_id', '=', 'sellers.id')
             ->select('products.*', 'sellers.store_name')
-            ->where('products.id','!=',$id)
+            ->where('products.id', '!=', $id)
             ->where('completed', 1)->get();
 
         if (session()->has('user')) {
@@ -325,7 +325,7 @@ class HomeController extends Controller
             ->join('sellers', 'products.seller_id', '=', 'sellers.id')
             ->select('products.*', 'sellers.store_name')
             ->where('completed', 1)
-            ->where('products.id','!=',$id1)
+            ->where('products.id', '!=', $id1)
             ->limit(8)
             ->inRandomOrder()
             ->get();
@@ -351,7 +351,7 @@ class HomeController extends Controller
             ->join('sellers', 'products.seller_id', '=', 'sellers.id')
             ->select('products.*', 'sellers.store_name')
             ->where('completed', 1)
-            ->where('products.id','!=',$id1)
+            ->where('products.id', '!=', $id1)
             ->get();
 
         if (session()->has('user')) {
@@ -670,5 +670,58 @@ class HomeController extends Controller
         }
         $homeImg->update();
         return redirect()->back();
+    }
+    public function message()
+    {
+        if (session()->has('user')) {
+            $data_user = users::findOrFail(session('user'));
+            $data = orders::join('carts', 'carts.id', '=', 'orders.cart_id')
+                ->join('products', 'products.id', '=', 'carts.product_id')
+                ->join('sellers', 'products.seller_id', 'sellers.id')
+                ->where('carts.user_id', $data_user->id)
+                ->where('orders.seller_cancel', 1)
+                ->where('carts.in_order', 1)
+                ->select('products.*', 'orders.*', 'orders.id as order_id', 'carts.quantity', 'carts.total', 'sellers.store_name')
+                ->get();
+            $countCancel =  orders::join('carts', 'carts.id', '=', 'orders.cart_id')
+                ->join('products', 'products.id', '=', 'carts.product_id')
+                ->where('carts.user_id', $data_user->id)
+                ->where('orders.seller_cancel', 1)
+                ->count();
+        }
+        return view('home/user-profile/message', compact('countCancel', 'data'));
+    }
+
+    public function messageDetail($id)
+    {
+        $message = orders::find($id);
+        $data_user = users::findOrFail(session('user'));
+        $data = orders::join('carts', 'carts.id', '=', 'orders.cart_id')
+            ->join('products', 'products.id', '=', 'carts.product_id')
+            ->where('carts.user_id', $data_user->id)
+            ->where('orders.seller_cancel', 1)
+            ->where('orders.id', $message->id)
+            ->where('carts.in_order', 1)
+            ->select('products.*', 'orders.*', 'orders.id as order_id', 'carts.quantity', 'carts.total')
+            ->get();
+        // dd($data);
+        if ($message->read == 0) {
+            $message->read = $message->read + 1;
+            $message->update();
+            return view('home/user-profile/messageDetail', compact('message', 'data'));
+        } else {
+            $message->sent = $message->sent;
+            return view('home/user-profile/messageDetail', compact('message', 'data'));
+        }
+    }
+    static public function countMsg()
+    {
+        $data_user = users::findOrFail(session('user'));
+        return orders::join('carts', 'carts.id', '=', 'orders.cart_id')
+            ->join('products', 'products.id', '=', 'carts.product_id')
+            ->where('carts.user_id', $data_user->id)
+            ->where('orders.seller_cancel', 1)
+            ->where('orders.read', 0)
+            ->count();
     }
 }

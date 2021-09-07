@@ -3,7 +3,6 @@
 @section('content')
     @include('/home/components/navigation')
     <div class="container">
-
         <div class="header border-1">
             <div class="card border-0 shadow-sm rounded">
                 <div class="card-body">
@@ -69,6 +68,33 @@
                                             </a>
                                         </div>
                                     </div>
+                                @else
+                                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <img src="images/home/{{ $homeImg->img1 }}" class="d-block w-100 "
+                                                    alt="...">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img src="images/home/{{ $homeImg->img2 }}" class="d-block w-100 "
+                                                    alt="...">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img src="images/home/{{ $homeImg->img3 }}" class="d-block w-100 "
+                                                    alt="...">
+                                            </div>
+                                        </div>
+                                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
+                                            data-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="carousel-control-next" href="#carouselExampleControls" role="button"
+                                            data-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </div>
                                 @endif
                             @else
                                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -114,7 +140,7 @@
                     @foreach ($topSale as $item)
                         <div class="col-md-3 border-left">
                             <a href="/product/{{ $item->id }}">
-                                <div class="card-body">
+                                <div class="pt-3 pb-3 pl-3 pr-3">
                                     <img src="{{ asset('images/imgProduct') }}/{{ $item->img_product }}" alt=""
                                         class="img-fluid">
                                     <div class="pt-3 pb-3 text-center">
@@ -135,19 +161,19 @@
 
         <div class="category pt-4 pb-2" id="Category">
             <div class="card border-0 shadow-sm rounded">
-                <div class="card-body">
+                <div class="pl-3 pr-3 pt-3 pb-3">
                     <div class="d-flex justify-content-between mb-3">
                         <h5>
                             Category
                         </h5>
-                        <a href="/category" class="btn btn-outline-primary">See all</a>
+                        <a href="/category" class="d-flex align-items-center btn btn btn-outline-secondary">See all</a>
                     </div>
                     <div class="category-item">
                         <div class="row mt-3">
                             @foreach ($cate as $item)
                                 <div class="col-md-3 col-sm-6 col-xs-12">
                                     <a href="category/{{ $item->id }}">
-                                        <div class="shadow card-banner align-items-end background-img mb-4"
+                                        <div class="shadow card-banner align-items-end background-img"
                                             style="background-image: url('/images/categoryImages/{{ $item->category_img }}')">
                                             <div class="caption m-4 w-100">
                                                 <h5 class="text-white card-title">
@@ -164,124 +190,19 @@
             </div>
         </div>
 
-        {{-- <div class="category pt-4 pb-2" id="Subcategory">
-            <div class="d-flex justify-content-between mb-3">
-                <h5>
-                    Subcategory
-                </h5>
-                <a href="/smallcate" class="btn btn-outline-primary">See all</a>
-            </div>
-            <div class="category-item">
-                <div class="row mt-3">
-                    @foreach ($second_cate as $item)
-                        <div class="col-md-3 col-sm-6 col-xs-12">
-                            <div class="card mb-3">
-                                <div class="m-3">
-                                    <p>{{ $item->name }}</p>
-                                    <a href="/smallcate/{{ $item->id }}">
-                                        <div class="text-center">
-                                            <img src="/images/secondCategory/{{ $item->secondarycategory_img }}" alt=""
-                                                class="img-fluid">
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-        <div class="product pt-4 pb-2" id="Product">
-            <div class="mb-3 d-flex justify-content-between">
-                <h5>
-                    Best sale
-                </h5>
-            </div>
-            <div class="product-item">
-                <div class="row">
-                    @foreach ($topSale as $item)
-                        <div class="col-md-3 col-sm-6 col-xs-12">
-                            <div class="card mb-3">
-                                <div class="m-3">
-                                    <a href="/product/product/{{ $item->id }}">
-                                        <img src="{{ asset('images/imgProduct') }}/{{ $item->img_product }}" alt=""
-                                            class="img-fluid">
-                                    </a>
-                                </div>
-
-                                <div class="border-top">
-                                    <div class="pl-4 pr-4 pb-2 pt-2">
-                                        <div class="product_name">
-                                            <a href="/product/product/{{ $item->id }}">
-                                                <div class="b">
-                                                    {{ $item->name }}
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div class="price">
-                                            <a href="/product/product/{{ $item->id }}">
-                                                ${{ $item->price }}
-                                            </a>
-                                        </div>
-                                        <div class="store_name">
-                                            <a href="/store/{{ $item->seller_id }}" class="text-muted">
-                                                {{ $item->store_name }}
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </div> --}}
-        <div class="pt-4 pb-2" id="Product">
-            <div class="mb-3 d-flex justify-content-between">
+        <div class="pt-4" id="Product">
+            <div class="mb-3 d-flex justify-content-between duct-a">
                 <h5>
                     Products
                 </h5>
-                <a href="/product" class="btn btn-outline-primary">See all</a>
+                <a href="/product" class="d-flex align-items-center btn btn btn-outline-secondary">See all</a>
             </div>
             <div class="duct">
                 <div class="row">
                     @foreach ($data_pro as $item)
                         <div class="col-md-3 col-sm-6 col-xs-12">
-                            {{-- <div class="card mb-3">
-                                    <div class="m-3">
-                                        <a href="/product/product/{{ $item->id }}">
-                                            <img src="{{ asset('images/imgProduct') }}/{{ $item->img_product }}" alt=""
-                                                class="img-fluid">
-                                        </a>
-                                    </div>
-
-                                    <div class="border-top">
-                                        <div class="pl-4 pr-4 pb-2 pt-2">
-                                            <div class="product_name">
-                                                <a href="/product/product/{{ $item->id }}">
-                                                    <div class="b">
-                                                        {{ $item->name }}
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class="price">
-                                                <a href="/product/product/{{ $item->id }}">
-                                                    ${{ $item->price }}
-                                                </a>
-                                            </div>
-                                            <div class="store_name">
-                                                <a href="/store/{{ $item->seller_id }}" class="text-muted">
-                                                    {{ $item->store_name }}
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                </div> --}}
-                            <div class="card mb-3 shadow-sm rounded">
-                                <div class="p-3">
+                            <div class="card mb-3 shadow-sm rounded border-0">
+                                <div class="pt-2 pb-2 pl-3 pr-3">
                                     <a href="/product/product/{{ $item->id }}">
                                         <img src="{{ asset('images/imgProduct') }}/{{ $item->img_product }}" alt=""
                                             class="img-fluid">
@@ -289,13 +210,15 @@
                                             <div class="b">
                                                 {{ $item->name }}
                                             </div>
-                                            {{-- <div class="text-mute">
-                                                {{ $item->store_name }}
-                                            </div> --}}
+                                        </div>
+                                    </a>
+                                    <a href="/store/{{ $item->sId }}">
+                                        <div class="store-name">
+                                            {{ $item->store_name }}
                                         </div>
                                     </a>
                                 </div>
-                                <div class="card-footer text-right">
+                                <div class="card-footer">
                                     <div class="d-flex justify-content-between">
                                         <div>
                                             <a href="/product/product/{{ $item->id }}">
@@ -303,7 +226,6 @@
                                             </a>
                                         </div>
                                         @if (Session::has('user'))
-
                                             <form action="{{ route('add_to_cart') }}" method="POST"
                                                 enctype="multipart/form-data">
                                                 @csrf
@@ -334,12 +256,12 @@
             </div>
         </div>
 
-        <div class="brand pt-4 pb-4" id="Brand">
+        <div class="brand pt-2 pb-4" id="Brand">
             <div class="mb-3 d-flex justify-content-between">
                 <h5>
                     Brand
                 </h5>
-                <a href="/brand" class="btn btn-outline-primary">See all</a>
+                <a href="/brand" class="d-flex align-items-center btn btn btn-outline-secondary">See all</a>
             </div>
             <div class="brand-item">
                 <div class="row">

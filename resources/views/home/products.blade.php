@@ -141,13 +141,10 @@
                         </p>
                         <div class="border-bottom"></div>
                         <div class="row pt-3">
-                            {{-- @for ($no = 1; $no <= $index; $no++)
-                                @for ($a = 1; $a <= $i; $a++) --}}
                             @foreach ($products as $item)
-                                {{-- @if ($item->id == $my_sort_data[$no]) --}}
                                 <div class="col-md-4">
-                                    <div class="card mb-3 shadow-sm rounded">
-                                        <div class="p-3">
+                                    <div class="card mb-3 shadow-sm rounded border-0">
+                                        <div class="pt-2 pb-2 pl-3 pr-3">
                                             <a href="/product/product/{{ $item->id }}">
                                                 <img src="{{ asset('images/imgProduct') }}/{{ $item->img_product }}"
                                                     alt="" class="img-fluid">
@@ -157,43 +154,45 @@
                                                     </div>
                                                 </div>
                                             </a>
+                                            <a href="/store/{{ $item->seller_id }}">
+                                                <div class="store-name">
+                                                    {{ $item->store_name }}
+                                                </div>
+                                            </a>
                                         </div>
-                                        <div class="card-footer text-right">
+                                        <div class="card-footer">
                                             <div class="d-flex justify-content-between">
                                                 <div>
                                                     <a href="/product/product/{{ $item->id }}">
                                                         ${{ $item->price }}
                                                     </a>
                                                 </div>
-                                                <div class="store_name">
-                                                    <a href="/store/{{ $item->seller_id }}" class="text-muted">
-                                                        {{ $item->store_name }}
-                                                    </a>
-                                                </div>
-                                                <form action="{{ route('add_to_cart') }}" method="POST"
-                                                    enctype="multipart/form-data">
-                                                    @csrf
-                                                    <input type="hidden" value="{{ $data_user->id }}" name="user_id">
-                                                    <input type="hidden" value="{{ $item->id }}" name="product_id">
-                                                    <input type="hidden" value="{{ $item->price }}" name="total">
-                                                    <input type="hidden" class="form-control form-control-sm" value="1"
-                                                        id="quantity" hidden placeholder="Qty" required name="quantity"
-                                                        min="1" max="{{ $item->stock }}" style="width: 170px">
-                                                    <input hidden type="checkbox" checked name="redirect" id="">
+                                                @if (Session::has('user'))
+                                                    <form action="{{ route('add_to_cart') }}" method="POST"
+                                                        enctype="multipart/form-data">
+                                                        @csrf
+                                                        <input type="hidden" value="{{ $data_user->id }}" name="user_id">
+                                                        <input type="hidden" value="{{ $item->id }}" name="product_id">
+                                                        <input type="hidden" value="{{ $item->price }}" name="total">
+                                                        <input type="hidden" class="form-control form-control-sm" value="1"
+                                                            id="quantity" hidden placeholder="Qty" required name="quantity"
+                                                            min="1" max="{{ $item->stock }}" style="width: 170px">
+                                                        <input hidden type="checkbox" checked name="redirect" id="">
+                                                        <button class="btn btn-sm btn-primary">
+                                                            Order Now
+                                                        </button>
+                                                    </form>
+                                                @endif
+                                                <a href="/login">
                                                     <button class="btn btn-sm btn-primary">
                                                         Order Now
                                                     </button>
-                                                </form>
-
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                {{-- @endif --}}
                             @endforeach
-                            {{-- @endfor
-                            @endfor --}}
-
                         </div>
                     </div>
                     <div class="mt-4">

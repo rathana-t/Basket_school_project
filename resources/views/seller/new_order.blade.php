@@ -3,7 +3,6 @@
 @section('sidebar-content')
 
     <div style="min-height: 75vh">
-
         <table class="table table-hover seller-order">
             <thead>
                 <tr class="text-center">
@@ -94,11 +93,10 @@
                         </tr>
                     @endif
                 @endforeach
-
-
             </tbody>
         </table>
     </div>
+
     {{ $data->links() }}
 
     {{-- modal --}}
