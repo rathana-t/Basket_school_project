@@ -124,7 +124,8 @@ body {
 
 .bg-color {
     min-height: 120vh;
-    background-color: rgb(248, 248, 248) !important;
+    /* background-color: rgb(248, 248, 248) !important; */
+    background-color: #F6F7FA !important;
 }
 
 .navbar-menu a {
@@ -178,7 +179,6 @@ body {
 .top-sale a:hover {
     text-decoration: none;
     color: #035ebe;
-
 }
 .product-height {
     min-height: 1450px;
@@ -229,7 +229,6 @@ body {
 
 .product .product-item a:hover {
     color: #035ebe;
-
 }
 
 .category h5 {
@@ -301,7 +300,6 @@ body {
 
 .category .category-item a:hover {
     color: #035ebe;
-
 }
 
 .brand h5 {
