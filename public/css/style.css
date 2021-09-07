@@ -3,15 +3,36 @@
 * {
     font-family: "Poppins", sans-serif;
 }
+.se-cate .opacity {
+    opacity: 0.5;
+}
 
+.se-cate .card-img-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1.25rem;
+}
+
+.se-cate img {
+    height: 200px;
+    object-fit: cover;
+}
 .duct .card-footer {
     background-color: white !important;
 }
-
+.see-all {
+    font-size: 10px;
+    color: red;
+}
 .duct .card-body {
     padding-bottom: 0px !important;
 }
-
+.duct-a a {
+    font-size: 12px;
+}
 .duct .btn-primary {
     color: #fff;
     width: 100px;
@@ -54,7 +75,7 @@
 }
 
 .duct img {
-    height: 180px;
+    height: 150px;
     width: 300px;
     object-fit: contain;
     border-radius: 5px;
@@ -72,6 +93,10 @@
 
 .duct-height {
     min-height: 1000px;
+}
+.duct .store-name {
+    font-size: 12px;
+    margin-top: -5px;
 }
 .btn-primary {
     background-color: #3167eb !important;

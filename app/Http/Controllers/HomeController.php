@@ -171,7 +171,7 @@ class HomeController extends Controller
             ->get();
         $data_pro = DB::table('products')
             ->join('sellers', 'products.seller_id', '=', 'sellers.id')
-            ->select('products.*', 'sellers.store_name')
+            ->select('products.*', 'sellers.store_name', 'sellers.id as sId')
             ->where('completed', 1)
             ->where('stock', '>', 0)
             ->inRandomOrder()
@@ -275,7 +275,7 @@ class HomeController extends Controller
             ->join('sellers', 'products.seller_id', '=', 'sellers.id')
             ->select('products.*', 'sellers.store_name')
             ->where('completed', 1)
-            ->where('products.id','!=',$id)
+            ->where('products.id', '!=', $id)
             ->paginate(20);
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
@@ -299,7 +299,7 @@ class HomeController extends Controller
         $related_pro = products::where('category_id', $product_id->category_id)
             ->join('sellers', 'products.seller_id', '=', 'sellers.id')
             ->select('products.*', 'sellers.store_name')
-            ->where('products.id','!=',$id)
+            ->where('products.id', '!=', $id)
             ->where('completed', 1)->get();
 
         if (session()->has('user')) {
@@ -325,7 +325,7 @@ class HomeController extends Controller
             ->join('sellers', 'products.seller_id', '=', 'sellers.id')
             ->select('products.*', 'sellers.store_name')
             ->where('completed', 1)
-            ->where('products.id','!=',$id1)
+            ->where('products.id', '!=', $id1)
             ->limit(8)
             ->inRandomOrder()
             ->get();
@@ -351,7 +351,7 @@ class HomeController extends Controller
             ->join('sellers', 'products.seller_id', '=', 'sellers.id')
             ->select('products.*', 'sellers.store_name')
             ->where('completed', 1)
-            ->where('products.id','!=',$id1)
+            ->where('products.id', '!=', $id1)
             ->get();
 
         if (session()->has('user')) {

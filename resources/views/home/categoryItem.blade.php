@@ -62,7 +62,31 @@
     </div> --}}
 
     <div class="container">
-        <div class="category pt-3 ">
+
+        <div class="pt-3">
+            <h5>
+                Subcategory
+            </h5>
+        </div>
+        <div class="row se-cate">
+            @foreach ($second_cateItem as $item)
+                <div class="col-md-3">
+                    <div class="card bg-dark border-0 mb-3">
+                        <img src="/images/secondCategory/{{ $item->secondarycategory_img }}" alt=""
+                            class="card-img opacity">
+                        <div class="card-img-overlay text-white">
+                            <h5 class="text-white pb-2">
+                                {{ $item->name }}
+                            </h5>
+                            <a href="/smallcate/{{ $item->id }}" class="btn btn-light"> See more </a>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+
+
+        {{-- <div class="category pt-3 ">
             <h5>
                 Subcategory
             </h5>
@@ -85,6 +109,6 @@
                     @endforeach
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 @stop
