@@ -68,6 +68,33 @@
                                             </a>
                                         </div>
                                     </div>
+                                @else
+                                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <img src="images/home/{{ $homeImg->img1 }}" class="d-block w-100 "
+                                                    alt="...">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img src="images/home/{{ $homeImg->img2 }}" class="d-block w-100 "
+                                                    alt="...">
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img src="images/home/{{ $homeImg->img3 }}" class="d-block w-100 "
+                                                    alt="...">
+                                            </div>
+                                        </div>
+                                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
+                                            data-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="carousel-control-next" href="#carouselExampleControls" role="button"
+                                            data-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </div>
                                 @endif
                             @else
                                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -113,7 +140,7 @@
                     @foreach ($topSale as $item)
                         <div class="col-md-3 border-left">
                             <a href="/product/{{ $item->id }}">
-                                <div class="card-body">
+                                <div class="pt-3 pb-3 pl-3 pr-3">
                                     <img src="{{ asset('images/imgProduct') }}/{{ $item->img_product }}" alt=""
                                         class="img-fluid">
                                     <div class="pt-3 pb-3 text-center">
@@ -134,7 +161,7 @@
 
         <div class="category pt-4 pb-2" id="Category">
             <div class="card border-0 shadow-sm rounded">
-                <div class="card-body">
+                <div class="pl-3 pr-3 pt-3 pb-3">
                     <div class="d-flex justify-content-between mb-3">
                         <h5>
                             Category
@@ -146,7 +173,7 @@
                             @foreach ($cate as $item)
                                 <div class="col-md-3 col-sm-6 col-xs-12">
                                     <a href="category/{{ $item->id }}">
-                                        <div class="shadow card-banner align-items-end background-img mb-4"
+                                        <div class="shadow card-banner align-items-end background-img"
                                             style="background-image: url('/images/categoryImages/{{ $item->category_img }}')">
                                             <div class="caption m-4 w-100">
                                                 <h5 class="text-white card-title">

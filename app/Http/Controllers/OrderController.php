@@ -21,32 +21,33 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 class OrderController extends Controller
 {
-    public function user_cancel_order($id){
-            // return $req->cancel_order_id;
-            $data = orders::find($id);
-            // $data->message = $req->message;
-            $data->user_cancel = 1;
-            $data->update();
+    public function user_cancel_order($id)
+    {
+        // return $req->cancel_order_id;
+        $data = orders::find($id);
+        // $data->message = $req->message;
+        $data->user_cancel = 1;
+        $data->update();
 
-            return redirect('/order');
+        return redirect('/order');
     }
     public function delete_card($id)
     {
         if (session()->has('user')) {
             $data = orders::find($id);
-
             $data->delete();
-            return redirect()->back();
+            return redirect('/message');
         }
     }
-    public function order_use_payment_method(Request $req){
+    public function order_use_payment_method(Request $req)
+    {
         $data_user = Users::findOrFail(session('user'));
         $second_cate = DB::table('se_categories')->get();
         $payment = $req->payment;
 
         $address = $req->address;
 
-        return view('home/user-profile/order_by_wing',compact('data_user','address','payment'));
+        return view('home/user-profile/order_by_wing', compact('data_user', 'address', 'payment'));
     }
     public function order(Request $req)
     {
@@ -67,14 +68,14 @@ class OrderController extends Controller
                 $set_cart->in_order = 1;
                 $set_cart->update();
             }
-            if($payment=='wing'){
+            if ($payment == 'wing') {
                 foreach ($cart as $item) {
                     $order = new orders();
                     $order->cart_id = $item->cart_id;
                     $order->use_payment_method = 1;
                     $order->save();
                 }
-            }elseif($payment=='cash_on_delivery'){
+            } elseif ($payment == 'cash_on_delivery') {
                 foreach ($cart as $item) {
                     $order = new orders();
                     $order->cart_id = $item->cart_id;

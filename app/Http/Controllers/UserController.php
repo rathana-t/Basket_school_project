@@ -39,12 +39,20 @@ class UserController extends Controller
                 ->where('carts.user_id', $data_user->id)
                 // ->where('orders.seller_cancel', 1)
                 ->where('carts.in_order', 1)
-                ->select('products.*', 'orders.*', 'orders.id as order_id', 'carts.quantity', 'carts.total')->orderByDesc('orders.updated_at')->get();
+                ->select('products.*', 'orders.*', 'orders.id as order_id', 'carts.quantity', 'carts.total')
+                ->orderByDesc('orders.updated_at')
+                ->get();
+
+            $countCancel =  orders::join('carts', 'carts.id', '=', 'orders.cart_id')
+                ->join('products', 'products.id', '=', 'carts.product_id')
+                ->where('carts.user_id', $data_user->id)
+                ->where('orders.seller_cancel', 1)
+                ->count();
             $count = 0;
-            if($data){
+            if ($data) {
                 $count = 1;
             }
-            return view('home/user-profile/order', compact('second_cate', 'count', 'data', 'data_user'));
+            return view('home/user-profile/order', compact('second_cate', 'count', 'data', 'data_user', 'countCancel'));
         }
         return view('home/login', compact('second_cate'));
     }
@@ -247,7 +255,7 @@ class UserController extends Controller
                 $quantity =  $quantity + $item->quantity;
                 $counter++;
             }
-            return view('home/user-profile/confirm_order', compact('second_cate','payment', 'quantity', 'data_user',  'data_pro', 'counter', 'total_price_all_quantity'));
+            return view('home/user-profile/confirm_order', compact('second_cate', 'payment', 'quantity', 'data_user',  'data_pro', 'counter', 'total_price_all_quantity'));
         } else {
             return view('home/login');
         }

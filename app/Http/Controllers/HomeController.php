@@ -671,4 +671,59 @@ class HomeController extends Controller
         $homeImg->update();
         return redirect()->back();
     }
+    public function message()
+    {
+        if (session()->has('user')) {
+            $data_user = users::findOrFail(session('user'));
+            $data = orders::join('carts', 'carts.id', '=', 'orders.cart_id')
+                ->join('products', 'products.id', '=', 'carts.product_id')
+                ->where('carts.user_id', $data_user->id)
+                ->where('orders.seller_cancel', 1)
+                ->where('carts.in_order', 1)
+                ->select('products.*', 'orders.*', 'orders.id as order_id', 'carts.quantity', 'carts.total')
+                ->orderByDesc('orders.updated_at')
+                ->get();
+
+            // dd($data);
+            $countCancel =  orders::join('carts', 'carts.id', '=', 'orders.cart_id')
+                ->join('products', 'products.id', '=', 'carts.product_id')
+                ->where('carts.user_id', $data_user->id)
+                ->where('orders.seller_cancel', 1)
+                ->count();
+        }
+        return view('home/user-profile/message', compact('countCancel', 'data'));
+    }
+
+    public function messageDetail($id)
+    {
+        $message = orders::find($id);
+        $data_user = users::findOrFail(session('user'));
+        $data = orders::join('carts', 'carts.id', '=', 'orders.cart_id')
+            ->join('products', 'products.id', '=', 'carts.product_id')
+            ->where('carts.user_id', $data_user->id)
+            ->where('orders.seller_cancel', 1)
+            ->where('orders.id', $message->id)
+            ->where('carts.in_order', 1)
+            ->select('products.*', 'orders.*', 'orders.id as order_id', 'carts.quantity', 'carts.total')
+            ->get();
+        // dd($data);
+        if ($message->read == 0) {
+            $message->read = $message->read + 1;
+            $message->update();
+            return view('home/user-profile/messageDetail', compact('message', 'data'));
+        } else {
+            $message->sent = $message->sent;
+            return view('home/user-profile/messageDetail', compact('message', 'data'));
+        }
+    }
+    static public function countMsg()
+    {
+        $data_user = users::findOrFail(session('user'));
+        return orders::join('carts', 'carts.id', '=', 'orders.cart_id')
+            ->join('products', 'products.id', '=', 'carts.product_id')
+            ->where('carts.user_id', $data_user->id)
+            ->where('orders.seller_cancel', 1)
+            ->where('orders.read', 0)
+            ->count();
+    }
 }

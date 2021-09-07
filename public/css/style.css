@@ -23,10 +23,7 @@
 .duct .card-footer {
     background-color: white !important;
 }
-.see-all {
-    font-size: 10px;
-    color: red;
-}
+
 .duct .card-body {
     padding-bottom: 0px !important;
 }
@@ -171,7 +168,7 @@ body {
 .top-sale img {
     border-radius: 5px;
     object-fit: contain;
-    height: 180px;
+    height: 150px;
     width: 300px;
 }
 .top-sale a {
@@ -180,7 +177,8 @@ body {
 }
 .top-sale a:hover {
     text-decoration: none;
-    color: #ff4c34;
+    color: #035ebe;
+
 }
 .product-height {
     min-height: 1450px;
@@ -230,7 +228,8 @@ body {
 }
 
 .product .product-item a:hover {
-    color: #ff4c34;
+    color: #035ebe;
+
 }
 
 .category h5 {
@@ -301,7 +300,8 @@ body {
 }
 
 .category .category-item a:hover {
-    color: #ff4c34;
+    color: #035ebe;
+
 }
 
 .brand h5 {
@@ -363,7 +363,7 @@ body {
 }
 
 .categoryItem a:hover {
-    color: #ff4c34;
+    color: #035ebe;
 }
 
 .sticky-footer {
@@ -496,7 +496,8 @@ footer ul li {
 }
 
 .shopping-cart a:hover {
-    color: #ff4c34;
+    color: #035ebe;
+
     text-decoration: none;
 }
 
@@ -599,11 +600,11 @@ footer ul li {
 }
 
 .navbar-menu .ac {
-    color: #ff4c34 !important;
+    color: #ff4c34be !important;
 }
 
 .navbar-menu a:hover {
-    color: #ff4c34 !important;
+    color: #323b49 !important;
 }
 
 div.b {
@@ -661,7 +662,7 @@ div.b {
 }
 
 .search a:hover {
-    color: #ff4c34;
+    color: #035ebe;
 }
 
 /* end  */
