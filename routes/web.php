@@ -63,9 +63,10 @@ Route::get('/logout', [UserController::class, 'logout'])->middleware('checker');
 Route::delete('remove-cart', [CartController::class, 'remove_cart']);
 Route::delete('remove-wishlist', [CartController::class, 'remove_wishlist']);
 Route::post('edit-quantity-cart', [CartController::class, 'edit_cart_quantity']);
-Route::get('/confirm-order-product', [UserController::class, 'confirm_order_prooduct']);
+Route::post('/confirm-order-product', [UserController::class, 'confirm_order_prooduct']);
 Route::post('/order-product', [OrderController::class, 'order']);
-Route::post('/order/use_payment_method', [OrderController::class, 'order_use_payment_method']);
+Route::post('/order-product-payment', [OrderController::class, 'order_payment']);
+Route::get('/order/use_payment_method', [OrderController::class, 'order_use_payment_method']);
 Route::get('/user_cancel_order/{id}', [OrderController::class, 'user_cancel_order'])->middleware('checker');
 
 Route::get('/user_forget_pass', [ForgetPassword::class, 'user_forget_pass']);

@@ -67,16 +67,16 @@ class UserController extends Controller
             $validPassword = Hash::check($data['password'], $user->password);
             if ($validPassword) {
                 session()->put('user', $user->id);
-                if ($req->has('remeberme')) {
+                // if ($req->has('remeberme')) {
                     Cookie::queue(cookie()->forever('userPhone', $req->phone));
                     Cookie::queue(cookie()->forever('userPass', $req->password));
                     // cookie()->forever('userPass', $req->password);
                     // Cookie::forev('userPhone',$req->phone,1440);
-                    // Cookie::queue('userPass',$req->password,1440);
-                } else {
-                    Cookie::queue(Cookie::forget('userPhone'));
-                    Cookie::queue(Cookie::forget('userPass'));
-                }
+                //     // Cookie::queue('userPass',$req->password,1440);
+                // } else {
+                //     Cookie::queue(Cookie::forget('userPhone'));
+                //     Cookie::queue(Cookie::forget('userPass'));
+                // }
                 if ($user->type == "admin") {
                     return redirect('/admin');
                 }
@@ -255,7 +255,12 @@ class UserController extends Controller
                 $quantity =  $quantity + $item->quantity;
                 $counter++;
             }
-            return view('home/user-profile/confirm_order', compact('second_cate', 'payment', 'quantity', 'data_user',  'data_pro', 'counter', 'total_price_all_quantity'));
+
+            if($payment=='wing'){
+                return view('home/user-profile/confirm_order_payment', compact('second_cate', 'payment', 'quantity', 'data_user',  'data_pro', 'counter', 'total_price_all_quantity'));
+            }else{
+                return view('home/user-profile/confirm_order', compact('second_cate', 'payment', 'quantity', 'data_user',  'data_pro', 'counter', 'total_price_all_quantity'));
+            }
         } else {
             return view('home/login');
         }

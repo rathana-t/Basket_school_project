@@ -137,7 +137,7 @@
                         <div class="col-lg-3">
                             <div class="payment">
                                 <div class="card">
-                                    <form action="{{ url('/confirm-order-product') }}">
+                                    <form action="{{ url('/confirm-order-product') }}" method="POST">
                                         @csrf
 
                                         <div class="card-header text-center" style="background-color:white">
@@ -159,7 +159,7 @@
                                                     <input class="form-check-input" type="radio" name="payment"
                                                         id="exampleRadios2" value="wing">
                                                     <label class="form-check-label" for="exampleRadios2">
-                                                        Wing Payment
+                                                        Visa Card/MasterCard
                                                         <p class="new-table">$ {{ $total_price_all_quantity }}</p>
                                                     </label>
                                                 </div>

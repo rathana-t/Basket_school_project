@@ -5,9 +5,10 @@
         .payment button {
             width: 300px;
         }
+
     </style>
     <div class="container">
-        <div class="deatail_page pt-4">
+        {{-- <div class="deatail_page pt-4">
             <div class="card">
                 <div class="row">
                     <div class="col-md-6 border-right">
@@ -42,7 +43,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <div class="pt-4 payment">
             <div class="card border-0 shadow-sm">
                 <div class="row">
@@ -57,40 +58,58 @@
                                 </div>
                                 <div class="card-body">
 
-                                    <form action="{{ url('order-product') }}" method="POST">
+                                    <form action="{{ url('order-product-payment') }}" method="POSt">
                                         @csrf
-                                        <input type="hidden" name="payment" value="{{ $payment }}" id="">
                                         <input type="hidden" name="address" value="{{ $address }}" id="">
-                                        <label for="exampleInputEmail1" class="mt-2">Wing Account</label>
-                                        <input type="number" required class="form-control text-center" name="wing_account"
-                                            id="" placeholder="#### #### #### ####">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1" class="mt-2">ID Card</label>
+                                            <input type="number" class="form-control text-center" name="id_card"
+                                                value="{{ old('id_card') == '' ? $card->number : old('id_card') }}"
+                                                id="exampleInputIDCARD" placeholder="#### #### #### ####" maxlength="19">
+                                            {!! $errors->first('id_card', "<span class='text-danger'>:message</span>") !!}
+                                        </div>
+
                                         <label for="exampleInputEmail1" class="mt-2">Expiration</label>
-                                        <form>
-                                            <div class="form-row cvv">
-                                                <div class="col-md-2">
-                                                    <select class="form-control form-control-sm">
-                                                        @for ($i = 1; $i < 13; $i++)
-                                                            @if ($i == '10' || $i == '11' || $i == '12')
-                                                                <option>{{ $i }}</option>
-                                                            @else
-                                                                <option>0{{ $i }}</option>
-                                                            @endif
-                                                        @endfor
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <select class="form-control form-control-sm">
-                                                        @for ($i = 2021; $i < 2030; $i++)
-                                                            <option>{{ $i }}</option>
-                                                        @endfor
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <input type="number" min="0" class="form-control form-control-sm"
-                                                        placeholder="CVV">
-                                                </div>
+
+                                        <div class="form-row cvv">
+                                            <div class="col-md-2">
+                                                <select class="form-control form-control-sm" name="month">
+                                                    @for ($i = 1; $i < 13; $i++)
+                                                        @if ($i == '10' || $i == '11' || $i == '12')
+                                                            <option value="{{ $i }}"
+                                                                {{ $i == $card->month ? 'selected' : '' }}>
+                                                                {{ $i }}</option>
+                                                        @else
+                                                            <option value="{{ $i }}"
+                                                                {{ $i == $card->month ? 'selected' : '' }}>
+                                                                0{{ $i }}
+                                                            </option>
+                                                        @endif
+                                                    @endfor
+                                                </select>
                                             </div>
-                                        </form>
+                                            <div class="col-md-2">
+                                                <select class="form-control form-control-sm" name="year">
+                                                    <?php
+                                                    $year = date('Y');
+                                                    ?>
+                                                    @for ($i = $year; $i < $year + 10; $i++)
+                                                        <option value="{{ $i }}"
+                                                            {{ $i == $card->year ? 'selected' : '' }}>
+                                                            {{ $i }}
+                                                        </option>
+                                                    @endfor
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <input type="number" min="0" id="cvv" name="cvv"
+                                                    class="form-control form-control-sm" placeholder="CVV"
+                                                    value="{{ old('cvv') == '' ? $card->cvv : old('cvv') }}">
+                                            </div>
+                                            {!! $errors->first('cvv', "<span class='text-danger'>:message</span>") !!}
+
+                                        </div>
+
                                         <hr>
                                         <div class="text-center">
                                             <button type="submit" class="btn btn-primary btn-sm">

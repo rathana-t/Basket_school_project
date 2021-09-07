@@ -48,95 +48,49 @@
     <div class="container">
         <div class="row d-flex justify-content-center pt-4">
             <div class="col-md-5">
-                <div class="card cs-shadow rounded border-0">
-                    <div class="card-body">
-                        <input class="form-control form-control-lg" type="text" placeholder="Email or Phone Number">
-                        <div class="input-group mb-3 mt-3 password">
-                            <input type="password" class="form-control form-control-lg" placeholder="Password"
-                                aria-label="Recipient's username" aria-describedby="button-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button" id="button-addon2">
-                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                @if (session('fail'))
+                    <div class="text-danger" style="margin-left:25%">
+                        {{ session('fail') }}
+                    </div>
+                @endif
+                @if (session('message'))
+                    <div class="text-success text-center" role="alert">
+                        {{ session('message') }}
+                    </div>
+                @endif
+                <form action="{{ route('signin') }}" method="POST">
+                    @csrf
+                    <div class="card cs-shadow rounded border-0">
+                        <div class="card-body">
+                            <input class="form-control form-control-lg" type="number" placeholder="Phone Number" name="phone"
+                                id="exampleInputPhone" @if (Cookie::has('userPhone')) value="{{ Cookie::get('userPhone') }}" @endif>
+                            <div class="input-group mb-3 mt-3 password">
+                                <input type="password" class="form-control form-control-lg" id="exampleInputPassword1"
+                                    name="password" @if (Cookie::has('userPass')) value="{{ Cookie::get('userPass') }}" @endif placeholder="Password"
+                                    aria-label="Recipient's username" aria-describedby="button-addon2">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="button" onclick="visibility3()"
+                                        id="button-addon2">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary col-12">
+                                    <div class="p-1">
+                                        Log In
+                                    </div>
                                 </button>
                             </div>
-                        </div>
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-primary col-12">
-                                <div class="p-1">
-                                    Log In
+                            <hr>
+                            <div class="text-center">
+                                <div class="col forget">
+                                    <a href="{{ url('/user_forget_pass') }}">Forget Password ?</a>
                                 </div>
-                            </button>
-                        </div>
-                        <hr>
-                        <div class="text-center">
-                            <div class="col forget">
-                                <a href="{{ url('/user_forget_pass') }}">Forget Password ?</a>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="login">
-            <h1 class="text-center pt-4 mb-4">
-                Login
-            </h1>
-            <div class="row justify-content-center">
-                <div class="col-md-5">
-                    @if (session('fail'))
-                        <div class="text-danger" style="margin-left:25%">
-                            {{ session('fail') }}
-                        </div>
-                    @endif
-                    @if (session('message'))
-                        <div class="text-success text-center" role="alert">
-                            {{ session('message') }}
-                        </div>
-                    @endif
-                    <form action="{{ route('signin') }}" method="POST">
-                        @csrf
-                        <div class="card shadow-sm">
-                            <div class="m-4">
-                                <div class="form-group">
-                                    <label for="phone">Phone number</label>
-                                    <input type="number" {{-- okdfkfdj --}} class="form-control" id="exampleInputPhone"
-                                        name="phone" @if (Cookie::has('userPhone')) value="{{ Cookie::get('userPhone') }}" @endif required>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1">Password</label>
-                                    <div class="input-group">
-                                        <input type="password" class="form-control" id="exampleInputPassword1"
-                                            name="password" @if (Cookie::has('userPass')) value="{{ Cookie::get('userPass') }}" @endif required>
-                                        <span class="input-group-btn btn-outline-light" id="eyeSlash">
-                                            <button class="btn btn-dark" onclick="visibility3()" type="button"><i
-                                                    class="fa fa-eye-slash" aria-hidden="true"></i></button>
-                                        </span>
-                                        <span class="input-group-btn  btn-outline-dark" id="eyeShow" style="display: none;">
-                                            <button class="btn btn-dark reveal" onclick="visibility3()" type="button"><i
-                                                    class="fa fa-eye" aria-hidden="true"></i></button>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="form-group form-check">
-                                    <input type="checkbox" class="form-check-input" name="remeberme" id="exampleCheck1"
-                                        @if (Cookie::has('userPass')) checked   @else @endif>
-                                    <label class="form-check-label" for="exampleCheck1">Remember me.</label>
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <a href="{{ url('/user_forget_pass') }}">Forget Password ?</a>
-                                    </div>
-                                    <div class="col text-right">
-                                        <button type="submit" class="btn btn-primary">Login</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                </form>
             </div>
         </div>
     </div>
