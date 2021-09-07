@@ -1,7 +1,84 @@
 @extends('application')
 
 @section('content')
+
+    <style>
+        .cs-shadow {
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        }
+
+        .cs-shadow button {
+            /* width: 550px; */
+
+        }
+
+        .remember label {
+            color: rgba(90, 90, 90, 0.979)
+        }
+
+        .forget a {
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .cs-shadow .btn-outline-secondary {
+            border: 1px solid #ced4da !important;
+            border-left: none !important;
+        }
+
+        .password input {
+            border-right: none !important;
+        }
+
+        .password .btn-outline-secondary:hover {
+            color: #05b63ac0;
+            background-color: #ffffff;
+            border-color: #ffffff;
+        }
+
+        .password .btn-outline-secondary:focus,
+        .btn-outline-secondary:active {
+            background-color: #ffffff !important;
+            outline: none !important;
+            box-shadow: none !important;
+            border-color: #ffffff;
+        }
+
+    </style>
     <div class="container">
+        <div class="row d-flex justify-content-center pt-4">
+            <div class="col-md-5">
+                <div class="card cs-shadow rounded border-0">
+                    <div class="card-body">
+                        <input class="form-control form-control-lg" type="text" placeholder="Email or Phone Number">
+                        <div class="input-group mb-3 mt-3 password">
+                            <input type="password" class="form-control form-control-lg" placeholder="Password"
+                                aria-label="Recipient's username" aria-describedby="button-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" id="button-addon2">
+                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary col-12">
+                                <div class="p-1">
+                                    Log In
+                                </div>
+                            </button>
+                        </div>
+                        <hr>
+                        <div class="text-center">
+                            <div class="col forget">
+                                <a href="{{ url('/user_forget_pass') }}">Forget Password ?</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
         <div class="login">
             <h1 class="text-center pt-4 mb-4">
                 Login
