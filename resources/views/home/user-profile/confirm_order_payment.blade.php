@@ -78,7 +78,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <form action="{{ url('/order/use_payment_method') }}" method="GET">
+                                <form action="{{ url('/order/use_payment_method') }}" method="POST">
                                     @csrf
                                     <div class="pb-3">
                                         <label for="">Address</label>

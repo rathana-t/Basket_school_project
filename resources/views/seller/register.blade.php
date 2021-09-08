@@ -219,6 +219,12 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="text-left">
+                                        <input type="checkbox" name="term_condition" required>
+                                        <span>Agree with <a href="">Term & Condition</a></span>
+                                    </div>
+                                    {!! $errors->first('term_condition', "<span class='text-danger'>:message</span>") !!}
+
                                     <div class="text-right">
                                         <button type="submit" class="btn btn-primary">Submit</button>
                                     </div>

@@ -31,7 +31,7 @@ class Report extends Model
     public static function GetReportAllSellerCommission(){
         $data = DB::table('reports')->join('sellers','sellers.id','=','reports.seller_id')
         ->select('sellers.id','sellers.store_name','reports.code_product','reports.pro_name','reports.pro_price','reports.quantity_order','reports.total_price','reports.commission','reports.commission_price')
-        ->get()->toArray();
+        ->orderBy('sellers.id','asc')->get()->toArray();
 
         return $data;
     }

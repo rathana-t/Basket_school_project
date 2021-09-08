@@ -249,7 +249,7 @@
             </div>
             <div class="product-item">
                 <div class="row">
-                    @foreach ($related_pro as $item)
+                    {{-- @foreach ($related_pro as $item)
                         @if ($item->s_cat_id == $product_id->s_cat_id)
                             <div class="col-md-3 col-sm-6 col-xs-12">
                                 <div class="card mb-3">
@@ -284,10 +284,43 @@
                                 </div>
                             </div>
                         @endif
-                    @endforeach
+                    @endforeach --}}
 
                     @foreach ($related_pro as $item)
-                        @if ($item->s_cat_id != $product_id->s_cat_id)
+                        @if ($item->s_cat_id == $product_id->s_cat_id)
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="card mb-3">
+                                    <div class="m-3">
+                                        <a href="/product/product/{{ $item->id }}">
+                                            <img src="{{ asset('images/imgProduct') }}/{{ $item->img_product }}"
+                                                alt="" class="img-fluid">
+                                        </a>
+                                    </div>
+
+                                    <div class="border-top">
+                                        <div class="pl-4 pr-4 pb-2 pt-2">
+                                            <div class="product_name">
+                                                <a href="/product/product/{{ $item->id }}">
+                                                    <div class="b">
+                                                        {{ $item->name }}
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="price">
+                                                <a href="/product/product/{{ $item->id }}">
+                                                    ${{ $item->price }}
+                                                </a>
+                                            </div>
+                                            <div class="store_name">
+                                                <a href="/store/{{ $item->seller_id }}" class="text-muted">
+                                                    {{ $item->store_name }}
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @elseif ($item->s_cat_id != $product_id->s_cat_id)
                             <div class="col-md-3 col-sm-6 col-xs-12">
                                 <div class="card mb-3">
                                     <div class="m-3">

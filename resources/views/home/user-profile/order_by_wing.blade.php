@@ -65,7 +65,7 @@
                                             <label for="exampleInputEmail1" class="mt-2">ID Card</label>
                                             <input type="number" class="form-control text-center" name="id_card"
                                                 value="{{ old('id_card') == '' ? $card->number : old('id_card') }}"
-                                                id="exampleInputIDCARD" placeholder="#### #### #### ####" maxlength="19">
+                                                id="exampleInputIDCARD" placeholder="#### #### #### ####" maxlength="16">
                                             {!! $errors->first('id_card', "<span class='text-danger'>:message</span>") !!}
                                         </div>
 
