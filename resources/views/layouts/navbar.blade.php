@@ -103,7 +103,7 @@ $listSecondCate = HomeController::secondCat();
                         <a class="nav-link" href="{{ url('/login') }}">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/reg') }}">Register</a>
+                        <a class="nav-link" href="{{ url('/reg') }}">Sign Up</a>
                     </li>
                 @endif
             </ul>
