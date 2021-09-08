@@ -279,7 +279,10 @@
                             });
                         </script>
 
-
+                        <div class="text-left">
+                            <input type="checkbox" name="term_condition" required>
+                            <span>Agree with <a href="">Term & Condition</a></span>
+                        </div>
                         <div class="text-right mt-3">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>

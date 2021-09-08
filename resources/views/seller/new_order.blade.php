@@ -22,43 +22,42 @@
                 @foreach ($data as $item)
                     @include('/seller/components/modal')
 
-                    @if ($item->user_cancel == 0 && $item->pending == 1 && $item->seller_cancel == 0)
-                        <tr class="text-center product-list">
-                            <td>
-                                <a href="{{ url('product', $item->id) }}">
-                                    <img src="{{ asset('images/imgProduct') }}/{{ $item->img_product }}" alt=""
-                                        class="img-fluid">
-                                </a>
-                            </td>
-                            <td>{{ $item->name }}</td>
-                            <td>{{ $item->stock }}</td>
-                            <td>{{ $item->u_name }}</td>
-                            <td>{{ $item->u_phone }}</td>
-                            <td>
-                                <div class="b Address" style="cursor: pointer">
-                                    {{ $item->u_address }}
-                                </div>
-                            </td>
-                            <td>{{ $item->quantity }}</td>
-                            <td>$ {{ $item->total }}</td>
-                            <td>{{ $item->updated_at }}</td>
-                            <td>
-                                <button type="button" value="{{ $item->order_id }}"
-                                    class="open_pending_modal btn btn-primary">
-                                    Confirm
-                                </button>
+                    {{-- @if ($item->seller_cancel == 0) --}}
+                    <tr class="text-center product-list">
+                        <td>
+                            <a href="{{ url('product', $item->id) }}">
+                                <img src="{{ asset('images/imgProduct') }}/{{ $item->img_product }}" alt=""
+                                    class="img-fluid">
+                            </a>
+                        </td>
+                        <td>{{ $item->name }}</td>
+                        <td>{{ $item->stock }}</td>
+                        <td>{{ $item->u_name }}</td>
+                        <td>{{ $item->u_phone }}</td>
+                        <td>
+                            <div class="b Address" style="cursor: pointer">
+                                {{ $item->u_address }}
+                            </div>
+                        </td>
+                        <td>{{ $item->quantity }}</td>
+                        <td>$ {{ $item->total }}</td>
+                        <td>{{ $item->updated_at }}</td>
+                        <td>
+                            <button type="button" value="{{ $item->order_id }}"
+                                class="open_pending_modal btn btn-primary">
+                                Confirm
+                            </button>
 
 
-                                <button type="button" value="{{ $item->order_id }}"
-                                    class="open_cancel_modal btn btn-danger">
-                                    cancel
-                                </button>
-                            </td>
-                        </tr>
-                    @endif
+                            <button type="button" value="{{ $item->order_id }}" class="open_cancel_modal btn btn-danger">
+                                cancel
+                            </button>
+                        </td>
+                    </tr>
+                    {{-- @endif --}}
 
                 @endforeach
-                @foreach ($data as $item)
+                {{-- @foreach ($data as $item)
                     @include('/seller/components/modal')
 
                     @if ($item->user_cancel == 1 && $item->pending == 1)
@@ -83,8 +82,6 @@
                             <td>{{ $item->updated_at }}</td>
                             <td>
                                 <p>Canceled</p>
-
-
                                 <a href="{{ url('delete_user_cancel_order', $item->order_id) }}"
                                     class="btn btn-danger text-white">
                                     remove
@@ -92,7 +89,7 @@
                             </td>
                         </tr>
                     @endif
-                @endforeach
+                @endforeach --}}
             </tbody>
         </table>
     </div>

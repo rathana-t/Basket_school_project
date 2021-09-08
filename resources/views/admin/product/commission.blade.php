@@ -38,7 +38,6 @@
                 @if ($itemA->id == $item->seller_id)
                     @if ($index == 0)
                         <div class="text-center">{{ $itemA->store_name }}</div>
-
                         <div class="text-center">
                             <a href="{{ url('admin/export/single/commission', $itemA->id) }}">
                                 <button class="btn btn-primary">
@@ -55,6 +54,11 @@
                             </div>
                             <div class="col-md-2 text-center">
                                 <strong>
+                                    Code Product
+                                </strong>
+                            </div>
+                            <div class="col-md-2 text-center">
+                                <strong>
                                     Product
                                 </strong>
                             </div>
@@ -63,12 +67,12 @@
                                     Price
                                 </strong>
                             </div>
-                            <div class="col-md-2 text-center">
+                            <div class="col-md-1 text-center">
                                 <strong>
                                     Qauntity Order
                                 </strong>
                             </div>
-                            <div class="col-md-2 text-center">
+                            <div class="col-md-1 text-center">
                                 <strong>
                                     Total Price
                                 </strong>
@@ -84,6 +88,7 @@
                                 </strong>
                             </div>
                         </div>
+                        <hr>
                         <?php
                         $index = 1;
                         ?>
@@ -93,15 +98,18 @@
                             {{ $no++ }}
                         </div>
                         <div class="col-md-2 text-center">
+                            {{ $item->code_product }}
+                        </div>
+                        <div class="col-md-2 text-center">
                             {{ $item->pro_name }}
                         </div>
                         <div class="col-md-1 text-center">
                             {{ $item->pro_price }}
                         </div>
-                        <div class="col-md-2 text-center">
+                        <div class="col-md-1 text-center">
                             {{ $item->quantity_order }}
                         </div>
-                        <div class="col-md-2 text-center">
+                        <div class="col-md-1 text-center">
                             {{ $item->total_price }}
                         </div>
                         <div class="col-md-2 text-center">
@@ -111,6 +119,7 @@
                             {{ $item->commission_price }}
                         </div>
                     </div>
+                    <hr>
                 @endif
             @endforeach
         </div>

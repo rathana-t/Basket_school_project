@@ -37,7 +37,7 @@ class UserController extends Controller
             $data = orders::join('carts', 'carts.id', '=', 'orders.cart_id')
                 ->join('products', 'products.id', '=', 'carts.product_id')
                 ->where('carts.user_id', $data_user->id)
-                // ->where('orders.seller_cancel', 1)
+                ->where('orders.seller_cancel', 0)
                 ->where('carts.in_order', 1)
                 ->select('products.*', 'orders.*', 'orders.id as order_id', 'carts.quantity', 'carts.total')
                 ->orderByDesc('orders.updated_at')
@@ -139,6 +139,7 @@ class UserController extends Controller
             $data_pro = products::join('wishlist', 'wishlist.pro_id', '=', 'products.id')
                 ->where('wishlist.u_id', $data_user->id)
                 ->select('products.*', 'wishlist.id as wish_id')
+                ->orderByDesc('wishlist.updated_at')
                 ->get();
 
             $test = 0;

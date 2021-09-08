@@ -21,72 +21,43 @@
 
                 @foreach ($data as $item)
                     @include('/seller/components/modal')
-                    @if ($item->seller_cancel == 1)
-                        @if ($item->seller_remove_cancel == 1)
+                    {{-- @if ($item->delivery == 1) --}}
 
-                        @else
-                            <tr class="product-list text-center" style="color: rgb(223, 89, 12)">
-                                <td>
-                                    <img src="{{ asset('images/imgProduct') }}/{{ $item->img_product }}" alt=""
-                                        class="img-fluid">
-                                </td>
-                                <td>{{ $item->name }}</td>
-                                <td>{{ $item->u_name }}</td>
-                                <td>{{ $item->u_phone }}</td>
-                                <td>
-                                    <div class="b Address" style="cursor: pointer">
-                                        {{ $item->u_address }}
-                                    </div>
-                                </td>
-                                <td>{{ $item->quantity }}</td>
-                                <td>$ {{ $item->total }}</td>
-                                <td>{{ $item->updated_at }}</td>
-                                <td>
-                                    <p>Cancelled</p>
-                                    <a href="{{ url('/remove-cancel', $item->order_id) }}">
-                                        <button class="btn btn-danger">
-                                            delete
-                                        </button>
-                                    </a>
-                                </td>
-                            </tr>
-                        @endif
+                    {{-- @elseif($item->delivery ==1) --}}
+                    {{-- @if ($item->seller_remove_cancel == 0) --}}
 
-                    @elseif($item->delivery ==1)
-                        @if ($item->seller_remove_cancel == 1)
-
-                        @else
-                            <tr class="product-list text-center">
-                                <td>
-                                    <img src="{{ asset('images/imgProduct') }}/{{ $item->img_product }}" alt=""
-                                        class="img-fluid">
-                                </td>
-                                <td>{{ $item->name }}</td>
-                                <td>{{ $item->u_name }}</td>
-                                <td>{{ $item->u_phone }}</td>
-                                <td>
-                                    <div class="b Address" style="cursor: pointer">
-                                        {{ $item->u_address }}
-                                    </div>
-                                </td>
-                                <td>{{ $item->quantity }}</td>
-                                <td>$ {{ $item->total }}</td>
-                                <td>{{ $item->updated_at }}</td>
-                                <td>
-                                    <a href="{{ url('product', $item->id) }}">
-                                        <button class="btn btn-primary">
-                                            view
-                                        </button>
-                                    </a>
-                                    <a href="{{ url('/remove-oldorder', $item->order_id) }}">
-                                        <button class="btn btn-danger">
-                                            delete
-                                        </button>
-                                    </a>
-                                </td>
-                            </tr>
-                        @endif
-                    @endif
+                    {{-- @else --}}
+                    <tr class="product-list text-center">
+                        <td>
+                            <img src="{{ asset('images/imgProduct') }}/{{ $item->img_product }}" alt=""
+                                class="img-fluid">
+                        </td>
+                        <td>{{ $item->name }}</td>
+                        <td>{{ $item->u_name }}</td>
+                        <td>{{ $item->u_phone }}</td>
+                        <td>
+                            <div class="b Address" style="cursor: pointer">
+                                {{ $item->u_address }}
+                            </div>
+                        </td>
+                        <td>{{ $item->quantity }}</td>
+                        <td>$ {{ $item->total }}</td>
+                        <td>{{ $item->updated_at }}</td>
+                        <td>
+                            <a href="{{ url('product', $item->id) }}">
+                                <button class="btn btn-primary">
+                                    view
+                                </button>
+                            </a>
+                            <a href="{{ url('/remove-oldorder', $item->order_id) }}">
+                                <button class="btn btn-danger">
+                                    delete
+                                </button>
+                            </a>
+                        </td>
+                    </tr>
+                    {{-- @endif --}}
+                    {{-- @endif --}}
                 @endforeach
             </tbody>
         </table>

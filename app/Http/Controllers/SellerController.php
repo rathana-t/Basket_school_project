@@ -256,6 +256,7 @@ class SellerController extends Controller
     {
         $data = request()->validate([
             'store_name' => 'required',
+            'term_condition' => 'required',
             'email' => 'required|email|max:70|unique:sellers,email',
             'phone' => 'required|min:9|unique:sellers,phone',
             'address' => 'required',
@@ -357,6 +358,8 @@ class SellerController extends Controller
                 ->join('products', 'products.id', '=', 'carts.product_id')
                 ->where('products.seller_id', $data_seller->id)
                 ->where('orders.pending', 1)
+                ->where('orders.user_cancel',0)
+                ->where('orders.seller_cancel',0)
                 ->select('products.*', 'carts.total', 'orders.seller_cancel', 'orders.pending', 'orders.user_cancel', 'orders.id as order_id', 'carts.quantity', 'users.username as u_name', 'users.phone as u_phone', 'users.address as u_address')
                 ->orderBy('updated_at', 'desc')
                 ->paginate(5);
@@ -386,7 +389,7 @@ class SellerController extends Controller
         ->where('products.seller_id', $data_seller->id)
         ->where('orders.use_payment_method', 1)
         ->select('products.*', 'carts.total', 'orders.seller_cancel', 'orders.user_cancel', 'orders.processing', 'carts.quantity', 'orders.id as order_id', 'users.username as u_name', 'users.phone as u_phone', 'users.address as u_address')
-        ->orderBy('updated_at', 'desc')
+        ->orderBy('orders.updated_at', 'desc')
         ->paginate(5);
 
             return view('seller/order_paid', compact('data_seller','pro_alread_paid'));
@@ -401,8 +404,10 @@ class SellerController extends Controller
                 ->join('products', 'products.id', '=', 'carts.product_id')
                 ->where('products.seller_id', $data_seller->id)
                 ->where('orders.processing', 1)
+                ->where('orders.user_cancel',0)
+                ->where('orders.seller_cancel',0)
                 ->select('products.*', 'carts.total', 'orders.seller_cancel', 'orders.user_cancel', 'orders.processing', 'carts.quantity', 'orders.id as order_id', 'users.username as u_name', 'users.phone as u_phone', 'users.address as u_address')
-                ->orderBy('updated_at', 'desc')
+                ->orderBy('orders.updated_at', 'desc')
                 ->paginate(5);
 
             return view('seller/processing', compact('data_seller', 'data'));
@@ -503,9 +508,10 @@ class SellerController extends Controller
                 ->join('products', 'products.id', '=', 'carts.product_id')
                 ->where('products.seller_id', $data_seller->id)
                 ->where('orders.delivery', 1)
-                ->orwhere('orders.delivery', 0)
+                ->where('orders.seller_remove_cancel',0)
+                // ->orwhere('orders.seller_cancel', 1)
                 ->select('products.*', 'carts.total', 'orders.seller_remove_cancel', 'carts.quantity', 'orders.id as order_id', 'orders.seller_cancel',  'orders.pending', 'orders.delivery', 'users.username as u_name', 'users.phone as u_phone', 'users.address as u_address')
-                ->orderBy('updated_at', 'desc')
+                ->orderByDesc('orders.updated_at')
                 ->paginate(5);
 
             return view('seller/old_order', compact('data_seller', 'data'));
