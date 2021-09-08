@@ -10,7 +10,7 @@ $listSecondCate = HomeController::secondCat();
 
 <style>
     .navbar .select select {
-        width: 140px;
+        width: 100px;
     }
 
 </style>
@@ -27,8 +27,8 @@ $listSecondCate = HomeController::secondCat();
             <ul class="navbar-nav ml-auto">
                 <form class="input-group select" action="{{ url('/search') }}">
                     <select name="search_fill" class="form-control">
-                        <option value="name">Name Product</option>
-                        <option value="code">Code Product</option>
+                        <option value="name">Name</option>
+                        <option value="code">Code</option>
                     </select>
                     <input type="text" name="query" class="form-control"
                         aria-label="Dollar amount (with dot and two decimal places)" placeholder="Search....">

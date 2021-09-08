@@ -43,7 +43,7 @@
                                                             </a>
                                                         </td>
                                                         <td>
-                                                            <div class="row">
+                                                            {{-- <div class="row">
                                                                 <div class="col-md-4">
                                                                     <button type="button" value="{{ $item->cart_id }}"
                                                                         class="btn-sm edit_cart btn btn btn-light border">
@@ -62,15 +62,18 @@
                                                                         {{ $item->quantity }}
                                                                     </a>
                                                                 </div>
-                                                            </div>
-                                                            {{-- <select class="form-control" id="exampleFormControlSelect1"
+                                                            </div> --}}
+                                                            {{-- {{ $item->stock }} --}}
+                                                            <select class="form-control" id="exampleFormControlSelect1"
                                                                 style="width: 70px">
-                                                                <option value="{{ $item->quantity }}">
-                                                                    {{ $item->quantity }}
-                                                                </option>
-                                                                <option value="2">2</option>
-                                                                <option value="3">3</option>
-                                                            </select> --}}
+                                                                <option value="1">1</option>
+                                                                @if ($item->stock >= 2)
+                                                                    <option value="2">2</option>
+                                                                @endif
+                                                                @if ($item->stock >= 3)
+                                                                    <option value="3">3</option>
+                                                                @endif
+                                                            </select>
                                                         </td>
                                                         <td>
                                                             <a href="{{ url('/product', $item->id) }}">
