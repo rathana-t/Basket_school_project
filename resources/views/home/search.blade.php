@@ -83,7 +83,7 @@
                     <div class="search-height">
                         <div class="row">
                             @foreach ($data as $item)
-                                <div class="col-xs-6 col-sm-4">
+                                <div class="col-3">
                                     <div class="card mb-3">
                                         <div class="m-3">
                                             <a href="/product/product/{{ $item->id }}">

@@ -387,9 +387,9 @@ class HomeController extends Controller
         $fill_searcch = $req->search_fill;
 
         if ($fill_searcch == 'name') {
-            $data = products::where('name', 'like', '%' . $req->input('query') . '%')->orderByDesc('price')->paginate(6);
+            $data = products::where('name', 'like', '%' . $req->input('query') . '%')->orderByDesc('price')->paginate(8);
         } else {
-            $data = products::where('code_product', 'like', '%' . $req->input('query') . '%')->orderByDesc('price')->paginate(6);
+            $data = products::where('code_product', 'like', '%' . $req->input('query') . '%')->orderByDesc('price')->paginate(8);
         }
 
         $callinput = $req->input('query');
