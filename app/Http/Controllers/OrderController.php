@@ -44,7 +44,7 @@ class OrderController extends Controller
         $data_user = Users::findOrFail(session('user'));
         $card = cards::where('user_id',$data_user->id)->first();
         if(!$card){
-            $card = [];
+            $card = '';
         }
         $second_cate = DB::table('se_categories')->get();
         $address = $req->address;
