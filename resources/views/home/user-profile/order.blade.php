@@ -5,7 +5,7 @@
     <div class="container mt-4">
         <div class="order">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-8 offset-md-2">
                     <?php
                     $no_pro = 0;
                     ?>
@@ -15,7 +15,7 @@
                                 <?php
                                 $no_pro = 1;
                                 ?>
-                                <div class="card mb-4">
+                                <div class="card cs-shadow border-0 mb-4 ">
                                     <div class="card-header">
                                         <div class="d-flex justify-content-around">
                                             <div class="text-mute">
@@ -72,7 +72,7 @@
                                     $no_pro = 1;
                                     ?>
 
-                                    <div class="card mb-4">
+                                    <div class="card mb-4 cs-shadow border-0">
                                         <div class="card-header">
                                             <div class="d-flex justify-content-around">
                                                 <div class=" {{ $item->pending == 1 ? 'active' : 'text-mute' }} ">
@@ -123,7 +123,7 @@
                                                 <div class="col">
                                                     <div class="text-right">
                                                         <a href="{{ url('/user_cancel_order', $item->order_id) }}"
-                                                            class="btn btn-outline-danger">Cancel</a>
+                                                            class="btn btn-sm btn-dark">Cancel</a>
                                                     </div>
                                                 </div>
                                             </div>

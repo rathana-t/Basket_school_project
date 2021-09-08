@@ -23,7 +23,7 @@
 
     </style>
     <div class="container">
-        <div class="row mt-4">
+        <div class="row mt-4 justify-content-center">
             <div class="col-md-8">
                 <ul class="list-group">
                     @foreach ($data as $item)

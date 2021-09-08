@@ -5,7 +5,7 @@
 
     <div class="container">
         <div class="shopping-cart mt-4">
-            <h5>My wish list</h5>
+
             @if ($test == 0)
                 <div class="text-center mt-4">
                     <a href="{{ url('/') }}" type="button" class="btn btn-info text-white">
@@ -14,8 +14,9 @@
                 </div>
             @else
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="card mb-3">
+                    <div class="col-md-8 offset-md-2">
+                        <h5>My wish list</h5>
+                        <div class="card mb-3 cs-shadow border-0">
                             <div class="p-2">
                                 <table class="table table-borderless">
                                     <thead>
