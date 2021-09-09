@@ -27,6 +27,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\se_categories as s_cat;
 use CreateCommisssionTable;
+use GrahamCampbell\ResultType\Success;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Illuminate\Support\Facades\Mail;
@@ -552,8 +553,17 @@ class AdminController extends Controller
     public function province()
     {
         $provinces = DB::table('provinces')
-            ->orderBy('province')
+            ->orderByDesc('created_at')
             ->get();
         return view('admin/province/province', compact('provinces'));
+    }
+    public function addProvince(Request $req){
+        $this->validate($req,[
+            'province'=>'required|max:26'
+        ]);
+        $province = new Province();
+        $province->province = $req->province;
+        $province->save();
+        return redirect()->back()->with('success','Added new province successfully');
     }
 }

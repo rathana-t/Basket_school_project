@@ -13,6 +13,7 @@ use App\Models\cards;
 use App\Models\brands;
 use App\Models\users_has_cards;
 use App\Http\Controllers\Controller;
+use App\Models\Province;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -110,8 +111,9 @@ class UserController extends Controller
         } else {
             return view('home/login', compact('second_cate'));
         }
+        $provinces = Province::all();
         $second_cate = DB::table('se_categories')->get();
-        return view('home/user-profile/userProfile', compact('data_user', 'second_cate'));
+        return view('home/user-profile/userProfile', compact('data_user','provinces', 'second_cate'));
     }
     public function update_profile(Request $request, $id)
     {
@@ -123,6 +125,7 @@ class UserController extends Controller
         $update->username = $request->username;
         $update->address = $request->address;
         $update->email = $request->email;
+        $update->province_id = $request->province;
         $update->update();
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
