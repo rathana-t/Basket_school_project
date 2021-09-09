@@ -494,6 +494,7 @@ class SellerController extends Controller
             $data = orders::find($req->cancel_order_id);
             $data->message = $req->message;
             $data->seller_cancel = 1;
+            $data->use_payment_method = 0;
             $data->update();
 
             return redirect()->back();

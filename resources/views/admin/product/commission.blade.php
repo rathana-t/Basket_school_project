@@ -33,7 +33,7 @@
             <button class="btn btn-primary">
                 Export All Shop
             </button>
-        </a>z
+        </a>
     </div>
     @foreach ($seller as $itemA)
         <br>

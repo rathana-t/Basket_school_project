@@ -294,7 +294,9 @@ class AdminController extends Controller
     public function sellerSale($id)
     {
         $seller = sellers::find($id);
-        return view('admin/sale', compact('seller'));
+        $report = Report::join('products','products.id','=','reports.pro_id')->where('reports.seller_id',$id)->paginate(7);
+
+        return view('admin/sale', compact('seller','report'));
     }
     public function brand()
     {

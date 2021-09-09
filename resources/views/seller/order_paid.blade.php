@@ -44,6 +44,9 @@
                                 class="open_delivery_modal btn btn-primary">
                                 Delivery
                             </button>
+                            <button type="button" value="{{ $item->order_id }}" class="cancel_modal btn btn-danger">
+                                cancel
+                            </button>
                         </td>
                     </tr>
                 @endforeach
@@ -70,6 +73,31 @@
                         <textarea name="message" id="" required class="form-control"
                             rows="2">delivery transportation: </textarea>
                     </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                        <button type="submit" class="btn btn-primary">Yes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modal_cancel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    Message
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ url('/cancel-pending') }}" method="POST" class="text-center">
+                    @csrf
+                    <div class="modal-body text-center">
+                        <input type="hidden" name="cancel_order_id" id="cancel_order_id">
+                        <textarea class="form-control" name="message" id=""
+                            required>Your order has been cancelled by seller!</textarea>
+                    </div>
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
                         <button type="submit" class="btn btn-primary">Yes</button>
