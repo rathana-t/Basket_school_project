@@ -1,4 +1,8 @@
 <style>
+    .cs-shadow {
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    }
+
     .product h5 {
         color: #323b49;
         font-size: 20px;
@@ -42,7 +46,7 @@
     }
 
     body {
-        background-color: rgb(248, 248, 248) !important;
+        background-color: #f6f7fa !important;
     }
 
     .category a {

@@ -21,6 +21,7 @@ use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use App\Models\Commission;
 use App\Models\commissions;
+use App\Models\Province;
 use App\Models\Report;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -32,7 +33,8 @@ use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
 {
-    public function productRequestReject(Request $req,$id){
+    public function productRequestReject(Request $req, $id)
+    {
         $product = products::find($id);
         $product->msg = $req->msg;
         $product->admin_reject = 1;
@@ -53,7 +55,7 @@ class AdminController extends Controller
         $countSmallCate = DB::table('se_categories')->count();
         $countBrand = DB::table('brands')->count();
         $countOrder = DB::table('orders')->count();
-        $countShopPending = sellers::where('pending','0')->count();
+        $countShopPending = sellers::where('pending', '0')->count();
         $sumTotalOrder = DB::table('orders')
             ->join('carts', 'orders.cart_id', 'carts.id')
             ->select('orders.*', 'carts.total')
@@ -124,30 +126,30 @@ class AdminController extends Controller
             'countShopPending'
         ));
     }
-    public function update_commisssion(Request $req){
+    public function update_commisssion(Request $req)
+    {
         $comm = Commission::all()->first();
-        if($comm==''){
+        if ($comm == '') {
             $comm = new Commission();
             $comm->commission = $req->commission;
             $comm->save();
-        }else{
+        } else {
             $comm->commission = $req->commission;
             $comm->update();
         }
         return redirect()->route('admin_commission');
     }
-    public function commisssion(){
+    public function commisssion()
+    {
         $comm = Commission::all()->first();
         $report = Report::all();
         $seller = sellers::all();
-        if($comm==''){
-            $commission='';
-
-        }else{
-            $commission=$comm->commission;
-
+        if ($comm == '') {
+            $commission = '';
+        } else {
+            $commission = $comm->commission;
         }
-            return view('admin/product/commission', compact('commission','seller','report'));
+        return view('admin/product/commission', compact('commission', 'seller', 'report'));
     }
     public function user()
     {
@@ -162,55 +164,58 @@ class AdminController extends Controller
     }
     public function shop()
     {
-        $sellers = sellers::where('pending','1')->paginate(5);
-        $sellersCount = sellers::where('pending','1')->count();
-        $sellerspending = sellers::where('pending','0')->count();
-        return view('admin/seller/shop', compact('sellers','sellersCount','sellerspending'));
+        $sellers = sellers::where('pending', '1')->paginate(5);
+        $sellersCount = sellers::where('pending', '1')->count();
+        $sellerspending = sellers::where('pending', '0')->count();
+        return view('admin/seller/shop', compact('sellers', 'sellersCount', 'sellerspending'));
     }
-    public function shop_pending(){
-        $sellerReq = sellers::where('pending','0')->get();
-        $sellersCount = sellers::where('pending','1')->count();
-        $sellerspending = sellers::where('pending','0')->count();
-        return view('admin/seller/shopPending',compact('sellerReq','sellerspending','sellersCount'));
+    public function shop_pending()
+    {
+        $sellerReq = sellers::where('pending', '0')->get();
+        $sellersCount = sellers::where('pending', '1')->count();
+        $sellerspending = sellers::where('pending', '0')->count();
+        return view('admin/seller/shopPending', compact('sellerReq', 'sellerspending', 'sellersCount'));
     }
     public function shop_detail($id)
     {
         $seller = sellers::find($id);
-        return view('admin/seller/pendingDetail',compact('seller'));
+        return view('admin/seller/pendingDetail', compact('seller'));
     }
 
-    public function shopConfirm(Request $request,$id)
+    public function shopConfirm(Request $request, $id)
     {
         $sellerCon = sellers::find($id);
         // $sellerCon = sellers::where('pending','0');
-        $sellerCon->pending=1;
+        $sellerCon->pending = 1;
         $sellerCon->update();
         $token = Str::random(60);
         DB::table('password_resets')->insert(
             ['email' => $request->email, 'token' => $token, 'created_at' => Carbon::now()]
         );
-        Mail::send('forget.seller_accept_request',['token' => $token], function($message) use ($request) {
-                  $message->from($request->email);
-                  $message->to($request->email);
-                  $message->subject('Request Accepted');
-               });
-        return redirect('admin/shopPending')->with('success','Seller has been confirmed success');
+        Mail::send('forget.seller_accept_request', ['token' => $token], function ($message) use ($request) {
+            $message->from($request->email);
+            $message->to($request->email);
+            $message->subject('Request Accepted');
+        });
+        return redirect('admin/shopPending')->with('success', 'Seller has been confirmed success');
     }
-    public function seller_login($token) {
-        DB::table('password_resets')->where(['token'=> $token])->delete();
+    public function seller_login($token)
+    {
+        DB::table('password_resets')->where(['token' => $token])->delete();
         return redirect()->route('login_page');
-     }
+    }
 
-     public function seller_edit_register($token) {
-        $emails = DB::table('password_resets')->where('token',$token)->first();
+    public function seller_edit_register($token)
+    {
+        $emails = DB::table('password_resets')->where('token', $token)->first();
         $seller = sellers::where('email', $emails->email)->first();
-        return view('admin/seller/editRegister',compact('seller'), ['token' => $token]);
-     }
+        return view('admin/seller/editRegister', compact('seller'), ['token' => $token]);
+    }
 
-     public function seller_update_register(Request $reg,$token)
-     {
+    public function seller_update_register(Request $reg, $token)
+    {
 
-        $register = sellers::where('email',$reg->email)->first();
+        $register = sellers::where('email', $reg->email)->first();
         $this->validate($reg, [
             'store_name' => 'required',
             // 'email' => 'required|email|max:70|unique:sellers',
@@ -218,38 +223,37 @@ class AdminController extends Controller
             'address' => 'required',
             'password' => 'required|min:8',
             'con_password' => 'required|min:8|same:password',
-         ]);
+        ]);
 
-         $register['password'] = Hash::make($register['password']);
-         unset($register['con_password']);
+        $register['password'] = Hash::make($register['password']);
+        unset($register['con_password']);
 
-         if ($reg->hasfile('img1')) {
-             $file = $reg->file('img1');
-             $filename = uniqid() . $file->getClientOriginalExtension();
-             $file->move(public_path() . '/images/sellerImg1/', $filename);
-             $register->img1 = $filename;
-         }
-         if ($reg->hasfile('img2')) {
-             $file = $reg->file('img2');
-             $filename = uniqid() . $file->getClientOriginalExtension();
-             $file->move(public_path() . '/images/sellerImg2/', $filename);
-             $register->img2 = $filename;
-         }
+        if ($reg->hasfile('img1')) {
+            $file = $reg->file('img1');
+            $filename = uniqid() . $file->getClientOriginalExtension();
+            $file->move(public_path() . '/images/sellerImg1/', $filename);
+            $register->img1 = $filename;
+        }
+        if ($reg->hasfile('img2')) {
+            $file = $reg->file('img2');
+            $filename = uniqid() . $file->getClientOriginalExtension();
+            $file->move(public_path() . '/images/sellerImg2/', $filename);
+            $register->img2 = $filename;
+        }
 
-            $register->store_name =  $reg->store_name;
-            $register->address =  $reg->address;
-            $register->pending = 0;
-            $register->update();
+        $register->store_name =  $reg->store_name;
+        $register->address =  $reg->address;
+        $register->pending = 0;
+        $register->update();
 
-        DB::table('password_resets')->where(['email'=> $reg->email])->delete();
+        DB::table('password_resets')->where(['email' => $reg->email])->delete();
 
         return view('seller/register')->with('successMsg', 'Request register seller account Successfully, please wait until we send message to you by email');
-
-     }
-    public function shopReject(Request $request,$id)
+    }
+    public function shopReject(Request $request, $id)
     {
         $shopRej = sellers::find($id);
-        $shopRej->pending=2;
+        $shopRej->pending = 2;
         $shopRej->update();
 
         $Admin_message = $request->message;
@@ -262,12 +266,12 @@ class AdminController extends Controller
         DB::table('password_resets')->insert(
             ['email' => $request->email, 'token' => $token, 'created_at' => Carbon::now()]
         );
-        Mail::send('forget.sellerRejectmsg',['token' => $token,'admin_send_meg' => $admin_send_meg], function($message) use ($request) {
-                  $message->from($request->email);
-                  $message->to($request->email);
-                  $message->subject('Request Rejected');
-               });
-        return redirect('admin/shopPending')->with('danger','Seller has been Rejected');
+        Mail::send('forget.sellerRejectmsg', ['token' => $token, 'admin_send_meg' => $admin_send_meg], function ($message) use ($request) {
+            $message->from($request->email);
+            $message->to($request->email);
+            $message->subject('Request Rejected');
+        });
+        return redirect('admin/shopPending')->with('danger', 'Seller has been Rejected');
     }
 
     public function sellerDetail($id)
@@ -362,7 +366,7 @@ class AdminController extends Controller
         $category = categories::all();
         $seCategory = DB::table('se_categories')->paginate(5);
         $second_cate = DB::table('se_categories')->get();
-        return view('admin/2ndCategory/secondaryCategory', compact('category','seCategory', 'second_cate'));
+        return view('admin/2ndCategory/secondaryCategory', compact('category', 'seCategory', 'second_cate'));
     }
     public function addSecondaryCategory()
     {
@@ -532,5 +536,12 @@ class AdminController extends Controller
         $product->completed = 1;
         $product->update();
         return redirect('/admin/productRequest')->with('confirm_request', 'Product Confirm! ');
+    }
+    public function province()
+    {
+        $provinces = DB::table('provinces')
+            ->orderBy('province')
+            ->get();
+        return view('admin/province/province', compact('provinces'));
     }
 }

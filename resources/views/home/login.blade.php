@@ -63,10 +63,10 @@
                     <div class="card cs-shadow rounded border-0">
                         <div class="card-body">
                             <h4 class="pb-3 text-center">
-                                Login   
+                                Login
                             </h4>
-                            <input class="form-control form-control-lg mb-3" type="number" placeholder="Phone Number" name="phone"
-                                id="exampleInputPhone" @if (Cookie::has('userPhone')) value="{{ Cookie::get('userPhone') }}" @endif>
+                            <input class="form-control form-control-lg mb-3" type="number" placeholder="Phone Number"
+                                name="phone" id="exampleInputPhone" @if (Cookie::has('userPhone')) value="{{ Cookie::get('userPhone') }}" @endif>
                             <div class="input-group mb-3  password">
                                 <input type="password" class="form-control form-control-lg" id="exampleInputPassword1"
                                     name="password" @if (Cookie::has('userPass')) value="{{ Cookie::get('userPass') }}" @endif placeholder="Password"
@@ -79,10 +79,8 @@
                                 </div>
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-primary col-12">
-                                    <div class="p-1">
-                                        Log In
-                                    </div>
+                                <button type="submit" class="btn btn-lg btn-primary col-12">
+                                    Log In
                                 </button>
                             </div>
                             <hr>

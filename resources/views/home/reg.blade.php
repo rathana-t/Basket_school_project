@@ -54,10 +54,8 @@
                                     </div>
                                 </div>
 
-                                <button type="submit" class="btn btn-primary col-12 mb-3">
-                                    <div class="p-1">
+                                <button type="submit" class="btn btn-lg btn-primary col-12 mb-3">
                                         Sign UP
-                                    </div>
                                 </button>
                                 <small class="form-text text-muted">
                                     By clicking the 'Sign Up' button, you confirm that you accept our Terms of use and

@@ -181,4 +181,7 @@ Route::prefix('admin')->group(function () {
 
     Route::get('/user', [AdminController::class, 'user'])->middleware('admin');
     Route::get('/user/{id}', [AdminController::class, 'userDetail'])->middleware('admin');
+
+    Route::get('/province', [AdminController::class, 'province'])->middleware('admin');
+    Route::get('/add-province', [AdminController::class, 'addProvince'])->middleware('admin');
 });
