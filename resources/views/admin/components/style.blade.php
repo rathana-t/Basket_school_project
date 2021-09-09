@@ -1,4 +1,15 @@
 <style>
+    div.short {
+        white-space: nowrap;
+        width: 150px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .bg-dark {
+        background-color: #313846 !important;
+    }
+
     .cs-shadow {
         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     }
@@ -168,8 +179,20 @@
         border-color: #323b49;
     }
 
-    /* Side bar  */
     .dashboard a {
+        text-decoration: none;
+    }
+
+    .dashboard .bg-light {
+        background-color: #ffffffd2 !important;
+    }
+
+    .dashboard a:hover {
+        text-decoration: none;
+    }
+
+    /* Side bar  */
+    /* .dashboard a {
         text-decoration: none;
     }
 
@@ -263,7 +286,7 @@
 
     .dashboard .big-card .card {
         border: none;
-    }
+    } */
 
     #sidebar {
         min-width: 250px;
@@ -409,7 +432,7 @@
     .seller-list img {
         width: 100px;
         height: 60px;
-        object-fit: contain;
+        object-fit: cover;
         border-radius: 5px;
     }
 

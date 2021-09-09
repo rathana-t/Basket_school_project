@@ -4,18 +4,16 @@
     @include('/admin/components/modal')
     <div class="dashboard">
         <div class="small-card">
-            <div class="row">
+            <div class="row justify-content-center">
                 <div class="col-md-3 col-sm-6 col-xs-12 mb-3">
                     <a href="/admin/product" class="Product-btn" role="button">
-                        <div class="color3">
-                            <div class="card shadow-sm rounded">
-                                <div class="card-body">
-                                    <h5 class="q">
-                                        Products
-                                    </h5>
-                                    <div>
-                                        3456
-                                    </div>
+                        <div class="card shadow-sm rounded bg-dark">
+                            <div class="card-body text-white">
+                                <h5 class="q">
+                                    Products
+                                </h5>
+                                <div>
+                                    {{ $proCount }}
                                 </div>
                             </div>
                         </div>
@@ -23,15 +21,13 @@
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12 ">
                     <a href="/admin/productRequest">
-                        <div class="color4">
-                            <div class="card shadow-sm rounded">
-                                <div class="card-body">
-                                    <h5 class="q">
-                                        Incomplete
-                                    </h5>
-                                    <div>
-                                        3456
-                                    </div>
+                        <div class="card shadow-sm rounded bg-light">
+                            <div class="card-body text-dark">
+                                <h5 class="q">
+                                    Incomplete
+                                </h5>
+                                <div>
+                                    {{ $proPCount }}
                                 </div>
                             </div>
                         </div>
@@ -42,14 +38,14 @@
     </div>
 
     <div id="product">
-        <div class="card border-0 shadow rounded">
+        <div class="card border-0 cs-shadow rounded">
             <div style="min-height: 500px">
                 <table class="table table-hover table-borderless">
                     <thead>
-                        <tr class="bg-color3 text-white">
-                            <th scope="col">Image</th>
-                            <th scope="col">ID</th>
-                            <th scope="col" class=" text-center">Top</th>
+                        <tr class="bg-dark text-white">
+                            <th scope="col" class=" text-center">ID</th>
+                            <th scope="col" class=" text-center">Image</th>
+                            <th scope="col" class=" text-center">Sale</th>
                             <th scope="col">Name</th>
                             <th scope="col" class=" text-center">Price</th>
                             <th scope="col" class=" text-center">Stock</th>
@@ -62,19 +58,22 @@
                     <tbody>
                         @foreach ($pro as $item)
                             <tr class="seller-list">
-                                <td>
+                                <td class=" text-center">
+                                    {{ $item->id }}
+                                </td>
+                                <td class=" text-center">
                                     <a href="product/{{ $item->id }}">
                                         <img src="/images/imgProduct/{{ $item->img_product }}" alt="">
                                     </a>
                                 </td>
-                                <td>
-                                    {{ $item->id }}
-                                </td>
+                                
                                 <td class="text-center">
                                     {{ $item->top_buy }}
                                 </td>
                                 <td>
-                                    {{ $item->name }}
+                                    <div class="short">
+                                        {{ $item->name }}
+                                    </div>
                                 </td>
                                 <td class=" text-center">
                                     ${{ $item->price }}
@@ -105,7 +104,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="pl-4">
+            <div class="pl-2">
                 {{ $pro->links() }}
             </div>
         </div>

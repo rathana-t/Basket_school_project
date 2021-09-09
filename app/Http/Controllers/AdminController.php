@@ -404,7 +404,13 @@ class AdminController extends Controller
             ->select('products.*', 'categories.name as cat_name', 'brands.name as brand_name')
             ->where('products.completed', '=', '1')
             ->paginate(5);
-        return view('admin/product/product', compact('pro', 'count'));
+        $proCount = products::orderBy('created_at', 'desc')
+            ->where('products.completed', '=', '1')
+            ->count();
+        $proPCount = products::orderBy('created_at', 'desc')
+            ->where('products.completed', '=', '0')
+            ->count();
+        return view('admin/product/product', compact('pro', 'count', 'proCount', 'proPCount'));
     }
 
     public function productRequest()
@@ -416,7 +422,13 @@ class AdminController extends Controller
             ->where('products.completed', '=', '0')
             ->where('products.admin_reject', '=', '0')
             ->paginate(5);
-        return view('admin/productRequest/productRequest', compact('pro', 'count'));
+        $proCount = products::orderBy('created_at', 'desc')
+            ->where('products.completed', '=', '1')
+            ->count();
+        $proPCount = products::orderBy('created_at', 'desc')
+            ->where('products.completed', '=', '0')
+            ->count();
+        return view('admin/productRequest/productRequest', compact('pro', 'count', 'proCount', 'proPCount'));
     }
 
     public function productDetail($id)
