@@ -10,9 +10,9 @@
 
                         <div class="card shadow-sm rounded bg-light">
                             <div class="card-body text-dark">
-                                <h5 class="q">
+                                <div class="q">
                                     Products
-                                </h5>
+                                </div>
                                 <div>
                                     {{ $proCount }}
                                 </div>
@@ -24,9 +24,9 @@
                     <a href="/admin/productRequest">
                         <div class="card shadow-sm rounded bg-dark">
                             <div class="card-body text-white">
-                                <h5 class="q">
+                                <div class="q">
                                     Incomplete
-                                </h5>
+                                </div>
                                 <div>
                                     {{ $proPCount }}
                                 </div>

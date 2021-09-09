@@ -167,6 +167,7 @@ Route::prefix('admin')->group(function () {
 
     // Route::get('/seller', [AdminController::class, 'seller'])->middleware('admin');
     Route::get('/seller/{id}', [AdminController::class, 'sellerDetail'])->name('sellerHasProduct')->middleware('admin');
+    Route::get('/seller/{id}/sale', [AdminController::class, 'sellerSale'])->middleware('admin');
 
     Route::get('/product', [AdminController::class, 'product'])->middleware('admin');
     Route::get('/productRequest', [AdminController::class, 'productRequest'])->middleware('admin');

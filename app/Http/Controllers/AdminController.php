@@ -286,9 +286,15 @@ class AdminController extends Controller
             ->join('sellers', 'products.seller_id', '=', 'sellers.id')
             ->where('sellers.id', $id)
             ->where('products.completed', '=', '1')
-            ->select('products.*', 'sellers.store_name', 'sellers.phone', 'sellers.address')->paginate(5);
+            ->select('products.*', 'sellers.store_name', 'sellers.phone', 'sellers.address')->paginate(8);
         $seller = sellers::find($id);
         return view('admin/seller/sellerDetail', compact('seller', 'sellerHasProduct', 'sellerHasProductCount'));
+    }
+
+    public function sellerSale($id)
+    {
+        $seller = sellers::find($id);
+        return view('admin/sale', compact('seller'));
     }
     public function brand()
     {
@@ -557,13 +563,14 @@ class AdminController extends Controller
             ->get();
         return view('admin/province/province', compact('provinces'));
     }
-    public function addProvince(Request $req){
-        $this->validate($req,[
-            'province'=>'required|max:26'
+    public function addProvince(Request $req)
+    {
+        $this->validate($req, [
+            'province' => 'required|max:26'
         ]);
         $province = new Province();
         $province->province = $req->province;
         $province->save();
-        return redirect()->back()->with('success','Added new province successfully');
+        return redirect()->back()->with('success', 'Added new province successfully');
     }
 }

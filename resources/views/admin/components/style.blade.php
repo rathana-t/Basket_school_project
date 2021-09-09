@@ -1,4 +1,17 @@
 <style>
+    .seller-product  {
+        min-height: 600px;
+    }
+    .seller-product img {
+        height: 150px;
+        width: 400px;
+        object-fit: contain;
+    }
+
+    .seller-product a:hover {
+        text-decoration: none;
+    }
+
     div.short {
         white-space: nowrap;
         width: 150px;
@@ -192,7 +205,7 @@
     }
 
     /* Side bar  */
-    /* .dashboard a {
+    .dashboard a {
         text-decoration: none;
     }
 
@@ -286,7 +299,7 @@
 
     .dashboard .big-card .card {
         border: none;
-    } */
+    }
 
     #sidebar {
         min-width: 250px;
