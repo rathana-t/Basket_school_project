@@ -9,7 +9,7 @@
                 <div class="card cs-shadow rounded border-0">
                     <div class="card-body">
                         <h4 class="pb-3">
-                            Phone Number: 0{{$data_user->phone}}
+                            Phone Number: 0{{ $data_user->phone }}
                         </h4>
                         <form action="{{ route('update-profile', $data_user->id) }}" method="POST">
                             @csrf
@@ -36,9 +36,16 @@
                             </div>
                             <div class="form-group">
                                 <label for="inputState">Province</label>
-                                <select id="inputState" class="form-control form-control-lg">
-                                    <option selected>Choose province</option>
-                                    <option>...</option>
+                                <select id="inputState" class="form-control form-control-lg" name="province">
+                                    @if ($data_user->province_id == '')
+                                        <option selected>Choose province</option>
+                                    @endif
+                                    @foreach ($provinces as $item)
+                                        <option value="{{ $item->id }}"
+                                            {{ $item->id == $data_user->province_id ? 'selected' : '' }}>
+                                            {{ $item->province }}
+                                        </option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="form-group">

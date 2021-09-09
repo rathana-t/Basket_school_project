@@ -20,6 +20,7 @@ use App\Models\se_categories;
 use App\Models\users_has_cards;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Province;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Cookie;
@@ -256,13 +257,13 @@ class SellerController extends Controller
     {
         $data = request()->validate([
             'store_name' => 'required',
-            'term_condition' => 'required',
+            // 'term_condition' => 'required',
             'email' => 'required|email|max:70|unique:sellers,email',
             'phone' => 'required|min:9|unique:sellers,phone',
             'address' => 'required',
+            // 'province_id' => 'required',
             'password' => 'required|min:8',
             'con_password' => 'required|min:8|same:password',
-
         ]);
 
         $data['password'] = Hash::make($data['password']);
@@ -296,9 +297,9 @@ class SellerController extends Controller
     }
     public function register_page()
     {
-        return view('seller/register');
+        $provinces = Province::all();
+        return view('seller/register',compact('provinces'));
     }
-
 
     public function products()
     {
@@ -533,7 +534,8 @@ class SellerController extends Controller
     {
         if (session()->has('seller')) {
             $data_seller = sellers::findOrFail(session('seller'));
-            return view('seller/editProfile', compact('data_seller'));
+            $provinces = Province::all();
+            return view('seller/editProfile', compact('provinces','data_seller'));
         } else {
             return view('/seller/login');
         }
@@ -563,14 +565,16 @@ class SellerController extends Controller
                 'store_name' => 'required',
                 'email' => 'required',
                 'phone' => 'required',
+                'province' => 'required',
                 'address' => 'required',
             ]);
             $seller->store_name = $request->store_name;
             $seller->email = $request->email;
             $seller->phone = $request->phone;
+            $seller->province_id = $request->province;
             $seller->address = $request->address;
             $seller->update();
-            return redirect()->back();
+            return redirect()->back()->with('success','Changed Successfully');
         }
         return view('/seller/login');
         // return view('/seller/profile')->with('success','Changed Successfully');

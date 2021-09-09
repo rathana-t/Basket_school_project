@@ -162,7 +162,18 @@
                                             value="{{ old('store_name') }}">
                                         {!! $errors->first('store_name', "<span class='text-danger'>:message</span>") !!}
                                     </div>
-
+                                    {{-- <div class="form-group">
+                                        <label for="inputState">Province</label>
+                                        <select id="inputState" class="form-control" name="province_id">
+                                            <option value="">Choose province</option>
+                                            @foreach ($provinces as $item)
+                                                <option value="{{ $item->id }}">
+                                                    {{ $item->province }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        {!! $errors->first('province_id', "<span class='text-danger'>:message</span>") !!}
+                                    </div> --}}
                                     <div class="form-group">
                                         <label for="address">Address or Location</label>
                                         <input type="text" class="form-control" id="exampleInputPhone" name="address"
