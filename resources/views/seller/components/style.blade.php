@@ -1,4 +1,8 @@
 <style>
+    .cs-shadow {
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    }
+
     .header-card .card {
         height: 150px !important;
     }
@@ -26,8 +30,7 @@
     }
 
     body {
-        --bg-opacity: 1;
-        background-color: rgba(247, 250, 252, var(--bg-opacity));
+        background-color: #f6f7fa !important;
     }
 
     .dashboard a {
@@ -456,6 +459,21 @@
     }
 
     /* .....  */
+    .previewImage .imagePreview2 {
+        width: 100%;
+        height: 150px;
+        background-position: center center;
+        background-color: #fff;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: inline-block;
+        position: relative;
+        -moz-box-shadow: 0 0 3px #ccc;
+        -webkit-box-shadow: 0 0 3px #ccc;
+        box-shadow: 0 0 3px #ccc;
+    }
+
     .previewImage .imagePreview {
         width: 100%;
         height: 150px;

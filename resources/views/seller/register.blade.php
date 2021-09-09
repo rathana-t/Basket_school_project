@@ -13,7 +13,129 @@
             display: none;
         }
 
+        .seller-reg a:hover {
+            text-decoration: none;
+        }
+
     </style>
+
+
+    <div class="container mt-4 seller-reg">
+        <div class="row justify-content-center">
+            <div class="col-md-7">
+                <div class="card border-0 cs-shadow rounded">
+                    <div class="card-body">
+                        <h5 class="pb-3">
+                            Sign Up
+                        </h5>
+                        <form action="">
+                            <div class="form-row pb-4">
+                                <div class="col">
+                                    <input type="text" class="form-control" placeholder="Shop Name">
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control " placeholder="Phone Number">
+                                </div>
+                            </div>
+                            <div class="form-group pb-2">
+                                <input type="text" class="form-control " placeholder="Email">
+                                <small class="text-muted">
+                                    We'll never share your email with anyone else.
+                                </small>
+                            </div>
+
+                            <div class="form-row pb-2">
+                                <div class="col">
+                                    <select class="custom-select" id="validationDefault04" required>
+                                        <option selected disabled value="">City</option>
+                                        <option>...</option>
+                                    </select>
+                                    <small class="form-text text-muted pb-2">
+                                        You Can Change Your name Later.
+                                    </small>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control " id="exampleInputEmail1" placeholder="Address">
+                                </div>
+                            </div>
+                            <div class="form-row pb-4">
+                                <div class="col">
+                                    <input type="password" class="form-control" placeholder="Password">
+                                </div>
+                                <div class="col">
+                                    <input type="password" class="form-control" placeholder="Confirm Password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Citizen Card</label>
+                                <div class="previewImage">
+                                    <div class="row">
+                                        <div class="col-md-6 imgUp">
+                                            <div class="card">
+                                                <div class="imagePreview2">
+                                                    <div class="hero-text">
+                                                        <div class="d-flex justify-content-center">
+                                                            <label class="btn btn-dark btn-sm">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                    height="16" fill="currentColor"
+                                                                    class="bi bi-plus-circle" viewBox="0 0 16 16">
+                                                                    <path
+                                                                        d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                                                    <path
+                                                                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                                                                </svg>
+                                                                <input type="file" class="uploadFile img"
+                                                                    value="Upload Photo" accept="image/*" name="img1"
+                                                                    style="width: 0px;height: 0px;overflow: hidden;">
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 imgUp">
+                                            <div class="card">
+                                                <div class="imagePreview2">
+                                                    <div class="hero-text">
+                                                        <div class="d-flex justify-content-center">
+                                                            <label class="btn btn-dark btn-sm">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                    height="16" fill="currentColor"
+                                                                    class="bi bi-plus-circle" viewBox="0 0 16 16">
+                                                                    <path
+                                                                        d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                                                    <path
+                                                                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                                                                </svg>
+                                                                <input type="file" class="uploadFile img"
+                                                                    value="Upload Photo" accept="image/*" name="img2"
+                                                                    style="width: 0px;height: 0px;overflow: hidden;">
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary col-12">Sign Up</button>
+                            <small class="text-muted">
+                                By clicking the 'Sign Up' button, you confirm that you accept our Terms of use and Privacy
+                                Policy.
+                                <span>
+                                    <a href="">
+                                        Term and Condition
+                                    </a>
+                                </span>
+                            </small>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <div class="container mt-3">
         <div class="login">
@@ -281,7 +403,7 @@
 
                     reader.onloadend = function() { // set image data as background of div
                         //alert(uploadFile.closest(".upimage").find('.imagePreview').length);
-                        uploadFile.closest(".imgUp").find('.imagePreview').css("background-image",
+                        uploadFile.closest(".imgUp").find('.imagePreview2').css("background-image",
                             "url(" + this.result + ")");
                     }
                 }

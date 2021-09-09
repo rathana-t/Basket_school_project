@@ -3,15 +3,16 @@
 * {
     font-family: "Poppins", sans-serif;
 }
+.cs-shadow {
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
 .login a {
     text-decoration: none;
 }
 .login a:hover {
     text-decoration: none;
 }
-.cs-shadow {
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-}
+
 .se-cate .opacity {
     opacity: 0.5;
 }
