@@ -261,7 +261,9 @@ class SellerController extends Controller
             'email' => 'required|email|max:70|unique:sellers,email',
             'phone' => 'required|min:9|unique:sellers,phone',
             'address' => 'required',
-            // 'province_id' => 'required',
+            'province_id' => 'required',
+            'img2' => 'required',
+            'img1' => 'required',
             'password' => 'required|min:8',
             'con_password' => 'required|min:8|same:password',
         ]);

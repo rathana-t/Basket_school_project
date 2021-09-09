@@ -96,6 +96,7 @@ class UserController extends Controller
             'password' => 'required|min:8',
             'con_password' => 'required|min:8|same:password',
         ]);
+        // 12345678
         $data['password'] = Hash::make($data['password']);
         unset($data['con_password']);
         $create = users::create($data);
