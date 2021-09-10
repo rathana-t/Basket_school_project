@@ -69,7 +69,7 @@ class CartController extends Controller
             $price = $item->price;
         }
         // dd($price);
-        $cart->quantity = $req->quantity;
+        $cart->quantity = $req->input('quantity');
         $cart->total = $price * $cart->quantity;
         $cart->update();
         return redirect()->back();

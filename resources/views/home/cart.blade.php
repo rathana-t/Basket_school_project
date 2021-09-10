@@ -66,8 +66,11 @@
                                                             {{-- {{ $item->stock }} --}}
                                                             <form action="{{ url('/edit-quantity-cart') }}" method="POST">
                                                                 @csrf
-                                                                <input type="text" name="id" value="{{ $item->cart_id }}">
-                                                                <select class="form-control" style="width: 70px"
+                                                                <input type="hidden" name="id"
+                                                                    value="{{ $item->cart_id }}">
+                                                                <select class="browser-default custom-select"
+                                                                    style="width: 70px"
+                                                                    onchange='if(this.value != 0) { this.form.submit(); }'
                                                                     name="quantity">
                                                                     <option value="1"
                                                                         {{ $item->quantity == 1 ? 'selected' : '' }}>1
@@ -82,8 +85,25 @@
                                                                             {{ $item->quantity == 3 ? 'selected' : '' }}>3
                                                                         </option>
                                                                     @endif
+                                                                    @if ($item->stock >= 4)
+                                                                        <option value="4"
+                                                                            {{ $item->quantity == 4 ? 'selected' : '' }}>
+                                                                            4
+                                                                        </option>
+                                                                    @endif
+                                                                    @if ($item->stock >= 5)
+                                                                        <option value="5"
+                                                                            {{ $item->quantity == 5 ? 'selected' : '' }}>
+                                                                            5
+                                                                        </option>
+                                                                    @endif
+                                                                    {{-- @for ($i = 1; $i < $item->stock; $i++)
+                                                                        <option value="{{ $i }}"
+                                                                            {{ $item->quantity == $i ? 'selected' : '' }}> 
+                                                                            {{ $i }}
+                                                                        </option>
+                                                                    @endfor --}}
                                                                 </select>
-                                                                <button type="submit" class="btn btn-primary">Ok</button>
                                                             </form>
                                                         </td>
                                                         <td>
