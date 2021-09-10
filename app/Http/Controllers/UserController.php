@@ -69,10 +69,10 @@ class UserController extends Controller
             if ($validPassword) {
                 session()->put('user', $user->id);
                 // if ($req->has('remeberme')) {
-                    Cookie::queue(cookie()->forever('userPhone', $req->phone));
-                    Cookie::queue(cookie()->forever('userPass', $req->password));
-                    // cookie()->forever('userPass', $req->password);
-                    // Cookie::forev('userPhone',$req->phone,1440);
+                Cookie::queue(cookie()->forever('userPhone', $req->phone));
+                Cookie::queue(cookie()->forever('userPass', $req->password));
+                // cookie()->forever('userPass', $req->password);
+                // Cookie::forev('userPhone',$req->phone,1440);
                 //     // Cookie::queue('userPass',$req->password,1440);
                 // } else {
                 //     Cookie::queue(Cookie::forget('userPhone'));
@@ -113,7 +113,7 @@ class UserController extends Controller
         }
         $provinces = Province::all();
         $second_cate = DB::table('se_categories')->get();
-        return view('home/user-profile/userProfile', compact('data_user','provinces', 'second_cate'));
+        return view('home/user-profile/userProfile', compact('data_user', 'provinces', 'second_cate'));
     }
     public function update_profile(Request $request, $id)
     {
@@ -260,9 +260,9 @@ class UserController extends Controller
                 $counter++;
             }
 
-            if($payment=='wing'){
+            if ($payment == 'wing') {
                 return view('home/user-profile/confirm_order_payment', compact('second_cate', 'payment', 'quantity', 'data_user',  'data_pro', 'counter', 'total_price_all_quantity'));
-            }else{
+            } else {
                 return view('home/user-profile/confirm_order', compact('second_cate', 'payment', 'quantity', 'data_user',  'data_pro', 'counter', 'total_price_all_quantity'));
             }
         } else {

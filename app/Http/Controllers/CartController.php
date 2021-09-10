@@ -32,9 +32,9 @@ class CartController extends Controller
                 $cart->quantity = $cart->quantity +  $request->quantity;
                 $cart->total = $cart->quantity * $request->total;
                 $cart->update();
-                if($request->has('redirect')){
+                if ($request->has('redirect')) {
                     return redirect()->route('route_cart');
-                    }
+                }
                 return redirect()->back()->with('add-to-cart-success', 'Added to cart');
             }
         }
@@ -46,9 +46,9 @@ class CartController extends Controller
         $newcart->product_id = $request->product_id;
 
         $newcart->save();
-        if($request->has('redirect')){
+        if ($request->has('redirect')) {
             return redirect()->route('route_cart');
-            }
+        }
         return redirect()->back()->with('add-to-cart-success', 'Added to cart');
     }
     public function remove_cart(Request $req)
@@ -60,7 +60,8 @@ class CartController extends Controller
     }
     public function edit_cart_quantity(Request $req)
     {
-        $cart_id = $req->input('edit_cart_id');
+        // return  $req->all();
+        $cart_id = $req->id;
         $cart = carts::find($cart_id);
         $data_pro = products::join('carts', 'carts.product_id', '=', 'products.id')->where('carts.id', $cart_id)->get();
         $price = 0;
@@ -68,7 +69,7 @@ class CartController extends Controller
             $price = $item->price;
         }
         // dd($price);
-        $cart->quantity = $req->input('edit_cart_value');
+        $cart->quantity = $req->quantity;
         $cart->total = $price * $cart->quantity;
         $cart->update();
         return redirect()->back();

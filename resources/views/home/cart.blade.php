@@ -64,16 +64,21 @@
                                                                 </div>
                                                             </div> --}}
                                                             {{-- {{ $item->stock }} --}}
-                                                            <select class="form-control" id="exampleFormControlSelect1"
-                                                                style="width: 70px">
-                                                                <option value="1">1</option>
-                                                                @if ($item->stock >= 2)
-                                                                    <option value="2">2</option>
-                                                                @endif
-                                                                @if ($item->stock >= 3)
-                                                                    <option value="3">3</option>
-                                                                @endif
-                                                            </select>
+                                                            <form action="{{ url('/edit-quantity-cart') }}" method="POST">
+                                                                @csrf
+                                                                <input type="text" name="id" value="{{ $item->id }}">
+                                                                <select class="form-control" style="width: 70px"
+                                                                    name="quantity">
+                                                                    <option value="1">1</option>
+                                                                    @if ($item->stock >= 2)
+                                                                        <option value="2">2</option>
+                                                                    @endif
+                                                                    @if ($item->stock >= 3)
+                                                                        <option value="3">3</option>
+                                                                    @endif
+                                                                </select>
+                                                                <button type="submit" class="btn btn-primary">Ok</button>
+                                                            </form>
                                                         </td>
                                                         <td>
                                                             <a href="{{ url('/product', $item->id) }}">
