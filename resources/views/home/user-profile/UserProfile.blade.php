@@ -35,10 +35,10 @@
                                 {!! $errors->first('email', "<span class='text-danger'>Email field is required.</span>") !!}
                             </div>
                             <div class="form-group">
-                                <label for="inputState">Province</label>
+                                <label for="inputState">City/Province</label>
                                 <select id="inputState" class="form-control form-control-lg" name="province">
                                     @if ($data_user->province_id == '')
-                                        <option selected>Choose province</option>
+                                        <option value="" selected>choose City/Province</option>
                                     @endif
                                     @foreach ($provinces as $item)
                                         <option value="{{ $item->id }}"

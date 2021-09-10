@@ -26,44 +26,80 @@
                 <div class="card border-0 cs-shadow rounded">
                     <div class="card-body">
                         <h5 class="pb-3">
-                            Sign Up
+                            Register
                         </h5>
-                        <form action="">
+                        @if (session('success_regiter_seller'))
+                            <div class="text-success text-center" role="alert">
+                                {{ session('success_regiter_seller') }}
+                            </div>
+                        @endif
+                        @if (!empty($successMsg))
+                            <div class="text-success text-center" role="alert">
+                                {{ $successMsg }}
+                            </div>
+                        @endif
+                        <form action="{{ url('sellerRegister') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
                             <div class="form-row pb-4">
                                 <div class="col">
-                                    <input type="text" class="form-control" placeholder="Shop Name">
+                                    <input type="text" class="form-control" id="exampleInputEmail1" name="store_name"
+                                        value="{{ old('store_name') }}" placeholder="Shop Name">
+                                    {!! $errors->first('store_name', "<span class='text-danger'>:message</span>") !!}
+
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control " placeholder="Phone Number">
+                                    <input type="number" class="form-control" id="exampleInputPhone" name="phone"
+                                        value="{{ old('phone') }}" placeholder="Phone Number">
+                                    {!! $errors->first('phone', "<span class='text-danger'>:message</span>") !!}
+
                                 </div>
                             </div>
                             <div class="form-group pb-2">
-                                <input type="text" class="form-control " placeholder="Email">
+                                <input type="email" class="form-control" id="exampleInputPhone" name="email"
+                                    value="{{ old('email') }}" placeholder="Email">
                                 <small class="text-muted">
-                                    We'll never share your email with anyone else.
+                                    We will never share your email with anyone else.
                                 </small>
+                                {!! $errors->first('email', "<span class='text-danger'>:message</span>") !!}
+
                             </div>
 
                             <div class="form-row pb-2">
                                 <div class="col">
-                                    <select class="custom-select" id="validationDefault04" required>
-                                        <option selected disabled value="">City</option>
-                                        <option>...</option>
+                                    <select class="custom-select" id="validationDefault04" name="province_id">
+                                        <option value="" selected>City/Province</option>
+                                        @foreach ($provinces as $item)
+                                            <option value="{{ $item->id }}"
+                                                {{ old('province_id') == $item->id ? 'selected' : '' }}>
+                                                {{ $item->province }}
+                                            </option>
+                                        @endforeach
                                     </select>
                                     <small class="form-text text-muted pb-2">
-                                        You Can Change Your name Later.
+                                        You Can Change Your information Later.
                                     </small>
+                                    {!! $errors->first('province_id', "<span class='text-danger'>Please select this field</span>") !!}
+
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control " id="exampleInputEmail1" placeholder="Address">
+                                    <input type="text" class="form-control" name="address" value="{{ old('address') }}"
+                                        id="exampleInputEmail1" placeholder="Address">
+                                    {!! $errors->first('address', "<span class='text-danger'>:message</span>") !!}
+
                                 </div>
                             </div>
                             <div class="form-row pb-4">
                                 <div class="col">
-                                    <input type="password" class="form-control" placeholder="Password">
+                                    <input type="password" class="form-control" id="exampleInputPassword1" name="password"
+                                        placeholder="Password">
+                                    {!! $errors->first('password', "<span class='text-danger'>:message</span>") !!}
+
                                 </div>
                                 <div class="col">
-                                    <input type="password" class="form-control" placeholder="Confirm Password">
+                                    <input type="password" class="form-control" id="exampleInputPassword1"
+                                        name="con_password" placeholder="Confirm Password">
+                                    {!! $errors->first('con_password', "<span class='text-danger'>:message</span>") !!}
+
                                 </div>
                             </div>
                             <div class="form-group">
@@ -92,6 +128,8 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            {!! $errors->first('img1', "<span class='text-danger'>:message</span>") !!}
+
                                         </div>
                                         <div class="col-md-6 imgUp">
                                             <div class="card">
@@ -115,13 +153,15 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            {!! $errors->first('img2', "<span class='text-danger'>:message</span>") !!}
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary col-12">Sign Up</button>
+                            <button type="submit" class="btn btn-primary col-12">Register</button>
                             <small class="text-muted">
-                                By clicking the 'Sign Up' button, you confirm that you accept our Terms of use and Privacy
+                                By clicking the 'Register' button, you confirm that you accept our Terms of use and Privacy
                                 Policy.
                                 <span>
                                     <a href="">
@@ -137,247 +177,6 @@
     </div>
 
 
-    <div class="container mt-3">
-        <div class="login">
-            <h5 class="text-center mt-5 mb-4">
-                Register
-            </h5>
-            <div class="row ">
-                <div class="col-md-8 offset-md-2">
-                    @if (session('success_regiter_seller'))
-                        <div class="text-success text-center" role="alert">
-                            {{ session('success_regiter_seller') }}
-                        </div>
-                    @endif
-                    @if (!empty($successMsg))
-                        <div class="text-success text-center" role="alert">
-                            {{ $successMsg }}
-                        </div>
-                    @endif
-                    <form action="{{ url('sellerRegister') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        {{-- <div class="card shadow-sm">
-                            <div class="m-4">
-                                <div class="form-group">
-                                    <label for="text">Store name</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" name="store_name"
-                                        value="{{ old('store_name') }}">
-                                    {!! $errors->first('store_name', "<span class='text-danger'>:message</span>") !!}
-                                </div>
-                                <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input type="email" class="form-control" id="exampleInputPhone" name="email"
-                                        value="{{ old('email') }}">
-                                    {!! $errors->first('email', "<span class='text-danger'>:message</span>") !!}
-                                </div>
-                                <div class="form-group">
-                                    <label for="phone">Phone number</label>
-                                    <input type="number" class="form-control" id="exampleInputPhone" name="phone"
-                                        value="{{ old('phone') }}">
-                                    {!! $errors->first('phone', "<span class='text-danger'>:message</span>") !!}
-                                </div>
-                                <div class="form-group">
-                                    <label for="address">Address or Location</label>
-                                    <input type="text" class="form-control" id="exampleInputPhone" name="address"
-                                        value="{{ old('address') }}">
-                                    {!! $errors->first('address', "<span class='text-danger'>:message</span>") !!}
-                                </div>
-                                <div class="previewImage">
-                                    <div class="row">
-                                        <div class="col-3 imgUp">
-                                            <div class="card border-0 shadow-sm rounded">
-                                                <div class="imagePreview">
-                                                    <div class="hero-text">
-                                                        <div class="d-flex justify-content-center">
-                                                            <label class="btn btn-dark btn-sm">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                                    height="16" fill="currentColor"
-                                                                    class="bi bi-plus-circle" viewBox="0 0 16 16">
-                                                                    <path
-                                                                        d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                                                    <path
-                                                                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                                                                </svg>
-                                                                <input type="file" class="uploadFile img"
-                                                                    value="Upload Photo" accept="image/*" name="img1"
-                                                                    style="width: 0px;height: 0px;overflow: hidden;">
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-3 imgUp">
-                                            <div class="card border-0 shadow-sm rounded">
-                                                <div class="imagePreview">
-                                                    <div class="hero-text">
-                                                        <div class="d-flex justify-content-center">
-                                                            <label class="btn btn-dark btn-sm">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                                    height="16" fill="currentColor"
-                                                                    class="bi bi-plus-circle" viewBox="0 0 16 16">
-                                                                    <path
-                                                                        d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                                                    <path
-                                                                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                                                                </svg>
-                                                                <input type="file" class="uploadFile img"
-                                                                    value="Upload Photo" accept="image/*" name="img2"
-                                                                    style="width: 0px;height: 0px;overflow: hidden;">
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1">Password</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1"
-                                        name="password">
-                                    {!! $errors->first('password', "<span class='text-danger'>:message</span>") !!}
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1">Confirm Password</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1"
-                                        name="con_password">
-                                    {!! $errors->first('con_password', "<span class='text-danger'>:message</span>") !!}
-                                </div>
-
-
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
-                        </div> --}}
-                        <div class="card shadow-sm">
-                            <div class="m-4">
-                                <div class="test1">
-                                    <div class="form-group">
-                                        <label for="email">Email</label>
-                                        <input type="email" class="form-control" id="exampleInputPhone" name="email"
-                                            value="{{ old('email') }}">
-                                        {!! $errors->first('email', "<span class='text-danger'>:message</span>") !!}
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="phone">Phone number</label>
-                                        <input type="number" class="form-control" id="exampleInputPhone" name="phone"
-                                            value="{{ old('phone') }}">
-                                        {!! $errors->first('phone', "<span class='text-danger'>:message</span>") !!}
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Password</label>
-                                        <input type="password" class="form-control" id="exampleInputPassword1"
-                                            name="password">
-                                        {!! $errors->first('password', "<span class='text-danger'>:message</span>") !!}
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Confirm Password</label>
-                                        <input type="password" class="form-control" id="exampleInputPassword1"
-                                            name="con_password">
-                                        {!! $errors->first('con_password', "<span class='text-danger'>:message</span>") !!}
-                                    </div>
-                                </div>
-                                <div class="test2">
-                                    <div class="form-group">
-                                        <label for="text">Store name</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" name="store_name"
-                                            value="{{ old('store_name') }}">
-                                        {!! $errors->first('store_name', "<span class='text-danger'>:message</span>") !!}
-                                    </div>
-                                    {{-- <div class="form-group">
-                                        <label for="inputState">Province</label>
-                                        <select id="inputState" class="form-control" name="province_id">
-                                            <option value="">Choose province</option>
-                                            @foreach ($provinces as $item)
-                                                <option value="{{ $item->id }}">
-                                                    {{ $item->province }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                        {!! $errors->first('province_id', "<span class='text-danger'>:message</span>") !!}
-                                    </div> --}}
-                                    <div class="form-group">
-                                        <label for="address">Address or Location</label>
-                                        <input type="text" class="form-control" id="exampleInputPhone" name="address"
-                                            value="{{ old('address') }}">
-                                        {!! $errors->first('address', "<span class='text-danger'>:message</span>") !!}
-                                    </div>
-                                    <div class="previewImage">
-                                        <div class="row">
-                                            <div class="col-md-4 imgUp">
-                                                <div class="card border-0 shadow-sm rounded">
-                                                    <div class="imagePreview">
-                                                        <div class="hero-text">
-                                                            <div class="d-flex justify-content-center">
-                                                                <label class="btn btn-dark btn-sm">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                                        height="16" fill="currentColor"
-                                                                        class="bi bi-plus-circle" viewBox="0 0 16 16">
-                                                                        <path
-                                                                            d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                                                        <path
-                                                                            d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                                                                    </svg>
-                                                                    <input type="file" class="uploadFile img"
-                                                                        value="Upload Photo" accept="image/*" name="img1"
-                                                                        style="width: 0px;height: 0px;overflow: hidden;">
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 imgUp">
-                                                <div class="card border-0 shadow-sm rounded">
-                                                    <div class="imagePreview">
-                                                        <div class="hero-text">
-                                                            <div class="d-flex justify-content-center">
-                                                                <label class="btn btn-dark btn-sm">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                                        height="16" fill="currentColor"
-                                                                        class="bi bi-plus-circle" viewBox="0 0 16 16">
-                                                                        <path
-                                                                            d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                                                        <path
-                                                                            d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                                                                    </svg>
-                                                                    <input type="file" class="uploadFile img"
-                                                                        value="Upload Photo" accept="image/*" name="img2"
-                                                                        style="width: 0px;height: 0px;overflow: hidden;">
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="text-left">
-                                        <input type="checkbox" name="term_condition" required>
-                                        <span>Agree with <a href="">Term & Condition</a></span>
-                                    </div>
-                                    {!! $errors->first('term_condition', "<span class='text-danger'>:message</span>") !!}
-
-                                    <div class="text-right">
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                <button class="btn btn-sm btn-dark" id="pre" type="button">
-                                    Pre
-                                </button>
-                                <button class="btn btn-sm btn-dark" id="next" type="button">
-                                    Next
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-    </div>
 
     <script>
         $(document).ready(function() {

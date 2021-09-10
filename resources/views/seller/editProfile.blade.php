@@ -49,10 +49,10 @@
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
-                                                <strong for="inputState">Province</strong>
+                                                <strong for="inputState">City/Province</strong>
                                                 <select id="inputState" class="form-control" name="province">
                                                     @if ($data_seller->province_id == '')
-                                                        <option value="" selected>Choose province</option>
+                                                        <option value="" selected>Choose City/Province</option>
                                                     @endif
                                                     @foreach ($provinces as $item)
                                                         <option value="{{ $item->id }}"

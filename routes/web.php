@@ -185,4 +185,6 @@ Route::prefix('admin')->group(function () {
 
     Route::get('/province', [AdminController::class, 'province'])->middleware('admin');
     Route::post('/add-province', [AdminController::class, 'addProvince'])->name('addProvince')->middleware('admin');
+    Route::get('/termNcondition', [AdminController::class, 'TNC'])->middleware('admin');
+    Route::post('/add-TNC', [AdminController::class, 'addTNC'])->middleware('admin');
 });

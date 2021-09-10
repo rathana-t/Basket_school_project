@@ -261,7 +261,9 @@ class SellerController extends Controller
             'email' => 'required|email|max:70|unique:sellers,email',
             'phone' => 'required|min:9|unique:sellers,phone',
             'address' => 'required',
-            // 'province_id' => 'required',
+            'province_id' => 'required',
+            'img2' => 'required',
+            'img1' => 'required',
             'password' => 'required|min:8',
             'con_password' => 'required|min:8|same:password',
         ]);
@@ -313,7 +315,7 @@ class SellerController extends Controller
             ->where('sellers.id', $id)
             // ->where('products.completed', '=', '1')
             ->select('products.*', 'sellers.store_name', 'sellers.phone', 'sellers.address')
-            ->orderBy('created_at', 'desc')
+            ->orderBy('stock', 'asc')
             ->paginate(5);
         $data_seller = sellers::find($id);
 

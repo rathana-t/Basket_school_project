@@ -22,6 +22,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Commission;
 use App\Models\commissions;
 use App\Models\Province;
+use App\Models\TNC;
 use App\Models\Report;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -574,5 +575,20 @@ class AdminController extends Controller
         $province->province = $req->province;
         $province->save();
         return redirect()->back()->with('success', 'Added new province successfully');
+    }
+    public function TNC()
+    {
+        $getTNC = DB::select('select * from term_n_condition');
+        return view('admin\termAndCondition\addTermAndCondition',compact('getTNC'));
+    }
+    public function addTNC(Request $request)
+    {
+        $request->validate([
+            'TNC'=>'required'
+        ]);
+        $tnc= new TNC();
+        $tnc->text=$request->TNC;
+        $tnc->save();
+        return redirect()->back()->with('success', 'Added new Term And Condition successfully');
     }
 }

@@ -23,7 +23,7 @@
                                 </div>
                                 <div class="form-group pb-3">
                                     <input type="number" class="form-control form-control-lg" id="exampleInputPhone"
-                                        name="phone" value="{{ old('phone') }}" placeholder="Phone Number or Email">
+                                        name="phone" value="{{ old('phone') }}" placeholder="Phone Number">
                                     {!! $errors->first('phone', "<span class='text-danger'>:message</span>") !!}
                                 </div>
                                 {{-- <div class="form-group pb-3">
@@ -50,12 +50,12 @@
                                     <div class="col">
                                         <input type="password" class="form-control form-control-lg"
                                             id="exampleInputPassword1" name="con_password" placeholder="Confirm Password">
-                                        {!! $errors->first('con_password', "<span class='text-danger'>:message</span>") !!}
+                                        {!! $errors->first('con_password', "<span class='text-danger'>This Field Is Required.</span>") !!}
                                     </div>
                                 </div>
 
                                 <button type="submit" class="btn btn-lg btn-primary col-12 mb-3">
-                                        Sign UP
+                                    Sign UP
                                 </button>
                                 <small class="form-text text-muted">
                                     By clicking the 'Sign Up' button, you confirm that you accept our Terms of use and

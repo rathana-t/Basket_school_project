@@ -40,10 +40,16 @@
                         <td>$ {{ $item->total }}</td>
                         <td>{{ $item->updated_at }}</td>
                         <td>
-                            <button type="button" value="{{ $item->order_id }}"
-                                class="open_delivery_modal btn btn-primary">
-                                Delivery
-                            </button>
+                            @if ($item->stock - $item->quantity >= 0)
+                                <button type="button" value="{{ $item->order_id }}"
+                                    class="open_delivery_modal btn btn-primary">
+                                    Delivery
+                                </button>
+                            @else
+                                <button class="btn btn-warning">
+                                    no stock
+                                </button>
+                            @endif
                             <button type="button" value="{{ $item->order_id }}" class="cancel_modal btn btn-danger">
                                 cancel
                             </button>
