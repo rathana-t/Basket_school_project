@@ -66,15 +66,21 @@
                                                             {{-- {{ $item->stock }} --}}
                                                             <form action="{{ url('/edit-quantity-cart') }}" method="POST">
                                                                 @csrf
-                                                                <input type="text" name="id" value="{{ $item->id }}">
+                                                                <input type="text" name="id" value="{{ $item->cart_id }}">
                                                                 <select class="form-control" style="width: 70px"
                                                                     name="quantity">
-                                                                    <option value="1">1</option>
+                                                                    <option value="1"
+                                                                        {{ $item->quantity == 1 ? 'selected' : '' }}>1
+                                                                    </option>
                                                                     @if ($item->stock >= 2)
-                                                                        <option value="2">2</option>
+                                                                        <option value="2"
+                                                                            {{ $item->quantity == 2 ? 'selected' : '' }}>2
+                                                                        </option>
                                                                     @endif
                                                                     @if ($item->stock >= 3)
-                                                                        <option value="3">3</option>
+                                                                        <option value="3"
+                                                                            {{ $item->quantity == 3 ? 'selected' : '' }}>3
+                                                                        </option>
                                                                     @endif
                                                                 </select>
                                                                 <button type="submit" class="btn btn-primary">Ok</button>
