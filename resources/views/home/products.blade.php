@@ -182,12 +182,13 @@
                                                             Order Now
                                                         </button>
                                                     </form>
+                                                @else
+                                                    <a href="/login">
+                                                        <button class="btn btn-sm btn-primary">
+                                                            Order Now
+                                                        </button>
+                                                    </a>
                                                 @endif
-                                                <a href="/login">
-                                                    <button class="btn btn-sm btn-primary">
-                                                        Order Now
-                                                    </button>
-                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -202,5 +203,4 @@
             </div>
         </div>
     </div>
-
 @stop
