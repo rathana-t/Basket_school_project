@@ -1,7 +1,8 @@
 <style>
-    .seller-product  {
+    .seller-product {
         min-height: 600px;
     }
+
     .seller-product img {
         height: 150px;
         width: 400px;
@@ -302,8 +303,8 @@
     }
 
     #sidebar {
-        min-width: 250px;
-        max-width: 250px;
+        min-width: 290px;
+        max-width: 290px;
         background: #4b7095;
         color: #fff;
         -webkit-transition: all 0.3s;
