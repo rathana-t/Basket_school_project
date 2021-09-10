@@ -21,7 +21,6 @@
             <tbody>
                 @foreach ($data as $item)
                     @include('/seller/components/modal')
-
                     {{-- @if ($item->seller_cancel == 0) --}}
                     <tr class="text-center product-list">
                         <td>
@@ -42,13 +41,17 @@
                         <td>{{ $item->quantity }}</td>
                         <td>$ {{ $item->total }}</td>
                         <td>{{ $item->updated_at }}</td>
-                        <td>
-                            <button type="button" value="{{ $item->order_id }}"
-                                class="open_pending_modal btn btn-primary">
-                                Confirm
-                            </button>
-
-
+                        <td class="text-right">
+                            @if ($item->stock - $item->quantity >= 0)
+                                <button type="button" value="{{ $item->order_id }}"
+                                    class="open_pending_modal btn btn-primary">
+                                    Confirm
+                                </button>
+                            @else
+                                <button class="btn btn-warning">
+                                    no stock
+                                </button>
+                            @endif
                             <button type="button" value="{{ $item->order_id }}" class="open_cancel_modal btn btn-danger">
                                 cancel
                             </button>

@@ -34,9 +34,16 @@
                             <td class="text-center">
                                 $ {{ $item->price }}
                             </td>
-                            <td class="text-center">
-                                {{ $item->stock }} Items
-                            </td>
+                            @if ($item->stock <= 0)
+                                <td class="text-center" style="background-color:rgb(209, 22, 22) ">
+                                    <div style="color: white">{{ $item->stock }} Items</div>
+                                </td>
+                            @else
+                                <td class="text-center">
+                                    {{ $item->stock }} Items
+                                </td>
+                            @endif
+
                             <td>
                                 {{ $item->created_at }}
                             </td>
