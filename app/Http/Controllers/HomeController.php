@@ -246,7 +246,9 @@ class HomeController extends Controller
             $data_pro = carts::join('products', 'products.id', '=', 'carts.product_id')
                 ->where('carts.user_id', '=', $data_user->id)
                 ->where('carts.in_order', 0)
-                ->select('products.*', 'carts.id as cart_id', 'carts.total', 'carts.quantity')->orderByDesc('carts.updated_at')->get();
+                ->select('products.*', 'carts.id as cart_id', 'carts.total', 'carts.quantity')
+                ->orderByDesc('carts.created_at')
+                ->get();
             $counter = 0;
             $quantity = 0;
             $total_price_all_quantity = 0;
