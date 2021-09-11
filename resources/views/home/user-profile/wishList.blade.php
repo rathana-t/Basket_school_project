@@ -40,26 +40,17 @@
                                                 <td>$ {{ $item->price }}</td>
 
                                                 <td style="width: 350px;">
-                                                    <form action="{{ route('add_to_cart') }}" method="POST"
-                                                        class=" btn" enctype="multipart/form-data">
-                                                        @csrf
-                                                        <input type="hidden" value="{{ $data_user->id }}" name="user_id">
-                                                        <input type="hidden" value="{{ $item->id }}" name="product_id">
-                                                        <input type="hidden" value="{{ $item->price }}" name="total">
-                                                        <input type="hidden" class="form-control form-control-sm" value="1"
-                                                            id="quantity" hidden placeholder="Qty" required name="quantity"
-                                                            min="1" max="{{ $item->stock }}" style="width: 50px">
-                                                        <button type="submit" class="btn-sm btn-light border"
-                                                            style="width: 150px">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                                fill="currentColor" class="bi bi-bag-check-fill"
-                                                                viewBox="0 0 16 16">
-                                                                <path fill-rule="evenodd"
-                                                                    d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zm-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
-                                                            </svg>
-                                                            Add to cart
-                                                        </button>
-                                                    </form>
+                                                    <button type="button" value="{{ $item->id }}"
+                                                        class="btn-sm submit_add_to_cart btn-light border"
+                                                        style="width: 150px">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                            fill="currentColor" class="bi bi-bag-check-fill"
+                                                            viewBox="0 0 16 16">
+                                                            <path fill-rule="evenodd"
+                                                                d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zm-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
+                                                        </svg>
+                                                        Add to cart
+                                                    </button>
 
                                                     <a href="{{ url('/product', $item->id) }}" type="button"
                                                         class="btn-sm btn-light border btn">
@@ -83,9 +74,6 @@
             @endif
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-    </script>
     <script>
         $(document).ready(function() {
             $(document).on('click', '.remove_wishlist', function() {
