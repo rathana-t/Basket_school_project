@@ -119,9 +119,12 @@
                         </div>
                         <div class="col-md-6">
                             <div class="p-4">
-                                <h2>
+                                <h4>
                                     {{ $item->name }}
-                                </h2>
+                                </h4>
+                                <small>
+                                    # {{ $item->code_product }}
+                                </small>
                                 <div class="order mt-2 mb-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="20" fill="currentColor"
                                         class="bi bi-bag-check" viewBox="0 0 16 16">
