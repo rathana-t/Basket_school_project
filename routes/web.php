@@ -24,6 +24,7 @@ Route::get('/', [HomeController::class, 'index']);
 // Route::get('/ssss', [HomeController::class, 'ssss']);
 
 Route::get('/login', [HomeController::class, 'login'])->name('login');
+Route::get('/update_something_in_orders', [HomeController::class, 'logupdate_orders_yesin']);
 Route::get('/reg', [HomeController::class, 'reg']);
 Route::get('/product/{id}', [HomeController::class, 'detail'])->name('detail');
 Route::get('/product', [HomeController::class, 'products'])->name('products');
@@ -94,6 +95,7 @@ Route::post('/sellerLogIn', [SellerController::class, 'login']);
 Route::post('/sellerRegister', [SellerController::class, 'register']);
 Route::get('/logout_seller', [SellerController::class, 'logout'])->middleware('checker_seller');
 Route::get('/forseller', [SellerController::class, 'forseller']);
+
 Route::post('/confirm-pending', [SellerController::class, 'con_pending']);
 Route::post('/confirm-processing-to-delivery', [SellerController::class, 'con_processing']);
 Route::post('/cancel-pending', [SellerController::class, 'cancel_pending']);
@@ -103,6 +105,7 @@ Route::get('/delete_user_cancel_order/{id}', [SellerController::class, 'delete_u
 
 Route::get('/seller/dashboard', [SellerController::class, 'dashboard'])->middleware('checker_seller');
 Route::get('/seller/products', [SellerController::class, 'products'])->middleware('checker_seller');
+Route::get('/seller/products-out-of-stock', [SellerController::class, 'products_out_stock'])->middleware('checker_seller');
 // Route::get('/seller/productPending', [SellerController::class, 'productPending'])->middleware('checker_seller');
 Route::get('/seller/choose-category', [SellerController::class, 'choose_main_cate'])->middleware('checker_seller');
 Route::get('/seller/add-product/{id}', [SellerController::class, 'add_product'])->middleware('checker_seller');

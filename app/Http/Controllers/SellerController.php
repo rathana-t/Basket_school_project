@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Session;
+use Psy\CodeCleaner\FinalClassPass;
 
 // use Symfony\Component\HttpFoundation\Session\Session;
 
@@ -310,17 +311,53 @@ class SellerController extends Controller
         }
         $id = $data_seller->id;
         $main_cate = categories::get();
+        $count_pro =  $sellerHasProduct = DB::table('products')
+        ->join('sellers', 'products.seller_id', '=', 'sellers.id')
+        ->where('products.stock', '>' ,0)
+        ->where('sellers.id', $id)->count();
+        $count_pro_out =  $sellerHasProduct = DB::table('products')
+        ->join('sellers', 'products.seller_id', '=', 'sellers.id')
+        ->where('products.stock', '<=' ,0)
+        ->where('sellers.id', $id)->count();
         $sellerHasProduct = DB::table('products')
             ->join('sellers', 'products.seller_id', '=', 'sellers.id')
             ->where('sellers.id', $id)
+            ->where('products.stock', '>' ,0)
             // ->where('products.completed', '=', '1')
             ->select('products.*', 'sellers.store_name', 'sellers.phone', 'sellers.address')
-            ->orderBy('stock', 'asc')
+            ->orderByDesc('updated_at')
             ->paginate(5);
         $data_seller = sellers::find($id);
 
         $i = 0;
-        return view('seller/product/listProduct', compact('i', 'data_seller', 'sellerHasProduct', 'main_cate'));
+        return view('seller/product/listProduct', compact('i', 'count_pro','data_seller','count_pro_out', 'sellerHasProduct', 'main_cate'));
+    }
+    public function products_out_stock(){
+        if (session()->has('seller')) {
+            $data_seller = sellers::findOrFail(session('seller'));
+        }
+        $id = $data_seller->id;
+        $main_cate = categories::get();
+        $count_pro_out =  $sellerHasProduct = DB::table('products')
+        ->join('sellers', 'products.seller_id', '=', 'sellers.id')
+        ->where('products.stock', '<=' ,0)
+        ->where('sellers.id', $id)->count();
+        $count_pro =  $sellerHasProduct = DB::table('products')
+        ->join('sellers', 'products.seller_id', '=', 'sellers.id')
+        ->where('products.stock', '>' ,0)
+        ->where('sellers.id', $id)->count();
+        $sellerHasProduct = DB::table('products')
+            ->join('sellers', 'products.seller_id', '=', 'sellers.id')
+            ->where('sellers.id', $id)
+            ->where('products.stock', '<=' ,0)
+            // ->where('products.completed', '=', '1')
+            ->select('products.*', 'sellers.store_name', 'sellers.phone', 'sellers.address')
+            ->orderByDesc('updated_at')
+            ->paginate(5);
+        $data_seller = sellers::find($id);
+
+        $i = 0;
+        return view('seller/product/listProduct_out_stock', compact('i', 'count_pro','data_seller','count_pro_out', 'sellerHasProduct', 'main_cate'));
     }
     // public function productPending()
     // {
@@ -346,7 +383,16 @@ class SellerController extends Controller
         $main_cate = categories::get();
         if (session()->has('seller')) {
             $data_seller = sellers::findOrFail(session('seller'));
-            return view('seller/product/main_cate', compact('data_seller', 'main_cate'));
+            $count_pro_out =  $sellerHasProduct = DB::table('products')
+            ->join('sellers', 'products.seller_id', '=', 'sellers.id')
+            ->where('products.stock', '<=' ,0)
+            ->where('sellers.id', $data_seller->id)->count();
+            $count_pro =  $sellerHasProduct = DB::table('products')
+            ->join('sellers', 'products.seller_id', '=', 'sellers.id')
+            ->where('sellers.id', $data_seller->id)
+            ->where('products.stock', '>' ,0)
+            ->count();
+            return view('seller/product/main_cate', compact('data_seller','count_pro','count_pro_out', 'main_cate'));
         } else {
             return view('seller/login');
         }
@@ -364,7 +410,7 @@ class SellerController extends Controller
                 ->where('orders.user_cancel',0)
                 ->where('orders.seller_cancel',0)
                 ->select('products.*', 'carts.total', 'orders.seller_cancel', 'orders.pending', 'orders.user_cancel', 'orders.id as order_id', 'carts.quantity', 'users.username as u_name', 'users.phone as u_phone', 'users.address as u_address')
-                ->orderBy('updated_at', 'desc')
+                ->orderBy('orders.updated_at', 'desc')
                 ->paginate(5);
             return view('seller/new_order', compact('data_seller', 'data'));
         } else {
@@ -585,14 +631,25 @@ class SellerController extends Controller
     }
     public function add_product($id)
     {
+        $data_seller = sellers::findOrFail(session('seller'));
+
         $cat = DB::table('se_categories')
             ->join('categories', 'categories.id', '=', 'se_categories.category_id')
             ->where('categories.id', $id)
             ->select('se_categories.*', 'categories.id as main_cat_id')->get();
+        $count_pro_out =  $sellerHasProduct = DB::table('products')
+        ->join('sellers', 'products.seller_id', '=', 'sellers.id')
+        ->where('products.stock', '<=' ,0)
+        ->where('sellers.id', $data_seller->id)->count();
+        $count_pro =  $sellerHasProduct = DB::table('products')
+        ->join('sellers', 'products.seller_id', '=', 'sellers.id')
+        ->where('sellers.id', $data_seller->id)
+        ->where('products.stock', '>' ,0)
+        ->count();
         $brand = brands::all();
         if (session()->has('seller')) {
             $data_seller = sellers::findOrFail(session('seller'));
-            return view('seller/product/add_product', compact('data_seller', 'brand', 'cat'));
+            return view('seller/product/add_product', compact('data_seller', 'count_pro_out','count_pro','brand', 'cat'));
         } else {
             return view('seller/product/add_product');
         }

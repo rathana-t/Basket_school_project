@@ -18,7 +18,6 @@
                 </tr>
             </thead>
             <tbody>
-
                 @foreach ($data as $item)
                     @include('/seller/components/modal')
                     {{-- @if ($item->delivery == 1) --}}

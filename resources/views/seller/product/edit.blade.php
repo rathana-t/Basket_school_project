@@ -16,28 +16,29 @@
                         <div class="form-group">
                             <label for="name">Product Name</label>
                             <input type="text" class="form-control" id="exampleInputPhone" value="{{ $pro->name }}"
-                                name="name">
+                                name="name" required>
                         </div>
                         <div class="form-group">
                             <label for="price">Price</label>
                             <input type="text" class="form-control" id="exampleInputPhone" value="{{ $pro->price }}"
-                                name="price">
+                                name="price" required>
                         </div>
                         <div class="form-group">
                             <label for="description">Description</label>
-                            <textarea rows="3" class="form-control" id="exampleInputPhone" name="description"
+                            <textarea rows="3" class="form-control" id="exampleInputPhone" name="description" required
                                 {{ old('description') }}>{{ $pro->description }}</textarea>
                         </div>
                         <div class="form-group">
                             <label for="stock">Stock</label>
-                            <input type="number" class="form-control" id="" value="{{ $pro->stock }}" name="stock">
+                            <input type="number" class="form-control" id="" value="{{ $pro->stock }}" name="stock"
+                                min="0" required>
                         </div>
                         <div class="form-group">
 
                             <div class="row">
                                 <div class="col">
                                     <label for="exampleFormControlSelect1">Brand</label>
-                                    <select class="form-control" id="exampleFormControlSelect1" name="brand_id">
+                                    <select class="form-control" id="exampleFormControlSelect1" name="brand_id" required>
                                         @foreach ($brands as $brand)
                                             <option value="{{ $brand->id }}" @if ($brand->id == $pro->brand_id) selected @endif>
                                                 {{ $brand->name }}</option>
@@ -46,7 +47,8 @@
                                 </div>
                                 <div class="col">
                                     <label for="exampleFormControlSelect1">Secondary Category</label>
-                                    <select class="form-control" id="exampleFormControlSelect1" name="category_id">
+                                    <select class="form-control" id="exampleFormControlSelect1" name="category_id"
+                                        required>
                                         @foreach ($cats as $cat)
                                             <option value="{{ $cat->id }}" @if ($cat->id == $pro->s_cat_id) selected @endif>{{ $cat->name }}
                                             </option>
@@ -284,14 +286,31 @@
                             <span>Agree with <a href="">Term & Condition</a></span>
                         </div>
                         <div class="text-right mt-3">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button onclick="return IsEmpty();" type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </div>
                 </div>
             </form>
         @endforeach
     </div>
-
+    <script>
+        function IsEmpty() {
+            var cover_img = document.forms['frm'].cover_img.value;
+            var sub_img1 = document.forms['frm'].sub_img1.value;
+            var sub_img2 = document.forms['frm'].sub_img2.value;
+            var sub_img3 = document.forms['frm'].sub_img3.value;
+            var sub_img4 = document.forms['frm'].sub_img4.value;
+            var sub_img5 = document.forms['frm'].sub_img5.value;
+            var sub_img6 = document.forms['frm'].sub_img6.value;
+            var sub_img7 = document.forms['frm'].sub_img7.value;
+            if (cover_img === "" && sub_img1 === "" && sub_img2 === "" && sub_img3 === "" && sub_img4 === "" && sub_img5 ===
+                "" && sub_img6 === "" && sub_img7 === "") {
+                alert("Please add picture for your product!");
+                return false;
+            }
+            return true;
+        }
+    </script>
 
 
 @stop

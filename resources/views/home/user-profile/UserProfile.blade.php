@@ -9,7 +9,7 @@
                 <div class="card cs-shadow rounded border-0">
                     <div class="card-body">
                         <h4 class="pb-3">
-                            Phone Number: 0{{ $data_user->phone }}
+                            Phone Number: {{ $data_user->phone }}
                         </h4>
                         <form action="{{ route('update-profile', $data_user->id) }}" method="POST">
                             @csrf

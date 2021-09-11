@@ -28,6 +28,27 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 class HomeController extends Controller
 {
+    public function logupdate_orders_yesin(){
+        $cart = carts::join('products', 'products.id', '=', 'carts.product_id')
+                // ->where('carts.in_order', 0)
+                ->select('products.*', 'carts.id as cart_id','carts.user_id')->get();
+                // $data = request()->validate([
+                //    'id_card' => 'required|min:12|max:12'
+                // ]);
+                // return $req->year;
+                $order = orders::all();
+                foreach($order as $itemA){
+                    foreach ($cart as $item) {
+                        if($itemA->cart_id == $item->cart_id){
+                            $order = orders::find($itemA->id);
+                            $order->user_id = $item->user_id;
+                            $order->seller_id = $item->seller_id;
+                            $order->update();
+                        }
+                    }
+                }
+        return "success jol ploch sssssss";
+    }
     // public function ssss(){
     //     $allpro = products::all();
     //     foreach($allpro as $item){
