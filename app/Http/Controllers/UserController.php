@@ -13,6 +13,7 @@ use App\Models\cards;
 use App\Models\brands;
 use App\Models\users_has_cards;
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
 use App\Models\Province;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Http\Request;
@@ -26,8 +27,30 @@ use SebastianBergmann\CodeCoverage\Report\PHP;
 
 class UserController extends Controller
 {
+    public function get_comment(Request $req){
+        $comment = Comment::join('users','users.id','=','comments.user_id')
+        ->where('comments.pro_id',$req->product_comment_id)->orderBy('comments.created_at','asc')
+        ->select('comments.*','users.*','users.id as user_id')
+        ->get();
 
+        return response()->json([
+            'comment'=>$comment,
+        ]);
+    }
+    public function post_comment(Request $req){
+        $comment = new Comment();
+        $comment->user_id = $req->user_id;
+        $comment->pro_id = $req->product_comment_id;
+        $comment->comment = $req->comment;
 
+        $comment->save();
+        return response()->json([
+            'status'=>200,
+            // 'message'=> 'Added to wishlist',
+        ]);
+        // return redirect()->back();
+
+    }
 
     public function order()
     {

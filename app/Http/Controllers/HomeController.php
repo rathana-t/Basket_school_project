@@ -20,6 +20,7 @@ use Doctrine\DBAL\Schema\Index;
 use PhpParser\Node\Stmt\Break_;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
 use GrahamCampbell\ResultType\Success;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -304,11 +305,14 @@ class HomeController extends Controller
             ->where('completed', 1)
             ->where('products.id', '!=', $id)
             ->paginate(20);
+        $comment = Comment::join('users','users.id','=','comments.user_id')
+        ->where('comments.pro_id',$id)
+        ->get();
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
-            return view('home/detailPage', compact('data_user', 'detail_pro', 'related_pro', 'second_cate', 'product_id'));
+            return view('home/detailPage', compact('data_user', 'comment','detail_pro', 'related_pro', 'second_cate', 'product_id'));
         } else {
-            return view('home/detailPage', compact('detail_pro', 'second_cate', 'related_pro', 'product_id'));
+            return view('home/detailPage', compact('detail_pro', 'comment','second_cate', 'related_pro', 'product_id'));
         }
     }
 
@@ -328,12 +332,14 @@ class HomeController extends Controller
             ->select('products.*', 'sellers.store_name')
             ->where('products.id', '!=', $id)
             ->where('completed', 1)->get();
-
+            $comment = Comment::join('users','users.id','=','comments.user_id')
+            ->where('comments.pro_id',$id)
+            ->get();
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
-            return view('home/detailPage', compact('data_user', 'related_pro', 'detail_pro', 'second_cate', 'product_id', 'categoryId'));
+            return view('home/detailPage', compact('data_user', 'comment','related_pro', 'detail_pro', 'second_cate', 'product_id', 'categoryId'));
         } else {
-            return view('home/detailPage', compact('detail_pro', 'related_pro', 'second_cate', 'product_id', 'categoryId'));
+            return view('home/detailPage', compact('detail_pro','comment', 'related_pro', 'second_cate', 'product_id', 'categoryId'));
         }
     }
 
@@ -356,11 +362,14 @@ class HomeController extends Controller
             ->limit(8)
             ->inRandomOrder()
             ->get();
+            $comment = Comment::join('users','users.id','=','comments.user_id')
+        ->where('comments.pro_id',$id1)
+        ->get();
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
-            return view('home/detailPage', compact('data_user', 'related_pro', 'detail_pro', 'second_cate', 'product_id', 'smallCate'));
+            return view('home/detailPage', compact('data_user', 'comment','related_pro', 'detail_pro', 'second_cate', 'product_id', 'smallCate'));
         } else {
-            return view('home/detailPage', compact('detail_pro', 'related_pro', 'second_cate', 'product_id', 'smallCate'));
+            return view('home/detailPage', compact('detail_pro', 'comment','related_pro', 'second_cate', 'product_id', 'smallCate'));
         }
     }
     public function detail4($id, $id1)
@@ -380,12 +389,14 @@ class HomeController extends Controller
             ->where('completed', 1)
             ->where('products.id', '!=', $id1)
             ->get();
-
+            $comment = Comment::join('users','users.id','=','comments.user_id')
+            ->where('comments.pro_id',$id1)
+            ->get();
         if (session()->has('user')) {
             $data_user = Users::findOrFail(session('user'));
-            return view('home/detailPage', compact('data_user', 'related_pro', 'detail_pro', 'second_cate', 'product_id', 'brand'));
+            return view('home/detailPage', compact('data_user', 'comment','related_pro', 'detail_pro', 'second_cate', 'product_id', 'brand'));
         } else {
-            return view('home/detailPage', compact('detail_pro', 'related_pro', 'second_cate', 'product_id', 'brand'));
+            return view('home/detailPage', compact('detail_pro','comment', 'related_pro', 'second_cate', 'product_id', 'brand'));
         }
     }
 

@@ -10,7 +10,7 @@ class Comment extends Model
     use HasFactory;
     protected $guarded = [];
 
-    protected $table = "comment";
+    protected $table = "comments";
 
     protected $fillable=['user_id','pro_id','comment','created_at','updated_at'];
 }

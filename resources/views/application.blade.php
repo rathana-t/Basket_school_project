@@ -51,7 +51,9 @@
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous">
     </script>
     {{-- me................................................................ --}}
-
+    {{-- scroll_comment() {
+        document.getElementById('scroll').scrollTop = document.getElementById('scroll').scrollHeight
+    } --}}
     <script>
         $(document).ready(function() {
             $(document).on('click', '.submit_add_to_cart', function(e) {
@@ -94,6 +96,9 @@
         });
 
         $(document).ready(function() {
+
+
+
             $(document).on('click', '.submit_wish_list', function(e) {
                 e.preventDefault();
                 //console.log('good');
@@ -126,6 +131,80 @@
                                 showConfirmButton: false,
                                 timer: 1000
                             })
+                        }
+                    }
+                });
+            });
+        });
+
+        $(document).ready(function() {
+
+            function updateScroll() {
+                var element = document.getElementById("comment_id_scroll");
+                element.scrollTop = element.scrollHeight;
+            }
+
+            fetch_comment();
+
+            function fetch_comment() {
+                var data = {
+                    'product_comment_id': $('.product_comment_id').val(),
+                    'user_id': $('.user_id_post_comment').val(),
+                }
+                $.ajax({
+                    type: "GET",
+                    url: "/get_comment",
+                    data: data,
+                    dataType: "json",
+                    success: function(response) {
+                        $('.comment_list').html('');
+                        $.each(response.comment, function(key, item) {
+                            if (item.user_id == data.user_id) {
+                                $('.comment_list').append(
+                                    '<div align="right">' + item.username +
+                                    ' </div><div style="margin-left: 40px;padding-right:0px"> <p>' +
+                                    item.comment + '</p ></div>');
+                            } else {
+                                $('.comment_list').append(
+                                    '<div>' + item.username +
+                                    ' </div><div> <p >' +
+                                    item.comment + '</p ></div>');
+                            }
+                            updateScroll();
+
+                        });
+                    }
+                });
+            }
+
+            function clearText() {
+                document.getElementById('textcommentfield').value = "";
+            }
+            $(document).on('click', '.submit_post_comment', function(e) {
+                e.preventDefault();
+                //console.log('good');
+                var data = {
+                    'comment': $('.comment_value').val(),
+                    'user_id': $('.user_id_post_comment').val(),
+                    'product_comment_id': $('.product_comment_id').val(),
+                }
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    type: "POST",
+                    url: "/post_comment_product",
+                    data: data,
+                    dataType: "json",
+                    success: function(response) {
+                        //console.log(response);
+                        if (response.status == 200) {
+                            //console.log(response.comment);
+                            fetch_comment();
+                            updateScroll();
+                            clearText();
                         }
                     }
                 });

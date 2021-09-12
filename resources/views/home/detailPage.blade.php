@@ -2,7 +2,6 @@
 
 @section('content')
     @include('/home/components/navigation')
-
     <div class="container">
         @foreach ($detail_pro as $item)
             <div class="deatail_page mt-5">
@@ -263,13 +262,79 @@
                                             @endif
                                         </div>
                                     </div>
-                                    {{-- <div class="col">
-                                        <div class="des">
-                                            <table class="table">
+                                    <style>
+                                        .comment_box {
+                                            width: 420px;
+                                            height: 200px;
+                                            padding: 5px;
+                                            border: 1px solid rgb(68, 60, 60);
+                                            border-radius: 10px 0px 0px 10px;
+                                            background-color: rgba(255, 255, 255, 0.795);
+                                            overflow: auto;
 
-                                            </table>
+                                        }
+
+                                        .comment_list {
+                                            margin-top: -5px;
+                                            margin-bottom: -5px;
+                                        }
+
+                                        .comment_list div {
+                                            font-size: 13px;
+                                            color: rgb(44, 81, 182);
+                                        }
+
+                                        .comment_list p {
+                                            padding-left: 5px;
+                                            font-size: 13px;
+                                            background-color: rgb(200, 218, 226);
+                                            border-radius: 5px;
+                                            width: 90%;
+                                            color: black;
+                                        }
+
+                                    </style>
+
+                                    <div class="col" style="margin-top: -10px;">
+                                        <div class="comment_box" id="comment_id_scroll">
+                                            {{-- @foreach ($comment as $sub)
+                                                <div class="comment_list">
+                                                    @if ($data_user->id == $sub->user_id)
+                                                        <div align="right">
+                                                            {{ $sub->username }}
+                                                        </div>
+                                                        <div align="right">
+                                                            <p style="text-align:left">{{ $sub->comment }}</p>
+                                                        </div>
+                                                    @else
+                                                        <div>
+                                                            {{ $sub->username }}
+                                                        </div>
+                                                        <div>
+                                                            <p>{{ $sub->comment }}</p>
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                            @endforeach --}}
+                                            <div class="comment_list">
+                                                <div></div>
+                                                <div>
+                                                    <p style="float: left"></p>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div> --}}
+                                        {{-- <form action="{{ url('post_comment_product') }}" method="POST">
+                                            @csrf --}}
+                                        <input type="text" name="comment" id="textcommentfield" style="width: 300px"
+                                            class="comment_value" placeholder="comment . . ." required>
+                                        <input hidden type="text" name="user_id" value="{{ $data_user->id }}" id=""
+                                            class="user_id_post_comment">
+                                        <input hidden type="text" name="product_comment_id" value="{{ $item->id }}"
+                                            id="" class="product_comment_id">
+                                        <button type="submit" class="btn btn-sm btn-success submit_post_comment"
+                                            onclick="clearText()">Send</button>
+                                        {{-- </form> --}}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -278,6 +343,7 @@
             </div>
 
         @endforeach
+
         <div class="product pt-4 pb-2" id="Product">
             <div class="mt-5 related-product">
                 <p class="font-weight-light">All related Product</p>
