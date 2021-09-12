@@ -117,7 +117,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="p-4">
+                            <div class="p-4" style="margin-bottom: -30px">
                                 <h4>
                                     {{ $item->name }}
                                 </h4>
@@ -265,7 +265,7 @@
                                     <style>
                                         .comment_box {
                                             width: 420px;
-                                            height: 200px;
+                                            height: 250px;
                                             padding: 5px;
                                             padding-bottom: 50px;
                                             border: 1px solid rgb(226, 223, 223);
@@ -315,7 +315,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="input-group mb-3" style="margin-top: 5px">
+                                        <div class="input-group mb-3" style="margin-top: 5px;">
                                             {{-- <form action="{{ url('post_comment_product') }}" method="POST">
                                             @csrf --}}
                                             <input type="text" class="form-control comment_value" name="comment"
