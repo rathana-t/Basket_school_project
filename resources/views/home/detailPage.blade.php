@@ -267,16 +267,12 @@
                                             width: 420px;
                                             height: 200px;
                                             padding: 5px;
-                                            border: 1px solid rgb(68, 60, 60);
+                                            padding-bottom: 50px;
+                                            border: 1px solid rgb(226, 223, 223);
                                             border-radius: 10px 0px 0px 10px;
                                             background-color: rgba(255, 255, 255, 0.795);
                                             overflow: auto;
 
-                                        }
-
-                                        .comment_list {
-                                            margin-top: -5px;
-                                            margin-bottom: -5px;
                                         }
 
                                         .comment_list div {
@@ -287,52 +283,64 @@
                                         .comment_list p {
                                             padding-left: 5px;
                                             font-size: 13px;
-                                            background-color: rgb(200, 218, 226);
+                                            background-color: rgb(226, 223, 223);
                                             border-radius: 5px;
-                                            width: 90%;
+                                            width: 80%;
                                             color: black;
+                                        }
+
+                                        .comment_user p {
+                                            margin-left: 60px;
+                                        }
+
+                                        .comment_user {
+                                            margin-left: 60px;
+                                            margin-bottom: -10px;
+                                        }
+
+                                        .comment_not_user {
+                                            width: 85%;
+                                            margin-bottom: -10px;
+
                                         }
 
                                     </style>
 
                                     <div class="col" style="margin-top: -10px;">
                                         <div class="comment_box" id="comment_id_scroll">
-                                            {{-- @foreach ($comment as $sub)
-                                                <div class="comment_list">
-                                                    @if ($data_user->id == $sub->user_id)
-                                                        <div align="right">
-                                                            {{ $sub->username }}
-                                                        </div>
-                                                        <div align="right">
-                                                            <p style="text-align:left">{{ $sub->comment }}</p>
-                                                        </div>
-                                                    @else
-                                                        <div>
-                                                            {{ $sub->username }}
-                                                        </div>
-                                                        <div>
-                                                            <p>{{ $sub->comment }}</p>
-                                                        </div>
-                                                    @endif
-                                                </div>
-                                            @endforeach --}}
                                             <div class="comment_list">
-                                                <div></div>
+                                                <div class="comment_user"></div>
                                                 <div>
-                                                    <p style="float: left"></p>
+                                                    <p></p>
                                                 </div>
                                             </div>
                                         </div>
-                                        {{-- <form action="{{ url('post_comment_product') }}" method="POST">
+                                        <div class="input-group mb-3" style="margin-top: 5px">
+                                            {{-- <form action="{{ url('post_comment_product') }}" method="POST">
                                             @csrf --}}
-                                        <input type="text" name="comment" id="textcommentfield" style="width: 300px"
-                                            class="comment_value" placeholder="comment . . ." required>
-                                        <input hidden type="text" name="user_id" value="{{ $data_user->id }}" id=""
-                                            class="user_id_post_comment">
-                                        <input hidden type="text" name="product_comment_id" value="{{ $item->id }}"
-                                            id="" class="product_comment_id">
-                                        <button type="submit" class="btn btn-sm btn-success submit_post_comment"
-                                            onclick="clearText()">Send</button>
+                                            <input type="text" class="form-control comment_value" name="comment"
+                                                id="textcommentfield" placeholder="comment . . ."
+                                                aria-label="Recipient's username" aria-describedby="basic-addon2" required>
+
+                                            @if (Session::has('user'))
+                                                <input hidden type="text" name="user_id" value="{{ $data_user->id }}"
+                                                    id="" class="user_id_post_comment">
+                                                <input hidden type="text" name="product_comment_id"
+                                                    value="{{ $item->id }}" id="" class="product_comment_id">
+
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-outline-success submit_post_comment"
+                                                        type="button" onclick="clearText()">Send</button>
+                                                </div>
+                                            @else
+                                                <a href="{{ route('login') }}">
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-outline-success" type="button">Send</button>
+                                                    </div>
+                                                </a>
+                                            @endif
+                                        </div>
+
                                         {{-- </form> --}}
                                     </div>
                                 </div>

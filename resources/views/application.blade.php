@@ -139,12 +139,14 @@
 
         $(document).ready(function() {
 
+            fetch_comment();
+            setInterval(fetch_comment3, 1000);
+
             function updateScroll() {
                 var element = document.getElementById("comment_id_scroll");
                 element.scrollTop = element.scrollHeight;
             }
-
-            fetch_comment();
+            var index = 0;
 
             function fetch_comment() {
                 var data = {
@@ -161,17 +163,45 @@
                         $.each(response.comment, function(key, item) {
                             if (item.user_id == data.user_id) {
                                 $('.comment_list').append(
-                                    '<div align="right">' + item.username +
-                                    ' </div><div style="margin-left: 40px;padding-right:0px"> <p>' +
-                                    item.comment + '</p ></div>');
+                                    '<div><div align="right">' + item.username +
+                                    ' </div><div class="comment_user"> <p>' +
+                                    item.comment + '</p ></div></div>');
                             } else {
                                 $('.comment_list').append(
-                                    '<div>' + item.username +
-                                    ' </div><div> <p >' +
-                                    item.comment + '</p ></div>');
+                                    '<div><div>' + item.username +
+                                    ' </div><div  class="comment_not_user"> <p >' +
+                                    item.comment + '</p ></div></div>');
                             }
-                            updateScroll();
+                            updateScroll()
+                        });
+                    }
+                });
+            }
 
+            function fetch_comment3() {
+                var data = {
+                    'product_comment_id': $('.product_comment_id').val(),
+                    'user_id': $('.user_id_post_comment').val(),
+                }
+                $.ajax({
+                    type: "GET",
+                    url: "/get_comment",
+                    data: data,
+                    dataType: "json",
+                    success: function(response) {
+                        $('.comment_list').html('');
+                        $.each(response.comment, function(key, item) {
+                            if (item.user_id == data.user_id) {
+                                $('.comment_list').append(
+                                    '<div><div align="right">' + item.username +
+                                    ' </div><div class="comment_user"> <p>' +
+                                    item.comment + '</p ></div></div>');
+                            } else {
+                                $('.comment_list').append(
+                                    '<div><div>' + item.username +
+                                    ' </div><div class="comment_not_user"> <p >' +
+                                    item.comment + '</p ></div></div>');
+                            }
                         });
                     }
                 });
@@ -180,6 +210,7 @@
             function clearText() {
                 document.getElementById('textcommentfield').value = "";
             }
+
             $(document).on('click', '.submit_post_comment', function(e) {
                 e.preventDefault();
                 //console.log('good');
@@ -203,7 +234,6 @@
                         if (response.status == 200) {
                             //console.log(response.comment);
                             fetch_comment();
-                            updateScroll();
                             clearText();
                         }
                     }
