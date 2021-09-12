@@ -161,6 +161,12 @@
                     success: function(response) {
                         $('.comment_list').html('');
                         $.each(response.comment, function(key, item) {
+                            if (data.user_id == null) {
+                                $('.comment_list').append(
+                                    '<div><div>' + item.username +
+                                    ' </div><div  class="comment_not_user"> <p>' +
+                                    item.comment + '</p ></div></div>');
+                            }
                             if (item.user_id == data.user_id) {
                                 $('.comment_list').append(
                                     '<div><div align="right">' + item.username +
@@ -169,7 +175,7 @@
                             } else {
                                 $('.comment_list').append(
                                     '<div><div>' + item.username +
-                                    ' </div><div  class="comment_not_user"> <p >' +
+                                    ' </div><div  class="comment_not_user"> <p>' +
                                     item.comment + '</p ></div></div>');
                             }
                             updateScroll()
@@ -191,6 +197,12 @@
                     success: function(response) {
                         $('.comment_list').html('');
                         $.each(response.comment, function(key, item) {
+                            if (data.user_id == null) {
+                                $('.comment_list').append(
+                                    '<div><div>' + item.username +
+                                    ' </div><div  class="comment_not_user"> <p>' +
+                                    item.comment + '</p ></div></div>');
+                            }
                             if (item.user_id == data.user_id) {
                                 $('.comment_list').append(
                                     '<div><div align="right">' + item.username +
@@ -219,6 +231,8 @@
                     'user_id': $('.user_id_post_comment').val(),
                     'product_comment_id': $('.product_comment_id').val(),
                 }
+                clearText();
+
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -234,7 +248,6 @@
                         if (response.status == 200) {
                             //console.log(response.comment);
                             fetch_comment();
-                            clearText();
                         }
                     }
                 });

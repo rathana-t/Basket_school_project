@@ -270,7 +270,7 @@
                                             padding-bottom: 50px;
                                             border: 1px solid rgb(226, 223, 223);
                                             border-radius: 10px 0px 0px 10px;
-                                            background-color: rgba(255, 255, 255, 0.795);
+                                            background-color: rgba(255, 254, 254, 0.795);
                                             overflow: auto;
 
                                         }
@@ -285,7 +285,7 @@
                                             font-size: 13px;
                                             background-color: rgb(226, 223, 223);
                                             border-radius: 5px;
-                                            width: 80%;
+                                            max-width: 80%;
                                             color: black;
                                         }
 
@@ -299,7 +299,7 @@
                                         }
 
                                         .comment_not_user {
-                                            width: 85%;
+                                            max-width: 85%;
                                             margin-bottom: -10px;
 
                                         }
@@ -307,12 +307,12 @@
                                     </style>
 
                                     <div class="col" style="margin-top: -10px;">
+                                        <div class="text-center" style="color: rgb(134, 134, 134)">
+                                            comments
+                                        </div>
                                         <div class="comment_box" id="comment_id_scroll">
                                             <div class="comment_list">
-                                                <div class="comment_user"></div>
-                                                <div>
-                                                    <p></p>
-                                                </div>
+
                                             </div>
                                         </div>
                                         <div class="input-group mb-3" style="margin-top: 5px;">
@@ -321,21 +321,24 @@
                                             <input type="text" class="form-control comment_value" name="comment"
                                                 id="textcommentfield" placeholder="comment . . ."
                                                 aria-label="Recipient's username" aria-describedby="basic-addon2" required>
-
+                                            <input hidden type="text" name="product_comment_id" value="{{ $item->id }}"
+                                                id="" class="product_comment_id">
                                             @if (Session::has('user'))
                                                 <input hidden type="text" name="user_id" value="{{ $data_user->id }}"
                                                     id="" class="user_id_post_comment">
-                                                <input hidden type="text" name="product_comment_id"
-                                                    value="{{ $item->id }}" id="" class="product_comment_id">
 
                                                 <div class="input-group-append">
                                                     <button class="btn btn-outline-success submit_post_comment"
                                                         type="button" onclick="clearText()">Send</button>
                                                 </div>
                                             @else
-                                                <a href="{{ route('login') }}">
+                                                <input hidden type="text" name="user_id" value="" id=""
+                                                    class="user_id_post_comment">
+                                                <input hidden type="text" name="product_comment_id"
+                                                    value="{{ $item->id }}" id="" class="product_comment_id">
+                                                <a href="{{ route('login') }}" class="btn btn-outline-success">
                                                     <div class="input-group-append">
-                                                        <button class="btn btn-outline-success" type="button">Send</button>
+                                                        Send
                                                     </div>
                                                 </a>
                                             @endif
