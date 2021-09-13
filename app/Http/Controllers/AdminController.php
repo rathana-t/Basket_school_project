@@ -46,7 +46,7 @@ class AdminController extends Controller
     public function dashboard()
     {
         $countUser = DB::table('users')->count();
-        $countShop = DB::table('sellers')->count();
+        $countShop = DB::table('sellers')->where('pending', '1')->count();
         $countPruduct = DB::table('products')
             ->where('completed', 1)
             ->count();

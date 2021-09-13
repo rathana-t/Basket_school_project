@@ -83,7 +83,7 @@ class OrderController extends Controller
             $cart = carts::join('products', 'products.id', '=', 'carts.product_id')
                 ->where('carts.user_id', '=', $data_user->id)
                 ->where('carts.in_order', 0)
-                ->select('products.*', 'carts.id as cart_id')->get();
+                ->select('products.*', 'carts.id as cart_id','carts.user_id')->get();
                 // $data = request()->validate([
                 //    'id_card' => 'required|min:12|max:12'
                 // ]);
@@ -94,12 +94,14 @@ class OrderController extends Controller
                 $set_cart->in_order = 1;
                 $set_cart->update();
             }
-                foreach ($cart as $item) {
-                    $order = new orders();
-                    $order->cart_id = $item->cart_id;
-                    $order->use_payment_method = 1;
-                    $order->save();
-                }
+            foreach ($cart as $item) {
+                $order = new orders();
+                $order->cart_id = $item->cart_id;
+                $order->use_payment_method = 1;
+                $order->user_id = $item->user_id;
+                $order->seller_id = $item->seller_id;
+                $order->save();
+            }
 
 
             return redirect("/order");
@@ -116,7 +118,7 @@ class OrderController extends Controller
             $cart = carts::join('products', 'products.id', '=', 'carts.product_id')
                 ->where('carts.user_id', '=', $data_user->id)
                 ->where('carts.in_order', 0)
-                ->select('products.*', 'carts.id as cart_id')->get();
+                ->select('products.*', 'carts.id as cart_id','carts.user_id')->get();
             // $data = request()->validate([
             //    'id_card' => 'required|min:12|max:12'
             // ]);
@@ -134,6 +136,8 @@ class OrderController extends Controller
                 $order = new orders();
                 $order->cart_id = $item->cart_id;
                 $order->pending = 1;
+                $order->user_id = $item->user_id;
+                $order->seller_id = $item->seller_id;
                 $order->save();
             }
 

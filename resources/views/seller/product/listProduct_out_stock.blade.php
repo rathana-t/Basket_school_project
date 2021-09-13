@@ -43,20 +43,19 @@
                                     {{ $item->stock }} Items
                                 </td>
                             @endif
-
                             <td>
                                 {{ $item->created_at }}
                             </td>
                             <td>
-                                <a href="{{ route('detail', $item->id) }}" class="btn btn-info btn-sm text-white">
+                                <a href="{{ route('detail', $item->id) }}" class="btn btn-sm btn-info text-white">
                                     View
                                 </a>
                                 <a href="{{ route('edit_product', $item->id) }}"
-                                    class="btn btn-primary btn-sm text-white">
+                                    class="btn btn-sm btn-primary text-white">
                                     Edit
                                 </a>
                                 <button type="button" value="{{ $item->id }}"
-                                    class="deletebtn btn-sm btn btn-danger">Delete</button>
+                                    class="deletebtn btn btn-danger btn-sm">Delete</button>
                             </td>
                         </tr>
                     @endforeach

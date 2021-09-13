@@ -13,6 +13,7 @@ use App\Models\cards;
 use App\Models\brands;
 use App\Models\users_has_cards;
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
 use App\Models\Province;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Http\Request;
@@ -26,8 +27,30 @@ use SebastianBergmann\CodeCoverage\Report\PHP;
 
 class UserController extends Controller
 {
+    public function get_comment(Request $req){
+        $comment = Comment::join('users','users.id','=','comments.user_id')
+        ->where('comments.pro_id',$req->product_comment_id)->orderBy('comments.created_at','asc')
+        ->select('comments.*','users.*','users.id as user_id')
+        ->get();
 
+        return response()->json([
+            'comment'=>$comment,
+        ]);
+    }
+    public function post_comment(Request $req){
+        $comment = new Comment();
+        $comment->user_id = $req->user_id;
+        $comment->pro_id = $req->product_comment_id;
+        $comment->comment = $req->comment;
 
+        $comment->save();
+        return response()->json([
+            'status'=>200,
+            // 'message'=> 'Added to wishlist',
+        ]);
+        // return redirect()->back();
+
+    }
 
     public function order()
     {
@@ -69,10 +92,10 @@ class UserController extends Controller
             if ($validPassword) {
                 session()->put('user', $user->id);
                 // if ($req->has('remeberme')) {
-                    Cookie::queue(cookie()->forever('userPhone', $req->phone));
-                    Cookie::queue(cookie()->forever('userPass', $req->password));
-                    // cookie()->forever('userPass', $req->password);
-                    // Cookie::forev('userPhone',$req->phone,1440);
+                Cookie::queue(cookie()->forever('userPhone', $req->phone));
+                Cookie::queue(cookie()->forever('userPass', $req->password));
+                // cookie()->forever('userPass', $req->password);
+                // Cookie::forev('userPhone',$req->phone,1440);
                 //     // Cookie::queue('userPass',$req->password,1440);
                 // } else {
                 //     Cookie::queue(Cookie::forget('userPhone'));
@@ -114,7 +137,7 @@ class UserController extends Controller
         }
         $provinces = Province::all();
         $second_cate = DB::table('se_categories')->get();
-        return view('home/user-profile/userProfile', compact('data_user','provinces', 'second_cate'));
+        return view('home/user-profile/userProfile', compact('data_user', 'provinces', 'second_cate'));
     }
     public function update_profile(Request $request, $id)
     {
@@ -202,7 +225,9 @@ class UserController extends Controller
                 ->join('brands', 'products.brand_id', '=', 'brands.id')
                 ->where('carts.user_id', $data_user->id)
                 ->where('orders.delivery', '=', '1')
-                ->select('products.*', 'orders.message', 'orders.created_at as cre', 'orders.updated_at as up', 'carts.quantity', 'carts.total', 'brands.name as brandName')->orderByDesc('orders.updated_at')->get();
+                ->select('products.*', 'orders.message', 'orders.created_at as cre', 'orders.updated_at as up', 'carts.quantity', 'carts.total', 'brands.name as brandName')
+                ->orderByDesc('orders.updated_at')
+                ->get();
         } else {
             return view('home/login', compact('second_cate'));
         }
@@ -260,10 +285,9 @@ class UserController extends Controller
                 $quantity =  $quantity + $item->quantity;
                 $counter++;
             }
-
-            if($payment=='wing'){
+            if ($payment == 'wing') {
                 return view('home/user-profile/confirm_order_payment', compact('second_cate', 'payment', 'quantity', 'data_user',  'data_pro', 'counter', 'total_price_all_quantity'));
-            }else{
+            } else {
                 return view('home/user-profile/confirm_order', compact('second_cate', 'payment', 'quantity', 'data_user',  'data_pro', 'counter', 'total_price_all_quantity'));
             }
         } else {

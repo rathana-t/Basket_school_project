@@ -26,7 +26,7 @@
     {{-- <hr style="width: 70%"> --}}
     <div class="row mt-2">
         @foreach ($provinces as $item)
-            <div class="col-md-3">
+            <div class="col-md-3" style="margin-bottom: 15px">
                 <div class="card cs-shadow border-0">
                     <div class="card-body text-center">
                         {{ $item->province }}

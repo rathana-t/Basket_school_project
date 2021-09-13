@@ -2,7 +2,6 @@
 
 @section('content')
     @include('/home/components/navigation')
-
     <div class="container">
         @foreach ($detail_pro as $item)
             <div class="deatail_page mt-5">
@@ -118,10 +117,13 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="p-4">
-                                <h2>
+                            <div class="p-4" style="margin-bottom: -30px">
+                                <h4>
                                     {{ $item->name }}
-                                </h2>
+                                </h4>
+                                <small>
+                                    # {{ $item->code_product }}
+                                </small>
                                 <div class="order mt-2 mb-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="20" fill="currentColor"
                                         class="bi bi-bag-check" viewBox="0 0 16 16">
@@ -161,88 +163,198 @@
                                     <span class="pl-4"> {{ $item->brand_name }} </span>
                                 </p>
                                 <hr>
-                                <div style="margin-top: 10px">
-                                    @if (Session::has('user'))
-                                        @if ($item->stock <= 0)
-                                            <button class="btn btn-warning mt-2" style="width: 170px">
-                                                <span class="p-2">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                        fill="currentColor" class="bi bi-bag-x-fill" viewBox="0 0 16 16">
-                                                        <path fill-rule="evenodd"
-                                                            d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zM6.854 8.146a.5.5 0 1 0-.708.708L7.293 10l-1.147 1.146a.5.5 0 0 0 .708.708L8 10.707l1.146 1.147a.5.5 0 0 0 .708-.708L8.707 10l1.147-1.146a.5.5 0 0 0-.708-.708L8 9.293 6.854 8.146z" />
-                                                    </svg>
-                                                </span>
-                                                No Stock
-                                            </button>
-                                        @else
-                                            <form action="{{ route('add_to_cart') }}" method="POST"
+                                <div class="row">
+                                    <div class="col">
+                                        <div style="margin-top: 10px">
+                                            @if (Session::has('user'))
+                                                @if ($item->stock <= 0)
+                                                    <button class="btn btn-warning mt-2" style="width: 170px">
+                                                        <span class="p-2">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                                fill="currentColor" class="bi bi-bag-x-fill"
+                                                                viewBox="0 0 16 16">
+                                                                <path fill-rule="evenodd"
+                                                                    d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zM6.854 8.146a.5.5 0 1 0-.708.708L7.293 10l-1.147 1.146a.5.5 0 0 0 .708.708L8 10.707l1.146 1.147a.5.5 0 0 0 .708-.708L8.707 10l1.147-1.146a.5.5 0 0 0-.708-.708L8 9.293 6.854 8.146z" />
+                                                            </svg>
+                                                        </span>
+                                                        No Stock
+                                                    </button>
+                                                @else
+                                                    {{-- <form action="{{ route('add_to_cart') }}" method="POST"
                                                 enctype="multipart/form-data">
-                                                @csrf
-                                                <input type="hidden" value="{{ $data_user->id }}" name="user_id">
-                                                <input type="hidden" value="{{ $item->id }}" name="product_id">
-                                                <input type="hidden" value="{{ $item->price }}" name="total">
-                                                <input type="hidden" class="form-control form-control-sm" value="1"
-                                                    id="quantity" hidden placeholder="Qty" required name="quantity" min="1"
-                                                    max="{{ $item->stock }}" style="width: 170px">
-                                                <button type="submit" class="btn btn-primary mt-2" style="width: 170px">
-                                                    <span class="p-2">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                            fill="currentColor" class="bi bi-bag-check-fill"
-                                                            viewBox="0 0 16 16">
-                                                            <path fill-rule="evenodd"
-                                                                d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zm-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
-                                                        </svg>
-                                                    </span>
-                                                    Add to cart
-                                                </button>
-                                            </form>
-                                        @endif
-                                        <form action="{{ route('add_to_wishlist') }}" method="POST"
-                                            class="mt-2">
-                                            @csrf
-                                            <input type="hidden" name="u_id" value="{{ $data_user->id }}" id="">
-                                            <input type="hidden" name="pro_id" value="{{ $item->id }}" id="">
-                                            <button type="submit" class="btn btn-danger" style="width: 170px">
-                                                <span class="p-1">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                        fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
-                                                        <path
-                                                            d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                                                    </svg>
-                                                </span>
-                                                Add to wishlist
-                                            </button>
-                                        </form>
+                                                @csrf --}}
+                                                    {{-- <input type="hidden" value="{{ $data_user->id }}" name="user_id"
+                                                class="class_user_id"> --}}
+                                                    {{-- <input type="hidden" value="{{ $item->id }}" name="product_id"
+                                                class="class_product_id"> --}}
+                                                    {{-- <input type="hidden" value="{{ $item->price }}" name="total"
+                                                class="class_total"> --}}
+                                                    {{-- <input type="hidden" class="form-control class_quantity form-control-sm"
+                                                value="1" id="quantity" hidden name="quantity"> --}}
+                                                    <button type="submit" value="{{ $item->id }}"
+                                                        class="btn submit_add_to_cart btn-primary mt-2"
+                                                        style="width: 170px">
+                                                        <span class="p-2">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                                fill="currentColor" class="bi bi-bag-check-fill"
+                                                                viewBox="0 0 16 16">
+                                                                <path fill-rule="evenodd"
+                                                                    d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zm-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
+                                                            </svg>
+                                                        </span>
+                                                        Add to cart
+                                                    </button>
 
-                                    @else
-                                        <a href="{{ url('login') }}" class="btn btn-primary ">
-                                            <span class="p-2">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-bag-check-fill" viewBox="0 0 16 16">
-                                                    <path fill-rule="evenodd"
-                                                        d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zm-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
-                                                </svg>
-                                            </span>
-                                            Add to cart
-                                        </a>
-                                        <a href="{{ url('login') }}" class="btn btn-danger">
-                                            <span class="p-1">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                                                </svg>
-                                            </span>
-                                            Add to wishlist
-                                        </a>
-                                    @endif
+                                                    {{-- </form> --}}
+                                                @endif
+                                                {{-- <form action="{{ route('add_to_wishlist') }}" method="POST"
+                                            class="mt-2">
+                                            @csrf --}}
+                                                <div class="mt-2">
+                                                    <input type="hidden" name="u_id" class="class_u_id"
+                                                        value="{{ $data_user->id }}" id="">
+                                                    <input type="hidden" name="pro_id" class="class_pro_id"
+                                                        value="{{ $item->id }}" id="">
+                                                    <button type="submit" class="btn submit_wish_list btn-danger"
+                                                        style="width: 170px">
+                                                        <span class="p-1">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                                fill="currentColor" class="bi bi-heart"
+                                                                viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                                                            </svg>
+                                                        </span>
+                                                        Add to wishlist
+                                                    </button>
+                                                </div>
+                                                {{-- </form> --}}
+
+                                            @else
+                                                <a href="{{ url('login') }}">
+                                                    <button type="submit" class="btn btn-primary mt-2" style="width: 170px">
+                                                        <span class="p-2">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                                fill="currentColor" class="bi bi-bag-check-fill"
+                                                                viewBox="0 0 16 16">
+                                                                <path fill-rule="evenodd"
+                                                                    d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zm-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
+                                                            </svg>
+                                                        </span>
+                                                        Add to cart
+                                                    </button>
+                                                </a>
+                                                <div class="mt-2">
+                                                    <a href="{{ url('login') }}">
+                                                        <button type="submit" class="btn btn-danger">
+                                                            <span class="p-1">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                    height="16" fill="currentColor" class="bi bi-heart"
+                                                                    viewBox="0 0 16 16">
+                                                                    <path
+                                                                        d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                                                                </svg>
+                                                            </span>
+                                                            Add to wishlist
+                                                        </button>
+                                                    </a>
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <style>
+                                        .comment_box {
+                                            width: 420px;
+                                            height: 250px;
+                                            padding: 5px;
+                                            padding-bottom: 50px;
+                                            border: 1px solid rgb(226, 223, 223);
+                                            border-radius: 10px 0px 0px 10px;
+                                            background-color: rgba(255, 254, 254, 0.795);
+                                            overflow: auto;
+
+                                        }
+
+                                        .comment_list div {
+                                            font-size: 13px;
+                                            color: rgb(44, 81, 182);
+                                        }
+
+                                        .comment_list p {
+                                            padding-left: 5px;
+                                            font-size: 13px;
+                                            background-color: rgb(226, 223, 223);
+                                            border-radius: 5px;
+                                            max-width: 80%;
+                                            color: black;
+                                        }
+
+                                        .comment_user p {
+                                            margin-left: 60px;
+                                        }
+
+                                        .comment_user {
+                                            margin-left: 60px;
+                                            margin-bottom: -10px;
+                                        }
+
+                                        .comment_not_user {
+                                            max-width: 85%;
+                                            margin-bottom: -10px;
+
+                                        }
+
+                                    </style>
+
+                                    <div class="col" style="margin-top: -10px;">
+                                        <div class="text-center" style="color: rgb(134, 134, 134)">
+                                            comments
+                                        </div>
+                                        <div class="comment_box" id="comment_id_scroll">
+                                            <div class="comment_list">
+
+                                            </div>
+                                        </div>
+                                        <div class="input-group mb-3" style="margin-top: 5px;">
+                                            {{-- <form action="{{ url('post_comment_product') }}" method="POST">
+                                            @csrf --}}
+                                            <input type="text" class="form-control comment_value" name="comment"
+                                                id="textcommentfield" placeholder="comment . . ."
+                                                aria-label="Recipient's username" aria-describedby="basic-addon2" required>
+                                            <input hidden type="text" name="product_comment_id" value="{{ $item->id }}"
+                                                id="" class="product_comment_id">
+                                            @if (Session::has('user'))
+                                                <input hidden type="text" name="user_id" value="{{ $data_user->id }}"
+                                                    id="" class="user_id_post_comment">
+
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-outline-success submit_post_comment"
+                                                        type="button" onclick="clearText()">Send</button>
+                                                </div>
+                                            @else
+                                                <input hidden type="text" name="user_id" value="" id=""
+                                                    class="user_id_post_comment">
+                                                <input hidden type="text" name="product_comment_id"
+                                                    value="{{ $item->id }}" id="" class="product_comment_id">
+                                                <a href="{{ route('login') }}" class="btn btn-outline-success">
+                                                    <div class="input-group-append">
+                                                        Send
+                                                    </div>
+                                                </a>
+                                            @endif
+                                        </div>
+
+                                        {{-- </form> --}}
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
         @endforeach
+
         <div class="product pt-4 pb-2" id="Product">
             <div class="mt-5 related-product">
                 <p class="font-weight-light">All related Product</p>
@@ -385,6 +497,7 @@
             </div>
         </div>
     </div>
+
     <script>
         //plugin bootstrap minus and plus
         //http://jsfiddle.net/laelitenetwork/puJ6G/

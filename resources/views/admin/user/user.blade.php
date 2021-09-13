@@ -44,9 +44,9 @@
                             </td>
                             <td class="text-left">
                                 <a href="user/{{ $item->id }}">
-                                    <button type="button" class="btn btn-info">View</button>
+                                    <button type="button" class="btn btn-sm btn-info">View</button>
                                 </a>
-                                <button type="button" class="btn btn-danger">Delete</button>
+                                <button type="button" class="btn btn-sm btn-danger">Delete</button>
                             </td>
                         </tr>
                     @endforeach

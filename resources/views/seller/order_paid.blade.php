@@ -9,13 +9,13 @@
                     <th scope="col">Image product</th>
                     <th scope="col">Product</th>
                     <th scope="col">Stock</th>
-                    <th scope="col">Name</th>
+                    {{-- <th scope="col">Name</th> --}}
                     <th scope="col">Phone</th>
                     <th scope="col">Address</th>
                     <th scope="col">Quality</th>
                     <th scope="col">Total</th>
                     <th scope="col">Cofirm</th>
-                    <th scope="col">Action</th>
+                    <th scope="col" style="width: 180px">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -27,9 +27,9 @@
                                     class="img-fluid">
                             </a>
                         </td>
-                        <td>{{ $item->name }}</td>
+                        <td class="limit_text_sss">{{ $item->name }}</td>
                         <td>{{ $item->stock }}</td>
-                        <td>{{ $item->u_name }}</td>
+                        {{-- <td>{{ $item->u_name }}</td> --}}
                         <td>{{ $item->u_phone }}</td>
                         <td>
                             <div class="b Address" style="cursor: pointer">
@@ -42,15 +42,16 @@
                         <td>
                             @if ($item->stock - $item->quantity >= 0)
                                 <button type="button" value="{{ $item->order_id }}"
-                                    class="open_delivery_modal btn btn-primary">
+                                    class="open_delivery_modal btn-sm btn btn-primary">
                                     Delivery
                                 </button>
                             @else
-                                <button class="btn btn-warning">
+                                <button class="btn btn-sm btn-warning">
                                     no stock
                                 </button>
                             @endif
-                            <button type="button" value="{{ $item->order_id }}" class="cancel_modal btn btn-danger">
+                            <button type="button" value="{{ $item->order_id }}"
+                                class="cancel_modal btn-sm btn btn-danger">
                                 cancel
                             </button>
                         </td>
