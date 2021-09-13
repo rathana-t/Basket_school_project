@@ -578,8 +578,37 @@ class AdminController extends Controller
     }
     public function TNC()
     {
-        $getTNC = DB::select('select * from term_n_condition');
-        return view('admin\termAndCondition\addTermAndCondition',compact('getTNC'));
+        $getTNC = DB::table('term_n_condition')->where('type','user')->get();
+        // $getTNCseller = DB::select('select * from term_n_condition where type=seller');
+        $getTNCseller = DB::table('term_n_condition')->where('type','seller')->get();
+        // $getTitleseller = DB::table('term_n_condition')->get();
+        return view('admin\termAndCondition\addTermAndCondition',compact('getTNC','getTNCseller'));
+    }
+    public function addtitleUser(Request $request)
+    {
+        // $request->validate([
+        //     'title'=>'required',
+        //     'description'=>'required',
+        // ]);
+        $titleseller= new TNC();
+        $titleseller->text = $request->description;
+        $titleseller->title=$request->title;
+        $titleseller->type='user';
+        $titleseller->save();
+        return redirect()->back()->with('success', 'Added new title to users Term And Condition successfully');
+    }
+    public function edit_t_n_c($id){
+        $getTNC = DB::table('term_n_condition')->where('id',$id)->first();
+        return view('admin\termAndCondition\editTNC',compact('getTNC'));
+    }
+    public function update_TNC(Request $req){
+        $getTNC = TNC::find($req->id);
+
+        $getTNC->title = $req->title;
+        $getTNC->text = $req->description;
+
+        $getTNC->update();        
+        return redirect()->back()->with('success', 'Added new title to users Term And Condition successfully');
     }
     public function addTNC(Request $request)
     {
@@ -588,7 +617,21 @@ class AdminController extends Controller
         ]);
         $tnc= new TNC();
         $tnc->text=$request->TNC;
+        $tnc->title=$request->title;
+        $tnc->type='user';
         $tnc->save();
-        return redirect()->back()->with('success', 'Added new Term And Condition successfully');
+        return redirect()->back()->with('success', 'Added new Term And Condition to users successfully');
+    }
+    public function addTNCseller(Request $request)
+    {
+        $request->validate([
+            'TNCSeller'=>'required',
+        ]);
+        $tncseller= new TNC();
+        $tncseller->text=$request->TNCSeller;
+        $tncseller->type='seller';
+        $tncseller->save();
+
+        return redirect()->back()->with('success', 'Added new Term And Condition to sellers successfully');
     }
 }
