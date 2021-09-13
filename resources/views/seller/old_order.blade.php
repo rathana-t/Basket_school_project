@@ -8,13 +8,13 @@
                 <tr class="text-center">
                     <th scope="col">Image product</th>
                     <th scope="col">Product</th>
-                    <th scope="col">Name</th>
+                    {{-- <th scope="col">Name</th> --}}
                     <th scope="col">Phone</th>
                     <th scope="col">Address</th>
                     <th scope="col">Quality</th>
                     <th scope="col">Total</th>
                     <th scope="col">Delivery</th>
-                    <th scope="col">Action</th>
+                    <th scope="col" style="width: 180px">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -31,8 +31,8 @@
                             <img src="{{ asset('images/imgProduct') }}/{{ $item->img_product }}" alt=""
                                 class="img-fluid">
                         </td>
-                        <td>{{ $item->name }}</td>
-                        <td>{{ $item->u_name }}</td>
+                        <td class="limit_text_sss">{{ $item->name }}</td>
+                        {{-- <td>{{ $item->u_name }}</td> --}}
                         <td>{{ $item->u_phone }}</td>
                         <td>
                             <div class="b Address" style="cursor: pointer">
@@ -44,12 +44,12 @@
                         <td>{{ $item->updated_at }}</td>
                         <td>
                             <a href="{{ url('product', $item->id) }}">
-                                <button class="btn btn-primary">
+                                <button class="btn btn-sm btn-primary">
                                     view
                                 </button>
                             </a>
                             <a href="{{ url('/remove-oldorder', $item->order_id) }}">
-                                <button class="btn btn-danger">
+                                <button class="btn btn-sm btn-danger">
                                     delete
                                 </button>
                             </a>

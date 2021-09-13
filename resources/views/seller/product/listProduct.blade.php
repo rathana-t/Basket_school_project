@@ -48,14 +48,15 @@
                                 {{ $item->created_at }}
                             </td>
                             <td>
-                                <a href="{{ route('detail', $item->id) }}" class="btn btn-info text-white">
+                                <a href="{{ route('detail', $item->id) }}" class="btn btn-info btn-sm text-white">
                                     View
                                 </a>
-                                <a href="{{ route('edit_product', $item->id) }}" class="btn btn-primary text-white">
+                                <a href="{{ route('edit_product', $item->id) }}"
+                                    class="btn btn-primary btn-sm text-white">
                                     Edit
                                 </a>
                                 <button type="button" value="{{ $item->id }}"
-                                    class="deletebtn btn btn-danger">Delete</button>
+                                    class="deletebtn btn-sm btn btn-danger">Delete</button>
                             </td>
                         </tr>
                     @endforeach
