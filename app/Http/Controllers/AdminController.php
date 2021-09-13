@@ -607,8 +607,9 @@ class AdminController extends Controller
         $getTNC->title = $req->title;
         $getTNC->text = $req->description;
 
-        $getTNC->update();        
-        return redirect()->back()->with('success', 'Added new title to users Term And Condition successfully');
+        $getTNC->update();
+        // return redirect()->back()->with('success', 'Added new title to users Term And Condition successfully');
+        return redirect()->route('TNC');
     }
     public function addTNC(Request $request)
     {
