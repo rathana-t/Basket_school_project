@@ -576,13 +576,35 @@ class AdminController extends Controller
         $province->save();
         return redirect()->back()->with('success', 'Added new province successfully');
     }
+    public function addTNC_user()
+    {
+        $getTNC = DB::table('term_n_condition')->where('type','user')->get();
+        // $getTNCseller = DB::select('select * from term_n_condition where type=seller');
+        $getTNCseller = DB::table('term_n_condition')->where('type','seller')->get();
+        $countTNCseller= TNC::where('type','seller')->count();
+        $countTNC = TNC::where('type','user')->count();
+        return view('admin\termAndCondition\addTermAndCondition',compact('getTNC','getTNCseller','countTNC','countTNCseller'));
+    }
+    public function addTNC_seller()
+    {
+        $getTNC = DB::table('term_n_condition')->where('type','seller')->get();
+        // $getTNCseller = DB::select('select * from term_n_condition where type=seller');
+        $getTNCseller = DB::table('term_n_condition')->where('type','seller')->get();
+        $countTNCseller= TNC::where('type','seller')->count();
+        $countTNC = TNC::where('type','user')->count();
+        return  view('admin\termAndCondition\AddTncSeller',compact('getTNC','getTNCseller','countTNC','countTNCseller'));
+    }
     public function TNC()
     {
         $getTNC = DB::table('term_n_condition')->where('type','user')->get();
         // $getTNCseller = DB::select('select * from term_n_condition where type=seller');
         $getTNCseller = DB::table('term_n_condition')->where('type','seller')->get();
         // $getTitleseller = DB::table('term_n_condition')->get();
-        return view('admin\termAndCondition\addTermAndCondition',compact('getTNC','getTNCseller'));
+        // $countTNC = term_n_condition::where('type','user')->count();
+        $countTNCseller= TNC::where('type','seller')->count();
+        $countTNC = TNC::where('type','user')->count();
+
+        return view('admin\termAndCondition\addTermAndCondition',compact('getTNC','getTNCseller','countTNC','countTNCseller'));
     }
     public function addtitleUser(Request $request)
     {
@@ -595,7 +617,7 @@ class AdminController extends Controller
         $titleseller->title=$request->title;
         $titleseller->type='user';
         $titleseller->save();
-        return redirect()->back()->with('success', 'Added new title to users Term And Condition successfully');
+        return redirect()->back()->with('success', 'Added Term And Condition for user successfully');
     }
     public function edit_t_n_c($id){
         $getTNC = DB::table('term_n_condition')->where('id',$id)->first();
@@ -609,7 +631,12 @@ class AdminController extends Controller
 
         $getTNC->update();
         // return redirect()->back()->with('success', 'Added new title to users Term And Condition successfully');
-        return redirect()->route('TNC');
+        if($getTNC->type=='user'){
+            return redirect()->route('TNC');
+
+        }else{
+            return redirect()->route('seller_term_con');
+        }
     }
     public function addTNC(Request $request)
     {
@@ -625,14 +652,20 @@ class AdminController extends Controller
     }
     public function addTNCseller(Request $request)
     {
-        $request->validate([
-            'TNCSeller'=>'required',
-        ]);
-        $tncseller= new TNC();
-        $tncseller->text=$request->TNCSeller;
-        $tncseller->type='seller';
-        $tncseller->save();
-
-        return redirect()->back()->with('success', 'Added new Term And Condition to sellers successfully');
+        $titleseller= new TNC();
+        $titleseller->title=$request->title;
+        $titleseller->text = $request->description;
+        $titleseller->type='seller';
+        $titleseller->save();
+        return redirect()->back()->with('success', 'Added Term And Condition for seller successfully');
     }
+    public function delete_term_condition($id){
+        $tn = TNC::find($id);
+
+        $tn->delete();
+
+        return redirect()->back()->with('success', 'Deleted successfully');
+
+    }
+
 }

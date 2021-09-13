@@ -7,10 +7,11 @@
             <div class="row justify-content-center">
                 <div class="col-md-3 col-sm-6 col-xs-12 mb-3">
                     <a href="/admin/addTNCuser" class="Product-btn" role="button">
-                        <div class="card shadow-sm rounded bg-dark">
-                            <div class="card-body text-white">
+                        <div class="card shadow-sm rounded bg-light">
+                            <div class="card-body text-dark">
                                 <div class="q">
                                     Add Term and Condition for user
+
                                 </div>
                                 <div>
                                     {{ $countTNC }}
@@ -21,8 +22,8 @@
                 </div>
                 <div class="col-md-3 col-sm-6 col-xs-12 ">
                     <a href="/admin/addTNCseller">
-                        <div class="card shadow-sm rounded bg-light">
-                            <div class="card-body text-dark">
+                        <div class="card shadow-sm rounded bg-dark">
+                            <div class="card-body text-white">
                                 <div class="q">
                                     Add Term and Condition for seller
                                 </div>
@@ -41,18 +42,17 @@
             {{ Session::get('success') }}
         </div>
     @endif
-    <h5>
-        Add Title to user Term and Condition
+    <h5 class="mt-3">
+        Add Term and Condition to seller
     </h5>
-    <form action="{{ url('/admin/add-title-u') }}" method="POST">
+    <form action="{{ url('/admin/add-TNC-seller') }}" method="POST">
         @csrf
         <div class="form-row">
             <div class="form-group col-md-4">
-                <input class="form-control form-control-lg" name="title" type="text" placeholder="title" required>
+                <input class="form-control form-control-lg" name="title" type="text" placeholder="title">
             </div>
             <div class="form-group col-md-4">
-                <input class="form-control form-control-lg" name="description" type="text" placeholder="description"
-                    required>
+                <input class="form-control form-control-lg" name="description" type="text" placeholder="description">
             </div>
             <div class="form-group col-md-4">
                 <button type="submit" class="btn btn-lg btn-dark">
@@ -62,7 +62,6 @@
         </div>
         {!! $errors->first('province', "<span class='text-danger'>:message</span>") !!}
     </form>
-
     <div class="row mt-2">
         <div class="col-md-12">
             <div class="card cs-shadow border-0">
@@ -99,6 +98,4 @@
             </div>
         </div>
     </div>
-    {{-- <hr style="width: 70%"> --}}
-
-@stop
+@endsection

@@ -194,9 +194,13 @@ Route::prefix('admin')->group(function () {
     Route::post('/update_TNC', [AdminController::class, 'update_TNC'])->middleware('admin');
     Route::post('/add-province', [AdminController::class, 'addProvince'])->name('addProvince')->middleware('admin');
     Route::get('/termNcondition', [AdminController::class, 'TNC'])->name('TNC')->middleware('admin');
+    Route::get('/addTNCuser', [AdminController::class, 'addTNC_user'])->middleware('admin');
+    Route::get('/addTNCseller', [AdminController::class, 'addTNC_seller'])->name('seller_term_con')->middleware('admin');
     Route::post('/add-title-u', [AdminController::class, 'addtitleUser'])->middleware('admin');
     Route::post('/add-TNC', [AdminController::class, 'addTNC'])->middleware('admin');
     Route::post('/add-TNC-seller', [AdminController::class, 'addTNCseller'])->middleware('admin');
+    Route::get('/delete_term_condition/{id}', [AdminController::class, 'delete_term_condition'])->middleware('admin');
+    
 
 
 });
