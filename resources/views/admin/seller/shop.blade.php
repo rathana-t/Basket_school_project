@@ -3,7 +3,11 @@
 @section('sidebar-content')
 
     @include('/admin/components/modal')
-
+    @if (Session::has('success'))
+        <div class="alert alert-success" role="alert">
+            {{ Session::get('success') }}
+        </div>
+    @endif
     <div class="dashboard">
         <div class="small-card">
             <div class="row justify-content-center">
@@ -122,7 +126,12 @@
                                 <a href="seller/{{ $item->id }}">
                                     <button type="button" class="btn btn-sm btn-outline-dark">View</button>
                                 </a>
-                                <button type="button" class="btn btn-sm btn-dark">Delete</button>
+                                <button type="button" class="btn btn-sm btn-danger remove_seller_id"
+                                    value="{{ $item->id }}" style="margin-right:100px ">
+                                    Delete
+                                </button>
+
+
                             </td>
                         </tr>
                     @endforeach
@@ -133,5 +142,37 @@
             {{ $sellers->links() }}
         </div>
     </div>
+    <div class="modal fade" id="delete_product" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    Are you are sure you want to delete this shop?
+                    <br>
+                    All products will also delete.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <form action="{{ url('/admin/deleteSeller') }}" method="post">
 
+                        @csrf
+                        <input hidden id="remove_seller" name="id">
+                        <button type="submit" class="btn btn-danger">
+                            Delete
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            $(document).on('click', '.remove_seller_id', function() {
+                var seller_id = $(this).val();
+                // alert(cart_id);
+                $('#delete_product').modal('show');
+                $('#remove_seller').val(seller_id);
+            })
+        });
+    </script>
 @endsection

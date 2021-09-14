@@ -170,6 +170,7 @@ Route::prefix('admin')->group(function () {
     Route::post('/shopreject/{id}', [AdminController::class, 'shopReject'])->middleware('admin');
     Route::get('/editRegister/{test}', [AdminController::class, 'seller_edit_register']);
     Route::post('/sellerEditRegister/{test}', [AdminController::class, 'seller_update_register']);
+    Route::Post('/deleteSeller', [AdminController::class, 'deleteSeller']);
 
     // Route::get('/seller', [AdminController::class, 'seller'])->middleware('admin');
     Route::get('/seller/{id}', [AdminController::class, 'sellerDetail'])->name('sellerHasProduct')->middleware('admin');

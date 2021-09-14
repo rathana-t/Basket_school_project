@@ -206,7 +206,17 @@ class AdminController extends Controller
         DB::table('password_resets')->where(['token' => $token])->delete();
         return redirect()->route('login_page');
     }
-
+    public function deleteSeller(Request $r)
+    {
+        $deleteseller = sellers::find($r->id);
+        $deleteproduct = products::where('seller_id',$r->id)->get();
+        foreach($deleteproduct as $item){
+            $Productseller= products::find($item->id);
+            $Productseller->delete();
+        }
+        $deleteseller->delete();
+        return redirect()->back()->with('success','delete seller successfully');
+    }
     public function seller_edit_register($token)
     {
         $emails = DB::table('password_resets')->where('token', $token)->first();
