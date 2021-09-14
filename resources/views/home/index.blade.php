@@ -276,11 +276,8 @@
                                                             Order Now
                                                         </button>
                                                     </a>
-                                                </div>
-                                                <div class="col">
-
                                                     <a href="{{ url('login') }}">
-                                                        <button class="btn btn-sm btn-danger">
+                                                        <button class="btn btn-sm btn-dark">
                                                             <span>
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16"
                                                                     height="16" fill="currentColor" class="bi bi-heart"
