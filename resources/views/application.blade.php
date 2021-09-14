@@ -35,6 +35,11 @@
             -moz-appearance: textfield;
         }
 
+        .swal_size_me {
+            width: 200px;
+            font-size: 8px;
+        }
+
     </style>
 </head>
 
@@ -83,12 +88,16 @@
                         //console.log(response);
                         if (response.status == 200) {
                             Swal.fire({
-                                position: 'top-end',
+                                position: 'top-cennter',
                                 icon: 'success',
                                 title: 'Added to cart',
+                                customClass: 'swal_size_me',
                                 showConfirmButton: false,
                                 timer: 1000
                             })
+                            $('.totalcart_for_me').html('');
+                            $('.totalcart_for_me').text(
+                                response.total);
                         }
                     }
                 });
@@ -125,12 +134,16 @@
                         //console.log(response);
                         if (response.status == 200) {
                             Swal.fire({
-                                position: 'top-end',
+                                position: 'top-cennter',
                                 icon: 'success',
                                 title: 'Added to wishlist',
+                                customClass: 'swal_size_me',
                                 showConfirmButton: false,
                                 timer: 1000
                             })
+                            $('.totalWishlist_for_me').html('');
+                            $('.totalWishlist_for_me').text(
+                                response.totalWishlist);
                         }
                     }
                 });

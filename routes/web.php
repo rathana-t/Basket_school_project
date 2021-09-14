@@ -170,6 +170,7 @@ Route::prefix('admin')->group(function () {
     Route::post('/shopreject/{id}', [AdminController::class, 'shopReject'])->middleware('admin');
     Route::get('/editRegister/{test}', [AdminController::class, 'seller_edit_register']);
     Route::post('/sellerEditRegister/{test}', [AdminController::class, 'seller_update_register']);
+    Route::Post('/deleteSeller', [AdminController::class, 'deleteSeller']);
 
     // Route::get('/seller', [AdminController::class, 'seller'])->middleware('admin');
     Route::get('/seller/{id}', [AdminController::class, 'sellerDetail'])->name('sellerHasProduct')->middleware('admin');
@@ -190,7 +191,17 @@ Route::prefix('admin')->group(function () {
     Route::get('/user/{id}', [AdminController::class, 'userDetail'])->middleware('admin');
 
     Route::get('/province', [AdminController::class, 'province'])->middleware('admin');
+    Route::get('/edit_t_n_c/{id}', [AdminController::class, 'edit_t_n_c'])->middleware('admin');
+    Route::post('/update_TNC', [AdminController::class, 'update_TNC'])->middleware('admin');
     Route::post('/add-province', [AdminController::class, 'addProvince'])->name('addProvince')->middleware('admin');
-    Route::get('/termNcondition', [AdminController::class, 'TNC'])->middleware('admin');
+    Route::get('/termNcondition', [AdminController::class, 'TNC'])->name('TNC')->middleware('admin');
+    Route::get('/addTNCuser', [AdminController::class, 'addTNC_user'])->middleware('admin');
+    Route::get('/addTNCseller', [AdminController::class, 'addTNC_seller'])->name('seller_term_con')->middleware('admin');
+    Route::post('/add-title-u', [AdminController::class, 'addtitleUser'])->middleware('admin');
     Route::post('/add-TNC', [AdminController::class, 'addTNC'])->middleware('admin');
+    Route::post('/add-TNC-seller', [AdminController::class, 'addTNCseller'])->middleware('admin');
+    Route::get('/delete_term_condition/{id}', [AdminController::class, 'delete_term_condition'])->middleware('admin');
+    
+
+
 });

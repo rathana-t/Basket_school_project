@@ -206,7 +206,17 @@ class AdminController extends Controller
         DB::table('password_resets')->where(['token' => $token])->delete();
         return redirect()->route('login_page');
     }
-
+    public function deleteSeller(Request $r)
+    {
+        $deleteseller = sellers::find($r->id);
+        $deleteproduct = products::where('seller_id',$r->id)->get();
+        foreach($deleteproduct as $item){
+            $Productseller= products::find($item->id);
+            $Productseller->delete();
+        }
+        $deleteseller->delete();
+        return redirect()->back()->with('success','delete seller successfully');
+    }
     public function seller_edit_register($token)
     {
         $emails = DB::table('password_resets')->where('token', $token)->first();
@@ -576,10 +586,67 @@ class AdminController extends Controller
         $province->save();
         return redirect()->back()->with('success', 'Added new province successfully');
     }
+    public function addTNC_user()
+    {
+        $getTNC = DB::table('term_n_condition')->where('type','user')->get();
+        // $getTNCseller = DB::select('select * from term_n_condition where type=seller');
+        $getTNCseller = DB::table('term_n_condition')->where('type','seller')->get();
+        $countTNCseller= TNC::where('type','seller')->count();
+        $countTNC = TNC::where('type','user')->count();
+        return view('admin\termAndCondition\addTermAndCondition',compact('getTNC','getTNCseller','countTNC','countTNCseller'));
+    }
+    public function addTNC_seller()
+    {
+        $getTNC = DB::table('term_n_condition')->where('type','seller')->get();
+        // $getTNCseller = DB::select('select * from term_n_condition where type=seller');
+        $getTNCseller = DB::table('term_n_condition')->where('type','seller')->get();
+        $countTNCseller= TNC::where('type','seller')->count();
+        $countTNC = TNC::where('type','user')->count();
+        return  view('admin\termAndCondition\AddTncSeller',compact('getTNC','getTNCseller','countTNC','countTNCseller'));
+    }
     public function TNC()
     {
-        $getTNC = DB::select('select * from term_n_condition');
-        return view('admin\termAndCondition\addTermAndCondition',compact('getTNC'));
+        $getTNC = DB::table('term_n_condition')->where('type','user')->get();
+        // $getTNCseller = DB::select('select * from term_n_condition where type=seller');
+        $getTNCseller = DB::table('term_n_condition')->where('type','seller')->get();
+        // $getTitleseller = DB::table('term_n_condition')->get();
+        // $countTNC = term_n_condition::where('type','user')->count();
+        $countTNCseller= TNC::where('type','seller')->count();
+        $countTNC = TNC::where('type','user')->count();
+
+        return view('admin\termAndCondition\addTermAndCondition',compact('getTNC','getTNCseller','countTNC','countTNCseller'));
+    }
+    public function addtitleUser(Request $request)
+    {
+        // $request->validate([
+        //     'title'=>'required',
+        //     'description'=>'required',
+        // ]);
+        $titleseller= new TNC();
+        $titleseller->text = $request->description;
+        $titleseller->title=$request->title;
+        $titleseller->type='user';
+        $titleseller->save();
+        return redirect()->back()->with('success', 'Added Term And Condition for user successfully');
+    }
+    public function edit_t_n_c($id){
+        $getTNC = DB::table('term_n_condition')->where('id',$id)->first();
+        return view('admin\termAndCondition\editTNC',compact('getTNC'));
+    }
+    public function update_TNC(Request $req){
+        $getTNC = TNC::find($req->id);
+
+        $getTNC->title = $req->title;
+        $getTNC->text = $req->description;
+
+        $getTNC->update();
+        // return redirect()->back()->with('success', 'Added new title to users Term And Condition successfully');
+        if($getTNC->type=='user'){
+            return redirect()->route('TNC');
+
+        }else{
+            return redirect()->route('seller_term_con');
+        }
     }
     public function addTNC(Request $request)
     {
@@ -588,7 +655,27 @@ class AdminController extends Controller
         ]);
         $tnc= new TNC();
         $tnc->text=$request->TNC;
+        $tnc->title=$request->title;
+        $tnc->type='user';
         $tnc->save();
-        return redirect()->back()->with('success', 'Added new Term And Condition successfully');
+        return redirect()->back()->with('success', 'Added new Term And Condition to users successfully');
     }
+    public function addTNCseller(Request $request)
+    {
+        $titleseller= new TNC();
+        $titleseller->title=$request->title;
+        $titleseller->text = $request->description;
+        $titleseller->type='seller';
+        $titleseller->save();
+        return redirect()->back()->with('success', 'Added Term And Condition for seller successfully');
+    }
+    public function delete_term_condition($id){
+        $tn = TNC::find($id);
+
+        $tn->delete();
+
+        return redirect()->back()->with('success', 'Deleted successfully');
+
+    }
+
 }

@@ -25,6 +25,7 @@ class CartController extends Controller
 {
     public function add_to_cart(Request $request)
     {
+
         $allcart = carts::all();
         $data_user = Users::findOrFail(session('user'));
         $pro = products::find($request->product_id);
@@ -36,8 +37,11 @@ class CartController extends Controller
                 if ($request->has('redirect')) {
                     return redirect()->route('route_cart');
                 }
+        $total = HomeController::countCart();
+
                 return response()->json([
                     'status'=>200,
+                    'total'=>$total,
                     'message'=> 'Added to wishlist',
                 ]);
             }
@@ -50,11 +54,14 @@ class CartController extends Controller
         $newcart->product_id = $request->product_id;
 
         $newcart->save();
+        $total = HomeController::countCart();
+
         if ($request->has('redirect')) {
             return redirect()->route('route_cart');
         }
         return response()->json([
             'status'=>200,
+            'total'=>$total,
             'message'=> 'Added to wishlist',
         ]);
     }
@@ -98,7 +105,6 @@ class CartController extends Controller
     public function add_to_wishlist(Request $reg)
     {
         $data_user = Users::findOrFail(session('user'));
-
         $allwishlist = wishlist::all();
         foreach ($allwishlist as $wishlist) {
             if ($wishlist->u_id ==  $data_user->id && $reg->pro_id == $wishlist->pro_id) {
@@ -119,9 +125,11 @@ class CartController extends Controller
         $wishlist->pro_id = $reg->pro_id;
 
         $wishlist->save();
+        $totalWishlist = HomeController::countWishlist();
 
         return response()->json([
             'status'=>200,
+            'totalWishlist'=>$totalWishlist,
             'message'=> 'Added to wishlist',
         ]);
 
