@@ -459,7 +459,7 @@ class AdminController extends Controller
             ->join('sellers', 'products.seller_id', '=', 'sellers.id')
             ->where('products.id', $id)
             ->where('products.completed', '=', '1')
-            ->select('products.*', 'categories.name as cat_name', 'brands.name as brand_name', 'sellers.address', 'sellers.store_name', 'se_categories.name as secondCate')
+            ->select('products.*','products.id as pro_id', 'categories.name as cat_name', 'brands.name as brand_name', 'sellers.address', 'sellers.store_name', 'se_categories.name as secondCate')
             ->get();
         return view('admin/product/show', compact('detail_pro'));
     }
@@ -545,6 +545,7 @@ class AdminController extends Controller
         $msg->msg = $req->msg;
         $msg->seller_id = $req->input('seller_id');
         $msg->sent = $req->input('sent');
+        $msg->pro_id = $req->input('pro_id');
         $msg->save();
         return redirect('admin/product');
     }

@@ -167,7 +167,8 @@
 
         <form method="POST" enctype="multipart/form-data" action="{{ route('sendMsg') }}">
             @csrf
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -178,6 +179,7 @@
                         </div>
                         <div class="modal-body">
                             <input type="hidden" value="{{ $item->seller_id }}" name="seller_id">
+                            <input type="hidden" value="{{ $item->pro_id }}" name="pro_id">
                             <input type="hidden" value="1" name="sent">
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Message</label>

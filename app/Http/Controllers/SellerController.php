@@ -1064,7 +1064,9 @@ class SellerController extends Controller
         if (session()->has('seller')) {
             $data_seller = sellers::findOrFail(session('seller'));
         }
-        $message = messages::find($id);
+        $message = messages::join('products','products.id','=','messages.pro_id')->where('messages.id',$id)
+        ->select('products.*','products.msg as msg_pro','messages.*')
+        ->first();
         if ($message->sent == 0) {
             $message->sent = $message->sent;
             return view('seller/detailMessage', compact('message', 'data_seller'));

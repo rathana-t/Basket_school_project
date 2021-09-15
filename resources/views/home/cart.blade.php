@@ -34,7 +34,9 @@
                                                                 <img style="width: 100px;"
                                                                     src="/images/imgProduct/{{ $item->img_product }}"
                                                                     alt="" class="img-fluid">
-                                                                {{ $item->name }}
+                                                                <div class="b">
+                                                                    {{ $item->name }}
+                                                                </div>
                                                             </a>
                                                         </td>
                                                         <td>
