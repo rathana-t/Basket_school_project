@@ -26,7 +26,9 @@
                                             class="img-fluid">
                                         <div class="product_name">
                                             <a href="/brand/{{ $brand_id->id }}/product/{{ $item->id }}">
-                                                {{ $item->name }}
+                                                <div class="b">
+                                                    {{ $item->name }}
+                                                </div>
                                             </a>
                                         </div>
                                     </a>

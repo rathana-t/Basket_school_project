@@ -304,7 +304,7 @@ class HomeController extends Controller
             ->select('products.*', 'sellers.store_name')
             ->where('completed', 1)
             ->where('products.id', '!=', $id)
-            ->paginate(20);
+            ->paginate(8);
         $comment = Comment::join('users','users.id','=','comments.user_id')
         ->where('comments.pro_id',$id)
         ->get();
