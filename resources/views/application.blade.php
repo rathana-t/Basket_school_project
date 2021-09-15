@@ -172,24 +172,27 @@
                     data: data,
                     dataType: "json",
                     success: function(response) {
-                        $('.comment_list').html('');
+                        $('.commmmmmm').html('');
                         $.each(response.comment, function(key, item) {
                             if (data.user_id == null) {
-                                $('.comment_list').append(
-                                    '<div><div>' + item.username +
-                                    ' </div><div  class="comment_not_user"> <p>' +
-                                    item.comment + '</p ></div></div>');
+                                $('.commmmmmm').append(
+                                    '<div class="cs-card mb-2"><div class="p-1"><div class="name not_user">' +
+                                    item.username +
+                                    '</div><small class="not_user_comment">' + item
+                                    .comment + '</small></div></div>');
                             }
                             if (item.user_id == data.user_id) {
-                                $('.comment_list').append(
-                                    '<div><div align="right">' + item.username +
-                                    ' </div><div class="comment_user"> <p>' +
-                                    item.comment + '</p ></div></div>');
+                                $('.commmmmmm').append(
+                                    '<div class="cs-card mb-2"><div class="p-1"><div class="name text-right not_user">' +
+                                    item.username +
+                                    '</div><small class="not_user_comment">' + item
+                                    .comment + '</small></div></div>');
                             } else {
-                                $('.comment_list').append(
-                                    '<div><div>' + item.username +
-                                    ' </div><div  class="comment_not_user"> <p>' +
-                                    item.comment + '</p ></div></div>');
+                                $('.commmmmmm').append(
+                                    '<div class="cs-card mb-2"><div class="p-1"><div class="name not_user">' +
+                                    item.username +
+                                    '</div><small class="not_user_comment">' + item
+                                    .comment + '</small></div></div>');
                             }
                             updateScroll()
                         });
@@ -208,24 +211,27 @@
                     data: data,
                     dataType: "json",
                     success: function(response) {
-                        $('.comment_list').html('');
+                        $('.commmmmmm').html('');
                         $.each(response.comment, function(key, item) {
                             if (data.user_id == null) {
-                                $('.comment_list').append(
-                                    '<div><div>' + item.username +
-                                    ' </div><div  class="comment_not_user"> <p>' +
-                                    item.comment + '</p ></div></div>');
+                                $('.commmmmmm').append(
+                                    '<div class="cs-card mb-2"><div class="p-1"><div class="name not_user">' +
+                                    item.username +
+                                    '</div><small class="not_user_comment">' + item
+                                    .comment + '</small></div></div>');
                             }
                             if (item.user_id == data.user_id) {
-                                $('.comment_list').append(
-                                    '<div><div align="right">' + item.username +
-                                    ' </div><div class="comment_user"> <p>' +
-                                    item.comment + '</p ></div></div>');
+                                $('.commmmmmm').append(
+                                    '<div class="cs-card mb-2"><div class="p-1"><div class="name text-right not_user">' +
+                                    item.username +
+                                    '</div><small class="not_user_comment">' + item
+                                    .comment + '</small></div></div>');
                             } else {
-                                $('.comment_list').append(
-                                    '<div><div>' + item.username +
-                                    ' </div><div class="comment_not_user"> <p >' +
-                                    item.comment + '</p ></div></div>');
+                                $('.commmmmmm').append(
+                                    '<div class="cs-card mb-2"><div class="p-1"><div class="name not_user">' +
+                                    item.username +
+                                    '</div><small class="not_user_comment">' + item
+                                    .comment + '</small></div></div>');
                             }
                         });
                     }
