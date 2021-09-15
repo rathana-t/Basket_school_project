@@ -262,90 +262,7 @@
                                             @endif
                                         </div>
                                     </div>
-                                    <style>
-                                        .comment_box {
-                                            width: 420px;
-                                            height: 250px;
-                                            padding: 5px;
-                                            padding-bottom: 50px;
-                                            border: 1px solid rgb(226, 223, 223);
-                                            border-radius: 10px 0px 0px 10px;
-                                            background-color: rgba(255, 254, 254, 0.795);
-                                            overflow: auto;
 
-                                        }
-
-                                        .comment_list div {
-                                            font-size: 13px;
-                                            color: rgb(44, 81, 182);
-                                        }
-
-                                        .comment_list p {
-                                            padding-left: 5px;
-                                            font-size: 13px;
-                                            background-color: rgb(226, 223, 223);
-                                            border-radius: 5px;
-                                            max-width: 80%;
-                                            color: black;
-                                        }
-
-                                        .comment_user p {
-                                            margin-left: 60px;
-                                        }
-
-                                        .comment_user {
-                                            margin-left: 60px;
-                                            margin-bottom: -10px;
-                                        }
-
-                                        .comment_not_user {
-                                            max-width: 85%;
-                                            margin-bottom: -10px;
-
-                                        }
-
-                                    </style>
-
-                                    <div class="col" style="margin-top: -10px;">
-                                        <div class="text-center" style="color: rgb(134, 134, 134)">
-                                            comments
-                                        </div>
-                                        <div class="comment_box" id="comment_id_scroll">
-                                            <div class="comment_list">
-
-                                            </div>
-                                        </div>
-                                        <div class="input-group mb-3" style="margin-top: 5px;">
-                                            {{-- <form action="{{ url('post_comment_product') }}" method="POST">
-                                            @csrf --}}
-                                            <input type="text" class="form-control comment_value" name="comment"
-                                                id="textcommentfield" placeholder="comment . . ."
-                                                aria-label="Recipient's username" aria-describedby="basic-addon2" required>
-                                            <input hidden type="text" name="product_comment_id" value="{{ $item->id }}"
-                                                id="" class="product_comment_id">
-                                            @if (Session::has('user'))
-                                                <input hidden type="text" name="user_id" value="{{ $data_user->id }}"
-                                                    id="" class="user_id_post_comment">
-
-                                                <div class="input-group-append">
-                                                    <button class="btn btn-outline-success submit_post_comment"
-                                                        type="button" onclick="clearText()">Send</button>
-                                                </div>
-                                            @else
-                                                <input hidden type="text" name="user_id" value="" id=""
-                                                    class="user_id_post_comment">
-                                                <input hidden type="text" name="product_comment_id"
-                                                    value="{{ $item->id }}" id="" class="product_comment_id">
-                                                <a href="{{ route('login') }}" class="btn btn-outline-success">
-                                                    <div class="input-group-append">
-                                                        Send
-                                                    </div>
-                                                </a>
-                                            @endif
-                                        </div>
-
-                                        {{-- </form> --}}
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -355,49 +272,169 @@
 
         @endforeach
 
-        <div class="product pt-4 pb-2" id="Product">
+        <style>
+            .comment_box {
+                height: 250px;
+                padding: 5px;
+                padding-bottom: 50px;
+                border-radius: 10px 0px 0px 10px;
+                overflow: auto;
+            }
+
+            .comment_list div {
+                font-size: 13px;
+                color: rgb(44, 81, 182);
+            }
+
+            .comment_list p {
+                padding-left: 5px;
+                font-size: 13px;
+                background-color: rgb(226, 223, 223);
+                border-radius: 5px;
+                max-width: 80%;
+                color: black;
+            }
+
+            .comment_user p {
+                margin-left: 60px;
+            }
+
+            .comment_user {
+                margin-left: 60px;
+                margin-bottom: -10px;
+            }
+
+            .comment_not_user {
+                max-width: 85%;
+                margin-bottom: -10px;
+
+            }
+
+            .cs-card {
+                background-color: rgb(236, 236, 236);
+                border-radius: 10px;
+            }
+
+            .feedback .card {
+                max-height: 600px;
+                overflow: auto;
+            }
+
+            .feedback .name {
+                font-size: 16px;
+                font-weight: 500;
+            }
+
+            .feedback .card::-webkit-scrollbar {
+                height: 5px;
+                width: 8px;
+            }
+
+            ::-webkit-scrollbar-thumb {
+                background: #afb3b6;
+                border-radius: 5px;
+            }
+
+            .des::-webkit-scrollbar {
+                height: 5px;
+                width: 8px;
+            }
+
+            ::-webkit-scrollbar-thumb {
+                background: #afb3b6;
+                border-radius: 5px;
+            }
+
+        </style>
+        <div class="mt-3 feedback pb-4">
+            <h5 class="text-center">
+                Feedback
+            </h5>
+            <div class="row justify-content-center">
+                <div class="col-8">
+
+                    <div class="card border-0 cs-shadow rounded">
+                        {{-- <div class="comment_box" id="comment_id_scroll">
+                            <div class="comment_list">
+
+                            </div>
+                        </div> --}}
+                        <div class="mb-2 mt-2">
+                            <div class="pl-2 pr-2">
+                                @for ($i = 0; $i < 5; $i++)
+                                    <div class="cs-card mb-2">
+                                        <div class="p-1">
+                                            <div class="name">
+                                                Choeng
+                                            </div>
+                                            <small>
+                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus dolor
+                                                soluta
+                                                doloremque maiores, alias fugiat amet. Est, distinctio, nulla aspernatur eum
+                                                totam
+                                                officiis, quae quam dolorum optio doloremque tempora quasi.
+                                            </small>
+                                        </div>
+                                    </div>
+                                @endfor
+                            </div>
+                            <div class="d-flex flex-row-reverse ">
+                                <div class="pl-2 pr-2">
+                                    <div class="cs-card">
+                                        <div class="p-1">
+                                            <div class="name text-right">
+                                                Choeng
+                                            </div>
+                                            <small>
+                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus dolor
+                                                soluta
+                                                doloremque maiores, alias fugiat amet. Est, distinctio, nulla aspernatur eum
+                                                totam
+                                                officiis, quae quam dolorum optio doloremque tempora quasi.
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mt-2 cs-shadow">
+                        {{-- <form action="{{ url('post_comment_product') }}" method="POST">
+                @csrf --}}
+                        <input type="text" class="form-control comment_value" name="comment" id="textcommentfield"
+                            placeholder="Comment . . ." aria-label="Recipient's username" aria-describedby="basic-addon2"
+                            required>
+                        <input hidden type="text" name="product_comment_id" value="{{ $item->id }}" id=""
+                            class="product_comment_id">
+                        @if (Session::has('user'))
+                            <input hidden type="text" name="user_id" value="{{ $data_user->id }}" id=""
+                                class="user_id_post_comment">
+
+                            <div class="input-group-append">
+                                <button class="btn btn-primary submit_post_comment" type="button"
+                                    onclick="clearText()">Send</button>
+                            </div>
+                        @else
+                            <input hidden type="text" name="user_id" value="" id="" class="user_id_post_comment">
+                            <input hidden type="text" name="product_comment_id" value="{{ $item->id }}" id=""
+                                class="product_comment_id">
+                            <a href="{{ route('login') }}" class="btn btn-primary">
+                                <div class="input-group-append">
+                                    Send
+                                </div>
+                            </a>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- <div class="product pt-4 pb-2" id="Product">
             <div class="mt-5 related-product">
                 <p class="font-weight-light">All related Product</p>
             </div>
             <div class="product-item">
                 <div class="row">
-                    {{-- @foreach ($related_pro as $item)
-                        @if ($item->s_cat_id == $product_id->s_cat_id)
-                            <div class="col-md-3 col-sm-6 col-xs-12">
-                                <div class="card mb-3">
-                                    <div class="m-3">
-                                        <a href="/product/product/{{ $item->id }}">
-                                            <img src="{{ asset('images/imgProduct') }}/{{ $item->img_product }}"
-                                                alt="" class="img-fluid">
-                                        </a>
-                                    </div>
-
-                                    <div class="border-top">
-                                        <div class="pl-4 pr-4 pb-2 pt-2">
-                                            <div class="product_name">
-                                                <a href="/product/product/{{ $item->id }}">
-                                                    <div class="b">
-                                                        {{ $item->name }}
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class="price">
-                                                <a href="/product/product/{{ $item->id }}">
-                                                    ${{ $item->price }}
-                                                </a>
-                                            </div>
-                                            <div class="store_name">
-                                                <a href="/store/{{ $item->seller_id }}" class="text-muted">
-                                                    {{ $item->store_name }}
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endif
-                    @endforeach --}}
-
                     @foreach ($related_pro as $item)
                         @if ($item->s_cat_id == $product_id->s_cat_id)
                             <div class="col-md-3 col-sm-6 col-xs-12">
@@ -612,36 +649,35 @@
                         @endif
                     @endforeach
                 </div>
-                @if (Session::has('add-to-cart-success'))
-                    <script>
-                        $(document).ready(function() {
-                            Swal.fire({
-                                position: 'top-end',
-                                icon: 'success',
-                                title: 'Add to cart',
-                                showConfirmButton: false,
-                                timer: 1000
-                            })
-                        });
-                    </script>
-                @endif
-                @if (Session::has('add-to-wishlist-success'))
-                    <script>
-                        $(document).ready(function() {
-                            Swal.fire({
-                                position: 'top-end',
-                                icon: 'success',
-                                title: 'Add to wishlist',
-                                showConfirmButton: false,
-                                timer: 1000
-                            })
-                        });
-                    </script>
-                @endif
-            </div>
-        </div>
-    </div>
 
+            </div>
+        </div> --}}
+    @if (Session::has('add-to-cart-success'))
+        <script>
+            $(document).ready(function() {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Add to cart',
+                    showConfirmButton: false,
+                    timer: 1000
+                })
+            });
+        </script>
+    @endif
+    @if (Session::has('add-to-wishlist-success'))
+        <script>
+            $(document).ready(function() {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Add to wishlist',
+                    showConfirmButton: false,
+                    timer: 1000
+                })
+            });
+        </script>
+    @endif
     <script>
         //plugin bootstrap minus and plus
         //http://jsfiddle.net/laelitenetwork/puJ6G/
