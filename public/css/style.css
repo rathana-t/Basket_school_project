@@ -208,10 +208,10 @@ body {
 }
 
 .product .product-item img {
-    border-radius: 5px;
-    object-fit: cover;
     height: 180px;
     width: 300px;
+    object-fit: contain;
+    border-radius: 5px;
 }
 .product .product-item .cateItem img {
     border-radius: 5px;
