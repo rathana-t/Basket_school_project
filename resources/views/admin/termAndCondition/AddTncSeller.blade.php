@@ -10,7 +10,7 @@
                         <div class="card shadow-sm rounded bg-light">
                             <div class="card-body text-dark">
                                 <div class="q">
-                                    Add Term and Condition for user
+                                    Term & Condition for user
 
                                 </div>
                                 <div>
@@ -25,7 +25,7 @@
                         <div class="card shadow-sm rounded bg-dark">
                             <div class="card-body text-white">
                                 <div class="q">
-                                    Add Term and Condition for seller
+                                    Term & Condition for seller
                                 </div>
                                 <div>
                                     {{ $countTNCseller }}
@@ -43,7 +43,7 @@
         </div>
     @endif
     <h5 class="mt-3">
-        Add Term and Condition to seller
+        Add Term and Condition for seller
     </h5>
     <form action="{{ url('/admin/add-TNC-seller') }}" method="POST">
         @csrf

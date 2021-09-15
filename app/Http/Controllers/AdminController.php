@@ -155,7 +155,7 @@ class AdminController extends Controller
     }
     public function user()
     {
-        $users = DB::table('users')->paginate(5);
+        $users = DB::table('users')->where('type','user')->paginate(10);
         return view('admin/user/user', compact('users'));
     }
 

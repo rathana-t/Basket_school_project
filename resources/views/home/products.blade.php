@@ -170,24 +170,41 @@
                                                 <div>
                                                     @if (Session::has('user'))
                                                         <div class="row">
-                                                            <form action="{{ route('add_to_cart') }}" method="POST"
-                                                                enctype="multipart/form-data">
-                                                                @csrf
-                                                                <input type="hidden" value="{{ $data_user->id }}"
-                                                                    name="user_id">
-                                                                <input type="hidden" value="{{ $item->id }}"
-                                                                    name="product_id">
-                                                                <input type="hidden" value="{{ $item->price }}"
-                                                                    name="total">
-                                                                <input type="hidden" class="form-control form-control-sm"
-                                                                    value="1" id="quantity" hidden placeholder="Qty"
-                                                                    required name="quantity" min="1"
-                                                                    max="{{ $item->stock }}" style="width: 170px">
-                                                                <input hidden type="checkbox" checked name="redirect" id="">
-                                                                <button class="btn btn-sm btn-primary mr-2 ml-2">
-                                                                    Order Now
+                                                            @if ($item->stock <= 0)
+                                                                <button class="btn btn-sm btn-warning mr-2 ml-2 no-stock">
+                                                                    <span>
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                            height="16" fill="currentColor"
+                                                                            class="bi bi-bag-x-fill" viewBox="0 0 16 16">
+                                                                            <path fill-rule="evenodd"
+                                                                                d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zM6.854 8.146a.5.5 0 1 0-.708.708L7.293 10l-1.147 1.146a.5.5 0 0 0 .708.708L8 10.707l1.146 1.147a.5.5 0 0 0 .708-.708L8.707 10l1.147-1.146a.5.5 0 0 0-.708-.708L8 9.293 6.854 8.146z" />
+                                                                        </svg>
+                                                                    </span>
+                                                                    no stock
                                                                 </button>
-                                                            </form>
+                                                            @else
+
+                                                                <form action="{{ route('add_to_cart') }}" method="POST"
+                                                                    enctype="multipart/form-data">
+                                                                    @csrf
+                                                                    <input type="hidden" value="{{ $data_user->id }}"
+                                                                        name="user_id">
+                                                                    <input type="hidden" value="{{ $item->id }}"
+                                                                        name="product_id">
+                                                                    <input type="hidden" value="{{ $item->price }}"
+                                                                        name="total">
+                                                                    <input type="hidden"
+                                                                        class="form-control form-control-sm" value="1"
+                                                                        id="quantity" hidden placeholder="Qty" required
+                                                                        name="quantity" min="1" max="{{ $item->stock }}"
+                                                                        style="width: 170px">
+                                                                    <input hidden type="checkbox" checked name="redirect"
+                                                                        id="">
+                                                                    <button class="btn btn-sm btn-primary mr-2 ml-2">
+                                                                        Order Now
+                                                                    </button>
+                                                                </form>
+                                                            @endif
 
                                                             <button type="button" value="{{ $item->id }}"
                                                                 class="btn submit_wish_list btn-sm btn-dark mr-3">
@@ -220,11 +237,25 @@
                                                         </button>
                                                     </a> --}}
                                                         <div class="row">
-                                                            <a href="{{ url('login') }}">
-                                                                <button class="btn btn-sm btn-primary mr-2 ml-2">
-                                                                    Order Now
+                                                            @if ($item->stock <= 0)
+                                                                <button class="btn btn-sm btn-warning mr-2 ml-2 no-stock">
+                                                                    <span>
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                            height="16" fill="currentColor"
+                                                                            class="bi bi-bag-x-fill" viewBox="0 0 16 16">
+                                                                            <path fill-rule="evenodd"
+                                                                                d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zM6.854 8.146a.5.5 0 1 0-.708.708L7.293 10l-1.147 1.146a.5.5 0 0 0 .708.708L8 10.707l1.146 1.147a.5.5 0 0 0 .708-.708L8.707 10l1.147-1.146a.5.5 0 0 0-.708-.708L8 9.293 6.854 8.146z" />
+                                                                        </svg>
+                                                                    </span>
+                                                                    no stock
                                                                 </button>
-                                                            </a>
+                                                            @else
+                                                                <a href="{{ url('login') }}">
+                                                                    <button class="btn btn-sm btn-primary mr-2 ml-2">
+                                                                        Order Now
+                                                                    </button>
+                                                                </a>
+                                                            @endif
                                                             <a href="{{ url('login') }}">
                                                                 <button class="btn btn-sm btn-dark mr-3">
                                                                     <span>
