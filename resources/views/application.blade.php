@@ -36,8 +36,8 @@
         }
 
         .swal_size_me {
-            width: 200px;
-            font-size: 8px;
+            width: 300px;
+            font-size: 10px;
         }
 
     </style>

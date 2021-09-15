@@ -7,10 +7,9 @@
             color: #035ebe;
         }
 
-        /* .search .sticky-top {
-                                                                                                                                                top: 20px !important;
-                                                                                                                                                bottom: 100px !important;
-                                                                                                                                            } */
+        .search .card .card-footer {
+            background-color: white;
+        }
 
     </style>
 
@@ -84,22 +83,22 @@
                         <div class="row">
                             @foreach ($data as $item)
                                 <div class="col-3">
-                                    <div class="card mb-3">
-                                        <div class="m-3">
+                                    <div class="card mb-3 shadow-sm rounded border-0">
+                                        <div class="pt-2 pb-2 pl-3 pr-3">
                                             <a href="/product/product/{{ $item->id }}">
                                                 <img src="{{ asset('images/imgProduct') }}/{{ $item->img_product }}"
                                                     alt="" class="img-fluid">
                                             </a>
+                                            <div class="product_name">
+                                                <a href="/product/product/{{ $item->id }}">
+                                                    <div class="b">
+                                                        {{ $item->name }}
+                                                    </div>
+                                                </a>
+                                            </div>
                                         </div>
-                                        <div class="border-top">
-                                            <div class="pl-4 pr-4 pb-2 pt-2">
-                                                <div class="product_name">
-                                                    <a href="/product/product/{{ $item->id }}">
-                                                        <div class="b">
-                                                            {{ $item->name }}
-                                                        </div>
-                                                    </a>
-                                                </div>
+                                        <div class="card-footer">
+                                            <div class="d-flex justify-content-between">
                                                 <div class="price">
                                                     <a href="/product/product/{{ $item->id }}">
                                                         ${{ $item->price }}
@@ -108,53 +107,19 @@
                                                 <div class="row">
                                                     @if (Session::has('user'))
                                                         @if ($item->stock <= 0)
-                                                            <div class="col">
-                                                                <button class="btn btn-sm btn-warning mt-2">
-                                                                    <span>
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                                            height="16" fill="currentColor"
-                                                                            class="bi bi-bag-x-fill" viewBox="0 0 16 16">
-                                                                            <path fill-rule="evenodd"
-                                                                                d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zM6.854 8.146a.5.5 0 1 0-.708.708L7.293 10l-1.147 1.146a.5.5 0 0 0 .708.708L8 10.707l1.146 1.147a.5.5 0 0 0 .708-.708L8.707 10l1.147-1.146a.5.5 0 0 0-.708-.708L8 9.293 6.854 8.146z" />
-                                                                        </svg>
-                                                                    </span>
-                                                                    No Stock
-                                                                </button>
-                                                            </div>
+                                                            <button class="btn btn-sm btn-warning mr-2 ml-2 no-stock">
+                                                                <span>
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                        height="16" fill="currentColor"
+                                                                        class="bi bi-bag-x-fill" viewBox="0 0 16 16">
+                                                                        <path fill-rule="evenodd"
+                                                                            d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zM6.854 8.146a.5.5 0 1 0-.708.708L7.293 10l-1.147 1.146a.5.5 0 0 0 .708.708L8 10.707l1.146 1.147a.5.5 0 0 0 .708-.708L8.707 10l1.147-1.146a.5.5 0 0 0-.708-.708L8 9.293 6.854 8.146z" />
+                                                                    </svg>
+                                                                </span>
+                                                            </button>
                                                         @else
-                                                            <div class="col">
-                                                                <button type="submit" value="{{ $item->id }}"
-                                                                    class="btn submit_add_to_cart btn-sm btn-primary mt-2">
-                                                                    <span>
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                                            height="16" fill="currentColor"
-                                                                            class="bi bi-bag-check-fill"
-                                                                            viewBox="0 0 16 16">
-                                                                            <path fill-rule="evenodd"
-                                                                                d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zm-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
-                                                                        </svg>
-                                                                    </span>
-                                                                </button>
-                                                            </div>
-                                                        @endif
-                                                        <div class="col">
-                                                            <div class="mt-2">
-                                                                <button type="button" value="{{ $item->id }}"
-                                                                    class="btn btn-sm submit_wish_list btn-danger">
-                                                                    <span>
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                                            height="16" fill="currentColor"
-                                                                            class="bi bi-heart" viewBox="0 0 16 16">
-                                                                            <path
-                                                                                d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                                                                        </svg>
-                                                                    </span>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    @else
-                                                        <div class="col">
-                                                            <a href="{{ url('login') }}" class="btn btn-sm btn-primary ">
+                                                            <button type="submit" value="{{ $item->id }}"
+                                                                class="btn submit_add_to_cart btn-sm btn-primary mr-2 ml-2">
                                                                 <span>
                                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16"
                                                                         height="16" fill="currentColor"
@@ -163,21 +128,42 @@
                                                                             d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zm-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
                                                                     </svg>
                                                                 </span>
-                                                            </a>
-                                                        </div>
-                                                        <div class="col">
+                                                            </button>
+                                                        @endif
+                                                        <button type="button" value="{{ $item->id }}"
+                                                            class="btn submit_wish_list btn-sm btn-dark mr-3">
+                                                            <span>
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                    height="16" fill="currentColor" class="bi bi-heart"
+                                                                    viewBox="0 0 16 16">
+                                                                    <path
+                                                                        d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                                                                </svg>
+                                                            </span>
+                                                        </button>
+                                                    @else
+                                                        <a href="{{ url('login') }}"
+                                                            class="btn btn-sm btn-primary mr-2 ml-2">
+                                                            <span>
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                    height="16" fill="currentColor"
+                                                                    class="bi bi-bag-check-fill" viewBox="0 0 16 16">
+                                                                    <path fill-rule="evenodd"
+                                                                        d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zm-.646 5.354a.5.5 0 0 0-.708-.708L7.5 10.793 6.354 9.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
+                                                                </svg>
+                                                            </span>
+                                                        </a>
 
-                                                            <a href="{{ url('login') }}" class="btn btn-sm btn-danger">
-                                                                <span class="p-1">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                                        height="16" fill="currentColor"
-                                                                        class="bi bi-heart" viewBox="0 0 16 16">
-                                                                        <path
-                                                                            d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                                                                    </svg>
-                                                                </span>
-                                                            </a>
-                                                        </div>
+                                                        <a href="{{ url('login') }}" class="btn btn-sm btn-dark mr-3">
+                                                            <span>
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                    height="16" fill="currentColor" class="bi bi-heart"
+                                                                    viewBox="0 0 16 16">
+                                                                    <path
+                                                                        d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                                                                </svg>
+                                                            </span>
+                                                        </a>
                                                     @endif
                                                 </div>
                                             </div>
@@ -192,4 +178,23 @@
             </div>
         </div>
     </div>
+    <script>
+        // $(document).ready(function() {
+        //     Swal.fire({
+        //         position: 'top-end',
+        //         icon: 'success',
+        //         title: 'Add to cart',
+        //         showConfirmButton: false,
+        //         timer: 1000
+        //     })
+        // });
+        $('.no-stock').click(function() {
+            Swal.fire({
+                title: 'Out Of Stock',
+                showConfirmButton: false,
+                customClass: 'swal_size_me',
+                timer: 1000
+            })
+        });
+    </script>
 @endsection
