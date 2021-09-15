@@ -44,12 +44,16 @@
             border-color: #ffffff;
         }
 
+        .thmenh {
+            font-size: 15px;
+        }
+
     </style>
     <div class="container">
         <div class="row d-flex justify-content-center pt-4">
             <div class="col-md-4">
                 @if (session('fail'))
-                    <div class="text-danger" style="margin-left:25%">
+                    <div class="text-danger text-center">
                         {{ session('fail') }}
                     </div>
                 @endif
@@ -65,12 +69,15 @@
                             <h4 class="pb-3 text-center">
                                 Login
                             </h4>
-                            <input class="form-control form-control-lg mb-3" type="number" placeholder="Phone Number"
+                            <input class=" form-control form-control-lg mb-3" type="number" placeholder="Phone Number"
                                 name="phone" id="exampleInputPhone" @if (Cookie::has('userPhone')) value="{{ Cookie::get('userPhone') }}" @endif>
+                            {!! $errors->first('phone', "<p class='thmenh text-danger'>:message</p>") !!}
+
                             <div class="input-group mb-3  password">
                                 <input type="password" class="form-control form-control-lg" id="exampleInputPassword1"
                                     name="password" @if (Cookie::has('userPass')) value="{{ Cookie::get('userPass') }}" @endif placeholder="Password"
                                     aria-label="Recipient's username" aria-describedby="button-addon2">
+
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" onclick="visibility3()"
                                         id="button-addon2">

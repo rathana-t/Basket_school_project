@@ -8,7 +8,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-5">
                     @if (session('fail'))
-                        <div class="text-danger" style="margin-left:25%">
+                        <div class="text-danger text-center">
                             {{ session('fail') }}
                         </div>
                     @endif
@@ -24,7 +24,9 @@
                                 <div class="form-group">
                                     <label for="phone">Phone number</label>
                                     <input type="number" {{-- okdfkfdj --}} class="form-control" id="exampleInputPhone"
-                                        name="phone" required>
+                                        name="phone" value="{{ old('phone') }}" required>
+                                    {!! $errors->first('phone', "<p class='thmenh text-danger'>:message</p>") !!}
+
                                 </div>
 
                                 <div class="form-group">
@@ -32,6 +34,8 @@
                                     <div class="input-group">
                                         <input type="password" class="form-control" id="exampleInputPassword1"
                                             name="password" required>
+                                        {!! $errors->first('password', "<p class='thmenh text-danger'>:message</p>") !!}
+
                                         <span class="input-group-btn btn-outline-light" id="eyeSlash">
                                             <button class="btn btn-dark" onclick="visibility3()" type="button"><i
                                                     class="fa fa-eye-slash" aria-hidden="true"></i></button>

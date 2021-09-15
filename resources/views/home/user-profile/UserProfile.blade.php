@@ -27,12 +27,12 @@
                                 <label for="description">Email</label>
                                 <input type="email" name="email" value="{{ $data_user->email }}"
                                     class="form-control form-control-lg" placeholder="Enter email...">
-                                @if ($data_user->email == '')
+                                {{-- @if ($data_user->email == '')
                                     <small class='text-danger'>
                                         You should fill email, it can help when you forget your password!
                                     </small>
-                                @endif
-                                {!! $errors->first('email', "<span class='text-danger'>Email field is required.</span>") !!}
+                                @endif --}}
+                                {!! $errors->first('email', "<span class='text-danger'>:message</span>") !!}
                             </div>
                             <div class="form-group">
                                 <label for="inputState">City/Province</label>

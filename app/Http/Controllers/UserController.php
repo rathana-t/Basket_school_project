@@ -13,6 +13,7 @@ use App\Models\cards;
 use App\Models\brands;
 use App\Models\users_has_cards;
 use App\Http\Controllers\Controller;
+use App\Models\BadWord;
 use App\Models\Comment;
 use App\Models\Province;
 use Illuminate\Support\Facades\Cookie;
@@ -22,6 +23,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use SebastianBergmann\CodeCoverage\Report\PHP;
+use Illuminate\Support\Carbon;
 
 // use Symfony\Component\HttpFoundation\Session\Session;
 
@@ -30,17 +32,22 @@ class UserController extends Controller
     public function get_comment(Request $req){
         $comment = Comment::join('users','users.id','=','comments.user_id')
         ->where('comments.pro_id',$req->product_comment_id)->orderBy('comments.created_at','asc')
-        ->select('comments.*','users.*','users.id as user_id')
+        ->select('comments.*','comments.created_at as time','users.*','users.id as user_id')
         ->get();
-
         return response()->json([
             'comment'=>$comment,
         ]);
     }
+
     public function post_comment(Request $req){
+
+
+        $checker = BadWord::all();
+
         $comment = new Comment();
         $comment->user_id = $req->user_id;
         $comment->pro_id = $req->product_comment_id;
+
         $comment->comment = $req->comment;
 
         $comment->save();
@@ -83,7 +90,7 @@ class UserController extends Controller
     function signin(Request $req)
     {
         $data = request()->validate([
-            'phone' => 'required',
+            'phone' => 'required|min:9|max:10',
             'password' => 'required',
         ]);
         $user = DB::table('users')->where("phone", "=", $data["phone"])->first();
@@ -115,7 +122,7 @@ class UserController extends Controller
     {
         $data = request()->validate([
             'username' => 'required',
-            'phone' => 'required|unique:users,phone',
+            'phone' => 'required|min:9|max:10|unique:users,phone',
             'password' => 'required|min:8',
             'con_password' => 'required|min:8|same:password',
         ]);
@@ -145,6 +152,7 @@ class UserController extends Controller
         $second_cate = DB::table('se_categories')->get();
         $this->validate($request, [
             'username' => 'required',
+            'email' => 'required|email|max:70|unique:users,email',
         ]);
         $update->username = $request->username;
         $update->address = $request->address;
@@ -248,16 +256,16 @@ class UserController extends Controller
     }
     public function accept_switch(Request $req)
     {
-        Session::forget('user');
-        Session::forget('joined');
         $data = request()->validate([
-            'phone' => 'required',
+            'phone' => 'required|min:9|max:10',
             'password' => 'required',
         ]);
         $user = DB::table('users')->where("phone", "=", $data["phone"])->first();
         if ($user) {
             $validPassword = Hash::check($data['password'], $user->password);
             if ($validPassword) {
+                Session::forget('user');
+                Session::forget('joined');
                 session()->put('user', $user->id);
                 return redirect('profile')->with('success', "Successfully Login!");
             }

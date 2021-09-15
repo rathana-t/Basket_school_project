@@ -36,6 +36,9 @@
                     <li>
                         <a href="">About us</a>
                     </li>
+                    <li>
+                        <a href="">Term & Condition</a>
+                    </li>
                 </ul>
             </div>
         </div>
