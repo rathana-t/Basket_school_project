@@ -236,10 +236,9 @@
                                                 ${{ $item->price }}
                                             </a>
                                         </div>
-                                        <div class="row">
-
+                                        <div>
                                             @if (Session::has('user'))
-                                                <div class="col">
+                                                <div class="row">
                                                     <form action="{{ route('add_to_cart') }}" method="POST"
                                                         enctype="multipart/form-data">
                                                         @csrf
@@ -250,14 +249,13 @@
                                                         id="quantity" hidden placeholder="Qty" required name="quantity" min="1"
                                                         max="{{ $item->stock }}" style="width: 170px"> --}}
                                                         <input hidden type="checkbox" checked name="redirect" id="">
-                                                        <button class="btn btn-sm btn-primary">
+                                                        <button class="btn btn-sm btn-primary mr-2 ml-2">
                                                             Order Now
                                                         </button>
                                                     </form>
-                                                </div>
-                                                <div class="col">
+
                                                     <button type="button" value="{{ $item->id }}"
-                                                        class="btn btn-sm submit_wish_list btn-danger">
+                                                        class="btn submit_wish_list btn-sm btn-dark mr-3">
                                                         <span>
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                                 fill="currentColor" class="bi bi-heart"
@@ -269,15 +267,14 @@
                                                     </button>
                                                 </div>
                                             @else
-                                                <div class="col">
-
+                                                <div class="row">
                                                     <a href="{{ url('login') }}">
-                                                        <button class="btn btn-sm btn-primary">
+                                                        <button class="btn btn-sm btn-primary mr-2 ml-2">
                                                             Order Now
                                                         </button>
                                                     </a>
                                                     <a href="{{ url('login') }}">
-                                                        <button class="btn btn-sm btn-dark">
+                                                        <button class="btn btn-sm btn-dark mr-3">
                                                             <span>
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16"
                                                                     height="16" fill="currentColor" class="bi bi-heart"
@@ -291,7 +288,6 @@
                                                 </div>
                                             @endif
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
