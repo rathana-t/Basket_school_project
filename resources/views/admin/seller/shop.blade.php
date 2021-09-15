@@ -54,7 +54,7 @@
                                     </div>
                                     <div class="col-lg-8">
                                         <h5 class="q">
-                                            Shop Pending
+                                            Pending
                                         </h5>
                                         <div>
                                             {{ $sellerspending }}
@@ -126,12 +126,10 @@
                                 <a href="seller/{{ $item->id }}">
                                     <button type="button" class="btn btn-sm btn-outline-dark">View</button>
                                 </a>
-                                <button type="button" class="btn btn-sm btn-danger remove_seller_id"
-                                    value="{{ $item->id }}" style="margin-right:100px ">
+                                <button type="button" class="btn btn-sm btn-dark remove_seller_id"
+                                    value="{{ $item->id }}">
                                     Delete
                                 </button>
-
-
                             </td>
                         </tr>
                     @endforeach

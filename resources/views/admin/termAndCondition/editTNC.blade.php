@@ -15,8 +15,8 @@
         <strong for="">Description</strong>
         <textarea name="description" id="" cols="30" rows="10" class="form-control">{{ $getTNC->text }}</textarea>
         <div class="text-center" style="margin-top: 10px ">
-            <button type="submit" class="btn btn-sm btn-success col-4 btn-lg">
-                update
+            <button type="submit" class="btn btn-primary col-4">
+                Update
             </button>
         </div>
     </form>

@@ -214,7 +214,7 @@
         text-decoration: none;
     }
 
-    .dashboard .small-card .card {
+    /* .dashboard .small-card .card {
         border: none;
     }
 
@@ -300,7 +300,7 @@
 
     .dashboard .big-card .card {
         border: none;
-    }
+    } */
 
     #sidebar {
         min-width: 290px;

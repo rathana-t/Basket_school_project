@@ -49,13 +49,13 @@
         @csrf
         <div class="form-row">
             <div class="form-group col-md-4">
-                <input class="form-control form-control-lg" name="title" type="text" placeholder="title">
+                <input class="form-control" name="title" type="text" placeholder="title">
             </div>
             <div class="form-group col-md-4">
-                <input class="form-control form-control-lg" name="description" type="text" placeholder="description">
+                <input class="form-control" name="description" type="text" placeholder="description">
             </div>
             <div class="form-group col-md-4">
-                <button type="submit" class="btn btn-lg btn-dark">
+                <button type="submit" class="btn btn-dark">
                     Add
                 </button>
             </div>

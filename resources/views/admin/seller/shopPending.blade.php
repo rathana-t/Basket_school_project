@@ -62,7 +62,7 @@
                                     </div>
                                     <div class="col-lg-8">
                                         <h5 class="q">
-                                            Shop Pending
+                                            Pending
                                         </h5>
                                         <div>
                                             {{ $sellerspending }}
@@ -114,7 +114,7 @@
                                 </div>
                             </td>
                             <td>
-                                {{ $item->created_at }}
+                                {{ Carbon\Carbon::parse($item->created_at)->format('d M Y') }}
                             </td>
                             <td>
                                 <a href="/admin/shopDetail/{{ $item->id }}">
