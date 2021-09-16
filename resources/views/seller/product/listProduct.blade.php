@@ -29,7 +29,9 @@
                                 </a>
                             </td>
                             <td>
-                                {{ $item->name }}
+                                <div class="limit_text_sss">
+                                    {{ $item->name }}
+                                </div>
                             </td>
                             <td class="text-center">
                                 $ {{ $item->price }}

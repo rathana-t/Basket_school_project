@@ -92,7 +92,9 @@
                             </td>
                             <td class="text-center">
                                 @if ($item->profile == '')
-                                    No Image
+                                    <a href="seller/{{ $item->id }}">
+                                        <img src="/img_null.jpg" alt="" class="img-fluid">
+                                    </a>
                                 @else
                                     <a href="seller/{{ $item->id }}">
                                         <img src="/images/sellerProfile/{{ $item->profile }}" alt=""

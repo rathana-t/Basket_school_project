@@ -156,7 +156,7 @@
                                     sint magnam est sed animi dicta. --}}
                                 </p>
                                 <p class="store_name mb-3">
-                                    <span><strong>Store</strong></span>
+                                    <span><strong>Store address</strong></span>
                                     <span class="pl-4">Phnom Penh</span>
                                 </p>
                                 <p class="store_name">

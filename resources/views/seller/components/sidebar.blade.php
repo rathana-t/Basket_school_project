@@ -156,17 +156,6 @@
                     </a>
                 </li>
                 <li>
-                    <a clas href="/seller/profile">
-                        <div class=" {{ Request::is('seller*/profile') ? 'ac' : '' }} mt-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                                class="bi bi-person-fill" viewBox="0 0 16 16">
-                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                            </svg>
-                            <span class="pl-3">Profile</span>
-                        </div>
-                    </a>
-                </li>
-                <li>
                     <a href="/seller/test">
                         <div class="{{ Request::is('seller*/test') ? 'ac' : '' }} mt-2">
                             <svg xmlns=" http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
@@ -177,6 +166,17 @@
                                     d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0zM7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z" />
                             </svg>
                             <span class="pl-3">Commission</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a clas href="/seller/profile">
+                        <div class=" {{ Request::is('seller*/profile') ? 'ac' : '' }} mt-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                class="bi bi-person-fill" viewBox="0 0 16 16">
+                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                            </svg>
+                            <span class="pl-3">Profile</span>
                         </div>
                     </a>
                 </li>
