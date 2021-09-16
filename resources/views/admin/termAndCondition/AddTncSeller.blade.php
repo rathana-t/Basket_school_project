@@ -74,7 +74,7 @@
             <div class="card cs-shadow border-0">
                 <div class="card-body">
                     <div class="border-bottom text-center">
-                        <h2>Term and Conditions <a href="/Term_and_Condition/seller">
+                        <h2>Term and Conditions <a target="blank" href="/Term_and_Condition/seller">
                                 <button class="btn btn-success">view</button>
                             </a>
                             <h2>

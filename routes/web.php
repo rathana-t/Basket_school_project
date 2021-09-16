@@ -81,7 +81,7 @@ Route::post('/forget-password', [ForgetPassword::class, 'postEmail']);
 Route::get('reset-password/{token}', [ForgetPassword::class, 'getPassword']);
 Route::post('reset-password', [ForgetPassword::class, 'updatePassword']);
 //=============Seller===================
-Route::post('/post_comment_product', [UserController::class, 'post_comment']);
+Route::post('/post_comment_product', [UserController::class, 'post_comment'])->middleware('checker');;
 Route::get('/get_comment', [UserController::class, 'get_comment']);
 
 

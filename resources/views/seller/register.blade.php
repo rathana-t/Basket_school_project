@@ -164,7 +164,7 @@
                                 By clicking the 'Register' button, you confirm that you accept our Terms of use and Privacy
                                 Policy.
                                 <span>
-                                    <a href="">
+                                    <a target="blank" href="/Term_and_Condition/seller">
                                         Term and Condition
                                     </a>
                                 </span>
