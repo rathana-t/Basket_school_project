@@ -37,7 +37,7 @@
                         <a href="">About us</a>
                     </li>
                     <li>
-                        <a href="">Term & Condition</a>
+                        <a href="/Term_and_Condition">Term & Condition</a>
                     </li>
                 </ul>
             </div>

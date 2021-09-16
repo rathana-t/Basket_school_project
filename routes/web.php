@@ -201,7 +201,9 @@ Route::prefix('admin')->group(function () {
     Route::post('/add-TNC', [AdminController::class, 'addTNC'])->middleware('admin');
     Route::post('/add-TNC-seller', [AdminController::class, 'addTNCseller'])->middleware('admin');
     Route::get('/delete_term_condition/{id}', [AdminController::class, 'delete_term_condition'])->middleware('admin');
-    
-
 
 });
+
+Route::get('/Term_and_Condition',[HomeController::class,'Term_and_Condition']);
+Route::get('/Term_and_Condition/user',[HomeController::class,'Term_and_Condition_user']);
+Route::get('/Term_and_Condition/seller',[HomeController::class,'Term_and_Condition_seller']);

@@ -4,15 +4,20 @@
     @include('/admin/components/modal')
     <div class="dashboard">
         <div class="small-card">
+            <div class="text-center">
+                <strong>
+                    Term and Condition
+                </strong>
+            </div>
             <div class="row justify-content-center">
                 <div class="col-md-3 col-sm-6 col-xs-12 mb-3">
                     <a href="/admin/addTNCuser" class="Product-btn" role="button">
                         <div class="card shadow-sm rounded bg-dark">
                             <div class="card-body text-white">
-                                <div class="q">
-                                    Term & Condition for user
+                                <div class="q text-center">
+                                    USER
                                 </div>
-                                <div>
+                                <div class="text-center">
                                     {{ $countTNC }}
                                 </div>
                             </div>
@@ -23,10 +28,10 @@
                     <a href="/admin/addTNCseller">
                         <div class="card shadow-sm rounded bg-light">
                             <div class="card-body text-dark">
-                                <div class="q">
-                                    Term & Condition for seller
+                                <div class="q text-center">
+                                    SELLER
                                 </div>
-                                <div>
+                                <div class="text-center">
                                     {{ $countTNCseller }}
                                 </div>
                             </div>
@@ -46,18 +51,17 @@
     </h5>
     <form action="{{ url('/admin/add-title-u') }}" method="POST">
         @csrf
-        <div class="form-row">
-            <div class="form-group col-md-4">
-                <input class="form-control" name="title" type="text" placeholder="title" required>
-            </div>
-            <div class="form-group col-md-4">
-                <input class="form-control" name="description" type="text" placeholder="description" required>
-            </div>
-            <div class="form-group col-md-4">
-                <button type="submit" class="btn btn-dark">
-                    Add
-                </button>
-            </div>
+        <div class="form-group  text-center">
+            <input class="form-control" name="title" type="text" placeholder="title" required>
+        </div>
+        <div class="form-group  text-center">
+            <textarea class="form-control" rows="6" name="description" type="text" placeholder="description"
+                required></textarea>
+        </div>
+        <div class="form-group  text-center">
+            <button type="submit" class="btn btn-dark" style="width: 300px">
+                Add
+            </button>
         </div>
         {!! $errors->first('province', "<span class='text-danger'>:message</span>") !!}
     </form>
@@ -67,7 +71,10 @@
             <div class="card cs-shadow border-0">
                 <div class="card-body">
                     <div class="border-bottom text-center">
-                        <h2>Term and Conditions<h2>
+                        <h2>Term and Conditions <a href="/Term_and_Condition/user">
+                                <button class="btn btn-success">view</button>
+                            </a>
+                            <h2>
                     </div>
                     @foreach ($getTNC as $item)
                         <br>

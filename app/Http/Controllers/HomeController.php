@@ -21,6 +21,7 @@ use PhpParser\Node\Stmt\Break_;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
+use App\Models\TNC;
 use GrahamCampbell\ResultType\Success;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -29,6 +30,19 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 class HomeController extends Controller
 {
+    public function Term_and_Condition(){
+        $term_con_user = TNC::where('type','user')->orderBy('created_at','asc')->get();
+        $term_con_seller = TNC::where('type','seller')->orderBy('created_at','asc')->get();
+        return view('term_condition',compact('term_con_user','term_con_seller'));
+    }
+    public function Term_and_Condition_user(){
+        $term_con_user = TNC::where('type','user')->orderBy('created_at','asc')->get();
+        return view('term_condition_user',compact('term_con_user'));
+    }
+    public function Term_and_Condition_seller(){
+        $term_con_seller = TNC::where('type','seller')->orderBy('created_at','asc')->get();
+        return view('term_condition_seller',compact('term_con_seller'));
+    }
     public function logupdate_orders_yesin(){
         $cart = carts::join('products', 'products.id', '=', 'carts.product_id')
                 // ->where('carts.in_order', 0)

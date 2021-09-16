@@ -58,8 +58,9 @@
                                     Sign UP
                                 </button>
                                 <small class="form-text text-muted">
-                                    By clicking the 'Sign Up' button, you confirm that you accept our Terms of use and
-                                    Privacy Policy.
+                                    By clicking the 'Sign Up' button, you confirm that you accept our <a
+                                        href="/Term_and_Condition/user"> Terms of use and
+                                        Privacy Policy.</a>
                                 </small>
                                 <hr>
                                 <div class="text-center">

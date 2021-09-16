@@ -589,16 +589,16 @@ class AdminController extends Controller
     }
     public function addTNC_user()
     {
-        $getTNC = DB::table('term_n_condition')->where('type','user')->get();
+        $getTNC = DB::table('term_n_condition')->where('type','user')->orderBy('created_at','asc')->get();
         // $getTNCseller = DB::select('select * from term_n_condition where type=seller');
-        $getTNCseller = DB::table('term_n_condition')->where('type','seller')->get();
+        $getTNCseller = DB::table('term_n_condition')->where('type','seller')->orderBy('created_at','asc')->get();
         $countTNCseller= TNC::where('type','seller')->count();
         $countTNC = TNC::where('type','user')->count();
         return view('admin\termAndCondition\addTermAndCondition',compact('getTNC','getTNCseller','countTNC','countTNCseller'));
     }
     public function addTNC_seller()
     {
-        $getTNC = DB::table('term_n_condition')->where('type','seller')->get();
+        $getTNC = DB::table('term_n_condition')->where('type','seller')->orderBy('created_at','asc')->get();
         // $getTNCseller = DB::select('select * from term_n_condition where type=seller');
         $getTNCseller = DB::table('term_n_condition')->where('type','seller')->get();
         $countTNCseller= TNC::where('type','seller')->count();
@@ -607,9 +607,9 @@ class AdminController extends Controller
     }
     public function TNC()
     {
-        $getTNC = DB::table('term_n_condition')->where('type','user')->get();
+        $getTNC = DB::table('term_n_condition')->where('type','user')->orderBy('created_at','asc')->get();
         // $getTNCseller = DB::select('select * from term_n_condition where type=seller');
-        $getTNCseller = DB::table('term_n_condition')->where('type','seller')->get();
+        $getTNCseller = DB::table('term_n_condition')->where('type','seller')->orderBy('created_at','asc')->get();
         // $getTitleseller = DB::table('term_n_condition')->get();
         // $countTNC = term_n_condition::where('type','user')->count();
         $countTNCseller= TNC::where('type','seller')->count();

@@ -11,9 +11,10 @@
         @csrf
         <input type="text" hidden value="{{ $getTNC->id }}" name="id" class="input">
         <strong for="">Title</strong>
-        <input type="text" name="title" value="{{ $getTNC->title }}" class="input form-control">
+        <input type="text" name="title" value="{{ $getTNC->title }}" class="input form-control" required>
         <strong for="">Description</strong>
-        <textarea name="description" id="" cols="30" rows="10" class="form-control">{{ $getTNC->text }}</textarea>
+        <textarea name="description" id="" cols="30" rows="10" class="form-control"
+            required>{{ $getTNC->text }}</textarea>
         <div class="text-center" style="margin-top: 10px ">
             <button type="submit" class="btn btn-primary col-4">
                 Update
