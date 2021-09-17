@@ -189,6 +189,7 @@ Route::prefix('admin')->group(function () {
 
     Route::get('/user', [AdminController::class, 'user'])->middleware('admin');
     Route::get('/user/{id}', [AdminController::class, 'userDetail'])->middleware('admin');
+    Route::post('/deleteUser', [AdminController::class, 'deleteUser'])->middleware('admin');
 
     Route::get('/province', [AdminController::class, 'province'])->middleware('admin');
     Route::get('/edit_t_n_c/{id}', [AdminController::class, 'edit_t_n_c'])->middleware('admin');

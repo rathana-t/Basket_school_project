@@ -46,7 +46,8 @@
                                 <a href="user/{{ $item->id }}">
                                     <button type="button" class="btn btn-sm btn-outline-dark">View</button>
                                 </a>
-                                <button type="button" class="btn btn-sm btn-dark">Delete</button>
+                                <button type="button" class="btn btn-sm btn-dark removeUser"
+                                    value="{{ $item->id }}">Delete</button>
                             </td>
                         </tr>
                     @endforeach
@@ -57,7 +58,39 @@
             {{ $users->links() }}
         </div>
     </div>
+    <div class="modal fade" id="show" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    Are you are sure you want to delete this user?
+                    <br>
+                    All wishlist and order will also delete.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <form action="{{ url('/admin/deleteUser') }}" method="post">
 
+                        @csrf
+                        <input hidden id="delete_user" name="id">
+                        <button type="submit" class="btn btn-danger" id="delete_user">
+                            Delete
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            $(document).on('click', '.removeUser', function() {
+                var getsellerid = $(this).val();
+                console.log(getsellerid);
+                $('#show').modal('show');
+                $('#delete_user').val(getsellerid);
+            });
+        });
+    </script>
     {{-- <div style="min-height: 75vh">
         <div class="text-center">
             <table class="table table-hover">

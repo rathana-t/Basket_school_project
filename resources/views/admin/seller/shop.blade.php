@@ -142,7 +142,7 @@
             {{ $sellers->links() }}
         </div>
     </div>
-    <div class="modal fade" id="delete_product" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="delete_seller" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
@@ -170,7 +170,7 @@
             $(document).on('click', '.remove_seller_id', function() {
                 var seller_id = $(this).val();
                 // alert(cart_id);
-                $('#delete_product').modal('show');
+                $('#delete_seller').modal('show');
                 $('#remove_seller').val(seller_id);
             })
         });

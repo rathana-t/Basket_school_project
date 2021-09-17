@@ -11,6 +11,7 @@ use App\Models\sellers;
 use App\Models\messages;
 use App\Models\products;
 use App\Models\receipts;
+use App\Models\Wishlist;
 use Carbon\Carbon;
 use App\Models\categories;
 use Illuminate\Http\Request;
@@ -158,7 +159,20 @@ class AdminController extends Controller
         $users = DB::table('users')->where('type','user')->paginate(10);
         return view('admin/user/user', compact('users'));
     }
-
+    public function deleteUser(Request $req)
+    {
+        $deleteuser = users::find($req->id);
+        $deleteWishlist = Wishlist::where('u_id',$req->id)->get();
+        $deleteOrder = orders::where('user_id',$req->id)->get();
+        foreach($deleteWishlist as $item){
+            $item->delete();
+        }
+        foreach($deleteOrder as $item){
+            $item->delete();
+        }
+        $deleteuser->delete();
+        return redirect()->back()->with('success','delete user successfully');
+    }
     public function userDetail($id)
     {
         $user = users::find($id);
