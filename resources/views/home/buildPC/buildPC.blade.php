@@ -29,10 +29,14 @@
                                                         ?>
                                                         <td colspan="3">
                                                             <a href="/product/product/{{ $pro->id }}" target="_blank">
-                                                                <img style="width: 100px;"
-                                                                    src="{{ asset('images/imgProduct') }}/{{ $pro->img_product }}"
-                                                                    alt="" class="img-fluid">
-                                                                {{ $pro->name }}
+                                                                <div class="row" style="margin-left: 10px">
+                                                                    <img style="width: 100px;"
+                                                                        src="{{ asset('images/imgProduct') }}/{{ $pro->img_product }}"
+                                                                        alt="" class="img-fluid">
+                                                                    <div class="b" style="margin-top: 38px">
+                                                                        {{ $pro->name }}
+                                                                    </div>
+                                                                </div>
                                                             </a>
                                                         </td>
                                                         <td>
@@ -47,7 +51,6 @@
                                                                 <button type="submit"
                                                                     class="btn-sm btn btn btn-light border">
                                                                     change
-
                                                                 </button>
                                                             </form>
 
@@ -62,12 +65,15 @@
                                                 @endforeach
                                                 @if ($number == 0)
                                                     <td colspan="3">
-                                                        <img style="width: 100px;" src="{{ asset('img_null.jpg') }}"
-                                                            alt="" class="img-fluid">
-                                                        No Item
+                                                        <div class="row" style="margin-left: 10px">
+                                                            <img style="width: 100px;" src="{{ asset('img_null.jpg') }}"
+                                                                alt="" class="img-fluid">
+                                                            <div class="b" style="margin-top: 38px">
+                                                                No Item
+                                                            </div>
+                                                        </div>
                                                     </td>
                                                     <td>
-                                                        No Item
                                                     </td>
                                                     <td>
                                                         <form action="{{ url('CustomPC/product') }}" method="POSt">
@@ -75,10 +81,14 @@
                                                             <input hidden type="text" name="s_cate_id" id=""
                                                                 value="{{ $itemB->id }}">
                                                             <input hidden type="text" name="A_U" id="" value="0">
-                                                            <button type="submit" class="btn-sm btn btn btn-light border">
-                                                                add
+                                                            <button style="width: 73px" type="submit"
+                                                                class="btn-sm btn btn btn-light border">
+                                                                Add
                                                             </button>
                                                         </form>
+                                                    </td>
+                                                    <td>
+                                                        <div style="margin-right: 55px;"></div>
                                                     </td>
                                                 @endif
                                             </tbody>
