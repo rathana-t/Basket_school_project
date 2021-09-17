@@ -2,7 +2,11 @@
 
 @section('sidebar-content')
     @include('/admin/components/modal')
-
+    @if (Session::has('success'))
+        <div class="alert alert-success" role="alert">
+            {{ Session::get('success') }}
+        </div>
+    @endif
     <div class="card border-0 shadow-sm rounded">
         <div style="min-height: 500px">
             <table class="table table-hover table-borderless">
