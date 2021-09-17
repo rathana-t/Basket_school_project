@@ -164,7 +164,7 @@ class BuildPcController extends Controller
             $second_cate = DB::table('se_categories')->get();
             $s_cate_id = $req->s_cate_id;
             $brand = brands::all();
-            $data = products::where('s_cat_id',$s_cate_id)->where('completed',1)->orderByDesc('price')
+            $data = products::where('s_cat_id',$s_cate_id)->orderByDesc('price')
             ->paginate(5);
             $sort = "";
             $brand_id = "";

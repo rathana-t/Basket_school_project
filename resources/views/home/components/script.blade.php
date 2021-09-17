@@ -3,8 +3,8 @@
         $(document).on('click', '.remove_cart', function() {
             var cart_id = $(this).val();
             // alert(cart_id);
-            $('#remove_cart_modal').modal('show');
             $('#remove_cart_id').val(cart_id);
+            $('#remove_cart_modal').modal('show');
         })
     });
     $(document).ready(function() {
