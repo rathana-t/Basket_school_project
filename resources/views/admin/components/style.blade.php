@@ -303,8 +303,8 @@
     } */
 
     #sidebar {
-        min-width: 290px;
-        max-width: 290px;
+        min-width: 250px;
+        max-width: 250px;
         background: #4b7095;
         color: #fff;
         -webkit-transition: all 0.3s;
