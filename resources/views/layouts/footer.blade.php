@@ -22,7 +22,7 @@
                     </li>
 
                     <li>
-                        <a href="#">Telegram</a>
+                        <a href="https://t.me/joinchat/bO-8yID7wkBjNzRl" target="blank">Telegram</a>
                     </li>
                 </ul>
             </div>
