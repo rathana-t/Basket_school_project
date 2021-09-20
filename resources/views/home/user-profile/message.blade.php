@@ -32,7 +32,7 @@
                                 href="/message/{{ $item->id }}">
                                 <div class="d-flex justify-content-between pt-2 pb-2">
                                     <div class="a">
-                                        <span>{{ $item->store_name }}</span> : {{ $item->message }}
+                                        <span style="color: aqua">{{ $item->store_name }}</span> : {{ $item->message }}
                                     </div>
                                     <div>
                                         {{ Carbon\Carbon::parse($item->created_at)->format('d M Y') }}

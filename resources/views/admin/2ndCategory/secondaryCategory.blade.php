@@ -76,7 +76,7 @@
                                             <div class="text-right">
                                                 <button type="button" value="{{ $item->id }}"
                                                     class="delete_se_cate btn btn-sm btn-outline-dark">
-                                                    Delete
+                                                    View
                                                 </button>
                                             </div>
                                         </div>

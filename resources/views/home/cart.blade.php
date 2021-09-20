@@ -117,7 +117,7 @@
                                                         </td>
                                                         <td>
                                                             <button type="button" value="{{ $item->id }}"
-                                                                class="btn btn-sm submit_wish_list btn-danger">
+                                                                class="btn btn-sm submit_wish_list btn-dark">
                                                                 <span>
                                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16"
                                                                         height="16" fill="currentColor"

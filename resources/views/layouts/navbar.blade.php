@@ -122,14 +122,12 @@ $listSecondCate = HomeController::secondCat();
 <div class="navbar-menu border-top border-bottom">
     <div class="container pl-0 pr-0 pt-2 pb-2">
         <nav class="nav">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            {{-- <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 Departments
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                {{-- @foreach ($listSecondCate as $item)
-                    <a class="dropdown-item" href="/smallcate/{{ $item->id }}">{{ $item->name }}</a>
-                @endforeach --}}
+               
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-4 col-md-4 col-sm-4">
@@ -155,7 +153,7 @@ $listSecondCate = HomeController::secondCat();
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <a class="nav-link" href="/category">Main Category</a>
             <a class="nav-link" href="/smallcate">Sub Category</a>
             <a class="nav-link" href="/brand">Brands</a>

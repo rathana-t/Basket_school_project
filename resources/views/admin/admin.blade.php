@@ -19,7 +19,7 @@
     <div class="wrapper d-flex align-items-stretch">
         @include('/admin/components/adminSidebar')
         <div id="content">
-            <nav class="navbar navbar-light bg-light shadow-sm">
+            {{-- <nav class="navbar navbar-light bg-light shadow-sm">
                 <ul class="nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link active" href="#">Active</a>
@@ -34,7 +34,7 @@
                         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                     </li>
                 </ul>
-            </nav>
+            </nav> --}}
             <div class="p-4">
                 @include('/admin/components/msg')
                 @yield('sidebar-content')

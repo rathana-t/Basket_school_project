@@ -10,44 +10,28 @@
     <div>
         <div class="row">
             <div class="col-md-1 text-left" style="max-width: 50px">
-                <strong>
-                    No
-                </strong>
+                No
             </div>
             <div class="col-md-2 text-left" style="max-width: 190px">
-                <strong>
-                    Code Product
-                </strong>
+                Code Product
             </div>
             <div class="col-md-2 text-left">
-                <strong>
-                    Product
-                </strong>
+                Product
             </div>
             <div class="col-md-1 text-center">
-                <strong>
-                    Price
-                </strong>
+                Price
             </div>
             <div class="col-md-2 text-center" style="max-width: 150px">
-                <strong>
-                    QTY Order
-                </strong>
+                QTY Order
             </div>
             <div class="col-md-2 text-center">
-                <strong>
-                    Total
-                </strong>
+                Total
             </div>
-            <div class="col-md-1 text-right">
-                <strong>
-                    Commission
-                </strong>
+            <div class="col-md-1 text-center">
+                Commission
             </div>
-            <div class="col-md-2 text-right">
-                <strong>
-                    Commission Price
-                </strong>
+            <div class="col-md-2 text-center">
+                Commission Price
             </div>
         </div>
         <hr>
@@ -56,9 +40,7 @@
         ?>
 
         @foreach ($report as $item)
-            <div class="row"
-                style="color:rgb(0, 0, 0);padding-top:10px;padding-bottom:10px;background-color: {{ $no % 2 == 0 ? 'rgb(192, 192, 192)' : 'rgb(151, 151, 151)' }}"
-                style="">
+            <div class="row pb-3">
                 <div class="col-md-1 text-left" style="max-width: 50px">
                     {{ $no++ }}
                 </div>
@@ -77,7 +59,7 @@
                 <div class="col-md-2 text-center">
                     {{ $item->total_price }}
                 </div>
-                <div class="col-md-1 text-right">
+                <div class="col-md-1 text-center">
                     {{ $item->commission }}
                 </div>
                 <div class="col-md-2 text-center">

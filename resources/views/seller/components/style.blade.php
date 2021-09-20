@@ -458,6 +458,25 @@
         text-overflow: ellipsis;
     }
 
+    .page-link {
+        font-size: 13px;
+        position: relative;
+        display: block;
+        padding: .5rem .75rem;
+        margin-left: -1px;
+        line-height: 1.25;
+        color: #323b49;
+        background-color: #fff;
+        border: 1px solid #dee2e6;
+    }
+
+    .page-item.active .page-link {
+        z-index: 3;
+        color: #fff;
+        background-color: #323b49;
+        border-color: #323b49;
+    }
+
     /* .....  */
     .previewImage .imagePreview2 {
         width: 100%;

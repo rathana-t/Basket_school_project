@@ -45,7 +45,7 @@
             </button>
         </a>
     </div>
-    @foreach ($seller as $itemA)
+    {{-- @foreach ($seller as $itemA)
         <br>
         <div>
             <?php
@@ -143,6 +143,6 @@
                 @endif
             @endforeach
         </div>
-    @endforeach
+    @endforeach --}}
 
 @stop

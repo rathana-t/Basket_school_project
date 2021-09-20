@@ -11,7 +11,6 @@
                             class="img-fluid p-4">
                         <div class="p-2">
                             <div class="wrapper">
-
                                 @if ($item->sub_img1)
                                     <div class="col-md-4">
                                         <div class="Item mb-2 card">

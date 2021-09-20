@@ -734,7 +734,7 @@ class HomeController extends Controller
                 ->where('orders.seller_cancel', 1)
                 ->where('carts.in_order', 1)
                 ->select('products.*', 'orders.*', 'orders.id as order_id', 'carts.quantity', 'carts.total', 'sellers.store_name')
-                ->orderByDesc('orders.updated_at')
+                ->orderByDesc('orders.created_at')
                 ->get();
             $countCancel =  orders::join('carts', 'carts.id', '=', 'orders.cart_id')
                 ->join('products', 'products.id', '=', 'carts.product_id')

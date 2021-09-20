@@ -26,10 +26,14 @@
                                                 @foreach ($data_pro as $item)
                                                     <tr class="mb-3">
                                                         <td colspan="3">
-                                                            <img style="width: 100px;"
-                                                                src="/images/imgProduct/{{ $item->img_product }}" alt=""
-                                                                class="img-fluid">
-                                                            {{ $item->name }}
+                                                            <a href="{{ url('/product', $item->id) }}">
+                                                                <img style="width: 100px;"
+                                                                    src="/images/imgProduct/{{ $item->img_product }}"
+                                                                    alt="" class="img-fluid">
+                                                                <div class="b">
+                                                                    {{ $item->name }}
+                                                                </div>
+                                                            </a>
                                                         </td>
                                                         <td>
                                                             $ {{ $item->price }}
