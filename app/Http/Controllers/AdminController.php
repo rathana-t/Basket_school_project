@@ -106,6 +106,13 @@ class AdminController extends Controller
             ->where('orders.delivery', 1)
             ->select('orders.*', 'carts.quantity')
             ->sum('carts.quantity');
+        $best = DB::table('products')
+            ->orderByDesc('top_buy')
+            ->where('top_buy', '>', 1)
+            ->paginate(5);
+        $out = DB::table('products')
+            ->where('stock', 0)
+            ->paginate(5);
         return view('admin/dashboard', compact(
             'deliveryProduct',
             'sumOrderDelivery',
@@ -126,7 +133,9 @@ class AdminController extends Controller
             'countCate',
             'countSmallCate',
             'countBrand',
-            'countShopPending'
+            'countShopPending',
+            'best',
+            'out'
         ));
     }
     public function update_commisssion(Request $req)
@@ -156,22 +165,22 @@ class AdminController extends Controller
     }
     public function user()
     {
-        $users = DB::table('users')->where('type','user')->paginate(10);
+        $users = DB::table('users')->where('type', 'user')->paginate(10);
         return view('admin/user/user', compact('users'));
     }
     public function deleteUser(Request $req)
     {
         $deleteuser = users::find($req->id);
-        $deleteWishlist = Wishlist::where('u_id',$req->id)->get();
-        $deleteOrder = orders::where('user_id',$req->id)->get();
-        foreach($deleteWishlist as $item){
+        $deleteWishlist = Wishlist::where('u_id', $req->id)->get();
+        $deleteOrder = orders::where('user_id', $req->id)->get();
+        foreach ($deleteWishlist as $item) {
             $item->delete();
         }
-        foreach($deleteOrder as $item){
+        foreach ($deleteOrder as $item) {
             $item->delete();
         }
         $deleteuser->delete();
-        return redirect()->back()->with('success','delete user successfully');
+        return redirect()->back()->with('success', 'delete user successfully');
     }
     public function userDetail($id)
     {
@@ -223,13 +232,13 @@ class AdminController extends Controller
     public function deleteSeller(Request $r)
     {
         $deleteseller = sellers::find($r->id);
-        $deleteproduct = products::where('seller_id',$r->id)->get();
-        foreach($deleteproduct as $item){
-            $Productseller= products::find($item->id);
+        $deleteproduct = products::where('seller_id', $r->id)->get();
+        foreach ($deleteproduct as $item) {
+            $Productseller = products::find($item->id);
             $Productseller->delete();
         }
         $deleteseller->delete();
-        return redirect()->back()->with('success','delete seller successfully');
+        return redirect()->back()->with('success', 'delete seller successfully');
     }
     public function seller_edit_register($token)
     {
@@ -319,9 +328,9 @@ class AdminController extends Controller
     public function sellerSale($id)
     {
         $seller = sellers::find($id);
-        $report = Report::join('products','products.id','=','reports.pro_id')->where('reports.seller_id',$id)->paginate(7);
+        $report = Report::join('products', 'products.id', '=', 'reports.pro_id')->where('reports.seller_id', $id)->paginate(7);
 
-        return view('admin/sale', compact('seller','report'));
+        return view('admin/sale', compact('seller', 'report'));
     }
     public function brand()
     {
@@ -473,7 +482,7 @@ class AdminController extends Controller
             ->join('sellers', 'products.seller_id', '=', 'sellers.id')
             ->where('products.id', $id)
             ->where('products.completed', '=', '1')
-            ->select('products.*','products.id as pro_id', 'categories.name as cat_name', 'brands.name as brand_name', 'sellers.address', 'sellers.store_name', 'se_categories.name as secondCate')
+            ->select('products.*', 'products.id as pro_id', 'categories.name as cat_name', 'brands.name as brand_name', 'sellers.address', 'sellers.store_name', 'se_categories.name as secondCate')
             ->get();
         return view('admin/product/show', compact('detail_pro'));
     }
@@ -603,33 +612,33 @@ class AdminController extends Controller
     }
     public function addTNC_user()
     {
-        $getTNC = DB::table('term_n_condition')->where('type','user')->orderBy('created_at','asc')->get();
+        $getTNC = DB::table('term_n_condition')->where('type', 'user')->orderBy('created_at', 'asc')->get();
         // $getTNCseller = DB::select('select * from term_n_condition where type=seller');
-        $getTNCseller = DB::table('term_n_condition')->where('type','seller')->orderBy('created_at','asc')->get();
-        $countTNCseller= TNC::where('type','seller')->count();
-        $countTNC = TNC::where('type','user')->count();
-        return view('admin\termAndCondition\addTermAndCondition',compact('getTNC','getTNCseller','countTNC','countTNCseller'));
+        $getTNCseller = DB::table('term_n_condition')->where('type', 'seller')->orderBy('created_at', 'asc')->get();
+        $countTNCseller = TNC::where('type', 'seller')->count();
+        $countTNC = TNC::where('type', 'user')->count();
+        return view('admin\termAndCondition\addTermAndCondition', compact('getTNC', 'getTNCseller', 'countTNC', 'countTNCseller'));
     }
     public function addTNC_seller()
     {
-        $getTNC = DB::table('term_n_condition')->where('type','seller')->orderBy('created_at','asc')->get();
+        $getTNC = DB::table('term_n_condition')->where('type', 'seller')->orderBy('created_at', 'asc')->get();
         // $getTNCseller = DB::select('select * from term_n_condition where type=seller');
-        $getTNCseller = DB::table('term_n_condition')->where('type','seller')->get();
-        $countTNCseller= TNC::where('type','seller')->count();
-        $countTNC = TNC::where('type','user')->count();
-        return  view('admin\termAndCondition\AddTncSeller',compact('getTNC','getTNCseller','countTNC','countTNCseller'));
+        $getTNCseller = DB::table('term_n_condition')->where('type', 'seller')->get();
+        $countTNCseller = TNC::where('type', 'seller')->count();
+        $countTNC = TNC::where('type', 'user')->count();
+        return  view('admin\termAndCondition\AddTncSeller', compact('getTNC', 'getTNCseller', 'countTNC', 'countTNCseller'));
     }
     public function TNC()
     {
-        $getTNC = DB::table('term_n_condition')->where('type','user')->orderBy('created_at','asc')->get();
+        $getTNC = DB::table('term_n_condition')->where('type', 'user')->orderBy('created_at', 'asc')->get();
         // $getTNCseller = DB::select('select * from term_n_condition where type=seller');
-        $getTNCseller = DB::table('term_n_condition')->where('type','seller')->orderBy('created_at','asc')->get();
+        $getTNCseller = DB::table('term_n_condition')->where('type', 'seller')->orderBy('created_at', 'asc')->get();
         // $getTitleseller = DB::table('term_n_condition')->get();
         // $countTNC = term_n_condition::where('type','user')->count();
-        $countTNCseller= TNC::where('type','seller')->count();
-        $countTNC = TNC::where('type','user')->count();
+        $countTNCseller = TNC::where('type', 'seller')->count();
+        $countTNC = TNC::where('type', 'user')->count();
 
-        return view('admin\termAndCondition\addTermAndCondition',compact('getTNC','getTNCseller','countTNC','countTNCseller'));
+        return view('admin\termAndCondition\addTermAndCondition', compact('getTNC', 'getTNCseller', 'countTNC', 'countTNCseller'));
     }
     public function addtitleUser(Request $request)
     {
@@ -637,18 +646,20 @@ class AdminController extends Controller
         //     'title'=>'required',
         //     'description'=>'required',
         // ]);
-        $titleseller= new TNC();
+        $titleseller = new TNC();
         $titleseller->text = $request->description;
-        $titleseller->title=$request->title;
-        $titleseller->type='user';
+        $titleseller->title = $request->title;
+        $titleseller->type = 'user';
         $titleseller->save();
         return redirect()->back()->with('success', 'Added Term And Condition for user successfully');
     }
-    public function edit_t_n_c($id){
-        $getTNC = DB::table('term_n_condition')->where('id',$id)->first();
-        return view('admin\termAndCondition\editTNC',compact('getTNC'));
+    public function edit_t_n_c($id)
+    {
+        $getTNC = DB::table('term_n_condition')->where('id', $id)->first();
+        return view('admin\termAndCondition\editTNC', compact('getTNC'));
     }
-    public function update_TNC(Request $req){
+    public function update_TNC(Request $req)
+    {
         $getTNC = TNC::find($req->id);
 
         $getTNC->title = $req->title;
@@ -656,41 +667,39 @@ class AdminController extends Controller
 
         $getTNC->update();
         // return redirect()->back()->with('success', 'Added new title to users Term And Condition successfully');
-        if($getTNC->type=='user'){
+        if ($getTNC->type == 'user') {
             return redirect()->route('TNC');
-
-        }else{
+        } else {
             return redirect()->route('seller_term_con');
         }
     }
     public function addTNC(Request $request)
     {
         $request->validate([
-            'TNC'=>'required'
+            'TNC' => 'required'
         ]);
-        $tnc= new TNC();
-        $tnc->text=$request->TNC;
-        $tnc->title=$request->title;
-        $tnc->type='user';
+        $tnc = new TNC();
+        $tnc->text = $request->TNC;
+        $tnc->title = $request->title;
+        $tnc->type = 'user';
         $tnc->save();
         return redirect()->back()->with('success', 'Added new Term And Condition to users successfully');
     }
     public function addTNCseller(Request $request)
     {
-        $titleseller= new TNC();
-        $titleseller->title=$request->title;
+        $titleseller = new TNC();
+        $titleseller->title = $request->title;
         $titleseller->text = $request->description;
-        $titleseller->type='seller';
+        $titleseller->type = 'seller';
         $titleseller->save();
         return redirect()->back()->with('success', 'Added Term And Condition for seller successfully');
     }
-    public function delete_term_condition($id){
+    public function delete_term_condition($id)
+    {
         $tn = TNC::find($id);
 
         $tn->delete();
 
         return redirect()->back()->with('success', 'Deleted successfully');
-
     }
-
 }

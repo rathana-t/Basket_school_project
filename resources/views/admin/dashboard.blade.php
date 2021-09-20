@@ -317,112 +317,85 @@
         <div class="big-card mt-4">
             <div class="row">
                 <div class="col-sm-12 col-md-6">
-                    <div class="card shadow-sm rounded border-0">
-                        <div class="p-3">
-                            <h5 class="pl-2">
-                                Best Sale
-                            </h5>
-                            <table class="table table-borderless">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">No</th>
-                                        <th scope="col">Product</th>
-                                        <th scope="col">Subcategory</th>
-                                        <th scope="col">Sale</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @for ($i = 0; $i < 5; $i++)
+                    <div class="card shadow-sm rounded border-0" style="height: 450px">
+                        <div style="min-height: 400px">
+                            <div class="p-3">
+                                <h5 class="pl-2">
+                                    Best Sale
+                                </h5>
+                                <table class="table table-borderless">
+                                    <thead>
                                         <tr>
-                                            <td>{{ $no++ }}</td>
-                                            <td>....</td>
-                                            <td>....</td>
-                                            <td>....</td>
-                                            <td>
-                                                <button class="btn btn-sm btn-outline-dark">
-                                                    View
-                                                </button>
-                                            </td>
+                                            <th scope="col">No</th>
+                                            <th scope="col">Product</th>
+                                            <th scope="col">Sale</th>
                                         </tr>
-                                    @endfor
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($best as $item)
+                                            <tr>
+                                                <td>{{ $item->id }}</td>
+                                                <td>{{ $item->name }}</td>
+                                                <td>{{ $item->top_buy }}</td>
+                                                <td>
+                                                    <a href="/admin/product/{{ $item->id }}">
+                                                        <button class="btn btn-sm btn-outline-dark">
+                                                            View
+                                                        </button>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         <div class="pl-3">
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination">
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Previous">
-                                            <span aria-hidden="true">&laquo;</span>
-                                        </a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Next">
-                                            <span aria-hidden="true">&raquo;</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
+                            {{ $best->links() }}
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-6">
-                    <div class="card shadow-sm rounded border-0">
-                        <div class="p-3">
-                            <h5 class="pl-2">
-                                Out Of Stock
-                            </h5>
-                            <table class="table table-borderless">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">No</th>
-                                        <th scope="col">Product</th>
-                                        <th scope="col">Subcategory</th>
-                                        <th scope="col"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @for ($i = 0; $i < 5; $i++)
+                    <div class="card shadow-sm rounded border-0" style="min-height: 450px">
+                        <div style="height: 400px">
+                            <div class="p-3">
+                                <h5 class="pl-2">
+                                    Out Of Stock
+                                </h5>
+                                <table class="table table-borderless">
+                                    <thead>
                                         <tr>
-                                            <td>{{ $no2++ }}</td>
-                                            <td>....</td>
-                                            <td>....</td>
-                                            <td>
-                                                <button class="btn btn-sm btn-outline-dark">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                        fill="currentColor" class="bi bi-chat-square-dots"
-                                                        viewBox="0 0 16 16">
-                                                        <path
-                                                            d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-2.5a2 2 0 0 0-1.6.8L8 14.333 6.1 11.8a2 2 0 0 0-1.6-.8H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
-                                                        <path
-                                                            d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
-                                                    </svg>
-                                                </button>
-                                            </td>
+                                            <th scope="col">No</th>
+                                            <th scope="col">Product</th>
+                                            <th scope="col"></th>
                                         </tr>
-                                    @endfor
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($out as $item)
+                                            <tr>
+                                                <td>{{ $item->id }}</td>
+                                                <td>{{ $item->name }}</td>
+                                                <td>{{ $item->stock }}</td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-outline-dark">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                            fill="currentColor" class="bi bi-chat-square-dots"
+                                                            viewBox="0 0 16 16">
+                                                            <path
+                                                                d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-2.5a2 2 0 0 0-1.6.8L8 14.333 6.1 11.8a2 2 0 0 0-1.6-.8H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                                                            <path
+                                                                d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                                                        </svg>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         <div class="pl-3">
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination">
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Previous">
-                                            <span aria-hidden="true">&laquo;</span>
-                                        </a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Next">
-                                            <span aria-hidden="true">&raquo;</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
+                            {{ $out->links() }}
                         </div>
                     </div>
                 </div>
