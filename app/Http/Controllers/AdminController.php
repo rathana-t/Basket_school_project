@@ -33,6 +33,7 @@ use GrahamCampbell\ResultType\Success;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Illuminate\Support\Facades\Mail;
+use phpDocumentor\Reflection\Types\Null_;
 
 class AdminController extends Controller
 {
@@ -279,11 +280,12 @@ class AdminController extends Controller
         $register->store_name =  $reg->store_name;
         $register->address =  $reg->address;
         $register->pending = 0;
+        $register->province_id = Null;
         $register->update();
 
         DB::table('password_resets')->where(['email' => $reg->email])->delete();
 
-        return view('seller/register')->with('successMsg', 'Request register seller account Successfully, please wait until we send message to you by email');
+        return redirect()->route('register_page_regggg')->with('successMsg', 'Request register seller account Successfully, please wait until we send message to you by email');
     }
     public function shopReject(Request $request, $id)
     {

@@ -93,7 +93,7 @@ Route::post('/add-to-cart', [CartController::class, 'add_to_cart'])->name('add_t
 Route::post('/add-to-wishlist', [CartController::class, 'add_to_wishlist'])->name('add_to_wishlist');
 Route::get('/add-to-wishlist2/{id}/product/{id2}', [CartController::class, 'add_to_wishlist2'])->name('add_to_wishlist2');
 Route::get('/sellerLogInPage', [SellerController::class, 'login_page'])->name('login_page');
-Route::get('/sellerRegisterPage', [SellerController::class, 'register_page']);
+Route::get('/sellerRegisterPage', [SellerController::class, 'register_page'])->name('register_page_regggg');
 Route::post('/sellerLogIn', [SellerController::class, 'login']);
 Route::post('/sellerRegister', [SellerController::class, 'register']);
 Route::get('/logout_seller', [SellerController::class, 'logout'])->middleware('checker_seller');
