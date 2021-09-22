@@ -260,9 +260,10 @@ class AdminController extends Controller
             'password' => 'required|min:8',
             'con_password' => 'required|min:8|same:password',
         ]);
-
-        $register['password'] = Hash::make($register['password']);
-        unset($register['con_password']);
+        $pass = $reg->password;
+        $con_pass = $reg->con_password;
+        $register->password = Hash::make($pass);
+        unset($con_pass);
 
         if ($reg->hasfile('img1')) {
             $file = $reg->file('img1');
