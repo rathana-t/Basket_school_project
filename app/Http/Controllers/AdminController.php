@@ -245,12 +245,12 @@ class AdminController extends Controller
     {
         $emails = DB::table('password_resets')->where('token', $token)->first();
         $seller = sellers::where('email', $emails->email)->first();
-        return view('admin/seller/editRegister', compact('seller'), ['token' => $token]);
+        $provinces = Province::all();
+        return view('admin/seller/editRegister', compact('provinces','seller'), ['token' => $token]);
     }
 
     public function seller_update_register(Request $reg, $token)
     {
-
         $register = sellers::where('email', $reg->email)->first();
         $this->validate($reg, [
             'store_name' => 'required',
@@ -281,12 +281,12 @@ class AdminController extends Controller
         $register->store_name =  $reg->store_name;
         $register->address =  $reg->address;
         $register->pending = 0;
-        $register->province_id = Null;
+        $register->province_id = $reg->province_id;
         $register->update();
 
         DB::table('password_resets')->where(['email' => $reg->email])->delete();
 
-        return redirect()->route('register_page_regggg')->with('successMsg', 'Request register seller account Successfully, please wait until we send message to you by email');
+        return redirect()->route('register_page_regggg')->with('success_regiter_seller', 'Request register seller account Successfully, please wait until we send message to you by email');
     }
     public function shopReject(Request $request, $id)
     {
