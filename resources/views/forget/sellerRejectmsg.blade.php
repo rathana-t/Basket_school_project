@@ -177,8 +177,8 @@
                                                 <td align="center" style="border-radius: 3px;" bgcolor="#33cabb"><a
                                                         href="{{ url('/admin/editRegister/' . $token) }}"
                                                         target="_blank"
-                                                        style="font-size: 18px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; color: #ffffff; text-decoration: none; padding: 12px 50px; border-radius: 2px; border: 1px solid #33cabb; display: inline-block;">Reset
-                                                        Password</a></td>
+                                                        style="font-size: 18px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; color: #ffffff; text-decoration: none; padding: 12px 50px; border-radius: 2px; border: 1px solid #33cabb; display: inline-block;">Edit
+                                                        Form Register</a></td>
                                             </tr>
                                         </table>
                                     </td>
