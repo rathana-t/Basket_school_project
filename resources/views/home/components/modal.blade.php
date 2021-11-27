@@ -14,7 +14,7 @@
                     Remove this products from cart ?
                 </div>
                 <input type="hidden" name="remove_cart_id" id="remove_cart_id">
-                <div class="modal-footer">
+                <div class="modal-footer modal-footer-remove_cart_modal">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Remove</button>
                 </div>

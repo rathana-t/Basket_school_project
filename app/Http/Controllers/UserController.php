@@ -2,28 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\categories;
-use App\Models\orders;
-use App\Models\products;
-use App\Models\receipts;
-use App\Models\sellers;
-use App\Models\users;
-use App\Models\carts;
 use App\Models\cards;
+use App\Models\carts;
+use App\Models\users;
 use App\Models\brands;
-use App\Models\users_has_cards;
-use App\Http\Controllers\Controller;
+use App\Models\orders;
 use App\Models\BadWord;
 use App\Models\Comment;
+use App\Models\sellers;
+use App\Models\products;
 use App\Models\Province;
-use Illuminate\Support\Facades\Cookie;
+use App\Models\receipts;
+use App\Models\categories;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Auth;
-use SebastianBergmann\CodeCoverage\Report\PHP;
 use Illuminate\Support\Carbon;
+use App\Models\users_has_cards;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
+use SebastianBergmann\CodeCoverage\Report\PHP;
 
 // use Symfony\Component\HttpFoundation\Session\Session;
 
@@ -89,33 +90,50 @@ class UserController extends Controller
     }
     function signin(Request $req)
     {
-        $data = request()->validate([
+        // $data = request()->validate([
+        //     'phone' => 'required|min:9|max:10',
+        //     'password' => 'required',
+        // ]);
+
+        $data = Validator::make($req->all(),[
             'phone' => 'required|min:9|max:10',
             'password' => 'required',
         ]);
-        $user = DB::table('users')->where("phone", "=", $data["phone"])->first();
-        if ($user) {
-            $validPassword = Hash::check($data['password'], $user->password);
-            if ($validPassword) {
-                session()->put('user', $user->id);
-                // if ($req->has('remeberme')) {
-                Cookie::queue(cookie()->forever('userPhone', $req->phone));
-                Cookie::queue(cookie()->forever('userPass', $req->password));
-                // cookie()->forever('userPass', $req->password);
-                // Cookie::forev('userPhone',$req->phone,1440);
-                //     // Cookie::queue('userPass',$req->password,1440);
-                // } else {
-                //     Cookie::queue(Cookie::forget('userPhone'));
-                //     Cookie::queue(Cookie::forget('userPass'));
-                // }
-                if ($user->type == "admin") {
-                    return redirect('/admin');
+
+        // if($data->fails()){
+        //     return response()->json([
+        //     'status'=>0,
+        //     'error'=>$data->getMessageBag(),
+        //     ]);
+        // }else{
+            $user = DB::table('users')->where("phone", "=", $req->phone)->first();
+            if ($user) {
+                $validPassword = Hash::check($req->password, $user->password);
+                if ($validPassword) {
+                    session()->put('user', $user->id);
+                    // if ($req->has('remeberme')) {
+                    Cookie::queue(cookie()->forever('userPhone', $req->phone));
+                    Cookie::queue(cookie()->forever('userPass', $req->password));
+                    // cookie()->forever('userPass', $req->password);
+                    // Cookie::forev('userPhone',$req->phone,1440);
+                    //     // Cookie::queue('userPass',$req->password,1440);
+                    // } else {
+                    //     Cookie::queue(Cookie::forget('userPhone'));
+                    //     Cookie::queue(Cookie::forget('userPass'));
+                    // }
+                    if ($user->type == "admin") {
+                        return redirect('/admin');
+                    }
+                    return redirect('/')->with('success', "Successfully Login!");
                 }
-                return redirect('/')->with('success', "Successfully Login!");
+                // return response()->json(['status'=>0,
+                // 'error'=>$data->getMessageBag(),]);
+                return redirect()->back()->with('fail', "Incorrect Phone Number or password!")->withInput();
             }
-            return redirect()->back()->with("fail", "Incorrect Phone Number or password!")->withInput();
-        }
-        return redirect()->back()->with("fail", "Incorrect Phone Number or password!")->withInput();
+            // return response()->json(['status'=>0,
+            // 'error'=>$data->getMessageBag(),]);
+        // }
+        return redirect()->back()->with('fail', "Incorrect Phone Number or password!")->withInput();
     }
 
     function register()

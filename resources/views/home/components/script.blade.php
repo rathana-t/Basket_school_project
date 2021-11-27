@@ -5,6 +5,12 @@
             // alert(cart_id);
             $('#remove_cart_id').val(cart_id);
             $('#remove_cart_modal').modal('show');
+            //$('#remove_cart_modal' + cart_id).modal('show');
+            //setTimeout(
+            //    function() {
+            //        $('#remove_cart_modal').modal('show');
+            //    },
+            //    1000); //1 second
         })
     });
     $(document).ready(function() {

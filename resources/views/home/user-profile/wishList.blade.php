@@ -72,10 +72,16 @@
                                                         View
                                                     </a>
 
-                                                    <button type="button" value="{{ $item->wish_id }}"
+                                                    {{-- <button type="button" value="{{ $item->wish_id }}"
                                                         class="btn-sm remove_wishlist btn-light border btn">
                                                         Remove
-                                                    </button>
+                                                    </button> --}}
+
+                                                    <a onclick="return confirm('Are you sure ?')"
+                                                        href="/remove-wishlist_return_new/{{ $item->wish_id }}"
+                                                        class="btn-sm btn-light border btn">
+                                                        Remove
+                                                    </a>
 
                                                 </td>
                                             </tr>

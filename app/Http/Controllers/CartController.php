@@ -67,9 +67,14 @@ class CartController extends Controller
     }
     public function remove_cart(Request $req)
     {
+        // $cart_id = $req->remove_cart_id;
         $cart_id = $req->input('remove_cart_id');
-        $cart = carts::find($cart_id);
-        $cart->delete();
+        // $cart = carts::find($cart_id);
+        // $cart = carts::find($cart_id);
+        // $cart = DB::delete('delete from carts where id = '. $cart_id);
+        // DB::table('carts')->delete($cart_id);
+        DB::table('carts')->where('id', $cart_id)->delete();
+        // $cart->delete();
         return redirect()->back();
     }
     public function edit_cart_quantity(Request $req)
@@ -160,4 +165,12 @@ class CartController extends Controller
         $wish->delete();
         return redirect()->back()->with('remove-wishlist-success', 'Removed');
     }
+
+    public function wishlist_return_new($id)
+    {
+        $wish = wishlist::find($id);
+        $wish->delete();
+        return redirect()->back()->with('remove-wishlist-success', 'Removed');
+    }
+
 }

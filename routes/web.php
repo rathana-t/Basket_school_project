@@ -1,21 +1,28 @@
 <?php
 
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\CartController;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\SellerController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\BuildPcController;
-use App\Http\Controllers\ReportController;
-use App\Http\Controllers\ForgetPassword;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\ForgetPassword;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ReportController;
+use App\Http\Controllers\SellerController;
 use PHPUnit\TextUI\XmlConfiguration\Group;
+use App\Http\Controllers\BuildPcController;
+use App\Http\Controllers\ProductController;
+
+use Stichoza\GoogleTranslate\GoogleTranslate;
 
 Route::get('/test', function () {
     // var_dump('time' . new DataTime);
-    return view('home/user-profile/order_by_wing');
+
+    $tr = new GoogleTranslate('en');
+
+    return $tr->setSource("en")->setTarget("ar")->translate("Hello World");
+
+    // return view('home/user-profile/order_by_wing');
     // var_dump('time' . date("Y m d H:i:s"));
 
 });
@@ -33,6 +40,7 @@ Route::get('/product/product/{id}', [HomeController::class, 'detail'])->name('pr
 Route::get('/blog', [HomeController::class, 'blog']);
 Route::get('/cart', [HomeController::class, 'cart'])->name('route_cart')->middleware('checker');
 Route::any('/search-filter', [HomeController::class, 'search_filter'])->name('search-filter');
+Route::any('/search-filter2', [HomeController::class, 'search_filter2'])->name('search-filter2');
 Route::get('/search', [HomeController::class, 'search']);
 Route::get('/category', [HomeController::class, 'category'])->name('category');
 Route::get('/category/{id}', [HomeController::class, 'categoryItem'])->name('categoryItem');
@@ -62,7 +70,10 @@ Route::get('/switchAccount', [UserController::class, 'switch_acc'])->name('switc
 Route::post('/acceptSwitch', [UserController::class, 'accept_switch'])->name('accept');
 Route::get('/logout', [UserController::class, 'logout'])->name('user_logout')->middleware('checker');
 Route::delete('remove-cart', [CartController::class, 'remove_cart']);
+// Route::delete('remove-cart/{id}', [CartController::class, 'remove_cart']);
+
 Route::delete('remove-wishlist', [CartController::class, 'remove_wishlist']);
+Route::get('remove-wishlist_return_new/{id}', [CartController::class, 'wishlist_return_new']);
 Route::post('edit-quantity-cart', [CartController::class, 'edit_cart_quantity']);
 Route::post('/confirm-order-product', [UserController::class, 'confirm_order_prooduct']);
 Route::post('/order-product', [OrderController::class, 'order']);
